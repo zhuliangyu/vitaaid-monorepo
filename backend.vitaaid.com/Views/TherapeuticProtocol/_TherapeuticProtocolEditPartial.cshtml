@@ -1,0 +1,265 @@
+﻿@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@using MySystem.Base.Extensions;
+@using WebDB.DBBO;
+@using WebDB.DBPO;
+@using WebDB.DBPO.Helper;
+@using MyHibernateUtil;
+@using backend.vitaaid.com;
+
+@model TherapeuticProtocol
+
+<script type="text/javascript">
+    (function () {
+        var selectedIds;
+        $(document).ready(function () {
+            $('.therapeutic-protocol-content').on('click', function () {
+                $("#therapeuticProtocolBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'TherapeuticProtocol/HtmlEditorPart',
+                    data: { id: @Model.ID, type: 'Content' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Contents');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+        });
+    })();
+    function updateHtml(s, e) {
+        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+        var editor = ASPxClientHtmlEditor.Cast("htmlData");
+        editor.PerformDataCallback("", function (s) {
+            $.ajax({
+                type: "POST",
+              url: 'TherapeuticProtocol/TherapeuticProtocolEditFormPartial',
+                data: { id: @Model.ID  },
+                success: function (response) {
+                    $("#therapeuticProtocolEditableContainer").html(response);
+                }
+            });
+        });
+        pcModalMode.Hide();
+
+        var formView = ASPxClientGridView.Cast('therapeuticProtocolView');
+        formView.Refresh();
+    }
+  function onUploadPDF(s, e) {
+    document.getElementById("ucDragAndDrop_TextBox0_Input").click();
+  }
+    //function synchronizeCategory(dropDown, args) {
+    //    cmbCategory.SetText(cmbCategory.FindItemByValue(cmbCategory.GetText()).text);
+    //}
+
+</script>
+
+@Html.DevExpress().PopupControl(
+    settings =>
+    {
+      settings.Name = "pcModalMode";
+      settings.Width = 1024;
+      settings.AllowDragging = true;
+      settings.CloseAction = CloseAction.CloseButton;
+      settings.CloseOnEscape = true;
+      settings.PopupAnimationType = AnimationType.None;
+      settings.HeaderText = "TherapeuticProtocol";
+      settings.Modal = true;
+      settings.AutoUpdatePosition = true;
+      settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+      settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+      settings.SetContent(() =>
+      {
+        using (Html.BeginForm())
+        {
+          //Html.Hidden("ProductID");
+
+          @Html.DevExpress().FormLayout(s =>
+          {
+            s.Name = "ModalModeFormLayout";
+            s.RequiredMarkDisplayMode = RequiredMarkMode.None;
+            s.Width = Unit.Percentage(100);
+            s.Height = Unit.Percentage(100);
+
+            s.NestedExtensionWidth = Unit.Percentage(100);
+            s.Items.Add(i =>
+            {
+              i.ShowCaption = DefaultBoolean.False;
+              i.SetNestedContent("<div id='htmleditor'></div>");
+            });
+            s.Items.Add(i =>
+            {
+              i.ShowCaption = DefaultBoolean.False;
+              i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+              i.SetNestedContent(() =>
+              {
+                Html.DevExpress().Button(
+                  buttonSettings =>
+                  {
+                    buttonSettings.Name = "btnCancel";
+                    buttonSettings.ControlStyle.CssClass = "button";
+                    buttonSettings.Width = 80;
+                    buttonSettings.Text = "Cancel";
+                    buttonSettings.ClientSideEvents.Click = "function(s, e){ pcModalMode.Hide(); }";
+                  }
+                ).Render();
+                Html.DevExpress().Button(
+                    buttonSettings =>
+                    {
+                      buttonSettings.Name = "btnUpdate";
+                      buttonSettings.ControlStyle.CssClass = "button";
+                      buttonSettings.Width = 80;
+                      buttonSettings.Text = "OK";
+                      buttonSettings.ClientSideEvents.Click = "updateHtml";
+                    }
+                ).Render();
+              });
+            });
+          }).Render();
+        }
+      });
+
+      //settings.ClientSideEvents.CloseUp = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(null, '', true); }";
+    }).GetHtml()
+
+@using (Ajax.BeginForm("TherapeuticProtocolEditFormUpdatePartial", "TherapeuticProtocol", new { id = Model.ID },
+                        new AjaxOptions { HttpMethod = "POST" },
+                        new { @id = "therapeuticProtocolBasicInfoForm", @name = "therapeuticProtocolBasicInfoForm" }))
+{
+  Html.DevExpress().FormLayout(settings =>
+  {
+    settings.Name = "pvEditForm";
+    settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+    settings.Width = Unit.Percentage(100);
+
+    settings.Items.AddTabbedGroupItem(t =>
+    {
+
+      t.Items.AddGroupItem(t1 =>
+      {
+        t1.Caption = "Protocol Info";
+        t1.Items.AddGroupItem(g =>
+        {
+          g.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+          g.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+          g.ShowCaption = DefaultBoolean.False;
+          g.Height = Unit.Percentage(100);
+          g.Width = Unit.Percentage(100);
+          g.ColumnCount = 3;
+          g.Items.Add(m => m.Issue, s =>
+          {
+            s.ColumnSpan = 2;
+            s.Width = Unit.Percentage(66);
+            s.NestedExtensionSettings.Width = Unit.Percentage(100);
+          });
+          g.Items.Add(m => m.BannerImage, s =>
+          {
+            s.RowSpan = 5;
+            s.Caption = "Image";
+            s.Width = Unit.Percentage(34);
+            s.NestedExtensionSettings.Width = Unit.Percentage(100);
+            var image = (BinaryImageEditSettings)s.NestedExtensionSettings;
+            image.Properties.EnableServerResize = false;
+            image.Properties.ImageSizeMode = ImageSizeMode.FitProportional;
+            image.CallbackRouteValues = new { Action = "BinaryImagePhotoUpdate", Controller = "TherapeuticProtocol", Target = "BannerImage" };
+            image.Properties.EditingSettings.Enabled = true;
+            image.Properties.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+            image.Properties.EditingSettings.UploadSettings.TemporaryFolder = EnvHelper.CACHE_DIR;
+            image.Properties.EditingSettings.UploadSettings.UploadMode = UploadControlUploadMode.Auto;
+            image.Properties.ClientSideEvents.ValueChanged = "saveBannerFileName";
+          });
+          g.Items.Add(m => m.Author, s =>
+          {
+            s.ColumnSpan = 2;
+            s.Width = Unit.Percentage(66);
+            s.NestedExtensionSettings.Width = Unit.Percentage(100);
+          });
+          g.Items.Add(m => m.Topic, s =>
+          {
+            s.ColumnSpan = 2;
+            s.Width = Unit.Percentage(66);
+            s.NestedExtensionSettings.Width = Unit.Percentage(100);
+          });
+          g.Items.Add(m => m.Tags, s =>
+          {
+            s.Width = Unit.Percentage(66);
+            s.ColumnSpan = 2;
+            s.NestedExtensionSettings.Width = Unit.Percentage(100);
+          });
+
+          g.Items.Add(m => m.Published);
+          g.Items.Add(m => m.VisibleSite, s =>
+          {
+            s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+            s.Caption = "Site";
+          });
+        });
+
+        t1.Items.Add(m => m.BlogContent, i =>
+        {
+          i.Caption = "Contents";
+          i.CaptionStyle.CssClass = "PopHtmlEditor therapeutic-protocol-content";
+          i.SetNestedContent(() =>
+          {
+            ViewContext.Writer.Write("<div>" + Model.BlogContent + "</div>");
+          });
+        });
+      });
+      t.Items.AddGroupItem(t2 =>
+      {
+        t2.Caption = "PDF";
+        t2.Height = Unit.Percentage(100);
+        t2.Width = Unit.Percentage(100);
+
+        t2.Items.Add(m => m.PDFFile, s =>
+        {
+          s.Caption = "File Name";
+          s.SetNestedContent(() =>
+          {
+            Html.DevExpress().TextBoxFor(o => o.PDFFile, tbSetting =>
+            {
+              tbSetting.ReadOnly = true;
+            }).Render();
+            Html.DevExpress().Button(btnSetting =>
+            {
+              btnSetting.Name = "btnUplaodPDF";
+              btnSetting.Text = "...";
+              btnSetting.ClientSideEvents.Click = "onUploadPDF";
+            }).Render();
+
+          });
+        });
+        t2.Items.Add((s) =>
+        {
+          s.Height = Unit.Percentage(100);
+          s.Width = Unit.Percentage(100);
+          s.Caption = "PDF";
+          if (string.IsNullOrWhiteSpace(Model.PDFFile))
+          {
+            s.SetNestedContent("<div class='pdf-block'><img src=\"" + EnvHelper.BASE_DIR + "noimg.jpg\" alt=\"\"></img></div>");
+          }
+          else
+          {
+            string PDFPath = EnvHelper.PROTOCOL_DIR + Uri.EscapeUriString(Model.PDFFile);
+            if (File.Exists(Server.MapPath(EnvHelper.PROTOCOL_DIR + Model.PDFFile)))
+            {
+              s.SetNestedContent("<div class='pdf-block'><embed src=\"" + PDFPath + "\"></embed></div>");
+            }
+            else
+            {
+              s.SetNestedContent("<div class='pdf-block'><img src=\"" + EnvHelper.BASE_DIR + "broken.png\" alt=\"\"></img></div>");
+            }
+          }
+        });
+      });
+    });
+  }).Bind(Model).GetHtml();
+@Html.Hidden("BannerImage_hiddenFieldID");
+}
+
+@{
+  Html.RenderPartial("" + "_TherapeuticProtocolUploadPDFPartial", (object)Model);
+}

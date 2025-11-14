@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="VAGiftCard" table="VAGiftCard">
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="Name" type ="TrimString">
+	  <column name="Name" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Code" type ="TrimString">
+	  <column name="Code" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Amount">
+	  <column name="Amount" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="Balance">
+	  <column name="Balance" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="StartDate">
+	  <column name="StartDate" sql-type="DATETIME2" not-null="false" />
+	</property>
+	<property name="ExpiryDate">
+	  <column name="ExpiryDate" sql-type="DATETIME2" not-null="false" />
+	</property>
+	<property name="Valid">
+	  <column name="Valid" sql-type="int" not-null="false"/>
+	</property>
+	<property name="UsageLimit">
+	  <column name="UsageLimit" sql-type="int" not-null="false"/>
+	</property>
+	<property name="UsedCount">
+	  <column name="UsedCount" sql-type="int" not-null="false"/>
+	</property>
+	<property name="LastUsedDate">
+	  <column name="LastUsedDate" sql-type="DATETIME2" not-null="false" />
+	</property>
+	<property name="Comment" type ="TrimString">
+	  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="LastUsedNote" type ="TrimString">
+	  <column name="LastUsedNote" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="AccountNo" type ="TrimString">
+	  <column name="AccountNo" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Currency" type ="TrimString">
+	  <column name="Currency" sql-type="nvarchar" not-null="false" />
+	</property>
+	  <property name="LastUsedOn" type ="TrimString">
+		  <column name="LastUsedOn" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="CreditType" type="eCREDITTYPE">
+		  <column name="CreditType" sql-type="int" not-null="false" />
+	  </property>
+
+	  <property name="DataStatus" type ="TrimString">
+	  <column name="DataStatus" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedID" type ="TrimString">
+	  <column name="CreatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedDate" type="DateTime">
+	  <column name="CreatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+	<property name="UpdatedID" type ="TrimString">
+	  <column name="UpdatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="UpdatedDate" type="DateTime">
+	  <column name="UpdatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+  </class>
+</hibernate-mapping>

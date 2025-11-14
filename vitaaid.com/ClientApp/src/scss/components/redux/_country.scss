@@ -1,0 +1,23 @@
+@use '../../abstracts/mixins' as *;
+.CountrySelector {
+  .open-country-menu {
+    @include clampattr(margin-left, 10);
+  }
+  .flag {
+    @include clampattr(width, 19);
+    @include clampattr(height, 13);
+    @include clampattr(margin-right, 8);
+    object-fit: contain;
+    vertical-align: middle;
+    padding-left: 5px;
+  }
+
+  .countryname {
+    @include clampattr(width, 48);
+    @include clampattr(font-size, 12);
+    text-align: left;
+  }
+}
+.dx-popover-arrow {
+  display: none !important;
+}

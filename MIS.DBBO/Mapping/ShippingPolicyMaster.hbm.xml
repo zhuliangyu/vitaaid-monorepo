@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="ShippingPolicyMaster" table="ShippingPolicyMaster" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="PolicyType" type ="TrimString">
+      <column name="PolicyType" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PolicyName" type ="TrimString">
+      <column name="PolicyName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CouponCode" type ="TrimString">
+      <column name="CouponCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="StartDate">
+      <column name="StartDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="ExpiryDate">
+      <column name="ExpiryDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Priority">
+      <column name="Priority" sql-type="int" not-null="false" />
+    </property>
+    <property name="IsActive">
+      <column name="IsActive" sql-type="int" not-null="false" />
+    </property>
+    <!--<bag name="oPolicyContext" table="ShippingPolicy" inverse="false" cascade="true" order-by="ID">
+      <key column="oSPMaster"  not-null="false" />
+      <one-to-many class="ShippingPolicy"/>
+    </bag>-->
+
+    <!-- Other -->
+      <property name="DataStatus" type ="TrimString">
+          <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CreatedID" type ="TrimString">
+          <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CreatedDate">
+          <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="UpdatedID" type ="TrimString">
+          <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="UpdatedDate">
+          <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

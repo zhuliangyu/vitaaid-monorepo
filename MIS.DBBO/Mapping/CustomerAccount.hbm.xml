@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="CustomerAccount" table="CustomerAccount" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <!-- Basic Info. -->
+    <property name="CustomerCode" type ="TrimString">
+      <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerName" type ="TrimString">
+      <column name="CustomerName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerOwner" type ="TrimString">
+      <column name="CustomerOwner" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerOwnerTitle" type ="TrimString">
+      <column name="CustomerOwnerTitle" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactPersonalTitle" type ="TrimString">
+      <column name="ContactPersonalTitle" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactPersonal" type ="TrimString">
+      <column name="ContactPersonal" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactPersonalTel" type ="TrimString">
+      <column name="ContactPersonalTel" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactPersonalEmail" type ="TrimString">
+      <column name="ContactPersonalEmail" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="IsActive">
+      <column name="IsActive" sql-type="int" not-null="false" />
+    </property>
+    <property name="PricePolicy" type="ePRICEPOLICY">
+      <column name="PricePolicy" sql-type="int" not-null="false" />
+    </property>
+
+    <!--<property name="ContactManagerTitle" type ="TrimString">
+      <column name="ContactManagerTitle" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactManager" type ="TrimString">
+      <column name="ContactManager" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactManagerTel" type ="TrimString">
+      <column name="ContactManagerTel" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContactManagerEmail" type ="TrimString">
+      <column name="ContactManagerEmail" sql-type="nvarchar" not-null="false" />
+    </property>-->
+
+    <!-- Sale Rep. and Customer Rep. -->
+    <property name="SalesRepID" type ="TrimString">
+      <column name="SalesRepID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesRep" type ="TrimString">
+      <column name="SalesRep" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerRepID" type ="TrimString">
+      <column name="CustomerRepID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerRep" type ="TrimString">
+      <column name="CustomerRep" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <bag name="oAddresses" table="CustomerAddress" inverse="false" cascade="none">
+      <key column="oCustomer"  not-null="false" />
+      <one-to-many class="CustomerAddress"/>
+    </bag>
+    <bag name="oMemos" table="CustomerMemo" inverse="false" cascade="none">
+      <key column="oCustomer"  not-null="false" />
+      <one-to-many class="CustomerMemo"/>
+      <filter name="NotDeletedOnly"/>
+    </bag>
+
+    <!-- Bill Info. -->
+    <property name="CustomerPersonal1" type ="TrimString">
+      <column name="CustomerPersonal1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerName1" type ="TrimString">
+      <column name="CustomerName1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerAddress1" type ="TrimString">
+      <column name="CustomerAddress1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerCity1" type ="TrimString">
+      <column name="CustomerCity1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerProvince1" type ="TrimString">
+      <column name="CustomerProvince1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerPostalCode1" type ="TrimString">
+      <column name="CustomerPostalCode1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerCountry1" type ="TrimString">
+      <column name="CustomerCountry1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerTel1" type ="TrimString">
+      <column name="CustomerTel1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerFax1" type ="TrimString">
+      <column name="CustomerFax1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerEmail1" type ="TrimString">
+      <column name="CustomerEmail1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="InvoiceToCustomer" type ="TrimString">
+      <column name="InvoiceToCustomer" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <!-- ShipTo Info. -->
+    <property name="CustomerPersonal2" type ="TrimString">
+      <column name="CustomerPersonal2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerName2" type ="TrimString">
+      <column name="CustomerName2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerAddress2" type ="TrimString">
+      <column name="CustomerAddress2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerCity2" type ="TrimString">
+      <column name="CustomerCity2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerProvince2" type ="TrimString">
+      <column name="CustomerProvince2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerPostalCode2" type ="TrimString">
+      <column name="CustomerPostalCode2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerCountry2" type ="TrimString">
+      <column name="CustomerCountry2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerTel2" type ="TrimString">
+      <column name="CustomerTel2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerFax2" type ="TrimString">
+      <column name="CustomerFax2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerEmail2" type ="TrimString">
+      <column name="CustomerEmail2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ShippedVia" type ="TrimString">
+      <column name="ShippedVia" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <!-- Payment method -->
+    <property name="PaymentTerm" type ="TrimString">
+      <column name="PaymentTerm" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PaymentType" type ="TrimString">
+      <column name="PaymentType" sql-type="nvarchar" not-null="false" />
+    </property>
+    <!-- Credit Card Info. --> 
+    <property name="CreditCardType1" type ="TrimString">
+      <column name="CreditCardType1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardHolder1" type ="TrimString">
+      <column name="CardHolder1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardNumber1" type ="TrimString">
+      <column name="CardNumber1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreditCardCID1" type ="TrimString">
+      <column name="CreditCardCID1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardExpiryDate1" type ="TrimString">
+      <column name="CardExpiryDate1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreditCardType2" type ="TrimString">
+      <column name="CreditCardType2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardHolder2" type ="TrimString">
+      <column name="CardHolder2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardNumber2" type ="TrimString">
+      <column name="CardNumber2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreditCardCID2" type ="TrimString">
+      <column name="CreditCardCID2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardExpiryDate2" type ="TrimString">
+      <column name="CardExpiryDate2" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <property name="OrderCount">
+      <column name="OrderCount" sql-type="int" not-null="false" />
+    </property>
+      <property name="AutoCommission">
+          <column name="AutoCommission" sql-type="int" not-null="false" />
+      </property>
+      <property name="OverridedCommissionRate">
+          <column name="OverridedCommissionRate" sql-type="float" not-null="false" />
+      </property>
+
+      <!-- Note -->
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <property name="DisplayLotNo">
+      <column name="DisplayLotNo" sql-type="int" not-null="false" />
+    </property>
+
+      <many-to-one name="oPaymentTerm">
+          <column name="oPaymentTerm" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="POMemo" type ="TrimString">
+          <column name="POMemo" sql-type="nvarchar" not-null="false" />
+      </property>
+
+      <!-- Other -->
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <!--<property name="CreatedTime" type ="TrimString">
+      <column name="CreatedTime" sql-type="nvarchar" not-null="false" />
+    </property>-->
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <!--<property name="UpdatedTime" type ="TrimString">
+      <column name="UpdatedTime" sql-type="nvarchar" not-null="false" />
+    </property>-->
+    <!--<property name="MonthlyCredit" type ="TrimString">
+      <column name="MonthlyCredit" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PromotionPlan" type ="TrimString">
+      <column name="PromotionPlan" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DiscountPriority" type ="TrimString">
+      <column name="DiscountPriority" sql-type="nvarchar" not-null="false" />
+    </property>-->
+    <!--
+    <property name="InvoiceEmail" type ="TrimString">
+      <column name="InvoiceEmail" sql-type="nvarchar" not-null="false" />
+    </property>
+    -->
+    <property name="EmployeeMonthlyCredit">
+      <column name="EmployeeMonthlyCredit" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="bDistributor">
+      <column name="bDistributor" sql-type="int" not-null="false" />
+    </property>
+    <property name="PriceRateForDistributor">
+      <column name="PriceRateForDistributor" sql-type="float" not-null="false" />
+    </property>
+
+  </class>
+  <filter-def name="NotDeletedOnly" condition="DataStatus != 'D'"/>
+
+</hibernate-mapping>

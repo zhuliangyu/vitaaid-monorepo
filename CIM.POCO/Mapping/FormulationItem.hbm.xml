@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FormulationItem" table="FormulationItem" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Formulation">
+      <column name="FormulationID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <property name="LabelClaim">
+      <column name="LabelClaim" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="LabelClaimUnit">
+      <column name="LabelClaimUnit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Excess">
+      <column name="Excess" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="RawMaterial">
+      <column name="RawMaterialCategoryID" sql-type="int" not-null="false" />
+    </many-to-one>
+
+    <property name="PotencyMethod" type="ePOTENCYMETHOD">
+      <column name="PotencyMethod" sql-type="int" not-null="true" />
+    </property>
+    <property name="ActiveIngredientName" type ="TrimString">
+      <column name="ActiveIngredientName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="MethodParameter">
+      <column name="MethodParameter" sql-type="float" not-null="false"/>
+    </property>
+    <many-to-one name="ActiveIngredient">
+      <column name="ActiveIngredientID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Note" type ="TrimString">
+      <column name="Note" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="GroupNo">
+      <column name="GroupNo" sql-type="int" not-null="false" />
+    </property>
+    <property name="Exchangeable">
+      <column name="Exchangeable" sql-type="int" not-null="false" />
+    </property>
+    <property name="Assay" type ="TrimString">
+      <column name="Assay" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LowerBound">
+      <column name="LowerBound" sql-type="float" not-null="false"/>
+    </property>
+    <property name="UpperBound">
+      <column name="UpperBound" sql-type="float" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,86 @@
+﻿@use '../../abstracts' as *;
+@use '../../base' as *;
+.order-hisory {
+  // @extend .main-body-bottom-line;
+
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 32);
+    @include clampattr(margin-bottom, 100);
+  }
+  .order-list {
+    padding-left: 0;
+    padding-right: 0;
+
+    .title {
+      @include clampattr(font-size, 25);
+      @include clampattr(line-height, 45);
+      color: var(--marine-blue);
+      @include media('<tablet') {
+        font-weight: 400;
+      }
+      @include media('>=tablet') {
+        font-weight: 600;
+      }
+    }
+
+    .order-info-table {
+      width: 100%;
+      border-collapse: separate;
+      @include clampattr(-webkit-border-vertical-spacing, 12);
+      -webkit-border-horizontal-spacing: 0px;
+      border-bottom: 1px solid var(--grey-borderline);
+      @include clampattr(margin-bottom, 50);
+
+      .order-info-table-header {
+        @include clampattr(font-size, 20);
+        @include media('<tablet') {
+          font-weight: 400;
+          @include clampattr(padding-top, 6);
+          @include clampattr(padding-bottom, 6);
+        }
+        @include media('>=tablet') {
+          font-weight: 600;
+          @include clampattr(padding-top, 12);
+          @include clampattr(padding-bottom, 12);
+        }
+        @include clampattr(line-height, 24);
+        color: var(--ocean-blue);
+        border-bottom: 1px solid var(--grey-borderline);
+        border-top: 1px solid var(--grey-borderline);
+        @include media('>=tablet') {
+          font-weight: 600;
+        }
+      }
+
+      tbody {
+        @include media('<tablet') {
+          @include clampattr(font-size, 16);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 15);
+        }
+        color: var(--greyish-brown);
+      }
+      .order-status {
+        @include media('<tablet') {
+          @include clampattr(padding-right, 8);
+        }
+      }
+      .patient-name {
+        @include media('<tablet') {
+          @include clampattr(padding-right, 8);
+        }
+      }
+      .order-no {
+        color: var(--marine-blue);
+      }
+      .space-wrap {
+        white-space: pre-wrap;
+      }
+
+      .fixwidth-td {
+        @include clampattr(width, 80);
+      }
+    }
+  }
+}

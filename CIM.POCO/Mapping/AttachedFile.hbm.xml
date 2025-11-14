@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AttachedFile" table="AttachedFile" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="FileBody"  type="BinaryBlob"/>
+    <property name="FSGUID"/>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Memo" type ="TrimString">
+      <column name="Memo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Size">
+      <column name="Size" sql-type="int" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

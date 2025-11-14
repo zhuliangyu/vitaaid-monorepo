@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="ProductCodeInfo" table="ProductCodeToFormulation" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="FormulationCode" type ="TrimString">
+      <column name="FormulationCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="IsOEM">
+      <column name="IsOEM" sql-type="int" not-null="false" />
+    </property>
+    <property name="Servings">
+      <column name="Servings" sql-type="int" not-null="false" />
+    </property>
+    <property name="SampleServings">
+      <column name="SampleServings" sql-type="int" not-null="false" />
+    </property>
+    <property name="TemperatureSensitive">
+      <column name="TemperatureSensitive" sql-type="int" not-null="false" />
+    </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+	  </property>
+  </class>
+ 
+</hibernate-mapping>

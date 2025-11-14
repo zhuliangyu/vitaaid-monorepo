@@ -1,0 +1,86 @@
+@use '../abstracts' as *;
+
+.webinar-detail {
+  @include clampattr(margin-bottom, 100);
+
+  .col-webinar-body {
+    @include media('>=tablet') {
+      @include importantclampattr(padding-right, 36);
+    }
+  }
+
+  .title {
+    @include clampattr(font-size, 22);
+    @include clampattr(line-height, 30);
+    color: var(--ocean-blue);
+    @include clampattr(margin-top, 25);
+    width: 100%;
+    border-bottom: 1px solid #dfdfdf;
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 4);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-bottom, 12);
+    }
+  }
+
+  .issue-vol-no-block {
+    @include media('<tablet') {
+      @include clampattr(font-size, 15);
+      @include clampattr(padding-top, 14);
+      @include clampattr(margin-bottom, 18);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 17);
+      @include clampattr(padding-top, 10);
+      @include clampattr(margin-bottom, 30);
+    }
+    @include clampattr(line-height, 18);
+    color: var(--greyish-brown);
+
+    .sep-space {
+      display: inline-block;
+      @include clampattr(width, 80);
+    }
+  }
+
+  .webinar-content {
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 32);
+    }
+  }
+  .webinar-video-block {
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 12);
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+    .webinar-video {
+      margin-top: 10px;
+      @include media('<tablet') {
+        width: 100%;
+        @include clampattr(height, 180);
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 610);
+        @include clampattr(height, 330);
+      }
+    }
+  }
+  .notice {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 20);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 60);
+    }
+    border: 1px solid var(--warm-grey);
+    border-radius: 10px;
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 18);
+    color: var(--warm-grey);
+    @include clampattr(padding-top, 12);
+    @include clampattr(padding-bottom, 12);
+    @include clampattr(padding-left, 20);
+    @include clampattr(padding-right, 20);
+  }
+}

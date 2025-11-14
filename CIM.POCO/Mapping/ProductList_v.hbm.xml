@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="ProductList_v" table="ProductList_v" lazy="true" >
+    <id name="MESPackageSpecID" column="MESPackageSpecID">
+      <generator class="identity" />
+    </id>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

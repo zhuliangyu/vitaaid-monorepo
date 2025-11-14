@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="EQDataTemplateDetail" table="EQDataTemplateDetail" lazy="true" >
+        <id name="ID" column="ID">
+            <generator class="identity" />
+        </id>
+        <many-to-one name="oTemplate">
+            <column name="oTemplate" sql-type="int" not-null="false"/>
+        </many-to-one>
+        <property name="TemplateName" type ="TrimString">
+            <column name="TemplateName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="ParameterName" type ="TrimString">
+            <column name="ParameterName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="Description" type ="TrimString">
+            <column name="Description" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="ItemType" type ="eEQDataItemType">
+            <column name="ItemType" sql-type="int" not-null="false" />
+        </property>
+        <!-- Other -->
+        <property name="DataStatus" type ="TrimString">
+            <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="CreatedID" type ="TrimString">
+            <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="CreatedDate">
+            <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+        </property>
+        <property name="UpdatedID" type ="TrimString">
+            <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="UpdatedDate">
+            <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>

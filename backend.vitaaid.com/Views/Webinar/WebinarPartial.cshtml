@@ -1,0 +1,140 @@
+@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@model List<Webinar>
+
+@{
+    var webinar = Html.DevExpress().GridView(webinarSettings => {
+        webinarSettings.Name = "webinarView";
+        webinarSettings.KeyFieldName = "ID";
+
+        webinarSettings.CallbackRouteValues = new { Controller = "Webinar", Action = "WebinarPartial" };
+        webinarSettings.CustomActionRouteValues = new { Controller = "Webinar", Action = "WebinarCustomActionPartial" };
+        webinarSettings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Webinar", Action = "WebinarAddNewPartial" };
+        webinarSettings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Webinar", Action = "WebinarUpdatePartial" };
+
+        webinarSettings.EnablePagingGestures = AutoBoolean.False;
+
+        webinarSettings.ControlStyle.CssClass = "webinar";
+        webinarSettings.Width = Unit.Percentage(100);
+
+        webinarSettings.Styles.Cell.Wrap = DefaultBoolean.False;
+        webinarSettings.Styles.PagerBottomPanel.CssClass = "pager";
+        webinarSettings.Styles.FocusedRow.CssClass = "focused";
+        webinarSettings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+        webinarSettings.SettingsBehavior.AllowFocusedRow = true;
+        webinarSettings.SettingsBehavior.AllowSelectByRowClick = true;
+        webinarSettings.SettingsBehavior.AllowEllipsisInText = true;
+        webinarSettings.SettingsBehavior.AllowDragDrop = false;
+
+        webinarSettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+        webinarSettings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //webinarSettings.SettingsEditing.EditFormColumnCount = 2;
+
+        webinarSettings.Settings.VerticalScrollBarMode = ScrollBarMode.Hidden;
+        webinarSettings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        //webinarSettings.Settings.ShowHeaderFilterButton = true;
+        webinarSettings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+        webinarSettings.SettingsPager.PageSize = 20;
+        webinarSettings.SettingsPager.EnableAdaptivity = true;
+        webinarSettings.SettingsPager.PageSizeItemSettings.Visible = true;
+
+        //webinarSettings.SettingsExport.EnableClientSideExportAPI = true;
+        //webinarSettings.SettingsExport.ExportSelectedRowsOnly = true;
+
+        webinarSettings.SettingsPopup.EditForm.SettingsAdaptivity.MaxWidth = 960;
+        webinarSettings.SettingsPopup.EditForm.SettingsAdaptivity.Mode = PopupControlAdaptivityMode.Always;
+        webinarSettings.SettingsPopup.EditForm.SettingsAdaptivity.VerticalAlign = PopupAdaptiveVerticalAlign.WindowCenter;
+        webinarSettings.SetEditFormTemplateContent(c =>
+        {
+            var dataObject = c.Grid.IsNewRowEditing ? new Webinar() : c.Grid.GetRow(c.VisibleIndex);
+            Html.RenderPartial("_WebinarNewPartial", dataObject);
+        });
+
+        webinarSettings.CommandColumn.Visible = true;
+        webinarSettings.CommandColumn.ShowSelectCheckbox = true;
+        webinarSettings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+        webinarSettings.CommandColumn.VisibleIndex = 0;
+        webinarSettings.CommandColumn.Width = Unit.Pixel(52);
+
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "ID";
+            columnSettings.Visible = false;
+        });
+
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Issue";
+            columnSettings.Caption = "BroadcastDate";
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Author";
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Topic";
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Reference";
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "VideoLink";
+            columnSettings.Visible = false;
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Tags";
+            columnSettings.Visible = false;
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "MaxRegistrants";
+        });
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Published";
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+
+        webinarSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "UpdatedDate";
+            columnSettings.Width = System.Web.UI.WebControls.Unit.Pixel(130);
+            columnSettings.PropertiesEdit.DisplayFormatString = "d";
+        });
+
+        webinarSettings.ClientSideEvents.Init = "onWebinarInit";
+        webinarSettings.ClientSideEvents.SelectionChanged = "onWebinarSelectionChanged";
+        webinarSettings.ClientSideEvents.BeginCallback = "onWebinarBeginCallback";
+        webinarSettings.ClientSideEvents.EndCallback = "onWebinarEndCallback";
+        webinarSettings.ClientSideEvents.FocusedRowChanged = "onWebinarRefreshEditFormCallback";
+
+
+        webinarSettings.InitNewRow += (s, e) => {
+            e.NewValues["Published"] = false;
+        };
+        webinarSettings.CellEditorInitialize = (s, e) => {
+            ((ASPxEdit)e.Editor).ValidationSettings.Display = Display.Dynamic;
+        };
+    });
+    if(ViewBag.GeneralError != null) {
+        webinar.SetEditErrorText(ViewBag.GeneralError);
+    }
+}
+
+@webinar.Bind(Model).GetHtml()
+

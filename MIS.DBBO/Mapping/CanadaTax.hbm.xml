@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="CanadaTax" table="CanadaTax" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="ProvinceID" type ="TrimString">
+      <column name="ProvinceID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProvinceName" type ="TrimString">
+      <column name="ProvinceName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CountryName" type ="TrimString">
+      <column name="CountryName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="FromProvionceID" type ="TrimString">
+      <column name="FromProvionceID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TaxIDfromProvionce" type ="TrimString">
+      <column name="TaxIDfromProvionce" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TaxID" type ="TrimString">
+      <column name="TaxID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TaxRateHST">
+      <column name="TaxRateHST" sql-type="float" not-null="false" />
+    </property>
+    <property name="TaxRateGST">
+      <column name="TaxRateGST" sql-type="float" not-null="false" />
+    </property>
+    <property name="TaxRatePST">
+      <column name="TaxRatePST" sql-type="float" not-null="false" />
+    </property>
+    <property name="TaxRateReserve">
+      <column name="TaxRateReserve" sql-type="float" not-null="false" />
+    </property>
+    <property name="Status" type ="TrimString">
+      <column name="Status" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="CreatedTime" type ="TrimString">
+      <column name="CreatedTime" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedTime" type ="TrimString">
+      <column name="UpdatedTime" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

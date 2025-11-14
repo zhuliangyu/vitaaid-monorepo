@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="MESPackageSpec" table="MESPackageSpec" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="PackageCode" type ="TrimString">
+      <column name="PackageCode" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PackageType" type="ePACKAGETYPE">
+      <column name="PackageType" sql-type="int" not-null="true" />
+    </property>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Memo" type ="TrimString">
+      <column name="Memo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Disposal">
+      <column name="Disposal" sql-type="int" not-null="false" />
+    </property>
+    <property name="Version" type ="TrimString">
+      <column name="Version" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="LabelFile" lazy="proxy">
+      <column name="LabelFile" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Weight">
+      <column name="Weight" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="Supplier">
+      <column name="Supplier" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Unit">
+      <column name="Unit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="SafetyCount">
+      <column name="SafetyCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="OtherAttributes">
+      <column name="OtherAttributes" sql-type="int" not-null="false" />
+    </property>
+    <property name="VendorItemCode" type ="TrimString">
+      <column name="VendorItemCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

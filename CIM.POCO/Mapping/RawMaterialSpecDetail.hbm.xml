@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RawMaterialSpecDetail" table="RawMaterialSpecDetail" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="RawMaterialSpec">
+      <column name="RawMaterialSpecID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="ActiveIngredientName" type ="TrimString">
+      <column name="ActiveIngredientName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Potency">
+      <column name="Potency" sql-type="float" not-null="false" />
+    </property>
+    <property name="Factor">
+      <column name="Factor" sql-type="int" not-null="false"/>
+    </property>
+    <many-to-one name="Unit">
+      <column name="Unit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="BaseUnit">
+      <column name="BaseUnit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="PotencyMethod" type="ePOTENCYMETHOD">
+      <column name="PotencyMethod" sql-type="int" not-null="true" />
+    </property>
+    <many-to-one name="ActiveIngredient">
+      <column name="ActiveIngredientID" sql-type="int" not-null="false" />
+    </many-to-one>
+      <property name="Invalid">
+          <column name="Invalid" sql-type="int" not-null="false"/>
+      </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

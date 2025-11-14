@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="DiscountProgram" table="DiscountProgram" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CouponCode" type ="TrimString">
+      <column name="CouponCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DiscountType" type="eDISCOUNTTYPE">
+      <column name="DiscountType" sql-type="int" not-null="false" />
+    </property>
+    <property name="DiscountAmount">
+      <column name="DiscountAmount" sql-type="float" not-null="false" />
+    </property>
+    <property name="MinDifferentSKUs">
+      <column name="MinDifferentSKUs" sql-type="int" not-null="false" />
+    </property>
+    <property name="MinimumSpend">
+      <column name="MinimumSpend" sql-type="float" not-null="false" />
+    </property>
+    <property name="MinimumQuantity">
+      <column name="MinimumQuantity" sql-type="float" not-null="false" />
+    </property>
+    <property name="TargetSKUStrategy" type="eTARGETSKUSTRATEGY">
+      <column name="TargetSKUStrategy" sql-type="int" not-null="false" />
+    </property>
+    <property name="DiscountAmountFirstOrder">
+      <column name="DiscountAmountFirstOrder" sql-type="float" not-null="false" />
+    </property>
+    <property name="MinDifferentSKUsFirstOrder">
+      <column name="MinDifferentSKUsFirstOrder" sql-type="int" not-null="false" />
+    </property>
+    <property name="MinimumSpendFirstOrder">
+      <column name="MinimumSpendFirstOrder" sql-type="float" not-null="false" />
+    </property>
+    <property name="MinimumQuantityFirstOrder">
+      <column name="MinimumQuantityFirstOrder" sql-type="float" not-null="false" />
+    </property>
+    <property name="TargetSKUStrategyFirstOrder" type="eTARGETSKUSTRATEGY">
+      <column name="TargetSKUStrategyFirstOrder" sql-type="int" not-null="false" />
+    </property>
+    <property name="StartDate">
+      <column name="StartDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="ExpiryDate">
+      <column name="ExpiryDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="TargetAccountMethod" type="eACCOUNTRULE">
+      <column name="TargetAccountMethod" sql-type="int" not-null="false" />
+    </property>
+    <property name="TargetAccountExclude" type ="TrimString">
+      <column name="TargetAccountExclude" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TargetProductMethod" type="ePRODUCTRULE">
+      <column name="TargetProductMethod" sql-type="int" not-null="false" />
+    </property>
+    <property name="TargetProductExclude" type ="TrimString">
+      <column name="TargetProductExclude" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UsageLimit" type="eUSAGERULE">
+      <column name="UsageLimit" sql-type="int" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+      <property name="Deferred">
+          <column name="Deferred" sql-type="int" not-null="false" />
+      </property>
+      <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UsedCount">
+      <column name="UsedCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="LastUsedDate">
+      <column name="LastUsedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <bag name="oTargetProducts" table="DiscountTargetProduct" inverse="false" cascade="none" order-by="ProductName">
+      <key column="oDiscountProgram"  not-null="false" />
+      <one-to-many class="DiscountTargetProduct"/>
+    </bag>
+    <bag name="oTargetAccounts" table="DiscountTargetAccount" inverse="false" cascade="none" order-by="CustomerCode">
+      <key column="oDiscountProgram"  not-null="false" />
+      <one-to-many class="DiscountTargetAccount"/>
+    </bag>
+
+  </class>
+</hibernate-mapping>

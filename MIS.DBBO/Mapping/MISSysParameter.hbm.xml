@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="MISSysParameter" table="MISSysParameter" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="AppName" type ="TrimString">
+      <column name="AppName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Category" type ="TrimString">
+      <column name="ConfigCategory" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ConfigName" type ="TrimString">
+      <column name="ConfigName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ConfigVal1">
+      <column name="ConfigVal1" sql-type="float" not-null="false" />
+    </property>
+    <property name="ConfigVal2" type ="TrimString">
+      <column name="ConfigVal2" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

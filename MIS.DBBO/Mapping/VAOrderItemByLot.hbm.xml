@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="VAOrderItemByLot" table="VAOrderItemByLot"  lazy="false">
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oVAOrder">
+      <column name="oVAOrder" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="oItemOwner">
+      <column name="oItemOwner" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="SupplyCode" type ="TrimString">
+      <column name="SupplyCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Code" type ="TrimString">
+      <column name="Code" sql-type="nvarchar" not-null="false" />
+    </property>
+    <!--<property name="MESProductCode" type ="TrimString">
+      <column name="MESProductCode" sql-type="nvarchar" not-null="false" />
+    </property>-->
+    <property name="PONo" type ="TrimString">
+      <column name="PONo" sql-type="nvarchar" not-null="false" />
+    </property>
+      <property name="OrderQty">
+        <column name="OrderQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="ShipQty">
+        <column name="ShipQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="StockLocation" type ="TrimString">
+        <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="RetailLotNo" type ="TrimString">
+        <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="StockCountSnapShot">
+        <column name="StockCountSnapShot" sql-type="int" not-null="false" />
+      </property>
+    <property name="ExpiredDate">
+      <column name="ExpiredDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

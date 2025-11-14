@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="POSInvoiceDetail" table="POsInvoiceDetail" lazy="true">
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="InvoiceSequenceNumber">
+      <column name="InvoiceSequenceNumber" sql-type="INT" />
+    </property>
+    <property name="InvoiceNO" type ="TrimString">
+      <column name="InvoiceNO" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="AccountNO" type ="TrimString">
+      <column name="AccountNO" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" not-null="true" sql-type="nvarchar" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" not-null="true" sql-type="nvarchar" />
+    </property>
+    <!--<property name="MESProductCode" type ="TrimString">
+      <column name="MESProductCode" not-null="true" sql-type="nvarchar" />
+    </property>-->
+    <property name="CountOrder" type="Double">
+      <column name="CountOrder" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="CountShipped" type="Double">
+      <column name="CountShipped" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="CountUnit" type ="TrimString">
+      <column name="CountUnit" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="UnitPrice" type="Decimal">
+      <column name="UnitPrice" default="0" not-null="false" precision="19" scale="4" sql-type="MONEY" />
+    </property>
+    <property name="Discount" type="Double">
+      <column name="Discount" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="Tax" type ="TrimString">
+      <column name="Tax" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="GST" type="Double">
+      <column name="GST" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="PST" type="Double">
+      <column name="PST" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="HST" type="Double">
+      <column name="HST" default="0" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="PackingListNO" type="Int16">
+      <column name="PackingListNO" default="0" not-null="false" precision="5" scale="0" sql-type="SMALLINT" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="Status" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="CreatedDate" type="DateTime">
+      <column name="CreatedDate" not-null="false" sql-type="DATETIME2" />
+    </property>
+    <property name="CreatedTime" type ="TrimString">
+      <column name="CreatedTime" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="UpdatedDate" type="DateTime">
+      <column name="UpdatedDate" not-null="false" sql-type="DATETIME2" />
+    </property>
+    <property name="UpdatedTime" type ="TrimString">
+      <column name="UpdatedTime" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="UnitPriceFromCode" type="Decimal">
+      <column name="UnitPriceFromCode" default="0" not-null="false" precision="19" scale="4" sql-type="MONEY" />
+    </property>
+    <property name="UPC" type ="TrimString">
+      <column name="UPC" not-null="false"  sql-type="nvarchar" />
+    </property>
+    <property name="LotNumber" type ="TrimString">
+      <column name="LotNumber" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="NetSales">
+      <column name="NetSales" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="SalesActivity">
+      <column name="SalesActivity" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="CostOfGoodsSold">
+      <column name="CostOfGoodsSold" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="ItemType" type ="TrimString">
+      <column name="ItemType" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DiscountName" type ="TrimString">
+      <column name="DiscountName" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FFI_PRReq" table="FFI_PRReq" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oFabFormulationItem" column="FFI_ID" />
+    <many-to-one name="oPurchaseRMReqInfo" column="PRReqInfo_ID" />
+    <many-to-one name="oVirtualLotInfo" column="VirtualLotInfo_ID" />
+  </class>
+</hibernate-mapping>

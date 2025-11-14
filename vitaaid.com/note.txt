@@ -1,0 +1,23 @@
+IDE = Visual Studio 2022
+Never openfile from vscode and other IDE
+
+Must install SDK before rebuild
+https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48
+https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+https://dotnet.microsoft.com/en-us/download/dotnet/5.0
+https://dotnet.microsoft.com/en-us/download/dotnet/3.1
+
+Dependancy
+1>------ Rebuild All started: Project: MySystem.Base, Configuration: Debug Any CPU ------
+2>------ Rebuild All started: Project: MySystem.Base.Web, Configuration: Debug Any CPU ------
+3>------ Rebuild All started: Project: ECSServerObj, Configuration: Debug Any CPU ------
+4>------ Rebuild All started: Project: MyToolkit.Base, Configuration: Debug Any CPU ------
+5>------ Rebuild All started: Project: MyHibernateUtil, Configuration: Debug Any CPU ------
+6>------ Rebuild All started: Project: WebServiceMiddlewares, Configuration: Debug Any CPU ------
+7>------ Rebuild All started: Project: MIS.DBBO, Configuration: Debug Any CPU ------
+8>------ Rebuild All started: Project: WebDB.DBBO, Configuration: Debug Any CPU ------
+9>------ Rebuild All started: Project: CIM.POCO, Configuration: Debug Any CPU ------
+10>------ Rebuild All started: Project: WebDB.DBPO, Configuration: Debug Any CPU ------
+11>------ Rebuild All started: Project: MIS.DBPO, Configuration: Debug Any CPU ------
+12>------ Rebuild All started: Project: CIM.DBPO, Configuration: Debug Any CPU ------
+13>------ Rebuild All started: Project: vitaaid.com, Configuration: Debug Any CPU ------

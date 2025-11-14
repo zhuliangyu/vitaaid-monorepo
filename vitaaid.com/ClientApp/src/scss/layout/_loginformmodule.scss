@@ -1,0 +1,160 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.login-m {
+  @extend .main-body-bottom-line;
+}
+.login-block {
+  @include media('<tablet') {
+    border-bottom: 1px solid #ccc;
+    @include clampattr(padding-bottom, 28);
+  }
+  @include media('>=tablet') {
+    border-right: 1px solid #ccc;
+    @include clampattr(height, 172);
+  }
+
+  .login-fail {
+    color: var(--error-color);
+    @include clampattr(padding-left, 6);
+  }
+  .login-fail-hide {
+    visibility: hidden;
+  }
+
+  .login-title {
+    color: var(--marine-blue);
+    padding-left: 0px;
+    @include media('<tablet') {
+      @include clampattr(font-size, 25);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 15);
+    }
+  }
+
+  .login-input {
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid #ccc;
+    @include media('<tablet') {
+      width: 100%;
+      @include clampattr(height, 35);
+      @include clampattr(margin-top, 12);
+      @include clampattr(padding-left, 6);
+    }
+    @include media('>=tablet') {
+      @include clampattr(width, 210);
+      @include clampattr(height, 25);
+      @include clampattr(margin-top, 10);
+      @include clampattr(padding-left, 6);
+    }
+  }
+  .login-email-input {
+    @extend .login-input;
+    @include media('<tablet') {
+      @include clampattr(margin-bottom, 8);
+    }
+  }
+  .login-button {
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid #bccad3;
+    color: var(--marine-blue);
+    @include media('<tablet') {
+      @include mobile-btn;
+      background: var(--marine-blue);
+      color: white;
+      @include clampattr(min-width, 60);
+      @include clampattr(margin-top, 6);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 10);
+      background: transparent;
+      @include clampattr(font-size, 12);
+    }
+  }
+  .forgot-password-button {
+    text-decoration: underline;
+    color: var(--greyish-brown);
+    padding-left: 0px;
+    @include media('<tablet') {
+      @include clampattr(font-size, 14);
+      margin-top: 6px;
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 12);
+      margin-top: 4px;
+    }
+  }
+}
+.register-block {
+  @include media('<tablet') {
+    @include importantclampattr(margin-top, 10);
+  }
+  @include media('>=tablet') {
+    @include importantclampattr(padding-left, 30);
+  }
+
+  .registration-title {
+    color: var(--marine-blue);
+    padding-left: 0px;
+    @include media('<tablet') {
+      @include clampattr(font-size, 25);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 15);
+      @include clampattr(margin-bottom, 4);
+    }
+  }
+  .registration-text {
+    color: #797979;
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 12);
+      @include clampattr(line-height, 18);
+      @include clampattr(width, 184);
+      font-weight: 300;
+    }
+  }
+  .register-member-type {
+    @include clampattr(border-radius, 10);
+    border: 1px solid #ccc;
+    color: var(--marine-blue);
+    background: transparent;
+    outline: none;
+    @include media('<tablet') {
+      @include clampattr(width, 168);
+      @include clampattr(margin-top, 12);
+      @include clampattr(font-size, 15);
+      @include clampattr(height, 25);
+    }
+    @include media('>=tablet') {
+      @include clampattr(width, 140);
+      @include clampattr(margin-top, 30);
+      @include clampattr(font-size, 12);
+      @include clampattr(padding-left, 6);
+    }
+  }
+  .registration-button {
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid #bccad3;
+    color: var(--marine-blue);
+    @include media('<tablet') {
+      @include mobile-btn;
+      background: var(--marine-blue);
+      color: white;
+      @include clampattr(margin-top, 20);
+      @include clampattr(min-width, 107);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 10);
+      background: transparent;
+      @include clampattr(font-size, 12);
+    }
+  }
+}

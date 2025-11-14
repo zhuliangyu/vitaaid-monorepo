@@ -1,0 +1,4 @@
+{
+    "dotnet.defaultSolution": "vitaaid.com/vitaaid.com.sln",
+    "dotnet.preferCSharpExtension": true
+}

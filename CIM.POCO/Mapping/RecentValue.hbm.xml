@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RecentValue" table="RecentValue" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Tag" type ="TrimString">
+      <column name="Tag" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="sValue" type ="TrimString">
+      <column name="sValue" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="sZipValue" type ="TrimString">
+      <column name="sZipValue" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RefCnt">
+      <column name="RefCnt" sql-type="int" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

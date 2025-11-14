@@ -1,0 +1,202 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.contact-us {
+  @extend .main-body-bottom-line;
+  .header-block {
+    @include clampattr(font-size, 25);
+
+    @include clampattr(line-height, 45);
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 0);
+      @include clampattr(margin-bottom, 8);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-bottom, 9);
+      @include clampattr(margin-bottom, 15);
+      font-weight: 600;
+    }
+  }
+
+  .detail-block {
+    @include media('<tablet') {
+      display: block;
+      position: relative;
+    }
+    @include media('>=tablet') {
+      display: flex;
+      position: relative;
+    }
+
+    .left-block {
+      @include media('<tablet') {
+        width: 100%;
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 15);
+        @include clampattr(margin-bottom, 10);
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 550);
+      }
+
+      .preface {
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+        }
+        color: #5c5c5c;
+      }
+
+      .contact-us-form {
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 16);
+        }
+
+        @include clampattr(margin-top, 24);
+
+        .prefix-type {
+          @include clampattr(border-radius, 10);
+          @include clampattr(height, 35);
+          border: 1px solid #ccc;
+          color: #5c5c5c;
+          background: transparent;
+          @include clampattr(padding-left, 6);
+          outline: none;
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 250);
+          }
+        }
+
+        .contact-us-input {
+          width: 100%;
+          @include media('<tablet') {
+            @include clampattr(margin-top, 20);
+          }
+          @include media('>=tablet') {
+            @include clampattr(margin-top, 22);
+          }
+
+          @include clampattr(height, 35);
+          @include clampattr(border-radius, 10);
+          outline: none;
+          border: 1px solid #ccc;
+          color: #5c5c5c;
+          @include clampattr(padding-left, 6);
+        }
+
+        .line-2 {
+          @include media('<tablet') {
+            display: block;
+          }
+          @include media('>=tablet') {
+            display: flex;
+          }
+        }
+
+        .first-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 250);
+          }
+        }
+
+        .second-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 250);
+            @include clampattr(margin-left, 33);
+          }
+        }
+
+        .full-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 533);
+          }
+        }
+
+        .error-msg {
+          color: var(--error-color);
+        }
+
+        .question {
+          @include clampattr(min-height, 120);
+        }
+
+        .line-3 {
+          @include media('<tablet') {
+            @include clampattr(margin-top, 16);
+          }
+          @include media('>=tablet') {
+            @include clampattr(margin-top, 40);
+          }
+          text-align: left;
+        }
+
+        .submit-btn {
+          @include clampattr(border-radius, 10);
+          outline: none;
+          border: 1px solid #bccad3;
+          @include media('<tablet') {
+            @include mobile-btn;
+            background: var(--marine-blue);
+            color: white;
+          }
+          @include media('>=tablet') {
+            @include clampattr(height, 30);
+            background: transparent;
+            color: var(--marine-blue);
+          }
+        }
+      }
+    }
+
+    .right-block {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 20);
+        @include clampattr(margin-left, 190);
+      }
+
+      color: #5c5c5c;
+      font-weight: 300;
+
+      .title {
+        @include media('<tablet') {
+          @include clampattr(font-size, 20);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 18);
+          margin-bottom: 6px;
+        }
+        color: var(--marine-blue);
+      }
+    }
+  }
+}

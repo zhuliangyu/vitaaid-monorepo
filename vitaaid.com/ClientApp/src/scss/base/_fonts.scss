@@ -1,0 +1,87 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+// Value	Common weight name
+// 100	Thin (Hairline)
+// 200	Extra Light (Ultra Light)
+// 300	Light
+// 400	Normal (Regular)
+// 500	Medium
+// 600	Semi Bold (Semi Bold)
+// 700	Bold
+// 800	Extra Bold (Ultra Bold)
+// 900	Black (Heavy)
+// 950	Extra Black (Ultra Black)
+//  Import syntax:
+//
+//  $name  :  Font name
+//  $weight:  Font weight 100 - 900 (default: 400)
+//  $style :  Font style normal/italic/oblique (default: normal)
+//  $text  :  Limit request to these characters (quoted string)
+//
+//  @include google-font($name, [$weight, $style, $text]);
+
+/*@use 'woGXWe.scss' as *;
+
+@include google-font(Arial, 300 400 500 600 700 800 900, normal italic);
+*/
+@font-face {
+  font-family: SegoeUI;
+  src: local('Segoe UI Light'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2)
+      format('woff2'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff)
+      format('woff'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf)
+      format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local('Segoe UI Semilight'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff2)
+      format('woff2'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.woff)
+      format('woff'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf)
+      format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local('Segoe UI'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2)
+      format('woff2'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff)
+      format('woff'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf)
+      format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local('Segoe UI Semibold'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff2)
+      format('woff2'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.woff)
+      format('woff'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf)
+      format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: SegoeUI;
+  src: local('Segoe UI Bold'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2)
+      format('woff2'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff)
+      format('woff'),
+    url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf)
+      format('truetype');
+  font-weight: 700;
+}
+

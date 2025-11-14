@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="XMESRawMaterial" table="XMESRawMaterial" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="ReceivingNo" type ="TrimString">
+	  <column name="ReceivingNo" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="RawMaterialCode" type ="TrimString">
+	  <column name="RawMaterialCode" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="RawMaterialName" type ="TrimString">
+	  <column name="RawMaterialName" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="RawMaterialLotNumber" type ="TrimString">
+	  <column name="RawMaterialLotNumber" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Supplier" type ="TrimString">
+	  <column name="Supplier" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Currency1" type ="TrimString">
+	  <column name="Currency1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="UnitCostForeignCurrency">
+	  <column name="UnitCostForeignCurrency" sql-type="money" not-null="false" />
+	</property>
+	<property name="ExchangeRate">
+	  <column name="ExchangeRate" sql-type="float" not-null="false" />
+	</property>
+	<property name="ExchangeRateDate">
+	  <column name="ExchangeRateDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="ReleaseDate">
+	  <column name="ReleaseDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="StockWeight">
+	  <column name="StockWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="SupplyWeight">
+	  <column name="SupplyWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="SalesPrice">
+	  <column name="SalesPrice" sql-type="money" not-null="false" />
+	</property>
+	<property name="UnitCostTax">
+	  <column name="UnitCostTax" sql-type="money" not-null="false" />
+	</property>
+	<property name="UnitCost">
+	  <column name="UnitCost" sql-type="float" not-null="false" />
+	</property>
+	<property name="ExpireDate">
+	  <column name="ExpireDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="StockLocation" type ="TrimString">
+	  <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CreatedID" type ="TrimString">
+	  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="CreatedTime" type ="TrimString">
+	  <column name="CreatedTime" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="UpdatedID" type ="TrimString">
+	  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="UpdatedTime" type ="TrimString">
+	  <column name="UpdatedTime" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="SafeStock">
+	  <column name="SafeStock" sql-type="float" not-null="false" />
+	</property>
+	<property name="ReserveWeight">
+	  <column name="ReserveWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="Comment" type ="TrimString">
+	  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="SupplyWeightBox1">
+	  <column name="SupplyWeightBox1" sql-type="float" not-null="false" />
+	</property>
+	<property name="QuatityofBox1">
+	  <column name="QuatityofBox1" sql-type="smallint" not-null="false" />
+	</property>
+	<property name="SupplyWeightBox2">
+	  <column name="SupplyWeightBox2" sql-type="float" not-null="false" />
+	</property>
+	<property name="QuatityofBox2">
+	  <column name="QuatityofBox2" sql-type="smallint" not-null="false" />
+	</property>
+	<property name="StockWeightRealMesure">
+	  <column name="StockWeightRealMesure" sql-type="float" not-null="false" />
+	</property>
+	<property name="BagWeight">
+	  <column name="BagWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="SpecCode" type ="TrimString">
+	  <column name="SpecCode" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Status">
+	  <column name="Status" sql-type="int" not-null="false" />
+	</property>
+	<property name="RetestDate">
+	  <column name="RetestDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="Disposal">
+	  <column name="Disposal" sql-type="int" not-null="false" />
+	</property>
+	<property name="PriceChecked">
+	  <column name="PriceChecked" sql-type="int" not-null="false" />
+	</property>
+
+	<many-to-one name="RMCategory">
+	  <column name="RMCategory" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="RMSpec">
+	  <column name="RMSpec" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="SupplierObj">
+	  <column name="SupplierObj" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="oPurchaseRMReq">
+	  <column name="oPurchaseRMReq" sql-type="int" not-null="false" />
+	</many-to-one>
+    <property name="PONo" type ="TrimString">
+      <column name="PONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="StockLastYear">
+	  <column name="StockLastYear" sql-type="float" not-null="false" />
+	</property>
+	<property name="ClosedDate">
+	  <column name="ClosedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="DisposalDate">
+	  <column name="DisposalDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<many-to-one name="BuyingUnit">
+	  <column name="BuyingUnit" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="InvoicePrice">
+	  <column name="InvoicePrice" sql-type="float" not-null="false"/>
+	</property>
+	<property name="Density">
+	  <column name="Density" sql-type="float" not-null="false" />
+	</property>
+	<property name="MeshSize" type ="TrimString">
+	  <column name="MeshSize" sql-type="nvarchar" not-null="false" />
+	</property>
+	  <property name="ActSpec" type ="TrimString">
+		  <column name="ActSpec" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="Flowability" type ="TrimString">
+		  <column name="Flowability" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="LastQuarantineDate">
+		  <column name="LastQuarantineDate" sql-type="DATETIME2" not-null="false" />
+	  </property>
+    <property name="Reprocess" type="eREPROCESS">
+      <column name="Reprocess" sql-type="int" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

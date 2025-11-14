@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 32 32">
+  <style type="text/css">
+    .st0{fill:#039C23;}
+  </style>
+  <path class="st0" d="M27,14h-9V5c0-0.6-0.4-1-1-1h-2c-0.6,0-1,0.4-1,1v9H5c-0.6,0-1,0.4-1,1v2c0,0.6,0.4,1,1,1h9v9c0,0.6,0.4,1,1,1
+	h2c0.6,0,1-0.4,1-1v-9h9c0.6,0,1-0.4,1-1v-2C28,14.4,27.6,14,27,14z"/>
+</svg>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Recall" table="Recall" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+	  <property name="LotNo" type ="TrimString">
+		  <column name="LotNo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ProductCode" type ="TrimString">
+		  <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ProductName" type ="TrimString">
+		  <column name="ProductName" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ComplaintNo" type ="TrimString">
+      <column name="ComplaintNo" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PotentialHazard" type ="TrimString">
+      <column name="PotentialHazard" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProblemDesc" type ="TrimString">
+      <column name="ProblemDesc" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ImpactLevel" type ="TrimString">
+      <column name="ImpactLevel" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="HarmLevel" type ="TrimString">
+      <column name="HarmLevel" sql-type="nvarchar" not-null="false" />
+    </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="DateTime2" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="DateTime2" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+    <bag name="oCustomers" table="CustomerRecall" lazy="true">
+      <key column="Recall"/>
+      <one-to-many class="CustomerRecall"/>
+    </bag>
+	  <bag name="oRecallLots" table="RecallLot" lazy="true">
+		  <key column="oRecall"/>
+		  <one-to-many class="RecallLot"/>
+	  </bag>
+  </class>
+</hibernate-mapping>

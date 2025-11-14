@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="ProductPackageReq" table="ProductPackageReq" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oPackageSpec">
+      <column name="PackageSpecID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <property name="PackageCode" type ="TrimString">
+      <column name="PackageCode" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PackageType" type="ePACKAGETYPE">
+      <column name="PackageType" sql-type="int" not-null="true" />
+    </property>
+    <property name="PackageName" type ="TrimString">
+      <column name="PackageName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="GroupNo">
+      <column name="GroupNo" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="oProduct">
+      <column name="ProductID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <property name="SpecificSupplier">
+      <column name="SpecificSupplier" sql-type="int" not-null="false" />
+    </property>
+    <property name="ScannedBarCode" type ="TrimString">
+      <column name="ScannedBarCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CategoryCode" type ="TrimString">
+		  <column name="CategoryCode" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

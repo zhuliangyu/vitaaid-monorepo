@@ -1,0 +1,137 @@
+@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@model List<TherapeuticProtocol>
+
+@{
+  var therapeuticProtocol = Html.DevExpress().GridView(tpSettings => {
+    tpSettings.Name = "therapeuticProtocolView";
+    tpSettings.KeyFieldName = "ID";
+
+    tpSettings.CallbackRouteValues = new { Controller = "TherapeuticProtocol", Action = "TherapeuticProtocolPartial" };
+    tpSettings.CustomActionRouteValues = new { Controller = "TherapeuticProtocol", Action = "TherapeuticProtocolCustomActionPartial" };
+    tpSettings.SettingsEditing.AddNewRowRouteValues = new { Controller = "TherapeuticProtocol", Action = "TherapeuticProtocolAddNewPartial" };
+    tpSettings.SettingsEditing.UpdateRowRouteValues = new { Controller = "TherapeuticProtocol", Action = "TherapeuticProtocolUpdatePartial" };
+
+    tpSettings.EnablePagingGestures = AutoBoolean.False;
+
+    tpSettings.ControlStyle.CssClass = "therapeuticProtocol";
+    tpSettings.Width = Unit.Percentage(100);
+
+    tpSettings.Styles.Cell.Wrap = DefaultBoolean.False;
+    tpSettings.Styles.PagerBottomPanel.CssClass = "pager";
+    tpSettings.Styles.FocusedRow.CssClass = "focused";
+    tpSettings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+    tpSettings.SettingsBehavior.AllowFocusedRow = true;
+    tpSettings.SettingsBehavior.AllowSelectByRowClick = true;
+    tpSettings.SettingsBehavior.AllowEllipsisInText = true;
+    tpSettings.SettingsBehavior.AllowDragDrop = false;
+
+    tpSettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+    tpSettings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+    //tpSettings.SettingsEditing.EditFormColumnCount = 2;
+
+    tpSettings.Settings.VerticalScrollBarMode = ScrollBarMode.Hidden;
+    tpSettings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    //tpSettings.Settings.ShowHeaderFilterButton = true;
+    tpSettings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+    tpSettings.SettingsPager.PageSize = 20;
+    tpSettings.SettingsPager.EnableAdaptivity = true;
+    tpSettings.SettingsPager.PageSizeItemSettings.Visible = true;
+
+    //tpSettings.SettingsExport.EnableClientSideExportAPI = true;
+    //tpSettings.SettingsExport.ExportSelectedRowsOnly = true;
+
+    tpSettings.SettingsPopup.EditForm.SettingsAdaptivity.MaxWidth = 960;
+    tpSettings.SettingsPopup.EditForm.SettingsAdaptivity.Mode = PopupControlAdaptivityMode.Always;
+    tpSettings.SettingsPopup.EditForm.SettingsAdaptivity.VerticalAlign = PopupAdaptiveVerticalAlign.WindowCenter;
+    tpSettings.SetEditFormTemplateContent(c =>
+    {
+      var dataObject = c.Grid.IsNewRowEditing ? new TherapeuticProtocol() : c.Grid.GetRow(c.VisibleIndex);
+      Html.RenderPartial("_TherapeuticProtocolNewPartial", dataObject);
+    });
+
+    tpSettings.CommandColumn.Visible = true;
+    tpSettings.CommandColumn.ShowSelectCheckbox = true;
+    tpSettings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+    tpSettings.CommandColumn.VisibleIndex = 0;
+    tpSettings.CommandColumn.Width = Unit.Pixel(52);
+
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.FieldName = "ID";
+      columnSettings.Visible = false;
+    });
+
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.FieldName = "Issue";
+    });
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.FieldName = "Author";
+    });
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.FieldName = "Topic";
+    });
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.FieldName = "Tags";
+      columnSettings.Visible = false;
+    });
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.FieldName = "PDFFile";
+    });
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.FieldName = "Published";
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.ColumnType = MVCxGridViewColumnType.CheckBox;
+    });
+
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.FieldName = "VisibleSite";
+      columnSettings.Caption = "Site";
+      columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+      columnSettings.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+
+    tpSettings.Columns.Add(columnSettings =>
+    {
+      columnSettings.FieldName = "UpdatedDate";
+      columnSettings.Width = System.Web.UI.WebControls.Unit.Pixel(130);
+      columnSettings.PropertiesEdit.DisplayFormatString = "d";
+    });
+
+    tpSettings.ClientSideEvents.Init = "onTherapeuticProtocolInit";
+    tpSettings.ClientSideEvents.SelectionChanged = "onTherapeuticProtocolSelectionChanged";
+    tpSettings.ClientSideEvents.BeginCallback = "onTherapeuticProtocolBeginCallback";
+    tpSettings.ClientSideEvents.EndCallback = "onTherapeuticProtocolEndCallback";
+    tpSettings.ClientSideEvents.FocusedRowChanged = "onTherapeuticProtocolRefreshEditFormCallback";
+
+
+    tpSettings.InitNewRow += (s, e) => {
+      e.NewValues["Published"] = false;
+      e.NewValues["VisibleSite"] = 255;
+    };
+    tpSettings.CellEditorInitialize = (s, e) => {
+      ((ASPxEdit)e.Editor).ValidationSettings.Display = Display.Dynamic;
+    };
+  });
+  if(ViewBag.GeneralError != null) {
+    therapeuticProtocol.SetEditErrorText(ViewBag.GeneralError);
+  }
+}
+
+@therapeuticProtocol.Bind(Model).GetHtml()
+

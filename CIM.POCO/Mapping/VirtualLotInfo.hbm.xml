@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="VirtualLotInfo" table="VirtualLotInfo" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+	  <property name="VirtualLotNo" type ="TrimString">
+		  <column name="VirtualLotNo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="FormulationCode" type ="TrimString">
+      <column name="FormulationCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RefQuanity">
+      <column name="RefQuanity" sql-type="int" not-null="false" />
+    </property>
+    <property name="RefPeriodByMonth">
+      <column name="RefPeriodByMonth" sql-type="int" not-null="false" />
+    </property>
+    <property name="RefPeriodByInvoice">
+      <column name="RefPeriodByInvoice" sql-type="int" not-null="false" />
+    </property>
+    <property name="ReqPeriodByMonth">
+      <column name="ReqPeriodByMonth" sql-type="int" not-null="false" />
+    </property>
+    <property name="ReqQuanity">
+      <column name="ReqQuanity" sql-type="int" not-null="false" />
+    </property>
+    <property name="Servings">
+      <column name="Servings" sql-type="int" not-null="false" />
+    </property>
+    <property name="TotalServings">
+      <column name="TotalServings" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="oBindFabLot" cascade="all">
+      <column name="oBindFabLot" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Status" type="eVirtualLotStatus">
+      <column name="Status" sql-type="int" not-null="false" />
+    </property>
+    <property name="bAbort">
+      <column name="bAbort" sql-type="int" not-null="false" />
+    </property>
+    <property name="bByForecast">
+      <column name="bByForecast" sql-type="int" not-null="false" />
+    </property>
+    <property name="Urgent">
+      <column name="Urgent" sql-type="int" not-null="false" />
+    </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+	  </property>
+	  <property name="Sequence">
+		  <column name="Sequence" sql-type="int" not-null="true" />
+	  </property>
+  </class>
+</hibernate-mapping>

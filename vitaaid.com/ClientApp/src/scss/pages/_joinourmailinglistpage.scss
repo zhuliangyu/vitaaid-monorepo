@@ -1,0 +1,126 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.join-us {
+  @extend .main-body-bottom-line;
+
+  .header-block {
+    @include clampattr(font-size, 25);
+    font-weight: 600;
+    @include clampattr(line-height, 45);
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 0);
+      @include clampattr(margin-bottom, 8);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-bottom, 9);
+      @include clampattr(margin-bottom, 11);
+    }
+  }
+
+  .desc {
+    width: 100%;
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 24);
+      color: #5c5c5c;
+    }
+    @include media('>=tablet') {
+      border-bottom: 1px solid var(--grey-borderline);
+      color: var(--ocean-blue);
+      @include clampattr(padding-bottom, 14);
+      @include clampattr(font-size, 20);
+      font-weight: 600;
+    }
+  }
+
+  .join-us-form {
+    @include clampattr(margin-top, 36);
+
+    .profession-type {
+      @include clampattr(border-radius, 10);
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 250);
+      }
+      @include clampattr(height, 35);
+      border: 1px solid #ccc;
+      color: #5c5c5c;
+      background: transparent;
+      @include clampattr(font-size, 16);
+      @include clampattr(padding-left, 6);
+      outline: none;
+    }
+
+    .join-us-input {
+      width: 100%;
+      @include clampattr(margin-top, 22);
+      @include clampattr(height, 35);
+      @include clampattr(border-radius, 10);
+      outline: none;
+      border: 1px solid #ccc;
+      color: #5c5c5c;
+      @include clampattr(padding-left, 6);
+    }
+
+    .line-2 {
+      @include media('<tablet') {
+        display: block;
+      }
+      @include media('>=tablet') {
+        display: flex;
+      }
+    }
+
+    .first-col {
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 250);
+      }
+    }
+
+    .second-col {
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 250);
+        @include clampattr(margin-left, 33);
+      }
+    }
+
+    .full-col {
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 533);
+      }
+    }
+
+    .error-msg {
+      color: var(--error-color);
+    }
+  }
+
+  .line-3 {
+    @include clampattr(margin-top, 40);
+  }
+  .submit-btn {
+    @include clampattr(border-radius, 10);
+    @include clampattr(height, 30);
+    outline: none;
+    border: 1px solid #bccad3;
+    color: var(--marine-blue);
+    background: transparent;
+  }
+}

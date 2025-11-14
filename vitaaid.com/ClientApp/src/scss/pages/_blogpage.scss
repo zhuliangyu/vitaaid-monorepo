@@ -1,0 +1,251 @@
+@use '../abstracts' as *;
+
+.blogs {
+  @include clampattr(margin-top, 22);
+  @include clampattr(margin-bottom, 100);
+
+  .blog-list {
+    padding-left: 0;
+    padding-right: 0;
+
+    .blog-info-table {
+      border-collapse: separate;
+      @include clampattr(-webkit-border-vertical-spacing, 28);
+      -webkit-border-horizontal-spacing: 0px;
+    }
+    @include media('<tablet') {
+      .title-block {
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 10);
+        @include clampattr(margin-bottom, 14);
+        display: flex;
+      }
+    }
+    .title {
+      @include media('<tablet') {
+        @include clampattr(font-size, 25);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 35);
+      }
+      color: var(--marine-blue);
+      font-weight: 600;
+    }
+
+    .category-title {
+      @include clampattr(font-size, 15);
+    }
+
+    .blog-brief-block {
+      .td-thumb-img {
+        border-bottom: 1px solid #ccc;
+        @include clampattr(width, 275);
+        @include clampattr(height, 180);
+        @include clampattr(padding-bottom, 28);
+      }
+
+      .thumb-img-div {
+        position: relative;
+        @include media('<tablet') {
+          .overlay-m {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+          }
+        }
+
+        border-radius: 10px;
+        border: 1pt solid #ccc;
+        overflow: hidden;
+      }
+
+      .thumb-img {
+        @include media('<tablet') {
+          width: 100%;
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 275);
+          @include clampattr(height, 180);
+        }
+      }
+
+      .brief-content {
+        vertical-align: bottom;
+        @include media('<tablet') {
+          @include clampattr(padding-top, 8);
+          @include clampattr(padding-bottom, 20);
+          @include clampattr(margin-bottom, 20);
+        }
+        @include media('>=tablet') {
+          @include clampattr(padding-left, 56);
+          @include clampattr(padding-bottom, 28);
+        }
+        border-bottom: 1px solid #ccc;
+
+        .brief-topic {
+          display: block;
+
+          button {
+            @include clampattr(font-size, 22);
+            @include clampattr(line-height, 30);
+            color: var(--marine-blue);
+            text-align: left;
+          }
+        }
+
+        .content-line {
+          @include clampattr(width, 350);
+          height: 1px;
+        }
+
+        .issue-vol-no-block {
+          @include media('<tablet') {
+            @include clampattr(margin-top, 4);
+          }
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 18);
+          color: var(--greyish-brown);
+        }
+      }
+    }
+  }
+
+  .page-navigate {
+    display: block;
+    text-align: center;
+    @include clampattr(font-size, 15);
+  }
+
+  .nav-button {
+    @include clampattr(margin-left, 8);
+    @include clampattr(margin-right, 8);
+    color: var(--marine-blue);
+  }
+
+  .selected-idx {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .more-page {
+    color: var(--marine-blue);
+    @include clampattr(margin-left, 8);
+    @include clampattr(margin-right, 8);
+  }
+}
+.blog-related-resources {
+  @include clampattr(margin-top, 48);
+  /*  @include clampattr(padding-left, 15);
+  @include clampattr(padding-right, 15);
+*/
+  .blog-category-block {
+    float: left;
+    @include clampattr(margin-left, 30);
+    @include clampattr(width, 164);
+  }
+
+  .blog-product-block {
+    float: left;
+    @include clampattr(margin-top, 30);
+    @include clampattr(margin-left, 30);
+    @include clampattr(width, 164);
+  }
+
+  .related-title {
+    @include clampattr(font-size, 15);
+    color: var(--marine-blue);
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .list-img {
+    vertical-align: baseline;
+    margin-right: 4px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .category-link {
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 25);
+    display: block;
+    color: var(--greyish-brown);
+    padding-left: 0;
+  }
+
+  .related-product-list {
+    @include clampattr(margin-top, 20);
+  }
+
+  .related-product-img {
+    @include clampattr(max-width, 110);
+    @include clampattr(max-height, 200);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: scale-down;
+  }
+
+  .related-product-name {
+    display: block;
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 19);
+    text-align: center;
+
+    a {
+      color: var(--marine-blue) !important;
+    }
+  }
+
+  .related-product-info {
+    display: block;
+    @include clampattr(font-size, 12);
+    @include clampattr(line-height, 19);
+    @include clampattr(margin-bottom, 38);
+    color: var(--greyish-brown);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.blog-filter-popup {
+  .method-type-block {
+    display: flex;
+    border-bottom: 1px solid var(--grey-borderline);
+    @include clampattr(padding-bottom, 2);
+  }
+  .dx-popup-normal {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .dx-popup-content {
+    padding: 0px;
+  }
+  .dx-popup-title {
+    border-bottom: none;
+  }
+  .blog-filter-popup-body {
+    @include clampattr(padding-left, $page-lr-padding-m);
+    @include clampattr(padding-right, $page-lr-padding-m);
+    @include clampattr(height, 108);
+  }
+  .blog-filter-popup-item {
+    text-align: start;
+    padding: 0px;
+    color: var(--marine-blue);
+    @include clampattr(font-size, 18);
+    @include clampattr(line-height, 30);
+    @include clampattr(padding-right, 36);
+  }
+}
+.blog-category-filter-popup {
+  @extend .blog-filter-popup;
+}

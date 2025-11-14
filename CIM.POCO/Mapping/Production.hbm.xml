@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Production" table="Production" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<many-to-one name="FormulationObj" cascade="delete">
+	  <column name="FormulationID" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="RouteObj">
+	  <column name="RouteID" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="Code" type ="TrimString">
+	  <column name="Code" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Version">
+	  <column name="Version" sql-type="int" not-null="false" />
+	</property>
+	<property name="Name" type ="TrimString">
+	  <column name="Name" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Subversion">
+	  <column name="Subversion" sql-type="int" not-null="false" />
+	</property>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="NPN" type ="TrimString">
+	  <column name="NPN" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Description" type ="TrimString">
+	  <column name="Description" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="isActive">
+	  <column name="isActive" sql-type="int" not-null="false" />
+	</property>
+	<property name="isOEM">
+	  <column name="isOEM" sql-type="int" not-null="false" />
+	</property>
+	<property name="ShelfLife">
+	  <column name="ShelfLife" sql-type="float" not-null="false" />
+	</property>
+	<property name="StorageCondition">
+	  <column name="StorageCondition" sql-type="int" not-null="false" />
+	</property>
+	<property name="StabilityTest">
+	  <column name="StabilityTest" sql-type="int" not-null="false" />
+	</property>
+	  <property name="DailyDose">
+		  <column name="DailyDose" sql-type="int" not-null="false" />
+	  </property>
+	  <property name="BulkDensity">
+		  <column name="BulkDensity" sql-type="float" not-null="false" />
+	  </property>
+
+	  <component name="oTestItems"  class="MySystem.Base.NSeqList`1[TestDefinition], MySystem.Base">
+	  <bag name="innerList" table="TestDefinition" lazy="true" cascade="all"  order-by="Sequence">
+		<key column="ProductID" />
+		<one-to-many class="TestDefinition" />
+	  </bag>
+	</component>
+	<bag name="oEQRecipes" table="EQAssignment" order-by="EQID" where="(DataStatus is null OR DataStatus != 'D')">
+		<key column="ProductionID"/>
+		<one-to-many class="EQAssignment"/>
+	</bag>
+	  <property name="FormType" type="eFORMTYPE">
+		  <column name="FormType" sql-type="int" not-null="false" />
+	  </property>
+
+
+  </class>
+</hibernate-mapping>

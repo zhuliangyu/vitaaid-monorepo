@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TempOperand" table="TempOperand" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="RefMainProcess" >
+      <column name="MainProcessID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RefStep">
+      <column name="StepID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RefOperation">
+      <column name="OperationID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

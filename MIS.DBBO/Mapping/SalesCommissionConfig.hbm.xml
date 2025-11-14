@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="SalesCommissionConfig" table="SalesCommissionConfig" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="EmpAccount" type ="TrimString">
+      <column name="EmpAccount" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="ShortName" type ="TrimString">
+      <column name="ShortName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ContractYear">
+      <column name="ContractYear" sql-type="int" not-null="false" />
+    </property>
+    <property name="FullCommissionThreshold">
+      <column name="FullCommissionThreshold" sql-type="float" not-null="false" />
+    </property>
+    <property name="FullRateOfFirstOrder">
+      <column name="FullRateOfFirstOrder" sql-type="float" not-null="false" />
+    </property>
+      <property name="FullRateOfSecondOrder">
+          <column name="FullRateOfSecondOrder" sql-type="float" not-null="false" />
+      </property>
+      <property name="FullRateOfOtherOrder">
+          <column name="FullRateOfOtherOrder" sql-type="float" not-null="false" />
+      </property>
+      <property name="LowerRateOfFirstOrder">
+          <column name="LowerRateOfFirstOrder" sql-type="float" not-null="false" />
+      </property>
+      <property name="LowerRateOfSecondOrder">
+          <column name="LowerRateOfSecondOrder" sql-type="float" not-null="false" />
+      </property>
+      <property name="LowerRateOfOtherOrder">
+          <column name="LowerRateOfOtherOrder" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota1">
+          <column name="Quota1" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota2">
+          <column name="Quota2" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota3">
+          <column name="Quota3" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota4">
+          <column name="Quota4" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota5">
+          <column name="Quota5" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota6">
+          <column name="Quota6" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota7">
+          <column name="Quota7" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota8">
+          <column name="Quota8" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota9">
+          <column name="Quota9" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota10">
+          <column name="Quota10" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota11">
+          <column name="Quota11" sql-type="float" not-null="false" />
+      </property>
+      <property name="Quota12">
+          <column name="Quota12" sql-type="float" not-null="false" />
+      </property>
+      <property name="DataStatus" type ="TrimString">
+          <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CreatedDate">
+          <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="CreatedID" type ="TrimString">
+          <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="UpdatedDate">
+          <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="UpdatedID" type ="TrimString">
+          <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

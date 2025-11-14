@@ -1,0 +1,891 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.va-product-page {
+  .product-header-container {
+    @include clampattr(margin-top, 20);
+    @include media('>=tablet') {
+      @include clampattr(margin-bottom, 64);
+    }
+    /*    @include clampattr(margin-left, 320);
+    @include clampattr(margin-right, 320);
+*/
+    .cart-brief {
+      text-align: end;
+      @include clampattr(height, 30);
+      width: 100%;
+      @include clampattr(font-size, 15);
+      color: var(--marine-blue);
+      font-weight: 600;
+      @include clampattr(padding-right, 6);
+    }
+
+    .cart-brief-img {
+      @include clampattr(width, 16);
+      @include clampattr(height, 16);
+    }
+    .dot-img-div {
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      @include clampattr(margin-top, 20);
+    }
+    .dot-image {
+      @include clampattr(width, 10);
+      @include clampattr(height, 10);
+      @include clampattr(border-radius, 5);
+      margin: 0 5px;
+      background-color: #c9c9c9;
+    }
+    .focused-dot-image {
+      @extend .dot-image;
+      background-color: #5c5c5c !important;
+    }
+    .thumb-image {
+      @include clampattr(width, 105);
+      @include clampattr(height, 105);
+      @include clampattr(margin-bottom, 18);
+      padding-top: 8px;
+      padding-bottom: 8px;
+      object-fit: scale-down;
+      @include clampattr(border-radius, 10);
+      border: solid 0.2px var(--whisper-grey);
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .product-image-block {
+      text-align: center;
+      @include media('>=tablet') {
+        @include clampattr(margin-right, 35);
+        @include clampattr(padding, 30);
+      }
+    }
+
+    .large-image {
+      @include media('<tablet') {
+        @include importantclampattr(width, 250);
+        @include importantclampattr(height, 250);
+      }
+      @include media('>=tablet') {
+        @include importantclampattr(width, 400);
+        @include importantclampattr(height, 400);
+      }
+      object-fit: scale-down;
+    }
+
+    .zoom-image-conrainer {
+      position: absolute;
+      z-index: 999;
+      background-color: rgba(153, 153, 153, 1);
+      border: 1px solid rgb(153, 153, 153);
+      @include clampattr(border-radius, 10);
+      margin-left: 0px;
+      padding-left: 0px;
+    }
+
+    .enlarged-image {
+      object-fit: scale-down;
+    }
+
+    .va-product-allergy {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 15);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 24);
+      }
+      text-align: center;
+    }
+
+    .allergy-image {
+      @include media('<tablet') {
+        @include clampattr(width, 30);
+        @include clampattr(height, 30);
+        @include clampattr(margin-right, 20);
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 50);
+        @include clampattr(height, 50);
+        @include clampattr(margin-right, 30);
+      }
+      margin-left: 0px;
+      object-fit: contain;
+    }
+
+    .va-product-brif-div {
+      padding-left: 0px !important;
+      @include media('<tablet') {
+        @include clampattr(margin-top, 30);
+      }
+    }
+
+    .va-product-info {
+      @include media('<tablet') {
+        @include clampattr(margin-bottom, 80);
+      }
+      @include media('>=tablet') {
+        @include clampattr(min-height, 250);
+      }
+    }
+
+    .va-product-name {
+      @include media('<tablet') {
+        @include clampattr(font-size, 25);
+        @include clampattr(line-height, 45);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 40);
+        @include clampattr(line-height, 38);
+        font-weight: 600;
+      }
+      color: var(--marine-blue);
+      display: block;
+    }
+
+    .va-product-function {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(line-height, 25);
+        margin-top: 10px;
+        padding-bottom: 10px;
+      }
+      color: var(--peacock-blue);
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+
+    .va-product-code {
+      @include clampattr(font-size, 15);
+      color: var(--greyish-brown);
+      @include media('<tablet') {
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(line-height, 36);
+      }
+      .col-12 {
+        display: inline-block;
+        border-bottom: 1px solid #c9c9c9;
+      }
+
+      .code-part {
+        display: inline-block;
+        @include clampattr(width, 115);
+      }
+
+      .npn-part {
+        display: inline-block;
+        @include clampattr(width, 128);
+      }
+
+      .size-part {
+        display: inline-block;
+      }
+    }
+
+    .va-product-price {
+      @include media('<tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(height, 18);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 28);
+        @include clampattr(height, 36);
+        font-weight: 600;
+      }
+      color: var(--peacock-blue);
+      display: block;
+    }
+
+    .out-of-stock {
+      @include media('<tablet') {
+        display: inline-block;
+        @include mobile-btn;
+        @include clampattr(width, 93);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 17);
+        @include clampattr(height, 32);
+        font-weight: 300;
+        @include clampattr(width, 114);
+      }
+
+      @include clampattr(margin-left, 14);
+      @include clampattr(border-radius, 10);
+      padding-top: 3px;
+      text-align: center;
+      color: var(--greyish-brown);
+      border: 1px solid #c9c9c9;
+    }
+
+    .va-product-currency {
+      @include media('<tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(height, 18);
+        @include clampattr(margin-left, 6);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(margin-left, 10);
+      }
+      color: var(--peacock-blue);
+    }
+
+    .va-product-cart {
+      // @include clampattr(height, 78);
+      @include clampattr(font-size, 20);
+      @include clampattr(padding-top, 18);
+
+      //   border-color: var(--whisper-grey);
+      color: var(--marine-blue);
+
+      .va-product-qty-label {
+        @include media('<tablet') {
+          @include clampattr(font-size, 14.5);
+          @include clampattr(height, 30);
+        }
+        @include clampattr(margin-right, 14);
+      }
+
+      input {
+        all: unset;
+      }
+
+      .va-product-qty {
+        @include media('<tablet') {
+          @include clampattr(width, 50);
+          @include clampattr(height, 24);
+          @include clampattr(font-size, 15);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 70);
+          @include clampattr(height, 29);
+        }
+
+        text-align: center;
+        // @include clampattr(padding-left, 14);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-width: 0;
+        outline-width: 0;
+        @include clampattr(border-radius, 10);
+        border: solid 1px #bccad3;
+      }
+
+      .open-dropbox {
+        position: absolute;
+        @include clampattr(left, 98);
+        @include clampattr(top, 65);
+      }
+    }
+
+    .va-purchase {
+      @include media('<tablet') {
+        @include mobile-btn;
+        // @include clampattr(margin-bottom, 15);
+        @include clampattr(width, 94);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 17);
+        @include clampattr(width, 114);
+        @include clampattr(height, 32);
+        // @include clampattr(margin-bottom, 20);
+        font-weight: 300;
+      }
+      color: #fffefe;
+      @include clampattr(border-radius, 10);
+      background-color: var(--marine-blue);
+      border-width: 0;
+      outline-width: 0;
+    }
+
+    .va-add-to-cart {
+      @include media('<tablet') {
+        @include mobile-btn;
+        @include clampattr(padding-left, 8);
+        @include clampattr(padding-right, 8);
+        @include clampattr(margin-left, 14);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 17);
+        @include clampattr(width, 114);
+        @include clampattr(height, 32);
+        @include clampattr(margin-left, 14);
+      }
+      @include clampattr(margin-top, 18);
+      font-weight: 300;
+      color: #fffefe;
+      @include clampattr(border-radius, 10);
+      background-color: var(--peacock-blue);
+      border-width: 0;
+      outline-width: 0;
+    }
+
+    .va-back-order {
+      @include media('<tablet') {
+        display: inline-block;
+        @include mobile-btn;
+        @include clampattr(width, 150);
+        @include clampattr(margin-left, 15);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 17);
+        @include clampattr(width, 150);
+        @include clampattr(height, 32);
+        font-weight: 300;
+        @include clampattr(margin-left, 14);
+        @include clampattr(margin-top, 18);
+      }
+
+      color: #fffefe;
+      @include clampattr(border-radius, 10);
+      background-color: var(--marine-blue);
+      border-width: 0;
+      outline-width: 0;
+    }
+
+    .va-product-download {
+      border-top: 1px solid var(--grey-borderline);
+      @include media('<tablet') {
+        @include clampattr(margin-top, 15);
+        // @include clampattr(padding-top, 15);
+      }
+      @include media('>=tablet') {
+        @include clampattr(padding-top, 19);
+        @include clampattr(margin-top, 19);
+      }
+      .btn-download {
+        @include media('<tablet') {
+          @include clampattr(width, 23);
+          @include clampattr(height, 20);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 32);
+          @include clampattr(height, 28);
+        }
+      }
+
+      .download-title {
+        @include media('<tablet') {
+          @include clampattr(font-size, 14);
+          @include clampattr(margin-left, 8);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 16);
+          @include clampattr(margin-left, 12);
+        }
+        vertical-align: bottom;
+        font-weight: 300;
+        color: var(--greyish-brown);
+      }
+    }
+
+    .va-qt-block {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 30);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 48);
+        @include clampattr(height, 72);
+      }
+
+      .qt-labelstr {
+        // position: absolute;
+        display: inline-block;
+        font-weight: bold;
+        @include media('<tablet') {
+          @include clampattr(font-size, 20);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 26);
+        }
+
+        .tm {
+          display: inline-block;
+          width: 15px;
+          height: 7px;
+          font-size: 6.5px;
+          vertical-align: top;
+          margin-left: 2px;
+          font-weight: 600;
+          color: var(--marine-blue);
+          // @include clampattr(line-height, 28);
+        }
+
+        .tipstr {
+          @include media('<tablet') {
+            @include clampattr(font-size, 15);
+            @include clampattr(line-height, 22);
+            font-weight: 400;
+          }
+          @include media('>=tablet') {
+            font-weight: 300;
+            @include clampattr(font-size, 19);
+            @include clampattr(line-height, 48);
+          }
+          color: var(--greyish-brown);
+        }
+      }
+
+      #qtLotNo {
+        position: absolute;
+        @include media('<tablet') {
+          @include clampattr(font-size, 13);
+          @include clampattr(left, 126);
+          @include clampattr(width, 195);
+          @include clampattr(height, 25);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 19);
+          @include clampattr(left, 170);
+          @include clampattr(width, 348);
+          @include clampattr(height, 40);
+        }
+
+        top: 0px;
+        @include clampattr(border-radius, 10);
+        border-width: 1px;
+        outline-width: 1px;
+        @include clampattr(padding-left, 8);
+        border: solid 1px #bccad3;
+      }
+    }
+  }
+
+  .product-description-container {
+    /*    @include clampattr(margin-left, 320);
+    @include clampattr(margin-right, 320);
+*/
+
+    .product-desc-block {
+      width: 100%;
+
+      .product-desc-title {
+        @include clampattr(font-size, 20);
+        @include clampattr(line-height, 24);
+        color: var(--marine-blue);
+      }
+      .supplement-subtitle {
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+          font-weight: 300;
+        }
+        color: var(--greyish-brown);
+      }
+      border-top: 1px solid var(--grey-borderline);
+
+      @include media('<tablet') {
+        @include clampattr(margin-top, 16);
+        @include clampattr(padding-top, 9);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 33);
+        @include clampattr(padding-top, 18);
+      }
+    }
+    .add-line-us {
+      border-bottom: 1px solid var(--grey-borderline);
+      @include clampattr(padding-bottom, 8);
+    }
+    // .product-desc-block::before {
+    //   content: '';
+    //   background: url('/img/line-product.png');
+    //   object-fit: contain;
+    //   width: 100%;
+    //   height: 2px;
+    //   @include media('<tablet') {
+    //     @include clampattr(margin-top, 16);
+    //     @include clampattr(margin-bottom, 9);
+    //   }
+    //   @include media('>=tablet') {
+    //     @include clampattr(margin-top, 32);
+    //     @include clampattr(margin-bottom, 18);
+    //   }
+    // }
+
+    .product-content-block {
+      width: 100%;
+    }
+
+    .product-content {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 20);
+        font-weight: 300;
+      }
+
+      padding-top: 5px;
+      color: var(--greyish-brown);
+    }
+
+    .ingredients-header {
+      font-weight: 600;
+      padding-bottom: 4px;
+      border-bottom: 0.5px solid var(--greyish-brown);
+      @include media('<tablet') {
+        @include clampattr(margin-bottom, 8);
+      }
+    }
+
+    .ingredients-content {
+      padding-bottom: 5px;
+    }
+
+    .ingredients-content::after {
+      content: '';
+      background: url('/img/line-ingredient.png');
+      object-fit: contain;
+      width: 100%;
+      height: 1px;
+      margin-top: 8px;
+    }
+
+    .spec-desc-m {
+      @include clampattr(font-size, 16);
+      @include clampattr(line-height, 20);
+    }
+    .additional-info {
+      @include clampattr(margin-top, 10);
+    }
+
+    .non-medicinal-ingredients {
+      @include clampattr(margin-top, 10);
+    }
+
+    .plus_button {
+      /* float: right; */
+      border-width: 0px;
+      background-color: transparent;
+      color: var(--peacock-blue);
+      width: 28px;
+      position: absolute;
+      @include clampattr(top, -10);
+      top: -10px;
+      right: 0px;
+    }
+
+    .plus_button::after {
+      content: '+';
+      @include clampattr(font-size, 30);
+      font-weight: 300;
+    }
+
+    .minus_button {
+      float: right;
+      border-width: 0px;
+      background-color: transparent;
+      color: var(--peacock-blue);
+      width: 28px;
+      position: absolute;
+      //@include clampattr(top, -10);
+      top: -10px;
+      right: 0px;
+    }
+
+    .minus_button::after {
+      content: '-';
+      @include clampattr(font-size, 30);
+      font-weight: 300;
+      vertical-align: top;
+    }
+
+    .product-info {
+      border-top: 1px;
+    }
+
+    .product-desc-notics {
+      @include clampattr(padding-top, 14);
+      @include clampattr(padding-bottom, 14);
+      @include clampattr(margin-top, 35);
+      @include clampattr(margin-bottom, 45);
+      @include importantclampattr(padding-left, 14);
+      @include importantclampattr(padding-right, 14);
+      @include clampattr(font-size, 14);
+      font-weight: 300;
+      object-fit: contain;
+      opacity: 0.7;
+      @include clampattr(border-radius, 10);
+      border: solid 1px #dadada;
+      // background-color: #dadada;
+    }
+  }
+
+  .related-products {
+    /*    @include clampattr(margin-left, 320);
+    @include clampattr(margin-right, 320);
+*/
+    @include media('<tablet') {
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 80);
+      @include clampattr(margin-bottom, 120);
+    }
+
+    .related-products-label {
+      color: var(--marine-blue);
+      @include media('<tablet') {
+        @include clampattr(font-size, 25);
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 8);
+        @include clampattr(margin-bottom, 8);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 22);
+        font-weight: 600;
+      }
+    }
+
+    .related-products-list {
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 42);
+      }
+
+      .products-list-col {
+        width: 100%;
+        @include clampattr(padding-left, 60);
+        @include clampattr(padding-right, 60);
+      }
+    }
+
+    .related-product-img {
+      @include media('<tablet') {
+        @include clampattr(height, 128);
+      }
+      @include media('>=tablet') {
+        @include clampattr(height, 258);
+        @include clampattr(padding-left, 30);
+        @include clampattr(padding-right, 30);
+      }
+
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: scale-down;
+      cursor: pointer;
+    }
+
+    .related-product-name {
+      @include media('<tablet') {
+        @include clampattr(font-size, 10);
+        @include clampattr(margin-bottom, 20);
+        font-weight: 600;
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(margin-top, 22);
+        font-weight: 600;
+      }
+      text-align: center;
+      cursor: pointer;
+
+      button {
+        color: var(--marine-blue) !important;
+      }
+    }
+  }
+}
+
+.alert-title {
+  @include clampattr(font-size, 18);
+  font-weight: 600;
+}
+
+.alert-body {
+  @include clampattr(font-size, 14);
+}
+
+.notify-me-popover {
+  .dx-popup-content {
+    @include clampattr(padding-left, 16);
+    @include clampattr(padding-right, 16);
+    @include clampattr(padding-top, 9);
+  }
+
+  .dx-toolbar {
+    color: var(--marine-blue);
+    @include importantclampattr(margin-left, 13);
+    @include importantclampattr(margin-right, 13);
+    padding: 0 !important;
+    width: auto;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .dx-icon-close::before {
+    width: 8px;
+    height: 8px;
+    content: url('/img/x-object.png');
+  }
+
+  .notify-me-popover-body {
+    .notify-me-title {
+      @include media('<tablet') {
+        @include clampattr(padding-bottom, 8);
+        @include clampattr(margin-bottom, 14);
+        @include clampattr(font-size, 25);
+      }
+      @include media('>=tablet') {
+        @include clampattr(padding-bottom, 8);
+        @include clampattr(margin-bottom, 14);
+        @include clampattr(font-size, 15);
+      }
+      color: var(--marine-blue);
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+
+    @include media('<tablet') {
+      @include importantclampattr(width, 300);
+      @include importantclampattr(height, 240);
+      @include clampattr(margin-top, 5);
+      @include importantclampattr(font-size, 18);
+    }
+    @include media('>=tablet') {
+      @include importantclampattr(width, 600);
+      @include importantclampattr(height, 155);
+      @include importantclampattr(font-size, 15);
+    }
+
+    color: #5c5c5c;
+
+    input {
+      all: unset;
+    }
+
+    .request-qty {
+      @include clampattr(width, 80);
+      text-align: center;
+      @include clampattr(height, 30);
+      @include clampattr(margin-left, 9);
+      // @include clampattr(padding-left, 14);
+      padding-top: 0px;
+      padding-bottom: 0px;
+      border-width: 0;
+      outline-width: 0;
+      @include clampattr(border-radius, 10);
+      border: solid 1px #bccad3;
+    }
+
+    .notice-text {
+      @include clampattr(margin-top, 10);
+    }
+
+    .submit-line {
+      position: relative;
+
+      .after-submit-text {
+        position: absolute;
+        @include media('<tablet') {
+          bottom: 0px;
+          right: 0px;
+        }
+        @include media('>=tablet') {
+          @include clampattr(left, 12);
+        }
+
+        color: var(--marine-blue);
+      }
+
+      .summit-button {
+        @include media('<tablet') {
+          @include mobile-btn;
+          @include clampattr(margin-top, 20);
+          @include clampattr(padding-left, 8);
+          @include clampattr(padding-right, 8);
+          background-color: var(--marine-blue);
+          color: white;
+          border-width: 0px;
+          outline: 0px;
+        }
+        @include media('>=tablet') {
+          position: absolute;
+          right: 0;
+          margin-top: 2px;
+          @include clampattr(width, 60);
+          @include clampattr(height, 30);
+          @include clampattr(font-size, 12);
+          font-weight: 600;
+          border: solid 1px #bccad3;
+          background-color: transparent;
+          color: #103555;
+        }
+        @include clampattr(border-radius, 10);
+      }
+    }
+  }
+}
+.zooming-popup {
+  .dx-popup-normal {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
+  .dx-popup-content {
+    padding: 0px;
+  }
+  .dx-scrollable-native.dx-scrollable-horizontal {
+    overflow-x: visible !important;
+  }
+
+  .zooming-popup-body {
+    width: 100%;
+    padding: 0px;
+    @include clampattr(padding-left, 9);
+    @include clampattr(padding-right, 9);
+    .close-img-block {
+      object-fit: contain;
+      position: relative;
+      text-align: end;
+      @include clampattr(margin-top, 16);
+
+      .close-img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+    .zooming-image {
+      @include clampattr(margin-top, 36);
+      @include clampattr(width, 320);
+      @include clampattr(height, 320);
+      object-fit: scale-down;
+    }
+    .scrollview-body {
+      display: inline-flex;
+    }
+
+    .thumb-img-div {
+      @include clampattr(margin-top, 100);
+      width: 100%;
+    }
+    .thumb-image-for-zooming {
+      @include clampattr(width, 105);
+      @include clampattr(height, 105);
+      @include clampattr(margin-bottom, 18);
+      padding-top: 8px;
+      padding-bottom: 8px;
+      object-fit: scale-down;
+      @include clampattr(border-radius, 10);
+      border: solid 0.2px var(--whisper-grey);
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+    .inner-space {
+      @include clampattr(margin-right, 20);
+    }
+  }
+}

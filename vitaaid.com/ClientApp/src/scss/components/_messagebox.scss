@@ -1,0 +1,54 @@
+﻿@use '../abstracts' as *;
+
+.messagebox {
+  .close-img-btn {
+    object-fit: contain;
+    position: absolute;
+    @include media('<tablet') {
+      top: 8px;
+      right: 20px;
+    }
+    @include media('>=tablet') {
+      top: 4px;
+      right: 4px;
+    }
+
+    .close-img {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .icon {
+    vertical-align: baseline;
+    @include clampattr(height, 15);
+    @include clampattr(margin-right, 8);
+  }
+
+  .title {
+    @include clampattr(font-size, 15);
+    color: var(--marine-blue);
+  }
+
+  .message {
+    @include clampattr(max-width, 500);
+    @include clampattr(margin-top, 6);
+    @include clampattr(margin-right, 12);
+    @include clampattr(font-size, 13);
+    font-weight: 300;
+    color: #5b5b5b;
+  }
+
+  .action {
+    @include clampattr(margin-top, 16);
+
+    .back-to-home {
+      @include clampattr(font-size, 13);
+      font-weight: 300;
+      color: var(--marine-blue);
+      @include media('<tablet') {
+        text-decoration: underline;
+      }
+    }
+  }
+}

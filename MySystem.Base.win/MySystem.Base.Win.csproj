@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+</Project>

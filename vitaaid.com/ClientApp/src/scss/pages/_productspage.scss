@@ -1,0 +1,529 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.products {
+  @include importantclampattr(margin-bottom, 20);
+  .title {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 22);
+      font-weight: 600;
+    }
+    color: var(--marine-blue);
+    padding: 0px;
+  }
+
+  .categories-filter {
+    @include clampattr(font-size, 15);
+
+    #product-search {
+      @include clampattr(width, 370);
+      color: var(--marine-blue);
+
+      .dx-placeholder {
+        color: var(--marine-blue);
+        @include clampattr(font-size, 15);
+      }
+
+      border-radius: 10px;
+      border-width: 2px;
+      border-color: var(--marine-blue);
+      outline-width: 0;
+    }
+  }
+
+  .categories-list {
+    width: 100%;
+    @include clampattr(font-size, 15);
+    font-weight: 300;
+    border-bottom: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c9;
+    @include clampattr(margin-top, 12);
+    @include clampattr(line-height, 24);
+
+    td {
+      @include clampattr(padding-top, 8);
+      @include clampattr(padding-bottom, 8);
+    }
+
+    .delimiter {
+      @include clampattr(padding-left, 8);
+      @include clampattr(padding-right, 8);
+    }
+  }
+
+  .product-list-title {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 9);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 24);
+    }
+  }
+}
+.method-type-block {
+  display: flex;
+  border-bottom: 1px solid var(--grey-borderline);
+  @include clampattr(padding-bottom, 2);
+}
+
+.open-alphabet-m {
+  @include mdivimg('open-alphabet-m', 20, 16);
+  margin-left: auto;
+  margin-right: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.close-alphabet-m {
+  @include mdivimg('close-alphabet-m', 20, 16);
+  margin-left: auto;
+  margin-right: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.qt-block {
+  @include media('<tablet') {
+    @include clampattr(height, 128);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 80);
+    @include clampattr(height, 240);
+  }
+
+  background-color: #d9d9d9;
+
+  .qt-searchBlock {
+    margin: auto;
+    @include media('<tablet') {
+      @include clampattr(width, 320);
+    }
+    @include media('>=tablet') {
+      @include clampattr(width, 580);
+    }
+
+    .labelstr {
+      // position: absolute;
+      //display: inline-block;
+      display: inline-flex;
+      font-weight: bold;
+      @include media('<tablet') {
+        @include clampattr(font-size, 20);
+        // @include clampattr(line-height, 28);
+        font-weight: 600;
+        //@include clampattr(width, 115);
+        width: auto;
+      }
+      @include media('>=tablet') {
+        // @include gclampattr(margin-left, 665);
+        // @include clampattr(margin-top, 32);
+        @include clampattr(font-size, 28);
+        // @include clampattr(line-height, 42);
+      }
+
+      .tm {
+        display: inline-block;
+        width: 15px;
+        height: 7px;
+        font-size: 6.5px;
+        // vertical-align: top;
+        margin-left: 2px;
+        font-weight: 600;
+        color: var(--marine-blue);
+        // @include clampattr(line-height, 28);
+      }
+    }
+
+    #qtLotNo {
+      display: inline-block;
+      border-radius: 10px;
+      border-width: 1px;
+      outline-width: 1px;
+      @include media('<tablet') {
+        @include clampattr(padding-left, 8);
+        @include clampattr(margin-left, 10);
+        @include clampattr(margin-right, 10);
+        @include clampattr(font-size, 13);
+        @include clampattr(max-width, 196);
+        width: auto;
+        @include clampattr(height, 25);
+        .dx-placeholder {
+          top: -4px !important;
+        }
+        .dx-texteditor-input {
+          @include clampattr(min-height, 23);
+        }
+        border-color: transparent;
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(margin-left, 10);
+        @include clampattr(width, 400);
+        @include clampattr(height, 45);
+        @include clampattr(padding-left, 8);
+        border-color: var(--marine-blue);
+      }
+    }
+
+    .tipstr {
+      list-style: none; /* Remove HTML bullets */
+      padding: 0;
+      margin: 0;
+
+      li::marker {
+        content: '- ';
+        color: var(--greyish-brown);
+      }
+
+      @include media('<tablet') {
+        @include clampattr(margin-top, 6);
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 16);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(line-height, 47);
+      }
+      font-weight: normal;
+      color: var(--greyish-brown);
+    }
+  }
+}
+
+.product-search-btn {
+  margin-top: auto;
+  margin-bottom: auto;
+  @include importantclampattr(margin-right, 12);
+  @include clampattr(width, 30);
+  @include clampattr(height, 30);
+  color: var(--marine-blue);
+}
+
+.blockouter-0 {
+  margin-left: 0;
+  margin-right: auto;
+}
+.blockouter-1 {
+  @include media('<tablet') {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  @include media('>=tablet') {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.blockouter-2 {
+  margin-left: auto;
+  margin-right: 0;
+}
+.ProductInfoInCategory {
+  @include media('<tablet') {
+    @include clampattr(width, 155);
+    @include clampattr(margin-top, 12);
+    @include clampattr(margin-bottom, 20);
+  }
+  @include media('>=tablet') {
+    @include clampattr(width, 340);
+    @include clampattr(margin-top, 50);
+  }
+
+  .info-block-0-adjust {
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
+  .info-block-1-adjust {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .info-block-2-adjust {
+    margin-left: auto;
+    margin-right: 0px;
+  }
+
+  .info-block {
+    text-align: center;
+    object-fit: contain;
+    @include clampattr(border-radius, 10);
+    border: solid 0.2px var(--whisper-grey);
+
+    .product-img {
+      @include media('<tablet') {
+        @include clampattr(height, 140);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 25);
+        @include clampattr(height, 250);
+      }
+
+      display: block;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: scale-down;
+      cursor: pointer;
+    }
+
+    .product-name {
+      @include media('<tablet') {
+        @include clampattr(height, 34);
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 18);
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @include media('>=tablet') {
+        @include clampattr(height, 77);
+        @include clampattr(padding-top, 32);
+        @include clampattr(font-size, 25);
+        @include clampattr(line-height, 28);
+        @include gclampattr(padding-left, 32);
+        @include gclampattr(padding-right, 32);
+      }
+
+      color: var(--marine-blue);
+    }
+
+    .product-code {
+      @include clampattr(padding-top, 20);
+      @include clampattr(font-size, 15);
+      /*      @include clampattr(line-height, 14);
+*/
+      color: var(--greyish-brown);
+      font-weight: 300;
+    }
+
+    .delimite-line {
+      @include clampattr(height, 16);
+      @include gclampattr(padding-left, 32);
+      @include gclampattr(padding-right, 32);
+      padding-bottom: 0px;
+    }
+
+    .product-function {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 24);
+      @include clampattr(height, 48);
+      color: var(--peacock-blue);
+      @include clampattr(margin-bottom, 50);
+      @include gclampattr(margin-left, 32);
+      @include gclampattr(margin-right, 32);
+    }
+  }
+
+  .view-more-btn-0 {
+    display: block;
+    max-width: 100%;
+    @include clampattr(width, 340);
+  }
+  .view-more-btn-m-block {
+    @include clampattr(padding-top, 12);
+    .view-more-btn-m {
+      display: block;
+      @include mobile-btn;
+      @include clampattr(border-radius, 10);
+      font-weight: 300;
+      border: 1px solid #9b9b9b;
+      background-color: #9b9b9b;
+      color: white;
+      // @include clampattr(width, 93);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .view-more-btn-1 {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .view-more-btn-2 {
+    display: block;
+    max-width: 100%;
+    @include clampattr(width, 340);
+    margin-left: auto;
+    margin-right: 0px;
+  }
+
+  .view-more {
+    @include clampattr(margin-top, 28);
+    @include clampattr(margin-bottom, 20);
+    @include clampattr(width, 95);
+    @include clampattr(height, 30);
+    object-fit: contain;
+  }
+
+  td:first-child {
+    border-left: 0.2px solid var(--whisper-grey);
+  }
+
+  td:last-child {
+    border-right: 0.2px solid var(--whisper-grey);
+  }
+
+  table tr:first-child th:first-child,
+  table tr:first-child td:first-child {
+    @include clampattr(border-top-left-radius, 15);
+    border-top: 0.2px solid var(--whisper-grey);
+  }
+
+  table tr:first-child th:last-child,
+  table tr:first-child td:last-child {
+    @include clampattr(border-top-right-radius, 15);
+    border-top: 0.2px solid var(--whisper-grey);
+  }
+
+  table tr:last-child th:first-child,
+  table tr:last-child td:first-child {
+    @include clampattr(border-bottom-left-radius, 15);
+    border-bottom: 0.2px solid var(--whisper-grey);
+  }
+
+  table tr:last-child th:last-child,
+  table tr:last-child td:last-child {
+    @include clampattr(border-bottom-right-radius, 15);
+    border-bottom: 0.2px solid var(--whisper-grey);
+  }
+}
+.cart-popover-pos {
+  position: fixed;
+  @include clampattr(top, 150);
+  @include clampattr(right, 10);
+}
+
+.shopping-cart-popover {
+  .dx-popup-content {
+    @include clampattr(padding-left, 16);
+    @include clampattr(padding-right, 16);
+    @include clampattr(padding-top, 9);
+  }
+
+  .dx-toolbar {
+    color: var(--marine-blue);
+    @include clampattr(font-size, 15);
+    @include importantclampattr(margin-left, 16);
+    @include importantclampattr(margin-right, 16);
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    @include clampattr(padding-bottom, 4);
+    width: auto;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .shopping-cart-popover-body {
+    @include importantclampattr(width, 223);
+    @include importantclampattr(hmax-height, 600);
+
+    .cart-item-block {
+      @include clampattr(padding-bottom, 8);
+      @include clampattr(margin-bottom, 8);
+      border-bottom: 1px solid #c9c9c9;
+    }
+
+    .prod-name {
+      @include clampattr(font-size, 12.5);
+      @include clampattr(line-height, 14);
+      color: var(--marine-blue);
+      font-weight: 600;
+    }
+
+    .prod-code {
+      @include clampattr(font-size, 11);
+      @include clampattr(line-height, 14);
+      color: var(--greyish-brown);
+    }
+
+    .thumb-image {
+      @include clampattr(width, 130);
+      @include clampattr(height, 130);
+      object-fit: scale-down;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    .prod-price {
+      @include clampattr(font-size, 12);
+      @include clampattr(line-height, 14);
+      color: var(--peacock-blue);
+    }
+
+    .prod-qty {
+      @include clampattr(font-size, 12);
+      @include clampattr(line-height, 14);
+      font-weight: 600;
+      color: #103555;
+    }
+  }
+
+  .dx-popup-bottom {
+    border-bottom: none !important;
+
+    .dx-toolbar-items-container {
+      border-bottom: none;
+      @include clampattr(margin-bottom, 10);
+    }
+
+    .dx-button {
+      @include clampattr(border-radius, 10);
+      @include clampattr(font-size, 12);
+      @include clampattr(width, 160);
+      @include clampattr(height, 30);
+      background: #24629d;
+      font-weight: 600;
+      color: white;
+      outline: none;
+
+      .dx-button-text {
+        vertical-align: -webkit-baseline-middle;
+      }
+    }
+  }
+}
+.product-filter-popup {
+  .dx-popup-normal {
+    width: 100% !important;
+  }
+
+  .dx-popup-content {
+    padding: 0px;
+  }
+  .dx-popup-title {
+    border-bottom: none;
+  }
+  .product-filter-popup-body {
+    @include clampattr(padding-left, $page-lr-padding-m);
+    @include clampattr(padding-right, $page-lr-padding-m);
+  }
+  .product-filter-popup-item {
+    text-align: start;
+    padding: 0px;
+    color: var(--marine-blue);
+    @include clampattr(font-size, 18);
+    @include clampattr(line-height, 30);
+    @include clampattr(padding-right, 36);
+  }
+}
+
+.product-category-filter-popup {
+  @extend .product-filter-popup;
+  .dx-popup-normal {
+    height: 100% !important;
+  }
+  // .product-filter-popup-body {
+  //   @include clampattr(padding-bottom, 120);
+  //   @include clampattr(margin-bottom, 20);
+  // }
+}
+.product-alphabet-filter-popup {
+  @extend .product-filter-popup;
+  .dx-popup-normal {
+    @include importantclampattr(height, 190);
+  }
+}

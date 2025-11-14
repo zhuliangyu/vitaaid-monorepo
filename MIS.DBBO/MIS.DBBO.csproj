@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.2.5.13\build\PropertyChanged.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06A24D67-65CC-4F26-923C-1821B3D8FDA5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MIS.DBBO</RootNamespace>
+    <AssemblyName>MIS.DBBO</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppliedCartDiscount.cs" />
+    <Compile Include="AppliedCustomerDiscount.cs" />
+    <Compile Include="AppliedDiscount.cs" />
+    <Compile Include="enum\eSHIPPINGPOLICYTYPE.cs" />
+    <Compile Include="ShippingPolicyMaster.cs" />
+    <Compile Include="SettlementDetail.cs" />
+    <Compile Include="WishProduct.cs" />
+    <Compile Include="ShoppingCartToken.cs" />
+    <Compile Include="EDI850PO1Loop.cs" />
+    <Compile Include="EDIHLItem.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="GS1ShippingLabel.cs" />
+    <Compile Include="AS2VAOrder.cs" />
+    <Compile Include="AS2Log.cs" />
+    <Compile Include="DistributorSalesDetail.cs" />
+    <Compile Include="CanadaTax.cs" />
+    <Compile Include="CA_EAS_DOM.cs" />
+    <Compile Include="CreditCard.cs" />
+    <Compile Include="DistributorCommissionConfigure.cs" />
+    <Compile Include="JointAccountCommissionConfigure.cs" />
+    <Compile Include="DistributorSalesCommission.cs" />
+    <Compile Include="ProductApply_v.cs" />
+    <Compile Include="SharedCommissionConfigure.cs" />
+    <Compile Include="ShippingPolicy.cs" />
+    <Compile Include="PaymentTerm.cs" />
+    <Compile Include="SalesCommission.cs" />
+    <Compile Include="SalesCommissionConfig.cs" />
+    <Compile Include="MCOrderItem.cs" />
+    <Compile Include="CreditOrderItem.cs" />
+    <Compile Include="FinishProductApply.cs" />
+    <Compile Include="CustomerMemo.cs" />
+    <Compile Include="CustomerAddress.cs" />
+    <Compile Include="CustomerAccount.cs" />
+    <Compile Include="DiscountDecorator.cs" />
+    <Compile Include="DiscountProductByAccount.cs" />
+    <Compile Include="DiscountTargetProduct.cs" />
+    <Compile Include="DiscountTargetAccount.cs" />
+    <Compile Include="CustomerDiscount.cs" />
+    <Compile Include="DiscountProgram.cs" />
+    <Compile Include="FinishProductPrice.cs" />
+    <Compile Include="OptionDiscountDecorator.cs" />
+    <Compile Include="MCProduct.cs" />
+    <Compile Include="MISSysParameter.cs" />
+    <Compile Include="TraidingPartnerConfig.cs" />
+    <Compile Include="VAOrderItemByLot.cs" />
+    <Compile Include="POSInvoice.cs" />
+    <Compile Include="POSInvoiceDetailBackOrder.cs" />
+    <Compile Include="POSInvoiceDetail.cs" />
+    <Compile Include="POSInvoiceBase.cs" />
+    <Compile Include="POSItemDetailBase.cs" />
+    <Compile Include="EnumType.cs" />
+    <Compile Include="enum\eORDERSTATUS.cs" />
+    <Compile Include="OrderItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaxDecorator.cs" />
+    <Compile Include="SupplyCode_v.cs" />
+    <Compile Include="VAGiftItem.cs" />
+    <Compile Include="VAOrder.cs" />
+    <Compile Include="VAOrderItem.cs" />
+    <Compile Include="VAGiftCard.cs" />
+    <Compile Include="VAPayment.cs" />
+    <Compile Include="VitaAidFinishProduct.cs" />
+    <Compile Include="VitaAidFinishProductSNAP.cs" />
+    <Compile Include="VitaAidProductBase.cs" />
+    <Compile Include="VitaAidProduct.cs" />
+    <Compile Include="VitaAidQuarantineSNAP_v.cs" />
+    <Compile Include="VitaAidQuarantine_v.cs" />
+    <Compile Include="VitaAidSemiProduct.cs" />
+    <Compile Include="VitaAidSemiProductSNAP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\VAOrder.hbm.xml" />
+    <EmbeddedResource Include="Mapping\OrderItem.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\VitaAidProduct.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\SupplyCode_v.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\CustomerAccount.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\DiscountProgram.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\FinishProductPrice.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\CanadaTax.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\CustomerAddress.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\CustomerMemo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ChangeDataSizeOfLotNo.sql" />
+    <Content Include="ChangeUserToID.sql" />
+    <Content Include="FodyWeavers.xml" />
+    <EmbeddedResource Include="Mapping\ProductApply_v.hbm.xml" />
+    <EmbeddedResource Include="Mapping\AppliedCartDiscount.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VitaAidProductSNAP.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\ShoppingCartToken.hbm.xml" />
+    <EmbeddedResource Include="Mapping\WishProduct.hbm.xml" />
+    <EmbeddedResource Include="Mapping\ShippingPolicyMaster.hbm.xml" />
+    <EmbeddedResource Include="Mapping\SettlementDetail.hbm.xml" />
+    <Content Include="MIS.Schema.sql" />
+    <EmbeddedResource Include="Mapping\MISSysParameter.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VitaAidQuarantineSNAP_v.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VitaAidQuarantine_v.hbm.xml" />
+    <EmbeddedResource Include="Mapping\EDI850PO1Loop.hbm.xml" />
+    <EmbeddedResource Include="Mapping\EDIHLItem.hbm.xml" />
+    <EmbeddedResource Include="Mapping\GS1ShippingLabel.hbm.xml" />
+    <EmbeddedResource Include="Mapping\TraidingPartnerConfig.hbm.xml" />
+    <EmbeddedResource Include="Mapping\AS2VAOrder.hbm.xml" />
+    <EmbeddedResource Include="Mapping\AS2Log.hbm.xml" />
+    <EmbeddedResource Include="Mapping\SalesCommission.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\DistributorSalesDetail.hbm.xml" />
+    <EmbeddedResource Include="Mapping\JointAccountCommissionConfigure.hbm.xml" />
+    <EmbeddedResource Include="Mapping\DistributorCommissionConfigure.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VAPayment.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VAGiftCard.hbm.xml" />
+    <EmbeddedResource Include="Mapping\CA_EAS_DOM.hbm.xml" />
+    <EmbeddedResource Include="Mapping\ShippingPolicy.hbm.xml" />
+    <EmbeddedResource Include="Mapping\PaymentTerm.hbm.xml" />
+    <EmbeddedResource Include="Mapping\DistributorSalesCommission.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\SalesCommissionConfig.hbm.xml" />
+    <EmbeddedResource Include="Mapping\MCProduct.hbm.xml" />
+    <EmbeddedResource Include="Mapping\FinishProductApply.hbm.xml" />
+    <EmbeddedResource Include="Mapping\VAOrderItemByLot.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\AppliedCustomerDiscount.hbm.xml" />
+    <EmbeddedResource Include="Mapping\POSInvoiceDetailBackOrder.hbm.xml" />
+    <EmbeddedResource Include="Mapping\POSInvoice.hbm.xml" />
+    <EmbeddedResource Include="Mapping\POSInvoiceDetail.hbm.xml" />
+    <EmbeddedResource Include="Mapping\DiscountTargetProduct.hbm.xml" />
+    <EmbeddedResource Include="Mapping\DiscountTargetAccount.hbm.xml" />
+    <EmbeddedResource Include="Mapping\DiscountProductByAccount.hbm.xml" />
+    <EmbeddedResource Include="Mapping\CustomerDiscount.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Enums.NET">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="NHibernate">
+      <Version>5.3.11</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.4.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyHibernateUtil\MyHibernateUtil.csproj">
+      <Project>{b34cf3b4-253d-4147-8f63-b3f46552b3fc}</Project>
+      <Name>MyHibernateUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MySystem.Base\MySystem.Base.csproj">
+      <Project>{3895b088-fb50-49d1-ad98-f2e0c883f78c}</Project>
+      <Name>MySystem.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

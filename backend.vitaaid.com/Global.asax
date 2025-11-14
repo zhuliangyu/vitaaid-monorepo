@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="backend.vitaaid.com.MvcApplication" Language="C#" %>

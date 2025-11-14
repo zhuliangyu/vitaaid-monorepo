@@ -1,0 +1,92 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+@use '../base' as *;
+.our-vision {
+  @extend .main-body-bottom-line;
+
+  .header-block {
+    @include clampattr(font-size, 25);
+    @include clampattr(line-height, 45);
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 0);
+      @include clampattr(margin-bottom, 8);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-bottom, 9);
+      @include clampattr(margin-bottom, 15);
+      font-weight: 600;
+    }
+  }
+
+  .seperate-line {
+    width: 100%;
+    border-bottom: 1px solid #5b5b5b;
+    @include clampattr(margin-top, 20);
+    @include clampattr(margin-bottom, 20);
+  }
+
+  .section-title {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 18);
+      font-weight: 300;
+    }
+    color: var(--marine-blue);
+  }
+
+  p {
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 20);
+    }
+
+    color: #5c5c5c;
+    font-weight: 300;
+  }
+
+  .hightlight-title {
+    font-weight: 400 !important;
+    color: var(--peacock-blue);
+  }
+
+  .summary {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 32);
+    }
+
+    color: var(--marine-blue);
+  }
+
+  ol {
+    padding-inline-start: 16px;
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 20);
+    color: #5c5c5c;
+    font-weight: 300;
+  }
+
+  ul {
+    padding-inline-start: 20px;
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 20);
+    color: #5c5c5c;
+    font-weight: 300;
+  }
+}

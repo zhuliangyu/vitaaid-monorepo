@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="LotCycleTime" table="LotCycleTime" lazy="true" >
+    <id name="LotID" column="LotID">
+      <generator class="identity" />
+    </id>   
+    <property name="Code" type ="TrimString">
+      <column name="Code" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Size">
+      <column name="Size" sql-type="int" not-null="false" />
+    </property>
+
+    <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LotStart">
+      <column name="LotStart" sql-type="date" not-null="false" />
+    </property>
+    <property name="LotEnd">
+      <column name="LotEnd" sql-type="date" not-null="false" />
+    </property>
+    <property name="Days">
+      <column name="Days" sql-type="int" not-null="false" />
+    </property>
+
+  </class>
+
+
+</hibernate-mapping>

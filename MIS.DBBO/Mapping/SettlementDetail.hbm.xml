@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="SettlementDetail" table="SettlementDetail">
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+  <property name="InvoiceNumber" type ="TrimString">
+	  <column name="InvoiceNumber" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="XactTime">
+	  <column name="XactTime" sql-type="DATETIME2" not-null="false" />
+	</property>
+	<property name="Amount">
+	  <column name="Amount" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="Currency" type ="TrimString">
+	  <column name="Currency" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="XactType" type ="TrimString">
+	  <column name="XactType" sql-type="nvarchar" not-null="false" />
+	</property>
+	  <property name="ApprovalCode" type ="TrimString">
+	  <column name="ApprovalCode" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="AccountData" type ="TrimString">
+	  <column name="AccountData" sql-type="nvarchar" not-null="false" />
+	</property>
+    <property name="SettleDate">
+      <column name="SettleDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="TransactionID" type ="TrimString">
+      <column name="TransactionID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UserID" type ="TrimString">
+      <column name="UserID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PaymentNote" type ="TrimString">
+	  <column name="PaymentNote" not-null="false" sql-type="nvarchar" />
+    </property>
+    <property name="PaymentID">
+      <column name="PaymentID" sql-type="int" not-null="false" />
+    </property>
+
+    <property name="DataStatus" type ="TrimString">
+	  <column name="DataStatus" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedID" type ="TrimString">
+	  <column name="CreatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedDate" type="DateTime">
+	  <column name="CreatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+	<property name="UpdatedID" type ="TrimString">
+	  <column name="UpdatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="UpdatedDate" type="DateTime">
+	  <column name="UpdatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+  </class>
+</hibernate-mapping>

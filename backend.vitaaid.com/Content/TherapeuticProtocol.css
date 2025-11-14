@@ -1,0 +1,156 @@
+/* Left Panel */
+.filters-navbar .item,
+.filters-navbar ul.dxnb-content
+{
+    border-right: none;
+}
+
+.filters-navbar .item
+{
+    padding-left: 24px !important;
+}
+
+/* Product borders */
+.therapeutic-protocol:focus
+{
+    outline: none;
+}
+
+.therapeutic-protocol .dxgvCSD,
+.therapeutic-protocol .pager
+{
+    border-left: none;
+    border-right: none;
+}
+.therapeutic-protocol .dxgvLVR > td.dxgv
+{
+    border-bottom: none !important;
+}
+
+
+.therapeutic-protocol .column-image
+{
+    width: 12px;
+    height: 12px;
+}
+
+
+/* Product filter panel */
+.filter-panel
+{
+    padding: 16px;
+    padding-left: 18px;
+}
+
+.pdf-viewer {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.pdf-viewer img {
+    width: 32px;
+    height: 32px;
+}
+
+
+#PDFFile {
+  display: inline-block;
+  width: 300px !important;
+  margin: 6px 0 6px 0;
+}
+
+  #PDFFile .dxic {
+    width: 300px !important;
+  }
+
+.dxflNestedControlCell_Office365 {
+  position: relative;
+}
+#btnUplaodPDF {
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  margin: 5px 1px 6px 1px;
+  background-color: #EEEEEE;
+  color: #666;
+}
+
+  #btnUplaodPDF:hover {
+    background-color: #F87C1D;
+    color: white;
+  }
+
+.pdf-block {
+  border: .2px solid #eaeaea;
+  position: relative;
+  height: 700px;
+}
+
+.pdf-block img {
+    width: 100%;
+    object-fit: scale-down;
+}
+.pdf-block embed {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+  }
+#pvEditForm_0 .dxflPCContainerSys {
+  width: 100%;
+}
+
+#pvEditForm .dxeTextBoxSys {
+  width: 100%;
+}
+#pvEditForm .dxeButtonEditSys {
+    width: 100% !important;
+}
+#pvNewForm .dxeTextBoxSys {
+    width: 100%;
+}
+#pvNewForm .dxeButtonEditSys {
+    width: 100% !important;
+}
+
+.PopHtmlEditor {
+    position: relative;
+    display: inline-block;
+    padding: 6px 12px;
+    width: 72px;
+    border: none;
+    background-color: #E0E7FF;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    /*color: #475569;*/
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.PopHtmlEditor::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #4F46E5;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: all 0.3s ease;
+}
+.PopHtmlEditor:hover {
+    color: #4F46E5;
+}
+
+.PopHtmlEditor:hover::after {
+    transform: scaleX(1);
+}
+
+#ModalModeFormLayout #btnUpdate {
+    margin-left: 50px;
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Lot" table="Lot" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <property name="No" type ="TrimString">
+      <column name="No" sql-type="nvarchar" not-null="false" />
+    </property>
+    <!--<property name="LabelLotNo" type ="TrimString">
+      <column name="LabelLotNo" sql-type="nvarchar" not-null="false" />
+    </property>-->
+    <property name="LotSize">
+      <column name="Size" sql-type="int" not-null="false" />
+    </property>
+    <property name="BatchCount">
+      <column name="BatchCount" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="ModelingProduction">
+      <column name="ModelingProduction" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="FabProduction">
+      <column name="FabProduction" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Status" type ="eLOTSTATUS2">
+      <column name="Status" sql-type="int" not-null="false" />
+    </property>
+    <property name="PreStatus" type ="eLOTSTATUS2">
+      <column name="PreStatus" sql-type="int" not-null="false" />
+    </property>
+    <property name="OPID" type ="TrimString">
+      <column name="OPID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="WipStatus" type ="TrimString">
+      <column name="WipStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SampleBatch">
+      <column name="SampleBatch" sql-type="int" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TotalReqWeight">
+      <column name="TotalReqWeight" sql-type="float" not-null="false" />
+    </property>
+	  <property name="TotalApplyWeight">
+		  <column name="TotalApplyWeight" sql-type="float" not-null="false" />
+	  </property>
+	  <property name="PreparedDate">
+      <column name="PreparedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="PreparedPMOPID" type ="TrimString">
+      <column name="PreparedPMOPID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PreparedPMFinish">
+      <column name="PreparedPMFinish" sql-type="int" not-null="false" />
+    </property>
+    <property name="TargetControlLimit">
+      <column name="TargetControlLimit" sql-type="float" not-null="false" />
+    </property>
+    <property name="TargetToleranceLimit">
+      <column name="TargetToleranceLimit" sql-type="float" not-null="false" />
+    </property>
+    <property name="VarControlLimit">
+      <column name="VarControlLimit" sql-type="float" not-null="false" />
+    </property>
+    <property name="VarToleranceLimit">
+      <column name="VarToleranceLimit" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="oParentLot">
+      <column name="oParentLot" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="GroupCode" type ="TrimString">
+      <column name="GroupCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="GroupSize">
+      <column name="GroupSize" sql-type="int" not-null="false" />
+    </property>
+    <property name="GroupBatchCount">
+      <column name="GroupBatchCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="RetailLotNo" type ="TrimString">
+      <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ReProducedFrom" type ="TrimString">
+      <column name="ReProducedFrom" sql-type="nvarchar" not-null="false" />
+    </property>
+    <bag name="SubGroupList" table="Lot" lazy="true">
+      <key column="oParentLot" />
+      <one-to-many class="Lot" />
+    </bag>
+      <property name="GroupStartOPID" type ="TrimString">
+          <column name="GroupStartOPID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="GroupEndOPID" type ="TrimString">
+          <column name="GroupEndOPID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="GroupRevision">
+          <column name="GroupRevision" sql-type="int" not-null="false" />
+      </property>
+      <property name="Comment" type ="TrimString">
+          <column name="Comment" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="TrialRun">
+          <column name="TrialRun" sql-type="int" not-null="false" />
+      </property>
+      <property name="AutoMerge">
+          <column name="AutoMerge" sql-type="int" not-null="false" />
+      </property>
+      <property name="Urgent">
+          <column name="Urgent" sql-type="int" not-null="false" />
+      </property>  
+	    <property name="DataStatus" type ="TrimString">
+		    <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	    </property>
+  </class>
+</hibernate-mapping>

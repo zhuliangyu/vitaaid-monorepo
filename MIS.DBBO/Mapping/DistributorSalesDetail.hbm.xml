@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="DistributorSalesDetail" table="DistributorSalesDetail" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oDistributor">
+      <column name="oDistributor" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="DistributorName" type ="TrimString">
+      <column name="DistributorName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="City" type ="TrimString">
+      <column name="City" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Province" type ="TrimString">
+      <column name="Province" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="OrdersDate">
+      <column name="OrdersDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="OrderNumber" type ="TrimString">
+      <column name="OrderNumber" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductCode"  type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductSKU"  type ="TrimString">
+      <column name="ProductSKU" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName"  type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UPC"  type ="TrimString">
+      <column name="UPC" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="QuantitySold">
+      <column name="QuantitySold" sql-type="int" not-null="false" />
+    </property>
+    <property name="MSRP">
+      <column name="MSRP" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="CommissionMonth">
+      <column name="CommissionMonth" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="PriceRateForDistributor">
+      <column name="PriceRateForDistributor" sql-type="float" not-null="false" />
+    </property>
+    <property name="DistributorPrice">
+      <column name="DistributorPrice" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="NetSales">
+      <column name="NetSales" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="SalesActivity">
+      <column name="SalesActivity" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="CreatedID"  type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesReps" type ="TrimString">
+      <column name="SalesReps" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesRepAccounts" type ="TrimString">
+      <column name="SalesRepAccounts" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

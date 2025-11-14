@@ -1,0 +1,244 @@
+@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@model List<Member>
+
+@{
+    var member = Html.DevExpress().GridView(memberSettings => {
+        memberSettings.Name = "memberView";
+        memberSettings.KeyFieldName = "ID";
+
+        memberSettings.CallbackRouteValues = new { Controller = "Member", Action = "MemberPartial" };
+        memberSettings.CustomActionRouteValues = new { Controller = "Member", Action = "MemberCustomActionPartial" };
+        //memberSettings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Member", Action = "MemberAddNewPartial" };
+        memberSettings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Member", Action = "MemberUpdatePartial" };
+
+        memberSettings.EnablePagingGestures = AutoBoolean.False;
+
+        memberSettings.ControlStyle.CssClass = "member";
+        memberSettings.Width = Unit.Percentage(100);
+
+        memberSettings.Styles.Cell.Wrap = DefaultBoolean.False;
+        memberSettings.Styles.PagerBottomPanel.CssClass = "pager";
+        memberSettings.Styles.FocusedRow.CssClass = "focused";
+        memberSettings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+        memberSettings.SettingsBehavior.AllowFocusedRow = true;
+        memberSettings.SettingsBehavior.AllowSelectByRowClick = true;
+        memberSettings.SettingsBehavior.AllowEllipsisInText = true;
+        memberSettings.SettingsBehavior.AllowDragDrop = false;
+
+        memberSettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+        memberSettings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //memberSettings.SettingsEditing.EditFormColumnCount = 2;
+
+        memberSettings.Settings.VerticalScrollBarMode = ScrollBarMode.Hidden;
+        memberSettings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        //memberSettings.Settings.ShowHeaderFilterButton = true;
+        memberSettings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+        memberSettings.SettingsPager.PageSize = 20;
+        memberSettings.SettingsPager.EnableAdaptivity = true;
+        memberSettings.SettingsPager.PageSizeItemSettings.Visible = true;
+
+        //memberSettings.SettingsExport.EnableClientSideExportAPI = true;
+        //memberSettings.SettingsExport.ExportSelectedRowsOnly = true;
+
+        memberSettings.SettingsPopup.EditForm.SettingsAdaptivity.MaxWidth = 960;
+        memberSettings.SettingsPopup.EditForm.SettingsAdaptivity.Mode = PopupControlAdaptivityMode.Always;
+        memberSettings.SettingsPopup.EditForm.SettingsAdaptivity.VerticalAlign = PopupAdaptiveVerticalAlign.WindowCenter;
+        //memberSettings.SetEditFormTemplateContent(c =>
+        //{
+        //    var dataObject = c.Grid.IsNewRowEditing ? new Member() : c.Grid.GetRow(c.VisibleIndex);
+        //    Html.RenderPartial("_MemberNewPartial", dataObject);
+        //});
+
+        memberSettings.CommandColumn.Visible = true;
+        memberSettings.CommandColumn.ShowSelectCheckbox = true;
+        memberSettings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+        memberSettings.CommandColumn.VisibleIndex = 0;
+        memberSettings.CommandColumn.Width = Unit.Pixel(52);
+
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "ID";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "MemberStatus";
+            columnSettings.Caption = "Status";
+        });
+
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "CustomerCode";
+            columnSettings.Caption = "Account";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Prefix";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Name";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "FirstName";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "LastName";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "PhysicanCode";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Pat_pcode";
+            columnSettings.Caption = "Patient's PCode";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "MemberType";
+            columnSettings.Caption = "Membership Type";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "PractitionerType";
+            columnSettings.Caption = "Practitioner Type";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "OtherPractitionerType";
+            columnSettings.Caption = "Other";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "JoinTime";
+            columnSettings.Caption = "Time of Registration";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Email";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Password";
+            columnSettings.Visible = false;
+        });
+
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "ClinicName";
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "bReferral";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "IsSubscribe";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "PermittedSite";
+        });
+
+
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Address";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "City";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Province";
+            columnSettings.Visible = true;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Country";
+            columnSettings.Visible = true;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "ZipCode";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Telephone";
+            columnSettings.Visible = true;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Fax";
+            columnSettings.Visible = false;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "SalesRep";
+            columnSettings.Visible = true;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "LicenceNo";
+            columnSettings.Visible = true;
+        });
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "LicencePhoto";
+            columnSettings.Visible = false;
+        });
+
+
+        memberSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "UpdatedDate";
+            columnSettings.Width = System.Web.UI.WebControls.Unit.Pixel(130);
+            columnSettings.PropertiesEdit.DisplayFormatString = "d";
+        });
+
+        memberSettings.ClientSideEvents.Init = "onMemberInit";
+        memberSettings.ClientSideEvents.SelectionChanged = "onMemberSelectionChanged";
+        memberSettings.ClientSideEvents.BeginCallback = "onMemberBeginCallback";
+        memberSettings.ClientSideEvents.EndCallback = "onMemberEndCallback";
+        memberSettings.ClientSideEvents.FocusedRowChanged = "onMemberRefreshEditFormCallback";
+
+
+        memberSettings.CellEditorInitialize = (s, e) => {
+            ((ASPxEdit)e.Editor).ValidationSettings.Display = Display.Dynamic;
+        };
+    });
+    if(ViewBag.GeneralError != null) {
+        member.SetEditErrorText(ViewBag.GeneralError);
+    }
+}
+
+@member.Bind(Model).GetHtml()
+

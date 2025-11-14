@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PurchaseRMReqInfo" table="PurchaseRMReqInfo" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="OrderNo" type ="TrimString">
+	  <column name="OrderNo" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Status" type="ePurchaseStatus">
+	  <column name="Status" sql-type="float" not-null="false" />
+	</property>
+	<many-to-one name="oPO">
+	  <column name="oPurchaseOrder" sql-type="int" not-null="false" />
+	</many-to-one>
+
+	<many-to-one name="RMCategory">
+	  <column name="RMCategory" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="PotencyMethod" type="ePOTENCYMETHOD">
+	  <column name="PotencyMethod" sql-type="int" not-null="false" />
+	</property>
+	<property name="ActiveIngredientName" type ="TrimString">
+	  <column name="ActiveIngredientName" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="MethodParameter">
+	  <column name="MethodParameter" sql-type="float" not-null="false"/>
+	</property>
+	<many-to-one name="PotencyUnit">
+	  <column name="PotencyUnit" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="ReqPotencyQty">
+	  <column name="ReqPotencyQty" sql-type="float" not-null="false"/>
+	</property>
+	<property name="ReqWeight">
+	  <column name="ReqWeight" sql-type="float" not-null="false"/>
+	</property>
+	<many-to-one name="RefRMSpec">
+	  <column name="RefRMSpec" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="RefRMSpecDetail">
+	  <column name="RefRMSpecDetail" sql-type="int" not-null="false" />
+	</many-to-one>
+
+	<property name="BuyingWeight">
+	  <column name="BuyingWeight" sql-type="float" not-null="false"/>
+	</property>
+	<property name="BuyingPotencyQty">
+	  <column name="BuyingPotencyQty" sql-type="float" not-null="false"/>
+	</property>
+	<many-to-one name="BuyingRMSpec">
+	  <column name="BuyingRMSpec" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="BuyingRMSpecDetail">
+	  <column name="BuyingRMSpecDetail" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="PurchaseDate">
+	  <column name="PurchaseDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<bag name="oFFI_PRReqs" table="FFI_PRReq" lazy="true">
+	  <key column="PRReqInfo_ID"/>
+	  <one-to-many class="FFI_PRReq"/>
+	</bag>
+	<many-to-one name="CostCurrency">
+	  <column name="CostCurrency" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="UnitCost">
+	  <column name="UnitCost" sql-type="float" not-null="false"/>
+	</property>
+	<property name="BuyingQty">
+	  <column name="BuyingQty" sql-type="float" not-null="false"/>
+	</property>
+	<property name="TotalPrice">
+	  <column name="TotalPrice" sql-type="float" not-null="false"/>
+	</property>
+	<property name="ReceivedWeight">
+	  <column name="ReceivedWeight" sql-type="float" not-null="false"/>
+	</property>
+	<many-to-one name="BuyingUnit">
+	  <column name="BuyingUnit" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="SamplingWt">
+	  <column name="SamplingWt" sql-type="int" not-null="false"/>
+	</property>
+	<property name="RadiationTest">
+	  <column name="RadiationTest" sql-type="int" not-null="false" />
+	</property>
+    <property name="Reprocess" type="eREPROCESS">
+      <column name="Reprocess" sql-type="int" not-null="false" />
+    </property>
+    <property name="Comment4Production" type ="TrimString">
+      <column name="Comment4Production" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="OldOrderNo" type ="TrimString">
+		  <column name="OldOrderNo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

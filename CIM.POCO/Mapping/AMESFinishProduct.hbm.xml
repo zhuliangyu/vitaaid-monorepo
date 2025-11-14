@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="MESFinishProduct" table="AMESFinishProduct" lazy="true" >
+    <id name="SupplyCode" column="SupplyCode" type ="TrimString">
+      <generator class="assigned" />
+    </id>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LotNumber" type ="TrimString">
+      <column name="LotNumber" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CapsulesPerBottle">
+      <column name="CapsulesPerBottle" sql-type="int" not-null="false" />
+    </property>
+    <property name="StockCountBottle">
+      <column name="StockCountBottle" sql-type="int" not-null="false" />
+    </property>
+    <property name="SupplyCountBottle">
+      <column name="SupplyCountBottle" sql-type="int" not-null="false" />
+    </property>
+    <property name="SalesPrice">
+      <column name="SalesPrice" sql-type="Money" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="ExpireDate">
+      <column name="ExpireDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="StockLocation" type ="TrimString">
+      <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="StockLastYear">
+      <column name="StockLastYear" sql-type="float" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

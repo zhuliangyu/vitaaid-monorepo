@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="ReceivingNo_v" table="ReceivingNo_v" lazy="true" >
+    <id name="ReceivingNo" column="ReceivingNo" type ="TrimString">
+      <generator class="assigned" />
+    </id>
+  </class>
+  <sql-query name="NextReceivingNo"  callable="true">
+    <query-param name="sDate" type="String"/>
+    exec sp_NextReceivingNo @sDate=:sDate
+  </sql-query>
+  <sql-query name="ExistReceivingNo"  callable="true">
+    <query-param name="sTargetNo" type="String"/>
+    exec sp_ExistReceivingNo @sTargetNo=:sTargetNo
+  </sql-query>
+</hibernate-mapping>

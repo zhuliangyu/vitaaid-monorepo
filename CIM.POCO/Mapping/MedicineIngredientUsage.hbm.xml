@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="MedicineIngredientUsage" table="MedicineIngredientUsage" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="LotID">
+      <column name="LotID" sql-type="int"/>
+    </property>
+    <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar"/>
+    </property>
+    <property name="Code" type ="TrimString">
+      <column name="code" sql-type="nvarchar" not-null="true" />
+    </property>
+	  <property name="Name" type ="TrimString">
+		  <column name="name" sql-type="nvarchar" not-null="true" />
+	  </property>
+	  <property name="DailyDose">
+		  <column name="DailyDose" sql-type="int"/>
+	  </property>
+	  <property name="Specs" type ="TrimString">
+		  <column name="Specs" sql-type="nvarchar" not-null="true" />
+	  </property>
+	  <property name="DailyAmount">
+		  <column name="DailyAmount" sql-type="float"/>
+	  </property>
+	  <property name="DailyAmountDesc" type ="TrimString">
+		  <column name="DailyAmountDesc" sql-type="nvarchar" not-null="true" />
+	  </property>
+    <property name="CategoryName" type ="TrimString">
+      <column name="CategoryName" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="CategoryCode" type ="TrimString">
+      <column name="CategoryCode" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

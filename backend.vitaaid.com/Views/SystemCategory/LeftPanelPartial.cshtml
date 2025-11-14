@@ -1,0 +1,49 @@
+﻿@using WebDB.DBBO;
+@using MySystem.Base.Extensions;
+
+<script type="text/javascript">
+    (function () {
+        function onFiltersNavBarItemClick(s, e) {
+            var filters = {
+                All: "",
+                @{ 
+                        foreach (var v in EnumHelper.GetSelectList(typeof(eUNITTYPE)).OrderBy(y => y.Value))
+                        {
+                            ViewContext.Writer.Write("                " + v.Text + " : \"[uType] = " + v.Value + "\", \n");
+                        }
+                  }
+            };
+            systemCategory.ApplyFilter(filters[e.item.name]);
+            HideLeftPanelIfRequired();
+        }
+        window.onFiltersNavBarItemClick = onFiltersNavBarItemClick;
+    })();
+</script>
+
+
+<h3 class="leftpanel-section section-caption">Filters</h3>
+@Html.DevExpress().NavBar(navBarSettings =>
+{
+    navBarSettings.Name = "filtersNavBar";
+    navBarSettings.AllowSelectItem = true;
+    navBarSettings.ShowGroupHeaders = false;
+    navBarSettings.Width = Unit.Percentage(100);
+    navBarSettings.ControlStyle.CssClass = "filters-navbar";
+    navBarSettings.Styles.Item.CssClass = "item";
+    navBarSettings.Groups.Add(group =>
+    {
+        group.Items.Add(item =>
+        {
+            item.Name = "All";
+            item.Text = "All";
+            item.Selected = true;
+        });
+        foreach (string name in Enum.GetNames(typeof(eUNITTYPE)))
+            group.Items.Add(item =>
+            {
+                item.Name = name;
+                item.Text = name;
+            });
+        navBarSettings.ClientSideEvents.ItemClick = "onFiltersNavBarItemClick";
+    });
+}).GetHtml()

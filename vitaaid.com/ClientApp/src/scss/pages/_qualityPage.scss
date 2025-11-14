@@ -1,0 +1,251 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.QTBanner {
+  width: 100%;
+  position: relative;
+  /*@include clampattr(margin-top, 77);*/
+  @include media('<tablet') {
+    @include clampattr(height, 420);
+  }
+  @include media('>=tablet') {
+    @include clampattr(height, 550);
+  }
+
+  .banner-block1 {
+    position: absolute;
+    @include media('<tablet') {
+      @include mdivimg('qt-banner-block1-m', 68, 212);
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qt-banner-block1.png', 313, 103);
+    }
+
+    top: 0px;
+    right: 0px;
+  }
+
+  .banner-block2 {
+    position: absolute;
+    @include media('<tablet') {
+      @include mdivimg('qt-banner-block2-m', 269, 227);
+      @include clampattr(bottom, 50);
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qt-banner-block2.png', 768, 477);
+      bottom: 0px;
+    }
+    right: 0px;
+  }
+
+  .banner-block3 {
+    position: absolute;
+    @include media('<tablet') {
+      @include mdivimg('qt-banner-block3-m', 179, 64);
+      @include clampattr(bottom, 80);
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qt-banner-block3.png', 146, 378);
+      @include clampattr(bottom, 121);
+    }
+    left: 0px;
+  }
+
+  .banner-title {
+    position: absolute;
+    @include media('<tablet') {
+      @include clampattr(left, 34);
+      top: 0px;
+    }
+    @include media('>=tablet') {
+      @include gclampattr(left, 320);
+      @include clampattr(top, 130);
+      @include clampattr(height, 60);
+    }
+
+    span {
+      @include media('<tablet') {
+        @include clampattr(font-size, 30);
+        @include clampattr(line-height, 30);
+        font-weight: 400;
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 60);
+        @include clampattr(line-height, 50);
+        font-weight: 600;
+      }
+    }
+
+    .tm {
+      display: inline-block;
+      width: 15px;
+      height: 7px;
+      font-size: 9.5px;
+      vertical-align: top;
+      margin-left: 2px;
+      font-weight: 600;
+      color: var(--marine-blue);
+      @include clampattr(line-height, 24);
+    }
+  }
+
+  .banner-line {
+    @include media('<tablet') {
+      position: absolute;
+      @include clampattr(left, 34);
+      @include clampattr(top, 34);
+      @include mdivimg('qt-banner-line-m', 251, 2);
+    }
+    @include media('>=tablet') {
+      position: absolute;
+      @include gclampattr(left, 320);
+      @include clampattr(top, 208);
+      @include divimg('qt-banner-line.png', 865, 1);
+    }
+  }
+
+  .banner-text {
+    @include media('<tablet') {
+      position: absolute;
+      @include clampattr(left, 34);
+      @include clampattr(top, 40);
+      @include clampattr(width, 240);
+
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 18);
+    }
+    @include media('>=tablet') {
+      position: absolute;
+      @include gclampattr(left, 320);
+      @include clampattr(top, 220);
+      @include clampattr(width, 427);
+      @include clampattr(height, 90);
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+    }
+
+    color: var(--peacock-blue);
+  }
+
+  .searchBlock {
+    @include media('<tablet') {
+      @include clampattr(height, 80);
+      width: 100%;
+    }
+    @include media('>=tablet') {
+      @include clampattr(height, 120);
+      @include clampattr(width, 985);
+    }
+
+    position: absolute;
+    background: var(--marine-blue);
+    @include media('>=tablet') {
+      @include clampattr(border-top-right-radius, 10);
+      @include clampattr(border-bottom-right-radius, 10);
+    }
+    bottom: 0px;
+    left: 0px;
+
+    @include media('<tablet') {
+      .dx-texteditor-input {
+        @include importantclampattr(min-height, 25);
+      }
+    }
+    .labelstr {
+      // position: absolute;
+      display: inline-block;
+      color: white;
+      @include media('<tablet') {
+        @include clampattr(margin-left, 24);
+        @include clampattr(margin-top, 12);
+        @include clampattr(font-size, 18);
+        //@include clampattr(width, 100);
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        font-weight: 600;
+        @include gclampattr(margin-left, 320);
+        @include clampattr(margin-top, 28);
+        @include clampattr(font-size, 25);
+      }
+
+      .tm {
+        display: inline-block;
+        width: 12px;
+        height: 7px;
+        font-size: 8px;
+        vertical-align: top;
+        margin-left: 2px;
+        font-weight: 600;
+        color: white;
+      }
+    }
+
+    #txtLotNo {
+      display: inline-block;
+      border-radius: 10px;
+      border-width: 0px;
+      outline-width: 0;
+      @include clampattr(padding-left, 8);
+      @include clampattr(margin-left, 10);
+      @include media('<tablet') {
+        @include clampattr(font-size, 13);
+        @include clampattr(max-width, 225);
+        // width: auto;
+        width: 100%;
+        @include clampattr(margin-right, 10);
+        @include clampattr(height, 25);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 22);
+        @include clampattr(width, 394);
+        @include clampattr(height, 38);
+      }
+      @include media('<tablet') {
+        .dx-placeholder {
+          top: -4px !important;
+        }
+      }
+    }
+
+    .btnSearch {
+      margin-right: 12px !important;
+    }
+
+    .btnSearch .dx-icon {
+      @include media('<tablet') {
+        @include clampattr(width, 10);
+        @include clampattr(height, 10);
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 30);
+        @include clampattr(height, 30);
+      }
+    }
+
+    .tipstr {
+      @include media('<tablet') {
+        @include clampattr(margin-left, 24);
+        @include clampattr(font-size, 13);
+        @include clampattr(line-height, 28);
+        @include clampattr(margin-top, 4);
+      }
+      @include media('>=tablet') {
+        @include gclampattr(margin-left, 320);
+        @include clampattr(font-size, 20);
+        @include clampattr(line-height, 36);
+        @include clampattr(margin-top, 8);
+      }
+
+      color: white;
+      font-weight: normal;
+    }
+  }
+}
+
+.qt-content-main-body {
+  @extend .content-main-body;
+  @include media('<tablet') {
+    min-height: calc(var(--doc-height) - 684px) !important;
+  }
+}

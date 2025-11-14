@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FabRawMaterialBatch" table="FabRawMaterialBatch" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Formulation">
+      <column name="FormulationID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="FormulationItem">
+      <column name="FabFormulationItemID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="false" />
+    </property>
+    <property name="ReqWeight">
+      <column name="ReqWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="ApplyWeight">
+      <column name="ApplyWeight" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="WeightUnit">
+      <column name="WeightUnit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Command" type ="TrimString">
+      <column name="Command" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Note" type ="TrimString">
+      <column name="Note" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ConfirmType">
+      <column name="ConfirmType" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="oLot">
+      <column name="LotID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="BatchNo">
+      <column name="BatchNo" sql-type="int" not-null="false" />
+    </property>
+    <property name="BatchCode" type ="TrimString">
+      <column name="BatchCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="bBatchEnd">
+      <column name="bBatchEnd" sql-type="int" not-null="false" />
+    </property>
+    <property name="BatchGroup">
+      <column name="BatchGroup" sql-type="int" not-null="false" />
+    </property>
+	  <property name="Comment" type ="TrimString">
+		  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DispenseUserID" type ="TrimString">
+		  <column name="DispenseUserID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ConfirmUserID" type ="TrimString">
+		  <column name="ConfirmUserID" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

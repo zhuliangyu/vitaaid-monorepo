@@ -1,0 +1,7 @@
+﻿@using WebDB.DBBO;
+@model List<ProductImage>
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("_ProductImagePartial", Model)
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="JwtRefreshToken" table="RefreshTokens" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="RefreshToken">
+      <column name="RefreshToken" sql-type="nvarchar" not-null="false" />
+    </property>
+		<property name="UserID">
+			<column name="UserID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UserName">
+			<column name="UserName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Expired">
+			<column name="Expired" sql-type="int" not-null="false" />
+		</property>
+		<property name="HostName">
+			<column name="HostName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="AppName">
+			<column name="AppName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

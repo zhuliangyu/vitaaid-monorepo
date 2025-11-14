@@ -1,0 +1,339 @@
+﻿@use '../../abstracts' as *;
+@use '../../base' as *;
+
+.billing_shipping_detail {
+  // @include clampattr(margin-bottom, 132);
+  @include media('<tablet') {
+    @include main-body-bottom-line;
+    @include clampattr(margin-top, 4);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 30);
+    @include clampattr(width, 1280);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .title {
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 6);
+    }
+    @include media('>=tablet') {
+      font-weight: 600;
+      @include clampattr(padding-bottom, 14);
+    }
+    @include clampattr(font-size, 25);
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .header {
+    @include media('<tablet') {
+      @include clampattr(padding-top, 8);
+      @include clampattr(padding-bottom, 10);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-top, 20);
+      @include clampattr(padding-bottom, 20);
+    }
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .header-label {
+    @include clampattr(font-size, 20);
+    @include media('>=tablet') {
+      font-weight: 600;
+    }
+    @include clampattr(line-height, 24);
+    color: var(--ocean-blue);
+
+    input {
+      @include clampattr(margin-right, 6);
+    }
+  }
+  .chk-sames-div {
+    display: inline-block;
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(margin-left, 5);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 16);
+      @include clampattr(margin-left, 24);
+    }
+
+    color: #5c5c5c;
+    .checkbox {
+      @include media('>=tablet') {
+        @include importantclampattr(margin-top, 10);
+      }
+    }
+  }
+  .desc-drop-ship-order {
+    display: block;
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 15);
+      font-weight: 300;
+      @include clampattr(line-height, 18);
+    }
+    color: var(--greyish-brown);
+    @include clampattr(margin-left, 18);
+  }
+
+  .shipping-block {
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-left, 105);
+    }
+  }
+  .billing-address-part {
+    @include media('<tablet') {
+      @include clampattr(margin-bottom, 20);
+      @include importantclampattr(font-size, 18);
+    }
+    @include media('>=tablet') {
+      border-right: 1px solid var(--grey-borderline);
+    }
+  }
+  .address-table-header {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 6);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 30);
+    }
+  }
+  .address-table-header-col {
+    @include clampattr(font-size, 20);
+    @include clampattr(line-height, 30);
+    color: var(--marine-blue);
+  }
+
+  .change-button {
+    @include media('<tablet') {
+      @include clampattr(font-size, 18);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 16);
+    }
+    color: var(--ocean-blue);
+    @include clampattr(margin-left, 10);
+  }
+
+  .address-summary {
+    @include clampattr(margin-top, 8);
+  }
+
+  .address-block-label {
+    @include clampattr(font-size, 16);
+    font-weight: 600;
+    color: var(--marine-blue);
+  }
+
+  .address {
+    @include clampattr(font-size, 16);
+    @include clampattr(line-height, 25);
+    color: var(--greyish-brown);
+  }
+
+  .order-comment-block {
+    @include media('<tablet') {
+      border-top: 1px solid var(--grey-borderline);
+      @include clampattr(margin-top, 8);
+      @include clampattr(padding-top, 12);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 95);
+    }
+  }
+
+  .order-comment-label {
+    @include clampattr(font-size, 18);
+    @include clampattr(line-height, 24);
+    color: var(--marine-blue);
+  }
+
+  .order-comment-textarea {
+    @include clampattr(min-height, 120);
+    width: 100%;
+    @include clampattr(border-radius, 10);
+    border-color: var(--grey-borderline);
+    outline: none;
+    @include clampattr(padding, 10);
+  }
+
+  .restriction-text {
+    @include clampattr(font-size, 14);
+    @include clampattr(line-height, 40);
+    font-weight: 300;
+  }
+
+  .cart-action {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 14);
+    }
+    @include media('>=tablet') {
+      text-align: end;
+      @include clampattr(margin-top, 32);
+      @include clampattr(padding-bottom, 24);
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+    color: var(--greyish-brown);
+
+    button {
+      @include clampattr(border-radius, 10);
+      outline: none;
+      @include media('<tablet') {
+        @include mobile-btn;
+        background: var(--marine-blue);
+        border: 1px solid #bccad3;
+        color: white;
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 12);
+        @include clampattr(margin-left, 8);
+        @include clampattr(height, 30);
+        background: transparent;
+        font-weight: 300;
+        color: var(--marine-blue);
+        border-color: #becad3;
+        border-style: solid;
+      }
+    }
+  }
+}
+.address-popover,
+.address-popup {
+  .address-change-popover {
+    @include media('<tablet') {
+      @include clampattr(margin-left, 4);
+      @include clampattr(margin-right, 4);
+    }
+    @include media('>=tablet') {
+      @include importantclampattr(width, 600);
+      @include clampattr(max-height, 600);
+    }
+
+    padding-left: 0px;
+  }
+}
+.address-popover {
+  .dx-popup-normal {
+    @include clampattr(padding-bottom, 24);
+  }
+
+  .dx-popup-title {
+    border-bottom: none;
+  }
+
+  .dx-toolbar-items-container {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .dx-toolbar {
+    color: var(--marine-blue);
+    @include clampattr(font-size, 15);
+    @include importantclampattr(margin-left, 16);
+    @include importantclampattr(margin-right, 16);
+    padding: 0px !important;
+    @include importantclampattr(padding-right, 32);
+
+    .dx-toolbar-after {
+      margin: 0px;
+      padding: 0px;
+
+      .dx-button-content {
+        @include clampattr(padding-top, 5);
+        @include clampattr(padding-bottom, 5);
+        @include clampattr(padding-left, 9);
+        @include clampattr(padding-right, 9);
+      }
+    }
+  }
+
+  .dx-icon-close::before {
+    width: 8px;
+    height: 8px;
+    content: url('/img/x-object.png');
+  }
+
+  .dx-popup-content {
+    @include importantclampattr(padding-left, 16);
+    @include importantclampattr(padding-right, 12);
+    padding-top: 0px;
+    @include importantclampattr(padding-bottom, 16);
+  }
+
+  .dx-popup-bottom {
+    .dx-toolbar-items-container {
+      border-bottom: none;
+    }
+
+    .dx-button {
+      @include clampattr(border-radius, 10);
+      @include clampattr(font-size, 12);
+      @include clampattr(margin-left, 8);
+      @include clampattr(height, 30);
+      @include clampattr(margin-right, 10);
+      background: transparent;
+      font-weight: 600;
+      color: var(--marine-blue);
+      border-color: #becad3;
+      border-style: solid;
+      border-width: 2px;
+      outline: none;
+
+      .dx-button-text {
+        vertical-align: -webkit-baseline-middle;
+      }
+    }
+  }
+}
+
+.address-popup {
+  .dx-popup-normal {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
+  .address-book-popup-body {
+    .close-img-block {
+      object-fit: contain;
+      position: relative;
+      text-align: end;
+      .close-img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+    .address-book-title {
+      @include clampattr(font-size, 25);
+      @include clampattr(line-height, 45);
+      @include clampattr(margin-left, 4);
+      @include clampattr(margin-right, 4);
+      color: var(--marine-blue);
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+  }
+  .add-btn-div {
+    position: relative;
+    text-align: end;
+    @include clampattr(margin-top, 15);
+  }
+  .add-new-address {
+    @include mobile-btn;
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid #bccad3;
+    background: transparent;
+    color: var(--marine-blue);
+  }
+}

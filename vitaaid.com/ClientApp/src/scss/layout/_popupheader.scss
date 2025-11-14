@@ -1,0 +1,12 @@
+@use '../abstracts/mixins' as *;
+
+.popup-top1Header {
+  @include clampattr(height, 60);
+  @include clampattr(margin-top, 16);
+  @include clampattr(padding-right, 60);
+}
+.popup-logo {
+  @include image_content('logo.png');
+  @include clampattr(width, 290);
+  @include clampattr(margin-left, 60);
+}

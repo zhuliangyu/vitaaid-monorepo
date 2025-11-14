@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.BreadCrumbs {
+  @include media('>=tablet') {
+    @include clampattr(width, 1280);
+    @include clampattr(margin-top, 36);
+    @media (max-width: 1300px) {
+      @include clampattr(padding-left, 10);
+      @include clampattr(padding-right, 10);
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /*  @include clampattr(margin-left, $page-lr-padding);
+  @include clampattr(margin-right, $page-lr-padding);
+*/ // @include clampattr(margin-top, 66);
+  @include clampattr(font-size, 12);
+  @include media('>=tablet') {
+    font-weight: 600;
+  }
+  color: var(--greyish-brown);
+
+  li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  a {
+    @include clampattr(font-size, 12);
+    color: var(--greyish-brown);
+  }
+
+  button {
+    color: var(--greyish-brown);
+  }
+
+  span {
+    color: var(--greyish-brown);
+  }
+
+  .delimiter {
+    @include clampattr(margin-right, 8);
+    @include clampattr(margin-left, 8);
+  }
+
+  .last-item {
+    display: inline-flex;
+  }
+}

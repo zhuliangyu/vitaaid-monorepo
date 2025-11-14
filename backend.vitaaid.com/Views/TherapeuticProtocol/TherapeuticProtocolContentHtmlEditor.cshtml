@@ -1,0 +1,44 @@
+﻿@using WebDB.DBBO;
+@using backend.vitaaid.com.Controllers;
+@using backend.vitaaid.com.Code;
+@model TherapeuticProtocol
+
+@Html.DevExpress().HtmlEditor(settings =>
+{
+    settings.Name = "htmlData";
+    settings.CallbackRouteValues = new
+    {
+        Controller = "TherapeuticProtocol",
+        Action = "HtmlEditorPart",
+        id = Model.ID,
+        type = "Content"
+    };
+    settings.CustomDataActionRouteValues = new
+    {
+        Controller = "TherapeuticProtocol",
+        Action = "HtmlEditorUpdatePart",
+        product = Model,
+        id = Model.ID,
+        type = "Content"
+    };
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsDialogs.InsertImageDialog.ShowMoreOptionsButton = true;
+    //var imageSelectorSettings = settings.SettingsDialogs.InsertImageDialog.SettingsImageSelector;
+    //HtmlEditorHelper.SetHtmlEditorImageSelectorSettings(imageSelectorSettings, "htmlData");
+    //imageSelectorSettings.Enabled = true;
+
+    //imageSelectorSettings.EditingSettings.AllowMove = true;
+    //imageSelectorSettings.EditingSettings.AllowDelete = true;
+    //imageSelectorSettings.EditingSettings.AllowRename = true;
+    //imageSelectorSettings.EditingSettings.AllowCreate = true;
+    //imageSelectorSettings.UploadSettings.Enabled = true;
+    //imageSelectorSettings.FoldersSettings.ShowLockedFolderIcons = true;
+    //imageSelectorSettings.FileListSettings.View = FileListView.Thumbnails;
+    //imageSelectorSettings.ToolbarSettings.Visible = true;
+    //imageSelectorSettings.FoldersSettings.Visible = true;
+    //imageSelectorSettings.BreadcrumbsSettings.Visible = true;
+
+    HtmlEditorHelper.SetupGlobalUploadBehaviour(settings);
+
+}).Bind(Model.BlogContent).GetHtml()

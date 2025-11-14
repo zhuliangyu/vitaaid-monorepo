@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="VAOrder" table="VAOrder">
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="PONo" type ="TrimString">
+      <column name="PONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="InvoiceNo" type ="TrimString">
+      <column name="InvoiceNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="AccountNo" type ="TrimString">
+      <column name="AccountNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oAccount">
+      <column name="oAccount" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="OrderDate">
+      <column name="OrderDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="InvoiceDate">
+      <column name="InvoiceDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="Status" type ="TrimString">
+      <column name="Status" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PaymentTerm" type ="TrimString">
+      <column name="PaymentTerm" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PaymentType" type ="TrimString">
+      <column name="PaymentType" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DueDate">
+      <column name="DueDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="ShippingMethod" type ="TrimString">
+      <column name="ShippingMethod" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Currency" type ="TrimString">
+      <column name="Currency" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="NetSales">
+      <column name="NetSales" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="dAdjustmentDiscountPercentage">
+      <column name="dAdjustmentDiscountPercentage" sql-type="float" not-null="false" />
+    </property>
+    <property name="Adjustment">
+      <column name="Adjustment" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="ShippingFee">
+      <column name="ShippingFee" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="SubTotal">
+      <column name="SubTotal" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="Total">
+      <column name="Total" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="dTotalByEarlyPayment">
+      <column name="dTotalByEarlyPayment" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="TaxTitle" type ="TrimString">
+      <column name="TaxTitle" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="dTaxAmount">
+      <column name="dTaxAmount" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="TaxRate">
+      <column name="TaxRate" sql-type="float" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesRep" type ="TrimString">
+      <column name="SalesRep" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardNo" type ="TrimString">
+      <column name="CardNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CardHolderName" type ="TrimString">
+      <column name="CardHolderName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oBillingAddress">
+      <column name="oBillingAddress" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="TitleBill" type ="TrimString">
+      <column name="TitleBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CompanyNameBill" type ="TrimString">
+      <column name="CompanyNameBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="AddrBill" type ="TrimString">
+      <column name="AddrBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CityBill" type ="TrimString">
+      <column name="CityBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProvinceBill" type ="TrimString">
+      <column name="ProvinceBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ZipCodeBill" type ="TrimString">
+      <column name="ZipCodeBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CountryBill" type ="TrimString">
+      <column name="CountryBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TelBill" type ="TrimString">
+      <column name="TelBill" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oShippingAddress">
+      <column name="oShippingAddress" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="TitleShip" type ="TrimString">
+      <column name="TitleShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CompanyNameShip" type ="TrimString">
+      <column name="CompanyNameShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="AddrShip" type ="TrimString">
+      <column name="AddrShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CityShip" type ="TrimString">
+      <column name="CityShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProvinceShip" type ="TrimString">
+      <column name="ProvinceShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ZipCodeShip" type ="TrimString">
+      <column name="ZipCodeShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CountryShip" type ="TrimString">
+      <column name="CountryShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TelShip" type ="TrimString">
+      <column name="TelShip" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Email" type ="TrimString">
+      <column name="Email" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ExchangeRate" type="Double">
+      <column name="ExchangeRate" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="TaxChar" type ="TrimString">
+      <column name="TaxChar" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CouponCode" type ="TrimString">
+      <column name="CouponCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerPONo" type ="TrimString">
+      <column name="CustomerPONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SendEmailStatus" type ="TrimString">
+      <column name="SendEmailStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+      <property name="SalesActivity">
+          <column name="SalesActivity" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="ConfirmShipping">
+          <column name="ConfirmShipping" sql-type="int" not-null="false"/>
+      </property>
+      <property name="ShippingByRefriderator">
+          <column name="ShippingByRefriderator" sql-type="int" not-null="false" />
+      </property>
+      <property name="dExtraAdjustment">
+          <column name="dExtraAdjustment" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="ExtraAdjustmentType" type ="eADJUSTTYPE">
+          <column name="ExtraAdjustmentType" sql-type="int" not-null="false" />
+      </property>
+    <property name="BalanceDue">
+      <column name="DueBalance" sql-type="decimal" not-null="false" />
+    </property>
+      <property name="PONo850" type ="TrimString">
+          <column name="PONo850" sql-type="nvarchar" not-null="false" />
+      </property>
+	  <property name="OrderType" type ="eORDERTYPE">
+		  <column name="OrderType" sql-type="int" not-null="false" />
+	  </property>
+	  <property name="bOverrideProgramedDiscount">
+		  <column name="bOverrideProgramedDiscount" sql-type="int" not-null="false" />
+	  </property>
+	  <property name="bByMaxDiscount">
+		  <column name="bByMaxDiscount" sql-type="int" not-null="false" />
+	  </property>
+    <property name="bDropShip">
+      <column name="bDropShip" sql-type="int" not-null="false" />
+    </property>
+    <property name="ExtendedAreaSubcharge">
+      <column name="ExtendedAreaSubcharge" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="bOnlineOrder">
+      <column name="bOnlineOrder" sql-type="int" not-null="false" />
+    </property>
+    <property name="ShippingByQuote">
+      <column name="ShippingByQuote" sql-type="int" not-null="false" />
+    </property>
+
+    <bag name="oCartDiscounts" table="AppliedCartDiscount" inverse="false" cascade="none">
+		  <key column="oOrder"  not-null="false" />
+		  <one-to-many class="AppliedCartDiscount"/>
+	  </bag>
+    <property name="Voided">
+      <column name="Voided" sql-type="int" not-null="false" />
+    </property>
+    <property name="InternalNotice" type ="TrimString">
+      <column name="InternalNotice" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <property name="DataStatus" type ="TrimString">
+	  <column name="DataStatus" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedID" type ="TrimString">
+	  <column name="CreatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedDate" type="DateTime">
+	  <column name="CreatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+	<property name="UpdatedID" type ="TrimString">
+	  <column name="UpdatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="UpdatedDate" type="DateTime">
+	  <column name="UpdatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+    
+  </class>
+</hibernate-mapping>

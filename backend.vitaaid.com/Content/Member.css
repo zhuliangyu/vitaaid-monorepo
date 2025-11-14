@@ -1,0 +1,152 @@
+/* Left Panel */
+.filters-navbar .item,
+.filters-navbar ul.dxnb-content
+{
+    border-right: none;
+}
+
+.filters-navbar .item
+{
+    padding-left: 24px !important;
+}
+
+/* Product borders */
+.member:focus
+{
+    outline: none;
+}
+
+.member .dxgvCSD,
+.member .pager
+{
+    border-left: none;
+    border-right: none;
+}
+.member .dxgvLVR > td.dxgv
+{
+    border-bottom: none !important;
+}
+
+
+.member .column-image
+{
+    width: 12px;
+    height: 12px;
+}
+
+
+/* Product filter panel */
+.filter-panel
+{
+    padding: 16px;
+    padding-left: 18px;
+}
+
+#pvEditForm .dxeTextBoxSys 
+{
+    width: 100%;
+}
+#pvEditForm .dxeButtonEditSys {
+    width: 100% !important;
+}
+#pvNewForm .dxeTextBoxSys {
+    width: 100%;
+}
+#pvNewForm .dxeButtonEditSys {
+    width: 100% !important;
+}
+
+#ModalModeFormLayout #btnUpdate {
+    margin-left: 50px;
+}
+.MyEnumDropList {
+    padding: 0.35em 0.57em 0.4em 0.35em;
+}
+
+.member:focus {
+    outline: none;
+}
+
+.MyEnumDropList:focus {
+    border-color: #F87C1D !important;
+    outline-color: #F87C1D !important;
+}
+
+.licence-viewer {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.licence-viewer img {
+  width: 32px;
+  height: 32px;
+}
+
+
+#LicencePhoto{
+    display:inline-block;
+    width: 300px !important;
+    margin: 6px 0 6px 0;
+}
+#LicencePhoto .dxic {
+    width: 300px !important;
+}
+#btnUplaodLicence {
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    margin: 5px 1px 6px 1px;
+    background-color: #EEEEEE;
+    color: #666;
+}
+#btnUplaodLicence:hover {
+    background-color: #F87C1D;
+    color:white;
+}
+.licence-photo-block {
+    border: .2px solid #eaeaea;
+    position: relative;
+}
+.licence-photo-block img, .licence-photo-block embed {
+    width: 100%;
+    max-height: 120px;
+    overflow: hidden;
+    object-fit: scale-down;
+}
+
+#pvEditForm #SalesRep{
+    width: 205px !important;
+}
+#btnSendEmail {
+    display: inline-block;
+    padding: 0px;
+    margin: 1px;
+    height: 34px;
+    vertical-align: bottom;
+    background-color: #EEEEEE;
+    color: #666;
+    width:165px;
+}
+#btnSendEmail:hover {
+    background-color: #F87C1D;
+    color: white;
+}
+
+#btnAddToConstantContact {
+    display: inline-block;
+    padding: 0px;
+    margin: 1px;
+    height: 34px;
+    vertical-align: bottom;
+    background-color: #EEEEEE;
+    color: #666;
+    width: 100%;
+}
+
+#btnAddToConstantContact:hover {
+    background-color: #F87C1D;
+    color: white;
+}

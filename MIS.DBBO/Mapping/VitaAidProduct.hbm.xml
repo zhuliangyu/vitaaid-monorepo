@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="VitaAidProduct">
+    <id name="ID" column="ID">
+      <generator class="sequence"/>
+    </id>
+    <property name="SupplyCode" type ="TrimString">
+      <column name="SupplyCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RetailLotNo" type ="TrimString">
+      <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="FabLotNo" type ="TrimString">
+      <column name="FabLotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="MESProductCode" type ="TrimString">
+      <column name="MESProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="FormulationCode" type ="TrimString">
+      <column name="FormulationCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Supplier" type ="TrimString">
+      <column name="Supplier" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Servings">
+      <column name="Servings" sql-type="int" not-null="false" />
+    </property>
+    <property name="StockCount">
+      <column name="StockCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="SupplyCount">
+      <column name="SupplyCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="InitSupplyCount">
+      <column name="InitSupplyCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="ExpiredDate">
+      <column name="ExpiredDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="StockLocation" type ="TrimString">
+      <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LabelVersion" type ="TrimString">
+      <column name="LabelVersion" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oParentProduct">
+      <column name="oParentProduct" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Status" type ="TrimString">
+      <column name="Status" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="StockLastYear">
+      <column name="StockLastYear" sql-type="int" not-null="false" />
+    </property>
+    <property name="ClosedDate">
+      <column name="ClosedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="GroupCode" type ="TrimString">
+      <column name="GroupCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="StdWtPerUnit">
+      <column name="StdWtPerUnit" sql-type="float" not-null="false" />
+    </property>
+    <property name="IsOEM">
+      <column name="IsOEM" sql-type="int" not-null="false" />
+    </property>
+	<property name="DataStatus" type ="TrimString">
+	  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="UnitCost">
+	  <column name="UnitCost" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="Salable">
+	  <column name="Salable" sql-type="int" not-null="false" />
+	</property>
+	  <property name="IsDisposal">
+		  <column name="IsDisposal" sql-type="int" not-null="false" />
+	  </property>
+    <property name="DisposalDate">
+      <column name="DisposalDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+      <property name="LastQuarantineDate">
+          <column name="LastQuarantineDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+
+      <union-subclass name="VitaAidFinishProduct" table="VitaAidFinishProduct">
+      <property name="ReservedCount">
+        <column name="ReservedCount" sql-type="int" not-null="false" />
+      </property>
+      <property name="IsSample">
+        <column name="IsSample" sql-type="int" not-null="false" />
+      </property>
+      <property name="IsRelabel">
+        <column name="IsRelabel" sql-type="int" not-null="false" />
+      </property>
+      <property name="GramWeightPerBottle">
+        <column name="GramWeightPerBottle" sql-type="float" not-null="false" />
+      </property>
+      <property name="ReleasedID" type ="TrimString">
+        <column name="ReleasedID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ReleasedDate">
+        <column name="ReleasedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+    </union-subclass>
+	  <union-subclass name="VitaAidSemiProduct" table="VitaAidSemiProduct">
+      <property name="StockWeight">
+        <column name="StockWeight" sql-type="float" not-null="false" />
+      </property>
+      <property name="SupplyWeight">
+        <column name="SupplyWeight" sql-type="float" not-null="false" />
+      </property>
+    </union-subclass>
+
+  </class>
+</hibernate-mapping>

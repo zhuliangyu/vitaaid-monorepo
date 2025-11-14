@@ -1,0 +1,352 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+.Vitaaid-Header {
+  position: fixed;
+  top: 0px;
+  min-width: 1024px;
+  width: 100%;
+  @include clampattr(height, 150);
+  background-color: white;
+  /* for production */
+  .top1Header {
+    background-color: var(--peacock-blue);
+    color: white;
+    width: 100%;
+    @include clampattr(height, 45);
+    @include clampattr(padding-top, 16);
+    display: flex;
+    justify-content: center;
+
+    .top1-header-content {
+      @include clampattr(width, 1280);
+      position: relative;
+    }
+
+    .left-block {
+      position: absolute;
+      left: 0;
+    }
+
+    .right-block {
+      position: absolute;
+      right: 0;
+    }
+
+    .login-item {
+      @include clampattr(font-size, 15);
+      color: white;
+      font-weight: 600;
+      vertical-align: bottom;
+    }
+
+    .account-item {
+      vertical-align: middle;
+      color: white;
+    }
+
+    .greeting {
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      margin-left: 6px;
+      vertical-align: -webkit-baseline-middle;
+    }
+  }
+
+  .top2Header {
+    @include clampattr(margin-top, 17);
+    display: flex;
+    justify-content: center;
+
+    .top2-table {
+      @include clampattr(width, 1280);
+    }
+
+    td {
+      vertical-align: bottom;
+    }
+  }
+
+  .logo {
+    @include clampattr(width, 350);
+  }
+
+  .logo img {
+    @include image_content('logo.png');
+    @include clampattr(width, 240);
+    @include clampattr(height, 62);
+    @include clampattr(margin-right, 60);
+    float: left;
+    object-fit: scale-down;
+    bottom: 6px;
+  }
+
+  .linkPage {
+    @include clampattr(margin-right, 24);
+    @include clampattr(font-size, 17);
+    // display: block;
+
+    align-self: flex-end;
+  }
+
+  .nav-item {
+    color: var(--marine-blue);
+  }
+
+  .open-submenu {
+    margin-left: 2px;
+    margin-bottom: 7px;
+  }
+
+  .linkPageImg {
+    margin: 5px 40px 0px 0px;
+  }
+
+  .linkInfoForPatients {
+    margin: 2px 0 0 0;
+  }
+
+  .search {
+    @include clampattr(width, 20);
+    @include clampattr(height, 20);
+    object-fit: scale-down;
+    @include clampattr(margin-left, 6);
+  }
+
+  .search-block {
+    display: inline-block;
+  }
+
+  .cart-block {
+    display: inline-block;
+
+    button {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .shoppingCart {
+      @include clampattr(width, 21);
+      @include clampattr(height, 19);
+      object-fit: scale-down;
+      @include clampattr(margin-left, 6);
+    }
+
+    .toggle-cart-brief-img {
+      @include clampattr(width, 8);
+      @include clampattr(height, 4);
+      margin-left: 6px;
+    }
+  }
+
+  .infoForPatients {
+    @include clampattr(width, 122);
+    margin-bottom: 0px;
+    padding-top: 2px;
+    object-fit: contain;
+    @include clampattr(margin-left, 6);
+  }
+
+  #popupDiv {
+    @include clampattr(margin-left, 345);
+  }
+
+  #popupDivForEdu {
+    @include clampattr(margin-left, 820);
+  }
+}
+
+.close-img-btn {
+  object-fit: contain;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  .close-img {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.product-popover {
+  @include clampattr(width, 740);
+  padding: 0;
+  .alphabet-block {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    a {
+      color: #5c5c5c;
+      @include clampattr(font-size, 12);
+    }
+  }
+}
+
+.about-popover {
+  @include clampattr(width, 206);
+  padding: 0;
+}
+
+.quality-popover {
+  @include clampattr(width, 206);
+  padding: 0;
+}
+
+.education-popover {
+  @include clampattr(width, 185);
+  padding: 0;
+}
+
+.search-popover {
+  @include clampattr(width, 350);
+  padding: 0;
+
+  .search-input {
+    @include clampattr(width, 342);
+    @include clampattr(height, 25);
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid #ccc;
+    @include clampattr(margin-top, 10);
+    @include clampattr(padding-left, 6);
+  }
+
+  .result-div {
+    @include clampattr(margin-top, 12);
+    @include clampattr(margin-right, 12);
+    @include clampattr(max-height, 640);
+
+    .search-result-category-title {
+      @include clampattr(padding-top, 5);
+      @include clampattr(padding-bottom, 5);
+      @include clampattr(margin-top, 6);
+      @include clampattr(margin-bottom, 6);
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      color: var(--marine-blue);
+      @include clampattr(font-size, 15);
+    }
+
+    .search-content-btn {
+      display: block;
+      text-align: left;
+      color: #5c5c5c;
+      @include clampattr(font-size, 12);
+      font-weight: 300;
+      @include clampattr(line-height, 22);
+    }
+  }
+}
+
+.login-popover {
+  @include clampattr(width, 485);
+  padding: 0;
+}
+
+.error-msg {
+  color: var(--error-color);
+}
+
+.dx-popup-content {
+  @include clampattr(padding-top, 15);
+}
+.popup-title {
+  color: var(--marine-blue);
+  @include clampattr(font-size, 15);
+  border-bottom: 2px solid #ddd;
+  @include clampattr(margin-bottom, 9);
+  @include clampattr(padding-bottom, 9);
+  padding-left: 0px;
+}
+
+.popup-submenu-item {
+  @include clampattr(height, 22);
+  @include clampattr(font-size, 14);
+  padding-left: 0;
+  padding-right: 0;
+  a {
+    color: #5c5c5c;
+  }
+}
+.product-catalogue-download {
+  position: absolute;
+  bottom: 0px;
+
+  .btn-download {
+    @include clampattr(width, 26);
+    @include clampattr(height, 22);
+  }
+
+  .download-title {
+    @include clampattr(margin-left, 9);
+    @include clampattr(font-size, 12);
+    font-weight: 300;
+    color: var(--greyish-brown);
+  }
+}
+.account-popover {
+  .dx-popup-content {
+    @include clampattr(padding-left, 16);
+    @include clampattr(padding-right, 16);
+    @include clampattr(padding-top, 9);
+  }
+
+  .dx-toolbar {
+    color: var(--marine-blue);
+    @include importantclampattr(margin-left, 13);
+    @include importantclampattr(margin-right, 13);
+    @include importantclampattr(margin-top, 5);
+    padding: 0 !important;
+    width: auto;
+    border-bottom: 2px solid #ddd;
+
+    .dx-toolbar-label {
+      @include clampattr(font-size, 15);
+      max-width: unset !important;
+    }
+
+    .dx-toolbar-after {
+      .dx-toolbar-item {
+        vertical-align: top;
+
+        .dx-button-content {
+          padding-top: 0px;
+        }
+      }
+    }
+  }
+
+  .dx-icon-close::before {
+    width: 8px;
+    height: 8px;
+    content: url('/img/x-object.png');
+  }
+
+  .account-popover-body {
+    @include importantclampattr(width, 120);
+    @include importantclampattr(height, 120);
+    /*@include importantclampattr(font-size, 15);*/
+    color: #5c5c5c;
+
+    input {
+      all: unset;
+    }
+
+    .account-action-btn {
+      @include clampattr(font-size, 12);
+      font-weight: 300;
+      @include clampattr(line-height, 22);
+      color: #5c5c5c;
+    }
+
+    .sign-out-btn {
+      @include clampattr(margin-top, 8);
+      @include clampattr(font-size, 12);
+      font-weight: 300;
+      @include clampattr(line-height, 22);
+      color: var(--marine-blue);
+    }
+  }
+}

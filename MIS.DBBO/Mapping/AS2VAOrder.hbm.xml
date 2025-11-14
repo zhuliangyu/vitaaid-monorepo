@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="AS2VAOrder" table="AS2VAOrderRelation" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+
+	  <many-to-one name="oAS2Log">
+		  <column name="AS2LogID" sql-type="int" not-null="false" />
+	  </many-to-one>
+
+	  <property name="PONo850" type ="TrimString">
+		  <column name="PONo850" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="PODate850" type ="TrimString">
+		  <column name="PODate850" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <many-to-one name="oVAOrder">
+		  <column name="VAOrderID" sql-type="int" not-null="false" />
+	  </many-to-one>
+
+	  <property name="VAPONo" type ="TrimString">
+		  <column name="VAPONo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="PurposeCode" type ="TrimString">
+		  <column name="PurposeCode" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+	</property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="DateOf855">
+		  <column name="DateOf855" sql-type="DATETIME2" not-null="false" />
+	  </property>
+	  <property name="MemoOf855" type ="TrimString">
+		  <column name="MemoOf855" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DateOf856">
+		  <column name="DateOf856" sql-type="DATETIME2" not-null="false" />
+	  </property>
+	  <property name="MemoOf856" type ="TrimString">
+		  <column name="MemoOf856" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DateOf810">
+		  <column name="DateOf810" sql-type="DATETIME2" not-null="false" />
+	  </property>
+	  <property name="MemoOf810" type ="TrimString">
+		  <column name="MemoOf810" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

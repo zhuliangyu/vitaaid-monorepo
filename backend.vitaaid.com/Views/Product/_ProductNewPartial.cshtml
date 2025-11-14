@@ -1,0 +1,116 @@
+﻿@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@model Product
+
+<script type="text/javascript">
+    function aftersaving() {
+    }
+</script>
+
+@using (Ajax.BeginForm("ProductAddNewPartial", "Product",
+    new AjaxOptions { HttpMethod = "POST", OnComplete = "aftersaving();" },
+    new { @id = "newProductForm", @name = "newProductForm" }))
+{
+    Html.DevExpress().FormLayout(settings =>
+    {
+        settings.Name = "pvNewForm";
+        settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+        settings.Width = Unit.Percentage(100);
+
+        settings.Items.AddGroupItem(g =>
+        {
+            g.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+            g.ShowCaption = DefaultBoolean.False;
+            g.Height = Unit.Percentage(100);
+            g.Width = Unit.Percentage(100);
+            g.ColumnCount = 2;
+            g.Items.Add(m => m.ProductCode, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.Caption = "Code";
+                s.NestedExtension().TextBox(tb =>
+                {
+                    tb.Width = Unit.Percentage(100);
+                    tb.ShowModelErrors = true;
+                    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                });
+            });
+            g.Items.Add(m => m.ProductName, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.NestedExtension().TextBox(tb =>
+                {
+                    tb.Width = Unit.Percentage(100);
+                    tb.ShowModelErrors = true;
+                    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                });
+            });
+            g.Items.Add(m => m.VitaaidCategory, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.SetNestedContent(() =>
+                {
+                    Html.RenderPartial("ProductVitaaidCategoryPartial", (object)Model);
+                });
+            });
+            g.Items.Add(m => m.AllergyCategory, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.SetNestedContent(() =>
+                {
+                    Html.RenderPartial("ProductAllergyCategoryPartial", (object)Model);
+                });
+            });
+            g.Items.Add(m => m.Size, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.NestedExtension().TextBox(tb =>
+                {
+                    tb.Width = Unit.Percentage(100);
+                    tb.ShowModelErrors = true;
+                    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+                });
+            });
+            g.Items.Add(m => m.NPN, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+            g.Items.Add(m => m.Tags, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.ColumnSpan = 2;
+            });
+            g.Items.Add(m => m.Published, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+            g.Items.Add(m => m.VisibleSite, s =>
+            {
+                s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+                s.Caption = "Site";
+            });
+        });
+        settings.Items.AddGroupItem(group =>
+        {
+            group.GroupBoxDecoration = GroupBoxDecoration.None;
+            group.ColumnCount = 2;
+            group.Items.Add(i =>
+            {
+                i.ShowCaption = DefaultBoolean.False;
+                i.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+                var button = (ButtonSettings)i.NestedExtensionSettings;
+                button.Name = "cancel";
+                button.Text = "Cancel";
+                button.ClientSideEvents.Click = "function (s,e) {productView.CancelEdit();}";
+            });
+            group.Items.Add(i =>
+            {
+                i.ShowCaption = DefaultBoolean.False;
+                i.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+                var button = (ButtonSettings)i.NestedExtensionSettings;
+                button.Name = "update";
+                button.Text = "Save";
+                button.ClientSideEvents.Click = "function (s,e) {productView.UpdateEdit();}";
+            });
+        });
+    }).Bind(Model).GetHtml();
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode url="javascript:void(0);">
+	  <siteMapNode url="Member" title="Member">
+	  </siteMapNode>
+	  <siteMapNode url="Product" title="Product">
+	</siteMapNode>
+	<siteMapNode url="TherapeuticFocus" title="Blog">
+	</siteMapNode>
+	 <siteMapNode url="Webinar" title="Webinar">
+	</siteMapNode>
+    <siteMapNode url="TherapeuticProtocol" title="Therapeutic Protocol">
+    </siteMapNode>
+    <siteMapNode url="SystemCategory" title="System Settings">
+	  </siteMapNode>
+	  <siteMapNode url="FileManager" title="File Manager">
+	  </siteMapNode>
+  </siteMapNode>
+</siteMap>

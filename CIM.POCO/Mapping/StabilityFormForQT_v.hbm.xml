@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="StabilityFormForQT_v" table="StabilityFormForQT_v" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oProduct">
+      <column name="ProductID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Location">
+      <column name="Location" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LotNumber">
+      <column name="LotNumber" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProduceDate">
+      <column name="ProduceDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="ExpiryDate">
+      <column name="ExpiryDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Servings" type ="TrimString">
+      <column name="Servings" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageForm" type ="TrimString">
+      <column name="PackageForm" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageClosure" type ="TrimString">
+      <column name="PackageClosure" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageCap" type ="TrimString">
+      <column name="PackageCap" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageBottle" type ="TrimString">
+      <column name="PackageBottle" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageDesiccant" type ="TrimString">
+      <column name="PackageDesiccant" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageCotton" type ="TrimString">
+      <column name="PackageCotton" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <component name="oTestData"  class="MySystem.Base.NSeqList`1[StabilityTestData], MySystem.Base">
+      <bag name="innerList" table="StabilityTestData" lazy="true" cascade="all"  order-by="Sequence">
+        <key column="StabilityFormID" />
+        <one-to-many class="StabilityTestData" />
+      </bag>
+    </component>
+    <property name="ReviewedBy" type ="TrimString">
+      <column name="ReviewedBy" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ReviewedDate">
+      <column name="ReviewedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="ReviewedResult" type ="TrimString">
+      <column name="ReviewedResult" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Status">
+      <column name="Status" sql-type="int" not-null="false" />
+    </property>
+    <property name="TestDate0">
+      <column name="TestDate0" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="TestDate12">
+      <column name="TestDate12" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="TestDate24">
+      <column name="TestDate24" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="TestDate36">
+      <column name="TestDate36" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="TestDate48">
+      <column name="TestDate48" sql-type="smalldatetime" not-null="false" />
+    </property>
+      <property name="ShelfLife">
+          <column name="ShelfLife" sql-type="float" not-null="false" />
+      </property>
+      <property name="Version">
+      <column name="Version" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="oLot">
+      <column name="LotID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="oNextVersion">
+      <column name="oNextVersion" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="oPrevVersion">
+      <column name="oPrevVersion" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="SOPRev" type ="TrimString">
+      <column name="SOPRev" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Published">
+      <column name="Published" sql-type="int" not-null="false" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="datetime" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="datetime" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+@use '../abstracts' as *;
+button:focus {
+  outline: none;
+}
+
+.btn-disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  /*Button disabled - CSS color class*/
+  color: #c0c0c0 !important;
+}
+
+.borderless-btn {
+  background-color: transparent;
+  border: none; /* Remove borders */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+.a-btn {
+  background-color: transparent;
+  border: none; /* Remove borders */
+  cursor: pointer; /* Mouse pointer on hover */
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.a-btn:hover {
+  text-decoration: underline;
+}
+
+.img-btn {
+  outline: none !important;
+  border: none;
+  background: 0 0;
+}

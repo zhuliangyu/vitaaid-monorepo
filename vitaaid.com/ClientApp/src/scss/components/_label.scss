@@ -1,0 +1,47 @@
+:root {
+  /* radios + checkboxes */
+  --checkbox-radio-size: 18px;
+  --checkbox-radio-gap: 0.375rem;
+  /* gap between button and label */
+  --checkbox-radio-line-height: 1.4;
+}
+/* hide native buttons */
+.radio,
+.checkbox {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  margin-top: calc((1em * var(--checkbox-radio-line-height) - var(--checkbox-radio-size)) / 2);
+  //   height: var(--checkbox-radio-size);
+  //   width: var(--checkbox-radio-size);
+  pointer-events: none;
+}
+
+/* label */
+.radio + label,
+.checkbox + label {
+  display: inline-block;
+  line-height: var(--checkbox-radio-line-height);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  padding-left: calc(var(--checkbox-radio-size) + var(--checkbox-radio-gap));
+}
+
+/* custom inputs - basic style */
+.radio + label::before,
+.checkbox + label::before {
+  content: '';
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  top: -0.1em;
+  margin-left: calc(-1 * (var(--checkbox-radio-size) + var(--checkbox-radio-gap)));
+  flex-shrink: 0;
+  width: var(--checkbox-radio-size);
+  height: var(--checkbox-radio-size);
+  margin-right: var(--checkbox-radio-gap);
+}

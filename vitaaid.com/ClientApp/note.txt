@@ -1,0 +1,60 @@
+customer frontend(React)
+cd D:\Code\vitaaid.com\vitaaid.com\ClientApp
+npm run build
+
+customer backend (API) (c#):
+D:\Code\vitaaid.com\vitaaid.com
+
+admin backend(c#)
+D:\Code\vitaaid.com\backend.vitaaid.com
+
+Error about missing component
+npm install --legacy-peer-deps
+
+npm run build
+D:\Code\vitaaid.com\vitaaid.com\ClientApp\build
+
+npm start
+http://localhost:3000/
+
+-----------------------
+How to test vitaid frontend?
+* Connect to VPN (for DB connection)
+* Run VMware for db server
+* Open D:\Code\vitaaid.com\vitaaid.com
+* run *.sln
+* In VS, run this program
+* Make sure that there is no exception and DB connecting issue
+* It will run both React frontend and API backend from ASP.NET.
+* http://localhost:5000/
+* Make some tests
+---------------------------
+How to deploy vitaid react?
+* npm run build
+* login server using SFTP 
+** IP: 20.163.86.49
+** ricky
+** 64aMJNO^a9
+* Backup this folder D:\Code\vitaaid.com\vitaaid.com\ClientApp\build daily
+* Beyond Compare these two folders
+** D:\Code\vitaaid.com\vitaaid.com\ClientApp\build
+** profile:ricky@20.163.86.49?/C:/inetpub/vitaaid_customer_frontend/ClientApp/build
+
+sftp://ricky@20.163.86.49//C:/inetpub/vitaaid_customer_frontend/ClientApp/build
+
+
+** /C:/inetpub/vitaaid_customer_frontend/ClientApp/build
+* Update js and html file
+-----------------------------
+
+Frontend customer account
+joseph@vitaaid.com
+81325767
+
+vitaaid_admin_backend account
+NAPI017
+Va-81325767
+
+https://github.com/zhuliangyu/vitaaid_frontend
+Azure
+10.0.1.4

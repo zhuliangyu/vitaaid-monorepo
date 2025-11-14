@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="EDIHLItem" table="EDIHLItem" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+      <many-to-one name="oAS2Log">
+          <column name="AS2LogID" sql-type="int" not-null="false" />
+      </many-to-one>
+
+      <property name="PONo850" type ="TrimString">
+          <column name="PONo850" sql-type="nvarchar" not-null="false" />
+      </property>
+      <many-to-one name="oVAOrder">
+          <column name="VAOrderID" sql-type="int" not-null="false" />
+      </many-to-one>
+
+      <property name="VAPONo" type ="TrimString">
+          <column name="VAPONo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="SSCC" type ="TrimString">
+          <column name="SSCC" sql-type="nvarchar" not-null="false" />
+      </property>
+
+      <many-to-one name="oGS1ShippingLabel">
+          <column name="GS1ShippingLabel" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="TrackingNumber" type ="TrimString">
+          <column name="TrackingNumber" sql-type="nvarchar" not-null="false" />
+      </property>
+      <many-to-one name="oOrderItemByLot">
+          <column name="OrderItemByLot" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="Name" type ="TrimString">
+          <column name="Name" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="Code" type ="TrimString">
+          <column name="Code" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="RetailLotNo" type ="TrimString">
+          <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ExpiredDate">
+          <column name="ExpiredDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="ShippedQty">
+          <column name="ShippedQty" sql-type="int" not-null="false" />
+      </property>
+	  <property name="LIN01" type ="TrimString">
+		  <column name="LIN01" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+      <property name="CreatedID" type ="TrimString">
+          <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

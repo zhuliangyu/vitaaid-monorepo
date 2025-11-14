@@ -1,0 +1,15 @@
+@use '../abstracts/mixins' as *;
+.input-disable {
+  cursor: not-allowed;
+  pointer-events: none;
+  /*Button disabled - CSS color class*/
+  color: #c0c0c0 !important;
+}
+
+.redirect-img {
+  @include image_content(
+    'ImaginativeNeighboringIchneumonfly-size_restricted.gif'
+  );
+  margin-left: 0;
+  margin-right: 0;
+}

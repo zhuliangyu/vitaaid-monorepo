@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="SalesCommission" table="SalesCommission" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+      <property name="InvoiceNo" type="TrimString">
+          <column name="InvoiceNo" not-null="true" sql-type="nvarchar" />
+      </property>
+      <property name="InvoiceDate" type="DateTime">
+          <column name="InvoiceDate" not-null="false" sql-type="DATETIME2" />
+      </property>
+      <property name="AccountNO" type ="TrimString">
+          <column name="AccountNO" not-null="false" sql-type="nvarchar" />
+      </property>
+      <property name="OrderIdxNo">
+          <column name="OrderIdxNo" not-null="false" sql-type="int" />
+      </property>
+      <property name="SalesRep" type ="TrimString">
+          <column name="SalesRep" not-null="false" sql-type="nvarchar" />
+      </property>
+      <property name="InheritFrom" type ="TrimString">
+          <column name="InheritFrom" not-null="false" sql-type="nvarchar" />
+      </property>
+    <property name="Portion">
+      <column name="Portion" not-null="false" sql-type="FLOAT" />
+    </property>
+    <property name="Currency1" type ="TrimString">
+          <column name="Currency1" not-null="false" sql-type="nvarchar" />
+      </property>
+      <property name="ExchangeRate" type="Double">
+          <column name="ExchangeRate" not-null="false" sql-type="FLOAT" />
+      </property>
+      <property name="BillToName" type ="TrimString">
+          <column name="BillToName" not-null="false" sql-type="nvarchar" />
+      </property>
+
+      <property name="NetSales">
+          <column name="NetSales" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="Adjustment" type="Decimal">
+          <column name="Adjustment" not-null="false" precision="19" scale="4" sql-type="MONEY" />
+      </property>
+      <property name="SalesActivity">
+          <column name="SalesActivity" sql-type="decimal" not-null="false" />
+      </property>
+    <property name="OriginalSalesActivity">
+      <column name="OriginalSalesActivity" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="CommissionRate" type="Double">
+          <column name="CommissionRate" not-null="false" sql-type="FLOAT" />
+      </property>
+      <property name="CommissionAmount">
+          <column name="CommissionAmount" not-null="false" sql-type="decimal" />
+      </property>
+      <property name="IssuedMonth">
+          <column name="IssuedMonth" not-null="false" sql-type="int" />
+      </property>
+
+      <property name="DataStatus" type ="TrimString">
+          <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CreatedDate">
+          <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="CreatedID" type ="TrimString">
+          <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="UpdatedDate">
+          <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="UpdatedID" type ="TrimString">
+          <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

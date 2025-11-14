@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="HubCouponAction" table="hub_coupon_action" lazy="true" >
+		<id name="ID" column="action_id">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="oCoupon" class="HubCoupon">
+			<column name="coupon_id" sql-type="int" not-null="true" />
+		</many-to-one>
+		<property name="SortOrder">
+			<column name="sort_order" sql-type="int" not-null="true" />
+		</property>
+		<property name="ActionType" type="TrimString">
+			<column name="action_type" sql-type="varchar(50)" not-null="true" />
+		</property>
+		<property name="ActionDetails" type="TrimString">
+			<column name="action_details" sql-type="nvarchar(max)" not-null="false" />
+		</property>
+		<property name="CreatedAt">
+			<column name="created_at" sql-type="datetime" not-null="true" />
+		</property>
+		<property name="UpdatedAt">
+			<column name="updated_at" sql-type="datetime" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>
+

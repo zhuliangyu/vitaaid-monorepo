@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FabRawMaterialApplyBatch" table="FabRawMaterialApplyBatch" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="LotID">
+      <column name="LotID" sql-type="int" not-null="false" />
+    </property>
+    <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="FormulationItem">
+      <column name="FabFormulationItemID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RawMaterialApply">
+      <column name="ApplyID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RawMaterialBatch">
+      <column name="BatchID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="BatchNo">
+      <column name="BatchNo" sql-type="int" not-null="false" />
+    </property>
+    <property name="ReqWeight">
+      <column name="ReqWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="RealStockWeightBefore">
+      <column name="RealStockWeightBefore" sql-type="float" not-null="false" />
+    </property>
+    <property name="ApplyWeight">
+      <column name="ApplyWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="RealStockWeightAfter">
+      <column name="RealStockWeightAfter" sql-type="float" not-null="false" />
+    </property>
+    <many-to-one name="WeightUnit">
+      <column name="WeightUnit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="WHRawMaterialName" type ="TrimString">
+      <column name="WHRawMaterialName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="WHOldCode" type ="TrimString">
+      <column name="WHOldCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ScannedBarCode" type ="TrimString">
+      <column name="ScannedBarCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="BatchCode" type ="TrimString">
+      <column name="BatchCode" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

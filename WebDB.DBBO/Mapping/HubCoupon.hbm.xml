@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="HubCoupon" table="hub_coupon" lazy="true" >
+		<id name="ID" column="coupon_id">
+			<generator class="identity" />
+		</id>
+		<property name="Code" type="TrimString">
+			<column name="code" sql-type="varchar(50)" not-null="true" />
+		</property>
+		<property name="Name" type="TrimString">
+			<column name="name" sql-type="varchar(100)" not-null="true" />
+		</property>
+		<property name="DiscountType" type="TrimString">
+			<column name="discount_type" sql-type="varchar(20)" not-null="true" />
+		</property>
+		<property name="StartDate">
+			<column name="start_date" sql-type="datetime2" not-null="true" />
+		</property>
+		<property name="EndDate">
+			<column name="end_date" sql-type="datetime2" not-null="false" />
+		</property>
+		<property name="MaxUsage">
+			<column name="max_usage" sql-type="int" not-null="false" />
+		</property>
+		<property name="PerCustomerUsage">
+			<column name="per_customer_usage" sql-type="int" not-null="false" />
+		</property>
+		<property name="IsActive">
+			<column name="is_active" sql-type="bit" not-null="true" />
+		</property>
+		<property name="CreatedAt">
+			<column name="created_at" sql-type="datetime2" not-null="true" />
+		</property>
+		<property name="UpdatedAt">
+			<column name="updated_at" sql-type="datetime2" not-null="true" />
+		</property>
+		<property name="Notes" type="TrimString">
+			<column name="notes" sql-type="nvarchar(max)" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>
+

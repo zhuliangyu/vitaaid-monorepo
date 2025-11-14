@@ -1,0 +1,131 @@
+﻿@using WebDB.DBBO;
+@using WebDB.DBPO;
+@model List<ProductImage>
+
+@{
+    var productImage = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "productImgView";
+        settings.KeyFieldName = "ID";
+//settings.SettingsDetail.MasterGridName = "productView";
+settings.CallbackRouteValues = new { Controller = "Product", Action = "ProductImageDetailPartial", ProductID = ViewData["ProductID"] };
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Product", Action = "ProductImageUpdatePartial", ProductID = ViewData["ProductID"] };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Product", Action = "ProductImageUpdatePartial", ProductID = ViewData["ProductID"] };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Product", Action = "ProductIamgeDeletePartial", ProductID = ViewData["ProductID"] };
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        settings.Width = Unit.Percentage(100);
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.Width = 80;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.SettingsCommandButton.NewButton.ButtonType = GridCommandButtonRenderMode.Image;
+        settings.SettingsCommandButton.NewButton.Image.Url = "~/Content/Images/New.svg";
+        settings.SettingsCommandButton.NewButton.Image.Width = 16;
+        settings.SettingsCommandButton.NewButton.Image.Height = 16;
+
+        settings.SettingsCommandButton.EditButton.ButtonType = GridCommandButtonRenderMode.Image;
+        settings.SettingsCommandButton.EditButton.Image.Url = "~/Content/Images/edit.svg";
+        settings.SettingsCommandButton.EditButton.Image.Width = 16;
+        settings.SettingsCommandButton.EditButton.Image.Height = 16;
+
+        settings.SettingsCommandButton.DeleteButton.ButtonType = GridCommandButtonRenderMode.Image;
+        settings.SettingsCommandButton.DeleteButton.Image.Url = "~/Content/Images/delete.svg";
+        settings.SettingsCommandButton.DeleteButton.Image.Width = 16;
+        settings.SettingsCommandButton.DeleteButton.Image.Height = 16;
+
+        settings.SettingsCommandButton.UpdateButton.ButtonType = GridCommandButtonRenderMode.Image;
+        settings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/save.svg";
+        settings.SettingsCommandButton.UpdateButton.Image.Width = 16;
+        settings.SettingsCommandButton.UpdateButton.Image.Height = 16;
+
+        settings.SettingsCommandButton.CancelButton.ButtonType = GridCommandButtonRenderMode.Image;
+        settings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Undo.svg";
+        settings.SettingsCommandButton.CancelButton.Image.Width = 16;
+        settings.SettingsCommandButton.CancelButton.Image.Height = 16;
+
+        settings.ControlStyle.CssClass = "product-image";
+        settings.Styles.FocusedRow.CssClass = "focused";
+//settings.SettingsBehavior.AllowFocusedRow = true;
+//settings.SettingsBehavior.AllowSelectByRowClick = true;
+settings.SettingsBehavior.AllowDragDrop = false;
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+
+//settings.Columns.Add("ID");
+settings.Columns.Add(c =>
+        {
+            c.FieldName = "FrontImage";
+            c.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+//settings.Columns.Add("Flag");
+settings.Columns.Add(c =>
+        {
+            c.FieldName = "NormalImage";
+            c.Caption = "Image";
+            c.EditorProperties().BinaryImage(p =>
+            {
+                p.ImageHeight = 75;
+                p.ImageWidth = 75;
+                p.EnableServerResize = false;
+                p.ImageSizeMode = ImageSizeMode.FitProportional;
+                p.CallbackRouteValues = new { Action = "BinaryImageColumnPhotoUpdate", Controller = "Product", Target = "NormalImage" };
+
+                p.EditingSettings.Enabled = true;
+                p.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+                p.EditingSettings.UploadSettings.TemporaryFolder = EnvHelper.CACHE_DIR;
+                p.EditingSettings.UploadSettings.UploadMode = UploadControlUploadMode.Auto;
+                p.ClientSideEvents.ValueChanged = "saveFileName";
+            });
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "LargeImage";
+            c.EditorProperties().BinaryImage(p =>
+            {
+                p.ImageHeight = 100;
+                p.ImageWidth = 100;
+                p.EnableServerResize = false;
+                p.ImageSizeMode = ImageSizeMode.FitProportional;
+                p.CallbackRouteValues = new { Action = "BinaryImageColumnPhotoUpdate", Controller = "Product", Target = "LargeImage" };
+
+                p.EditingSettings.Enabled = true;
+                p.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+                p.EditingSettings.UploadSettings.TemporaryFolder = EnvHelper.CACHE_DIR;
+                p.EditingSettings.UploadSettings.UploadMode = UploadControlUploadMode.Auto;
+                p.ClientSideEvents.ValueChanged = "saveFileName";
+            });
+        });
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ImageName";
+            c.ReadOnly = true;
+    //c.Visible = false;
+});
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "LargeImageName";
+            c.ReadOnly = true;
+    //c.Visible = false;
+});
+        settings.InitNewRow += (s, e) =>
+        {
+            e.NewValues["FrontImage"] = true;
+        };
+        settings.ClientSideEvents.EndCallback = "afterProductImageCallback";
+
+//settings.ClientSideEvents.Init = "onProductImageInit";
+//settings.ClientSideEvents.FocusedRowChanged = "onProductImageFocusedRowChanged";
+//settings.ClientSideEvents.RowClick = "onProductImageFocusedRowChanged";
+});
+}
+
+@productImage.Bind(Model).GetHtml()
+
+@Html.Hidden("NormalImage_hiddenFieldID")
+@Html.Hidden("LargeImage_hiddenFieldID")
+

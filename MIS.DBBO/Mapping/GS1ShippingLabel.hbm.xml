@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="GS1ShippingLabel" table="GS1ShippingLabel" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+      <many-to-one name="oAS2Log">
+          <column name="AS2LogID" sql-type="int" not-null="false" />
+      </many-to-one>
+
+      <property name="PONo850" type ="TrimString">
+          <column name="PONo850" sql-type="nvarchar" not-null="false" />
+      </property>
+      <many-to-one name="oVAOrder">
+          <column name="VAOrderID" sql-type="int" not-null="false" />
+      </many-to-one>
+
+      <property name="VAPONo" type ="TrimString">
+          <column name="VAPONo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="SSCC" type ="TrimString">
+          <column name="SSCC" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="GrossWeight">
+          <column name="GrossWeight" sql-type="float" not-null="false" />
+      </property>
+      <property name="UnitOfMeasurement" type ="TrimString">
+          <column name="UnitOfMeasurement" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CarrierCode" type ="TrimString">
+          <column name="CarrierCode" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CarrierRouting" type ="TrimString">
+          <column name="CarrierRouting" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="TrackingNumber" type ="TrimString">
+          <column name="TrackingNumber" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+      <property name="CreatedID" type ="TrimString">
+          <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+      </property>
+
+    <bag name="oEDIHLItems" table="EDIHLItem" inverse="false" cascade="none">
+      <key column="GS1ShippingLabel"  not-null="false" />
+      <one-to-many class="EDIHLItem"/>
+    </bag>
+
+      <property name="ShipToName" type ="TrimString">
+          <column name="ShipToName" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToLocationNum" type ="TrimString">
+          <column name="ShipToLocationNum" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToAddress1" type ="TrimString">
+          <column name="ShipToAddress1" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToAddress2" type ="TrimString">
+          <column name="ShipToAddress2" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToCityName" type ="TrimString">
+          <column name="ShipToCityName" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToState" type ="TrimString">
+          <column name="ShipToState" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToPostalCode" type ="TrimString">
+          <column name="ShipToPostalCode" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ShipToCountry" type ="TrimString">
+          <column name="ShipToCountry" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="BillOfLading" type ="TrimString">
+          <column name="BillOfLading" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="CountOfPack">
+          <column name="CountOfPack" sql-type="int" not-null="false" />
+      </property>
+      <property name="TotalOfPack">
+          <column name="TotalOfPack" sql-type="int" not-null="false" />
+      </property>
+      <property name="ItemCode" type ="TrimString">
+          <column name="ItemCode" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ItemDesc" type ="TrimString">
+          <column name="ItemDesc" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="QuanityPerCarton">
+          <column name="QuanityPerCarton" sql-type="int" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

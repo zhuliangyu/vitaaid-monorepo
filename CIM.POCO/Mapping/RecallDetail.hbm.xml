@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RecallDetail" table="RecallDetail" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+	  <many-to-one name="oRecall">
+		  <column name="oRecall" sql-type="int" not-null="false" />
+	  </many-to-one>
+	  <property name="ComplaintNo" type ="TrimString">
+		  <column name="ComplaintNo" sql-type="nvarchar" not-null="true" />
+	  </property>
+	  <many-to-one name="oRecallLot">
+		  <column name="oRecallLot" sql-type="int" not-null="false" />
+	  </many-to-one>
+	  <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+	  <many-to-one name="oCustomer">
+		  <column name="oCustomer" sql-type="int" not-null="false" />
+	  </many-to-one>
+	  <property name="CustomerCode" type ="TrimString">
+      <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RecallQty">
+      <column name="RecallQty" sql-type="int" not-null="false" />
+    </property>
+	  <property name="CollectedQty">
+		  <column name="CollectedQty" sql-type="int" not-null="false" />
+	  </property>
+	  <bag name="oXacts" table="XactHistoryRecall" lazy="true">
+		  <key column="oRecallDetail"/>
+		  <one-to-many class="XactHistoryRecall"/>
+	  </bag>
+
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ProductCode" type ="TrimString">
+		  <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

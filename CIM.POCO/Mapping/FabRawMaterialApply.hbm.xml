@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FabRawMaterialApply" table="FabRawMaterialApply" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="RawMaterialReq">
+      <column name="FabRawMaterialReqID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Formulation">
+      <column name="FormulationID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="FormulationItem">
+      <column name="FabFormulationItemID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RMDetail">
+      <column name="RawMaterialDetailID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="BarCode" type ="TrimString">
+      <column name="BarCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ScannedBarCode" type ="TrimString">
+      <column name="ScannedBarCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ReqWeight">
+      <column name="ReqWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="ApplyWeight">
+      <column name="ApplyWeight" sql-type="float" not-null="false" />
+    </property>
+    <!-- temp
+    <property name="StockWeightBefore">
+      <column name="StockWeightBefore" sql-type="float" not-null="false" />
+    </property>
+    <property name="StockWeightAfter">
+      <column name="StockWeightAfter" sql-type="float" not-null="false" />
+    </property>
+    -->
+    <many-to-one name="WeightUnit">
+      <column name="WeightUnit" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="DispenseDate">
+      <column name="DispenseDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Command" type ="TrimString">
+      <column name="Command" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Note" type ="TrimString">
+      <column name="Note" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Calibrate">
+      <column name="Calibrate" sql-type="int" not-null="false" />
+    </property>
+    <property name="ConfirmType">
+      <column name="ConfirmType" sql-type="int" not-null="false" />
+    </property>
+    <property name="Status" type ="eRMREQSTATUS">
+      <column name="Status" sql-type="int" not-null="false" />
+    </property>
+    <property name="LotID">
+      <column name="LotID" sql-type="int" not-null="false" />
+    </property>
+    <property name="WHRawMaterialName" type ="TrimString">
+      <column name="WHRawMaterialName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="WHOldCode" type ="TrimString">
+      <column name="WHOldCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DispenseUserID" type ="TrimString">
+		  <column name="DispenseUserID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ConfirmUserID" type ="TrimString">
+		  <column name="ConfirmUserID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="Addenda">
+      <column name="Addenda" sql-type="int" not-null="false" />
+    </property>
+    <property name="BatchGroup">
+      <column name="BatchGroup" sql-type="int" not-null="false" />
+    </property>
+	  <property name="Comment" type ="TrimString">
+		  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="StockLocation" type ="TrimString">
+		  <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+	  </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

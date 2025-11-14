@@ -1,0 +1,330 @@
+﻿@using WebDB.DBBO;
+@using WebDB.DBPO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@model Product
+
+<script type="text/javascript">
+  function onUploadProductSheet(s, e) {
+    document.getElementById("ucDragAndDrop_TextBox0_Input").click();
+  }
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var selectedIds;
+        $(document).ready(function () {
+            $('.product-name').on('click', function () {
+                $("#productBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'Product/HtmlEditorPart',
+                    data: { id: @(Model?.ID ?? 0), type: 'ProductName' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                      pv.SetHeaderText('ProductName');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.product-func').on('click', function () {
+                $("#productBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'Product/HtmlEditorPart',
+                    data: { id: @(Model?.ID ?? 0), type: 'Function' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Function');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.product-desc').on('click', function () {
+                $("#productBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'Product/HtmlEditorPart',
+                    data: { id: @(Model?.ID ?? 0), type: 'Description' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Description');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.product-suggest').on('click', function () {
+                $("#productBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'Product/HtmlEditorPart',
+                    data: { id: @(Model?.ID ?? 0), type: 'Suggest' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Suggest');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.product-caution').on('click', function () {
+                $("#productBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'Product/HtmlEditorPart',
+                    data: { id: @(Model?.ID ?? 0), type: 'Caution' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Caution');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+        });
+    })();
+    function updateHtml(s, e) {
+        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+        var editor = ASPxClientHtmlEditor.Cast("htmlData");
+        editor.PerformDataCallback("", function (s) {
+            $.ajax({
+                type: "POST",
+                url: 'Product/ProductEditFormPartial',
+                data: { id: @(Model?.ID ?? 0) },
+                success: function (response) {
+                    $("#productEditableContainer").html(response);
+                }
+            });
+        });
+        pcModalMode.Hide();
+
+        var prodView = ASPxClientGridView.Cast('productView');
+        prodView.Refresh();
+    }
+
+</script>
+@Html.DevExpress().PopupControl(
+    settings =>
+    {
+      settings.Name = "pcModalMode";
+      settings.Width = 1024;
+      settings.AllowDragging = true;
+      settings.CloseAction = CloseAction.CloseButton;
+      settings.CloseOnEscape = true;
+      settings.PopupAnimationType = AnimationType.None;
+      settings.HeaderText = "Product";
+      settings.Modal = true;
+      settings.AutoUpdatePosition = true;
+      settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+      settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+      settings.SetContent(() =>
+      {
+        using (Html.BeginForm())
+        {
+          //Html.Hidden("ProductID");
+
+          @Html.DevExpress().FormLayout(s =>
+          {
+            s.Name = "ModalModeFormLayout";
+            s.RequiredMarkDisplayMode = RequiredMarkMode.None;
+            s.Width = Unit.Percentage(100);
+            s.Height = Unit.Percentage(100);
+
+            s.NestedExtensionWidth = Unit.Percentage(100);
+            s.Items.Add(i =>
+            {
+              i.ShowCaption = DefaultBoolean.False;
+              i.SetNestedContent("<div id='htmleditor'></div>");
+            });
+            s.Items.Add(i =>
+            {
+              i.ShowCaption = DefaultBoolean.False;
+              i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+              i.SetNestedContent(() =>
+              {
+                Html.DevExpress().Button(
+                      buttonSettings =>
+                      {
+                        buttonSettings.Name = "btnCancel";
+                        buttonSettings.ControlStyle.CssClass = "button";
+                        buttonSettings.Width = 80;
+                        buttonSettings.Text = "Cancel";
+                        buttonSettings.ClientSideEvents.Click = "function(s, e){ pcModalMode.Hide(); }";
+                      }
+                  ).Render();
+                Html.DevExpress().Button(
+                      buttonSettings =>
+                      {
+                        buttonSettings.Name = "btnUpdate";
+                        buttonSettings.ControlStyle.CssClass = "button";
+                        buttonSettings.Width = 80;
+                        buttonSettings.Text = "OK";
+                        buttonSettings.ClientSideEvents.Click = "updateHtml";
+                      }
+                  ).Render();
+              });
+            });
+          }).Render();
+        }
+      });
+    }).GetHtml()
+
+@using (Ajax.BeginForm("ProductEditFormUpdatePartial", "Product",
+                        new { id = Model?.ID ?? 0 },
+                        new AjaxOptions { HttpMethod = "POST" },
+                        new { @id = "productBasicInfoForm", @name = "productBasicInfoForm" }))
+{
+  Html.DevExpress().FormLayout(settings =>
+  {
+    settings.Name = "pvEditForm";
+    settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+    settings.Width = Unit.Percentage(100);
+
+    settings.Items.AddGroupItem(g =>
+    {
+      g.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+      g.ShowCaption = DefaultBoolean.False;
+      g.Height = Unit.Percentage(100);
+      g.Width = Unit.Percentage(100);
+      g.ColumnCount = 2;
+      g.Items.Add(m => m.ProductCode, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.Caption = "Code";
+      });
+      g.Items.Add(m => m.ProductSheet, s =>
+      {
+        s.RowSpan = 3;
+        s.Caption = "";
+        if (string.IsNullOrWhiteSpace(Model.ProductSheet))
+        {
+          s.SetNestedContent("<div class='product-sheet-block'><img src=\"" + EnvHelper.BASE_DIR + "noimg.jpg\" alt=\"\"></img></div>");
+        }
+        else
+        {
+          string productSheetPath = EnvHelper.PRODUCT_SHEET_DIR + Uri.EscapeUriString(Model.ProductSheet);
+          if (File.Exists(Server.MapPath(EnvHelper.PRODUCT_SHEET_DIR + Model.ProductSheet)))
+          {
+            if (productSheetPath.EndsWith(".pdf", true, System.Globalization.CultureInfo.CurrentCulture))
+            {
+              s.SetNestedContent("<div class='product-sheet-block'><embed src=\"" + productSheetPath + "\"></embed><a class='sheet-viewer' href='" + productSheetPath + "' target='_blank'><img class='dxm-image dx-vam' src='Content/Images/eye-button.svg'></img></a></div>");
+            }
+            else
+            {
+              s.SetNestedContent("<div class='product-sheet-block'><img src=\"" + productSheetPath + "\" alt=\"\"></img><a class='sheet-viewer' href='" + productSheetPath + "' target='_blank'><img class='dxm-image dx-vam' src='Content/Images/eye-button.svg'></img></a></div>");
+            }
+          }
+          else
+          {
+            s.SetNestedContent("<div class='product-sheet-block'><img src=\"" + EnvHelper.BASE_DIR + "broken.png\" alt=\"\"></img></div>");
+          }
+        }
+      });
+      //g.Items.Add(m => m.ProductName, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+      g.Items.Add(m => m.VitaaidCategory, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.SetNestedContent(() =>
+        {
+          Html.RenderPartial("ProductVitaaidCategoryPartial", (object)Model);
+        });
+      });
+      g.Items.Add(m => m.AllergyCategory, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.SetNestedContent(() =>
+        {
+          Html.RenderPartial("ProductAllergyCategoryPartial", (object)Model);
+        });
+      });
+      g.Items.Add(m => m.Size, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+      g.Items.Add(m => m.ProductSheet, s =>
+      {
+        s.ColumnSpan = 1;
+        s.SetNestedContent(() =>
+        {
+          Html.DevExpress().TextBoxFor(o => o.ProductSheet, tbSetting =>
+          {
+            tbSetting.ReadOnly = true;
+          }).Render();
+          Html.DevExpress().Button(btnSetting =>
+          {
+            btnSetting.Name = "btnUplaodProductSheet";
+            btnSetting.Text = "...";
+            btnSetting.ClientSideEvents.Click = "onUploadProductSheet";
+          }).Render();
+
+        });
+
+      });
+      g.Items.Add(m => m.NPN, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+      g.Items.Add(m => m.VisibleSite, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.Caption = "Site";
+      });
+
+      g.Items.Add(m => m.Tags, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.ColumnSpan = 2;
+      });
+      g.Items.Add(m => m.Published, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+      g.Items.Add(m => m.Featured, s => s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right);
+    });
+    settings.Items.Add(m => m.ProductName, i =>
+    {
+      i.Caption = "ProductName";
+      i.CaptionStyle.CssClass = "PopHtmlEditor product-name";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.ProductName + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.Function, i =>
+    {
+      i.Caption = "Function";
+      i.CaptionStyle.CssClass = "PopHtmlEditor product-func";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Function + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.Description, i =>
+    {
+      i.Caption = "Description";
+      i.CaptionStyle.CssClass = "PopHtmlEditor product-desc";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Description + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.Suggest, i =>
+    {
+      i.Caption = "Suggest";
+      i.CaptionStyle.CssClass = "PopHtmlEditor product-suggest";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Suggest + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.Caution, i =>
+    {
+      i.Caption = "Caution";
+      i.CaptionStyle.CssClass = "PopHtmlEditor product-caution";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Caution + "</div>");
+      });
+    });
+  }).Bind(Model).GetHtml();
+}
+
+@{
+Html.RenderPartial("_ProductUploadSheetPartial", (object)Model);
+}
+

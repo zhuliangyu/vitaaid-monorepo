@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="Webinar" table="Webinar" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+		
+    <property name="Category">
+      <column name="category" sql-type="int" not-null="false" />
+    </property>
+		<property name="Issue" type = "TrimString">
+			<column name="issue" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Reference" type = "TrimString">
+			<column name="reference" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Author" type = "TrimString">
+			<column name="author" sql-type="nvarchar" not-null="false" />
+		</property>
+		<!--<property name="WebinarDate">
+			<column name="webinar_date" sql-type="datetime" not-null="false" />
+		</property>-->
+		<property name="Topic"  type = "TrimString">
+			<column name="topic" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="WebinarContent"  type = "TrimString">
+			<column name="webinar_content" sql-type="nvarchar" not-null="false" />
+		</property>
+
+		<property name="VideoLink"  type = "TrimString">
+			<column name="link" sql-type="nvarchar" not-null="false" />
+		</property>
+
+		<property name="Tags"  type = "TrimString">
+			<column name="tags" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Thumbnail"  type = "TrimString">
+			<column name="image" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="MaxRegistrants">
+			<column name="max_registrants" sql-type="int" not-null="false" />
+		</property>
+
+		<property name="Published">
+			<column name="Published" sql-type="int" not-null="false" />
+		</property>
+
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+
+	</class>
+</hibernate-mapping>

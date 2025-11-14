@@ -1,0 +1,90 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+
+.app-main-body {
+  position: relative;
+  width: 100%;
+}
+
+// non mobile
+
+@include media('>=tablet') {
+  .app-main-body {
+    min-width: 1024px;
+  }
+}
+
+.content-body {
+  position: absolute;
+  width: 100%;
+  // non mobile
+  @media (min-width: 1025px) {
+    min-width: 1024px;
+  }
+  @include media('<tablet') {
+    @include clampattr(top, $top-offset);
+  }
+  @include media('>=tablet') {
+    @include clampattr(top, 150);
+  }
+
+  z-index: -1;
+}
+
+.content-main-body {
+  // non mobile
+  @include media('>=tablet') {
+    @include clampattr(width, 1280);
+  }
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('<tablet') {
+    @include clampattr(margin-top, 20);
+    @include clampattr(margin-left, 24);
+    @include clampattr(margin-right, 24);
+    @include clampattr(margin-bottom, 44);
+    min-height: calc(var(--doc-height) - 264px);
+  }
+  @include media('>=tablet', '<=1300px') {
+    @include clampattr(padding-left, 10);
+    @include clampattr(padding-right, 10);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 36);
+    @include clampattr(margin-bottom, 94);
+    min-height: calc(100vh - 680px);
+  }
+}
+
+@mixin main-body-bottom-line {
+  border-bottom: 1px solid var(--grey-borderline);
+  @include media('<tablet') {
+    @include clampattr(padding-bottom, 20);
+  }
+  @include media('>=tablet') {
+    @include clampattr(padding-bottom, 24);
+  }
+}
+
+.main-body-bottom-line {
+  @include main-body-bottom-line;
+}
+
+.open-category-m {
+  @include mdivimg('open-category-m', 20, 16);
+  margin-left: auto;
+  margin-right: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.close-category-m {
+  @include mdivimg('close-category-m', 20, 16);
+  margin-left: auto;
+  margin-right: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+}

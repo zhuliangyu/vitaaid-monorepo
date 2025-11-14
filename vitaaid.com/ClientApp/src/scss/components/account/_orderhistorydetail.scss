@@ -1,0 +1,46 @@
+﻿@use '../../abstracts' as *;
+
+.order-hisory-detail {
+  @include clampattr(margin-top, 32);
+  @include clampattr(margin-bottom, 100);
+
+  .title {
+    @include clampattr(font-size, 25);
+    color: var(--marine-blue);
+    @include media('>=tablet') {
+      font-weight: 600;
+    }
+  }
+
+  .order-no-div {
+    @include clampattr(font-size, 20);
+    @include media('<tablet') {
+      @include clampattr(padding-top, 5);
+      @include clampattr(padding-bottom, 5);
+      @include clampattr(margin-top, 6);
+      @include clampattr(margin-bottom, 6);
+    }
+    @include media('>=tablet') {
+      font-weight: 600;
+      @include clampattr(padding-top, 8);
+      @include clampattr(padding-bottom, 12);
+      @include clampattr(margin-top, 12);
+      @include clampattr(margin-bottom, 22);
+    }
+    color: var(--ocean-blue);
+    border-top: 1px solid var(--grey-borderline);
+    border-bottom: 1px solid var(--grey-borderline);
+    .pono-span {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+      }
+    }
+  }
+
+  .remark {
+    @include clampattr(margin-top, 18);
+    @include clampattr(font-size, 15);
+    font-weight: 600;
+    color: var(--marine-blue);
+  }
+}

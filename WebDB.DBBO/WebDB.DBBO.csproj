@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net5.0-windows;net48</TargetFrameworks>
+	  <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Mapping\Bingo.hbm.xml" />
+    <None Remove="Mapping\CampaignUser.hbm.xml" />
+    <None Remove="Mapping\Ingredient.hbm.xml" />
+    <None Remove="Mapping\JwtRefreshToken.hbm.xml" />
+    <None Remove="Mapping\Member.hbm.xml" />
+    <None Remove="Mapping\OrderData.hbm.xml" />
+    <None Remove="Mapping\OrderItemData.hbm.xml" />
+    <None Remove="Mapping\Product.hbm.xml" />
+    <None Remove="Mapping\ProductCodeInfo.hbm.xml" />
+    <None Remove="Mapping\ProductImage.hbm.xml" />
+    <None Remove="Mapping\StabilityForm.hbm.xml" />
+    <None Remove="Mapping\StabilityTestData.hbm.xml" />
+    <None Remove="Mapping\Therapeutic_Focus.hbm.xml" />
+    <None Remove="Mapping\Therapeutic_Protocol.hbm.xml" />
+    <None Remove="Mapping\UnitType.hbm.xml" />
+    <None Remove="Mapping\Webinar.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Member.hbm.xml" />
+    <EmbeddedResource Include="Mapping\OrderItemData.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\OrderData.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Therapeutic_Protocol.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Webinar.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Therapeutic_Focus.hbm.xml" />
+    <EmbeddedResource Include="Mapping\ProductCodeInfo.hbm.xml" />
+    <EmbeddedResource Include="Mapping\ProductImage.hbm.xml" />
+    <EmbeddedResource Include="Mapping\JwtRefreshToken.hbm.xml" />
+    <EmbeddedResource Include="Mapping\CampaignUser.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Bingo.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Product.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Ingredient.hbm.xml" />
+    <EmbeddedResource Include="Mapping\StabilityForm.hbm.xml" />
+    <EmbeddedResource Include="Mapping\StabilityTestData.hbm.xml" />
+    <EmbeddedResource Include="Mapping\UnitType.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NHibernate" Version="5.3.11" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyHibernateUtil\MyHibernateUtil.csproj" />
+  </ItemGroup>
+
+</Project>

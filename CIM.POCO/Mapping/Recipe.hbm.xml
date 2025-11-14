@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Recipe" table="Recipe" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+    <bag name="Steps">
+      <key column="RecipeID" />
+      <one-to-many class="Step" />
+    </bag>
+
+    <component name="Operations"  class="MySystem.Base.NSeqList`1[Operation], MySystem.Base">
+      <bag name="innerList" cascade="all" lazy="true" order-by="Sequence" >
+        <key column="RecipeID" />
+        <one-to-many class="Operation" />
+      </bag>
+    </component>
+
+    <property name="EQRecipe" type ="TrimString">
+      <column name="EQRecipe" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="true" />
+    </property>
+
+</class>
+</hibernate-mapping>

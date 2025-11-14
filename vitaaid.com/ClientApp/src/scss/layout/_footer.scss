@@ -1,0 +1,86 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+.vitaaid-footer {
+  position: relative;
+  @include clampattr(height, 400);
+  @include clampattr(padding-top, 100);
+  width: 100%;
+  white-space: nowrap;
+  background-color: var(--marine-blue);
+
+  .vitaaid-footer-content {
+    @include clampattr(width, 1280);
+    display: block;
+    justify-content: center;
+  }
+
+  .footer-table {
+    @include clampattr(width, 1280);
+
+    @media (max-width: 1300px) {
+      @include clampattr(padding-left, 10);
+      @include clampattr(padding-right, 10);
+    }
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 1025px) {
+      table-layout: fixed;
+    }
+  }
+
+  td {
+    padding-left: 0 !important;
+  }
+
+  .footer-line {
+    position: absolute;
+    @include clampattr(top, 30);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer-line-img {
+    @include gclampattr(width, 1280);
+  }
+
+  .website-maps {
+    @include clampattr(height, 185);
+  }
+
+  .footerCategory {
+    @include clampattr(font-size, 20);
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: normal;
+    color: #ffffff;
+    // text-decoration: underline;
+    @include clampattr(padding-bottom, 10);
+    border-bottom: 1px solid white;
+  }
+
+  .tr-1 {
+    @include clampattr(margin-top, 6);
+  }
+
+  .footerTextStyle {
+    @include clampattr(font-size, 16);
+    letter-spacing: normal;
+    color: #ffffff;
+    @include clampattr(line-height, 24);
+    white-space: normal;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .copyright-notices {
+    @include clampattr(margin-top, 100);
+    /*@include clampattr(height, 115);*/
+  }
+}

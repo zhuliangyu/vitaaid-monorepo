@@ -1,0 +1,361 @@
+@use '../abstracts' as *;
+@use '../base/helpers' as *;
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+.Vitaaid-Header-m {
+  position: fixed;
+  top: 0px;
+  /*min-width: 1024px;*/
+  width: 100%;
+  @include clampattr(height, $top-offset);
+  background-color: white;
+  /* for production */
+
+  .top2Header {
+    @include clampattr(margin-top, 20);
+    @include clampattr(margin-left, $page-lr-padding-m);
+    @include clampattr(margin-right, $page-lr-padding-m);
+    display: flex;
+    justify-content: center;
+
+    .top2-table {
+      width: 100%;
+    }
+
+    td {
+      vertical-align: bottom;
+    }
+
+    .menu-col {
+      display: inline-flex;
+      justify-content: start;
+      width: 10%;
+    }
+
+    .logo-col {
+      display: inline-flex;
+      justify-content: center;
+      width: 80%;
+    }
+    .logo-col-with-cart {
+      display: inline-flex;
+      justify-content: center;
+      width: 70%;
+    }
+
+    .search-col {
+      display: inline-flex;
+      justify-content: end;
+      width: 10%;
+    }
+    .cart-col {
+      display: inline-flex;
+      justify-content: end;
+      width: 10%;
+      .cart-qty {
+        text-align: center;
+        @include clampattr(font-size, 8);
+        @include clampattr(margin-left, 6);
+        font-weight: 600;
+        height: 7px;
+      }
+    }
+
+    .logo-icon {
+      @include mdivimg('logo-m', 117, 49);
+    }
+
+    .menu-search-icon {
+      @include clampattr(width, 24);
+      @include clampattr(height, 18);
+      object-fit: scale-down;
+    }
+
+    .linkPage {
+      @include clampattr(margin-right, 24);
+      @include clampattr(font-size, 17);
+      align-self: flex-end;
+    }
+
+    .nav-item {
+      color: var(--marine-blue);
+    }
+
+    .open-submenu {
+      margin-left: 2px;
+      margin-bottom: 7px;
+    }
+
+    .linkPageImg {
+      margin: 5px 40px 0px 0px;
+    }
+
+    .linkInfoForPatients {
+      margin: 2px 0 0 0;
+    }
+
+    .search {
+      @include clampattr(width, 20);
+      @include clampattr(height, 20);
+      object-fit: scale-down;
+      @include clampattr(margin-left, 6);
+    }
+
+    .search-block {
+      display: inline-block;
+    }
+
+    .cart-block {
+      display: inline-block;
+
+      button {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+      .shoppingCart {
+        @include clampattr(width, 21);
+        @include clampattr(height, 19);
+        object-fit: scale-down;
+        @include clampattr(margin-left, 6);
+      }
+
+      .toggle-cart-brief-img {
+        @include clampattr(width, 8);
+        @include clampattr(height, 4);
+        margin-left: 6px;
+      }
+    }
+
+    .infoForPatients {
+      @include clampattr(width, 122);
+      margin-bottom: 0px;
+      padding-top: 2px;
+      object-fit: contain;
+      @include clampattr(margin-left, 6);
+    }
+
+    #popupDiv {
+      @include clampattr(margin-left, 345);
+    }
+
+    #popupDivForEdu {
+      @include clampattr(margin-left, 820);
+    }
+  }
+}
+
+.menu-popup {
+  .dx-popup-normal {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
+  .dx-popup-content {
+    padding: 0px;
+  }
+
+  .menu-popup-body {
+    width: 100%;
+    padding: 0px;
+
+    .close-img-block {
+      object-fit: contain;
+      position: relative;
+      text-align: end;
+      @include clampattr(margin-top, 16);
+      @include clampattr(margin-right, 18);
+
+      .close-img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    .country-block {
+      @include clampattr(padding-left, $page-lr-padding-m);
+      @include clampattr(padding-right, $page-lr-padding-m);
+      @include clampattr(margin-bottom, 10);
+    }
+
+    .menu-content {
+      @include clampattr(padding-left, $page-lr-padding-m);
+      @include clampattr(padding-right, $page-lr-padding-m);
+      /*max-height: calc( 100vh - 100px );*/
+      //max-height: 500px;
+
+      .open-submenu {
+        position: absolute;
+        right: 7px;
+        top: 18px;
+      }
+
+      .OpenSubmenuImg {
+        @include mdivimg('open-submenu-m', 5, 9);
+      }
+
+      .CloseSubmenuImg {
+        @include mdivimg('close-submenu-m', 8, 5);
+      }
+
+      .menu-item {
+        width: 100%;
+        /*@include clampattr(height, 44);*/
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 10);
+      }
+
+      .menu-item-name {
+        padding-top: 8px;
+        @include clampattr(font-size, 20);
+        color: var(--marine-blue);
+
+        .smaller-letter {
+          @include clampattr(font-size, 18);
+        }
+      }
+
+      .submenu-item-m {
+        @include clampattr(height, 22);
+        @include clampattr(font-size, 18);
+        @include clampattr(margin-left, 20);
+        @include clampattr(margin-top, 8);
+
+        a {
+          color: #5c5c5c;
+        }
+        button {
+          padding: 0px;
+          color: #5c5c5c;
+        }
+      }
+
+      .product-catalogue-download-m {
+        @extend .submenu-item-m;
+        .btn-download {
+          display: inline-block;
+          @include mdivimg('download-m', 22, 19);
+        }
+
+        .download-title {
+          @include clampattr(margin-left, 9);
+          @include clampattr(font-size, 12);
+          font-weight: 300;
+          color: var(--greyish-brown);
+        }
+      }
+    }
+  }
+
+  .CountrySelector-m {
+    @include clampattr(padding-top, 6);
+
+    .countryname {
+      @include clampattr(font-size, 18);
+      font-weight: 300;
+      line-height: 15px;
+      color: var(--marine-blue);
+    }
+
+    .open-country-menu {
+      @include clampattr(margin-left, 6);
+    }
+
+    .flag {
+      @include clampattr(width, 20);
+      @include clampattr(height, 15);
+      @include clampattr(margin-right, 8);
+      object-fit: contain;
+      vertical-align: middle;
+    }
+  }
+}
+
+.search-popover-m {
+  .dx-popup-normal {
+    width: 100% !important;
+  }
+
+  .dx-popup-content {
+    padding: 0px;
+    //max-height: calc(100vh - 100px) !important;
+  }
+
+  .search-popover-body {
+    @include clampattr(padding-left, 24);
+    @include clampattr(padding-right, 24);
+    @include clampattr(padding-bottom, 24);
+
+    .search-close-block {
+      @include clampattr(width, 30);
+      margin-right: 0px;
+      margin-left: auto;
+      @include clampattr(margin-top, 24);
+      @include clampattr(margin-bottom, 24);
+    }
+
+    .search-close-img-btn .search-close-img {
+      @include clampattr(width, 15);
+      @include clampattr(height, 15);
+    }
+    .search-input {
+      width: 100%;
+      @include clampattr(height, 35);
+      @include clampattr(border-radius, 10);
+      @include clampattr(font-size, 18);
+      outline: none;
+      border: 1px solid #ccc;
+      @include clampattr(padding-left, 6);
+      @include clampattr(margin-bottom, 18);
+    }
+    .serch-scroll-view {
+      width: 100%;
+      // border: 1px solid red;
+    }
+
+    .result-div {
+      .search-result-category-title {
+        @include clampattr(margin-bottom, 6);
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        @include clampattr(font-size, 25);
+        // @include clampattr(line-height, 45);
+        color: var(--marine-blue);
+      }
+
+      .search-content-btn {
+        display: block;
+        text-align: left;
+        color: #5c5c5c;
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+    }
+  }
+}
+
+.error-msg {
+  color: var(--error-color);
+}
+
+.popup-title {
+  color: var(--marine-blue);
+  @include clampattr(font-size, 15);
+  border-bottom: 2px solid #ddd;
+  @include clampattr(margin-bottom, 9);
+  @include clampattr(padding-bottom, 9);
+  padding-left: 0px;
+}
+
+.popup-submenu-item {
+  @include clampattr(height, 22);
+  @include clampattr(font-size, 14);
+  padding-left: 0;
+  padding-right: 0;
+
+  a {
+    color: #5c5c5c;
+  }
+}

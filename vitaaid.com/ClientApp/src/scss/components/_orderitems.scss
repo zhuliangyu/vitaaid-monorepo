@@ -1,0 +1,90 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.order-items {
+  .cart-detail-table {
+    @include clampattr(margin-top, 14);
+    width: 100%;
+    table-layout: fixed;
+
+    .table-header {
+      border-top: 1px solid var(--grey-borderline);
+      border-bottom: 1px solid var(--grey-borderline);
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 32);
+      font-weight: 600;
+      color: var(--marine-blue);
+    }
+
+    .table-body {
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 25);
+      font-weight: 400;
+      color: var(--greyish-brown);
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+
+    tbody::after {
+      display: block;
+      content: ' ';
+      width: 100%;
+      @include clampattr(height, 16);
+      padding-left: 1px;
+    }
+
+    .table-cell {
+      @include clampattr(margin-top, 16);
+    }
+
+    .price-div {
+      text-align: center;
+      @include clampattr(width, 80);
+    }
+  }
+  .remove-button {
+    width: 20px;
+    padding: 0px;
+    text-align: start;
+    @include media('<tablet') {
+      font-size: 20px;
+      color: #5c5c5c;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      text-align: end;
+    }
+  }
+
+  .qty-input {
+    @include clampattr(width, 52);
+    @include clampattr(border-radius, 10);
+    outline: none;
+    border: 1px solid var(--grey-borderline);
+    text-align: center;
+    @include media('<tablet') {
+      background: transparent;
+    }
+  }
+  .order-detail-row-m {
+    margin-left: #{calc($page-lr-padding-m * -1)}px;
+    margin-right: #{calc($page-lr-padding-m * -1)}px;
+    padding-left: #{$page-lr-padding-m}px;
+    padding-right: #{$page-lr-padding-m}px;
+    @include clampattr(padding-top, 6);
+    @include clampattr(padding-bottom, 6);
+  }
+  .row-idx-0 {
+    background: var(--whisper-grey);
+  }
+  .detail-info-m {
+    @include clampattr(line-height, 24);
+    .item-title {
+      @include clampattr(font-size, 20);
+      color: var(--peacock-blue);
+    }
+    .item-value {
+      @include clampattr(font-size, 18);
+      color: var(--greyish-brown);
+    }
+  }
+}

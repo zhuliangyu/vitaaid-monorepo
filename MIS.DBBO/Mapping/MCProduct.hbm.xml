@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="MCProduct" table="MCProduct" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Code" type ="TrimString">
+      <column name="Code" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UnitPrice">
+      <column name="UnitPrice" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="Unit" type ="TrimString">
+      <column name="Unit" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Weight">
+      <column name="Weight" sql-type="float" not-null="false" />
+    </property>
+    <property name="Remark" type ="TrimString">
+      <column name="Remark" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+.vitaaid-footer-mobile {
+  position: relative;
+  @include clampattr(height, 100);
+  @include clampattr(padding-top, 16);
+  width: 100%;
+  white-space: nowrap;
+  background-color: var(--marine-blue);
+
+  .vitaaid-footer-content {
+    width: 100%;
+    @include clampattr(padding-left, 24);
+    @include clampattr(padding-right, 24);
+    display: block;
+    justify-content: center;
+  }
+
+  .footerTextStyle {
+    @include clampattr(font-size, 13);
+    letter-spacing: normal;
+    color: #ffffff;
+    @include clampattr(line-height, 18);
+    white-space: normal;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .footer-term-policy-block {
+    text-align: center !important;
+    border-bottom: 1px solid #426c84;
+    @include clampattr(margin-left, 24);
+    @include clampattr(margin-right, 24);
+    @include clampattr(margin-bottom, 14);
+    @include clampattr(padding-bottom, 11);
+  }
+
+  .footer-social-media-icon {
+    @include clampattr(width, 23);
+    @include clampattr(height, 23);
+    @include clampattr(margin-left, 18);
+  }
+
+  .copyright-notices {
+    /*@include clampattr(margin-top, 100);*/
+    /*@include clampattr(height, 115);*/
+  }
+}

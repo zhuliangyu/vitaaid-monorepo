@@ -1,0 +1,331 @@
+﻿// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.result-m {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: white;
+  .title {
+    @include clampattr(margin-left, 24);
+    @include clampattr(font-size, 20);
+    @include clampattr(line-height, 24);
+    @include clampattr(margin-bottom, 12);
+    color: var(--marine-blue);
+  }
+  .result-detail {
+    background: #e5e5e5;
+    @include clampattr(height, 120);
+    @include clampattr(font-size, 18);
+    @include clampattr(padding-top, 30);
+    @include clampattr(padding-left, 24);
+    @include clampattr(padding-right, 24);
+    text-align: center;
+  }
+}
+.dosing-caculator {
+  @include media('<tablet') {
+    @include clampattr(margin-top, 180);
+    @include main-body-bottom-line;
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-bottom, 128);
+  }
+
+  .header-block {
+    @include clampattr(font-size, 25);
+    font-weight: 600;
+    @include clampattr(line-height, 45);
+    color: var(--marine-blue);
+  }
+
+  .seperate-line {
+    width: 100%;
+    border-bottom: 1px solid #5b5b5b;
+    @include media('<tablet') {
+      @include clampattr(margin-top, 4);
+      @include clampattr(margin-bottom, 4);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 20);
+      @include clampattr(margin-bottom, 12);
+    }
+  }
+
+  .detail-block {
+    display: flex;
+    position: relative;
+
+    .left-block {
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 550);
+      }
+      @include clampattr(margin-top, 4);
+
+      .preface {
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+          @include clampattr(margin-left, 12);
+        }
+
+        color: #5c5c5c;
+        @include clampattr(margin-bottom, 9);
+      }
+
+      .dosing-caculator-form {
+        /*        @include clampattr(margin-top, 24);
+*/
+
+        .form-column {
+          @include media('<tablet') {
+            @include clampattr(margin-top, 19);
+          }
+          @include media('>=tablet') {
+            @include clampattr(margin-top, 22);
+            @include clampattr(height, 35);
+          }
+        }
+
+        .form-input {
+          @include clampattr(border-radius, 10);
+          @include clampattr(height, 35);
+          border: 1px solid #ccc;
+          color: #5c5c5c;
+          background: transparent;
+          outline: none;
+          @include media('<tablet') {
+            @include clampattr(font-size, 18);
+          }
+          @include media('>=tablet') {
+            @include clampattr(font-size, 16);
+          }
+        }
+
+        .product-type {
+          @extend .form-input;
+          @include clampattr(padding-left, 6);
+        }
+
+        .input-content {
+          @include clampattr(padding-left, 6);
+          width: 100%;
+        }
+
+        .weight-content {
+          @include media('<tablet') {
+            @include clampattr(padding-left, 6);
+          }
+          @include media('>=tablet') {
+            @include clampattr(padding-left, 12);
+          }
+          width: 100%;
+        }
+
+        .dosing-caculator-input {
+          @extend .form-column;
+          @extend .form-input;
+          @extend .input-content;
+        }
+
+        .two-col-line {
+          @include media('<tablet') {
+            display: block;
+          }
+          @include media('>=tablet') {
+            display: flex;
+          }
+        }
+
+        .first-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 250);
+          }
+        }
+
+        .second-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 250);
+            @include clampattr(margin-left, 33);
+          }
+        }
+        .input-group-addon {
+          @include media('<tablet') {
+            @include clampattr(font-size, 18);
+          }
+          @include media('>=tablet') {
+            @include clampattr(font-size, 14);
+          }
+        }
+        .clearfix {
+          clear: both;
+        }
+
+        .full-col {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 533);
+          }
+        }
+
+        .error-msg {
+          color: var(--error-color);
+        }
+
+        .question {
+          @include clampattr(min-height, 120);
+        }
+
+        .line-3 {
+          @include clampattr(margin-top, 40);
+          text-align: left;
+        }
+
+        .exercise-desc {
+          @include clampattr(font-size, 12);
+          font-weight: 300;
+          color: #5c5c5c;
+          @include clampattr(margin-left, 12);
+        }
+
+        .submit-line {
+          display: flex;
+          @include media('<tablet') {
+            justify-content: start;
+            @include clampattr(margin-top, 20);
+          }
+          @include media('>=tablet') {
+            justify-content: end;
+            @include clampattr(margin-top, 48);
+          }
+        }
+
+        .submit-btn {
+          @include media('<tablet') {
+            @include mobile-btn;
+            outline: none;
+            border: none;
+            background: var(--marine-blue);
+            color: white;
+            @include clampattr(padding-left, 8);
+            @include clampattr(padding-right, 8);
+          }
+          @include media('>=tablet') {
+            @include clampattr(height, 30);
+            outline: none;
+            border: 1px solid #bccad3;
+            color: var(--marine-blue);
+            background: transparent;
+          }
+
+          @include clampattr(border-radius, 10);
+        }
+      }
+    }
+    .help-col {
+      display: flex;
+      justify-content: end;
+    }
+
+    .help {
+      position: relative;
+      border-radius: 10px;
+      @include clampattr(padding, 15);
+      background-color: #e5e5e5;
+      color: #5c5c5c;
+      @include media('<tablet') {
+        @include clampattr(margin-top, 9);
+        width: 100%;
+        @include clampattr(font-size, 13);
+        @include clampattr(line-height, 20);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 6);
+        @include clampattr(font-size, 12);
+        @include clampattr(line-height, 22);
+        @include clampattr(width, 400);
+        @include clampattr(height, 440);
+        font-weight: 300;
+      }
+      .close-img-block {
+        position: absolute;
+        @include clampattr(top, 8);
+        @include clampattr(right, 8);
+        .close-img {
+          @include clampattr(width, 8);
+          @include clampattr(height, 8);
+          object-fit: scale-down;
+        }
+      }
+    }
+
+    .right-block {
+      @include clampattr(width, 730);
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 20);
+      color: #5c5c5c;
+      font-weight: 300;
+
+      .result-col {
+        display: flex;
+        justify-content: end;
+      }
+
+      .result {
+        @include clampattr(padding-top, 64);
+        @include clampattr(padding-bottom, 64);
+        font-weight: 400;
+        @include clampattr(line-height, 30);
+        border-radius: 10px;
+        @include clampattr(margin-top, 6);
+        @include clampattr(width, 168);
+        @include clampattr(height, 440);
+        background-color: #e5e5e5;
+        display: block;
+        text-align: center;
+      }
+      .result-value {
+        @include clampattr(font-size, 20);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .help-button {
+    background: #ebebeb;
+    padding: 0px 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 900;
+    font-size: 12px;
+    display: inline;
+    border: none;
+    color: var(--peacock-blue);
+  }
+
+  .bottom-seperate-line {
+    width: 100%;
+    border-bottom: 1px solid #5b5b5b;
+    @include clampattr(margin-top, 30);
+  }
+}

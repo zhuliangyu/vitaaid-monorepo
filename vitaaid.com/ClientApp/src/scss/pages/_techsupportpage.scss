@@ -1,0 +1,155 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+.tech-support {
+  .banner {
+    width: 100%;
+    @include clampattr(height, 553);
+    position: relative;
+
+    .banner-block1 {
+      @include bg('techsupport-block1.png', 968, 553);
+      @include clampattr(width, 968);
+      @include clampattr(height, 553);
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+
+    .banner-block2 {
+      @include bg('techsupport-block2.png', 525, 246);
+      @include clampattr(width, 525);
+      @include clampattr(height, 246);
+      position: absolute;
+      @include clampattr(right, 572);
+      @include clampattr(top, 12);
+    }
+
+    .banner-block3 {
+      @include bg('techsupport-block3.png', 378, 146);
+      @include clampattr(width, 378);
+      @include clampattr(height, 146);
+      position: absolute;
+      left: 0;
+      @include clampattr(bottom, 123);
+    }
+
+    .banner-block4 {
+      @include clampattr(width, 985);
+      @include clampattr(height, 120);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: var(--marine-blue);
+      @include clampattr(border-top-right-radius, 10);
+      @include clampattr(border-bottom-right-radius, 10);
+
+      .icon1 {
+        @include bg('techsupport-icon1.png', 22, 20);
+        @include clampattr(width, 22);
+        @include clampattr(height, 20);
+        @include clampattr(margin-top, 17);
+        @include clampattr(margin-left, 321);
+      }
+
+      .desc {
+        @include clampattr(width, 568);
+        @include clampattr(margin-left, 321);
+        @include clampattr(margin-top, 4);
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 20);
+        font-weight: 300;
+        color: white;
+      }
+    }
+
+    .text1 {
+      @include clampattr(font-size, 60);
+      font-weight: 600;
+      @include clampattr(line-height, 70);
+      color: var(--peacock-blue);
+      position: absolute;
+      @include clampattr(left, 323);
+      @include clampattr(top, 148);
+    }
+
+    .text2 {
+      color: var(--marine-blue);
+    }
+
+    .banner-line1 {
+      position: absolute;
+      @include clampattr(left, 319);
+      @include clampattr(top, 296);
+      @include divimg('infopatients-banner-line1.png', 904, 1);
+    }
+
+    .text3 {
+      position: absolute;
+      @include clampattr(font-size,20);
+      @include clampattr(line-height, 24.5);
+      color: var(--peacock-blue);
+      @include clampattr(left, 321);
+      @include clampattr(top, 313);
+      @include clampattr(width, 800);
+    }
+  }
+
+  .body {
+    @include clampattr(height, 490);
+
+    .row {
+      @include clampattr(margin-left, $page-lr-padding);
+      @include clampattr(margin-right, $page-lr-padding);
+    }
+
+    .title {
+      @include clampattr(margin-top, 70);
+      @include clampattr(margin-bottom, 13);
+      @include clampattr(font-size, 25);
+      @include clampattr(height, 45);
+      font-weight: 600;
+      color: var(--marine-blue);
+      border-bottom: 1px solid #C9C9C9;
+    }
+
+    .content {
+      border-bottom: 1px solid #C9C9C9;
+      @include clampattr(height, 230);
+      position: relative;
+
+      .col-6 {
+        @include clampattr(margin-top, 42);
+      }
+
+      .content-block {
+      }
+
+      .content-line1 {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 40);
+        color: var(--marine-blue);
+        font-weight: 300;
+      }
+
+      .content-detail {
+        width:100%;
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 20);
+        font-weight: 300;
+        color: var(--greyish-brown);
+      }
+
+      .content-bottom {
+        @include clampattr(padding-top, 10);
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 22);
+        color: var(--marine-blue);
+        font-weight: 300;
+      }
+    }
+  }
+}

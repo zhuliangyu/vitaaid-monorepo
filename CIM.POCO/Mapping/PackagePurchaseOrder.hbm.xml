@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PackagePurchaseOrder" table="PackagePurchaseOrder" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="PONo" type ="TrimString">
+	  <column name="PONo" sql-type="nvarchar" not-null="true" />
+	</property>
+	<property name="Status" type="ePurchaseStatus">
+	  <column name="Status" sql-type="float" not-null="false" />
+	</property>
+	<many-to-one name="oVendor">
+	  <column name="VendorID" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="PODate">
+	  <column name="PODate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="ShippingAddr" type ="TrimString">
+	  <column name="ShippingAddr" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ShippingMethod" type ="TrimString">
+	  <column name="ShippingMethod" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="SubTotal">
+	  <column name="SubTotal" sql-type="float" not-null="false" />
+	</property>
+	<property name="ShippingCost">
+	  <column name="ShippingCost" sql-type="float" not-null="false" />
+	</property>
+	<property name="TotalCost">
+	  <column name="TotalCost" sql-type="float" not-null="false" />
+	</property>
+	<property name="PaymentTerm" type ="TrimString">
+	  <column name="PaymentTerm" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="DeliveryDate">
+	  <column name="DeliveryDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="OtherFees">
+	  <column name="OtherFees" sql-type="float" not-null="false" />
+	</property>
+	<property name="Comment">
+	  <column name="Comment" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="TrackingNo">
+	  <column name="TrackingNo" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="ShippingMethodConfirmed">
+	  <column name="ShippingMethodConfirmed" sql-type="int" not-null="false" />
+	</property>
+	<property name="ShippingAddressConfirmed">
+	  <column name="ShippingAddressConfirmed" sql-type="int" not-null="false" />
+	</property>
+	<property name="ETAConfirmed">
+	  <column name="ETAConfirmed" sql-type="int" not-null="false" />
+	</property>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<bag name="PurchaseReqList" table="PackagePurchaseReq" inverse="false">
+	  <key column="oPurchaseOrder"  not-null="false" />
+	  <one-to-many class="PackagePurchaseReq"/>
+	</bag>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+  </class>
+</hibernate-mapping>

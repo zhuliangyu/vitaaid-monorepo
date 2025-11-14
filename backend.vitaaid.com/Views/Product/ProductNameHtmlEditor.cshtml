@@ -1,0 +1,44 @@
+﻿@using WebDB.DBBO;
+@using backend.vitaaid.com.Controllers;
+@using backend.vitaaid.com.Code;
+@model Product
+
+@Html.DevExpress().HtmlEditor(settings =>
+{
+    settings.Name = "htmlData";
+    settings.CallbackRouteValues = new
+    {
+        Controller = "Product",
+        Action = "HtmlEditorPart",
+        id = Model.ID,
+        type = "ProductName"
+    };
+    settings.CustomDataActionRouteValues = new
+    {
+        Controller = "Product",
+        Action = "HtmlEditorUpdatePart",
+        product = Model,
+        id = Model.ID,
+        type = "ProductName"
+    };
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsDialogs.InsertImageDialog.ShowMoreOptionsButton = true;
+    //var imageSelectorSettings = settings.SettingsDialogs.InsertImageDialog.SettingsImageSelector;
+    //HtmlEditorHelper.SetHtmlEditorImageSelectorSettings(imageSelectorSettings, "htmlData");
+    //imageSelectorSettings.Enabled = true;
+
+    //imageSelectorSettings.EditingSettings.AllowMove = true;
+    //imageSelectorSettings.EditingSettings.AllowDelete = true;
+    //imageSelectorSettings.EditingSettings.AllowRename = true;
+    //imageSelectorSettings.EditingSettings.AllowCreate = true;
+    //imageSelectorSettings.UploadSettings.Enabled = true;
+    //imageSelectorSettings.FoldersSettings.ShowLockedFolderIcons = true;
+    //imageSelectorSettings.FileListSettings.View = FileListView.Thumbnails;
+    //imageSelectorSettings.ToolbarSettings.Visible = true;
+    //imageSelectorSettings.FoldersSettings.Visible = true;
+    //imageSelectorSettings.BreadcrumbsSettings.Visible = true;
+
+    HtmlEditorHelper.SetupGlobalUploadBehaviour(settings);
+
+}).Bind(Model.ProductName).GetHtml()

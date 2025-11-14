@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SupplierRM" table="SupplierRM" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="Abbreviation" type ="TrimString">
+	  <column name="Abbreviation" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyName" type ="TrimString">
+	  <column name="CompanyName" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyWeb" type ="TrimString">
+	  <column name="CompanyWeb" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyCharacter" type ="TrimString">
+	  <column name="CompanyCharacter" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactPersonalTitle" type ="TrimString">
+	  <column name="ContactPersonalTitle" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactPersonal" type ="TrimString">
+	  <column name="ContactPersonal" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactPersonalEmail" type ="TrimString">
+	  <column name="ContactPersonalEmail" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactManagerTitle" type ="TrimString">
+	  <column name="ContactManagerTitle" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactManager" type ="TrimString">
+	  <column name="ContactManager" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ContactManagerEmail" type ="TrimString">
+	  <column name="ContactManagerEmail" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyAddress" type ="TrimString">
+	  <column name="CompanyAddress" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyCity" type ="TrimString">
+	  <column name="CompanyCity" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyProvince" type ="TrimString">
+	  <column name="CompanyProvince" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyPostalCode" type ="TrimString">
+	  <column name="CompanyPostalCode" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyCountry" type ="TrimString">
+	  <column name="CompanyCountry" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyTel" type ="TrimString">
+	  <column name="CompanyTel" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyFax" type ="TrimString">
+	  <column name="CompanyFax" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyAddress1" type ="TrimString">
+	  <column name="CompanyAddress1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyCity1" type ="TrimString">
+	  <column name="CompanyCity1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyProvince1" type ="TrimString">
+	  <column name="CompanyProvince1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyPostalCode1" type ="TrimString">
+	  <column name="CompanyPostalCode1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyCountry1" type ="TrimString">
+	  <column name="CompanyCountry1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyTel1" type ="TrimString">
+	  <column name="CompanyTel1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CompanyFax1" type ="TrimString">
+	  <column name="CompanyFax1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Status" type ="TrimString">
+	  <column name="Status" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Comment" type ="TrimString">
+	  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="DateTime" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="DateTime" not-null="false" />
+	</property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="Active">
+	  <column name="Active" sql-type="int" not-null="false" />
+	</property>
+  </class>
+</hibernate-mapping>

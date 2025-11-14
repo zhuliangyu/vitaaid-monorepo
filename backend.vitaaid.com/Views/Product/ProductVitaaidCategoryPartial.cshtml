@@ -1,0 +1,75 @@
+﻿@using WebDB.DBBO;
+@using backend.vitaaid.com.Controllers;
+@using backend.vitaaid.com.Code;
+@using System.Drawing;
+@using WebDB.DBPO.Helper;
+@using WebDB.DBPO.Extensions;
+@using MySystem.Base.Extensions;
+@using MyHibernateUtil;
+@using backend.vitaaid.com;
+@model Product
+
+<script type="text/javascript">
+  var textSeparator = ";";
+  function updateVitaaidText() {
+    var selectedItems = VitaaidCategoryCheckListBox.GetSelectedItems();
+    VitaaidCategoryComboBox.SetText(getSelectedItemsText(selectedItems));
+  }
+  function synchronizeVitaaidListBoxValues(dropDown, args) {
+    VitaaidCategoryCheckListBox.UnselectAll();
+    var texts = dropDown.GetText().split(textSeparator);
+    var values = getValuesByTexts(VitaaidCategoryCheckListBox, texts);
+    VitaaidCategoryCheckListBox.SelectValues(values);
+    updateVitaaidText(); // for remove non-existing texts
+  }
+</script>
+
+@{
+  var oSession = ServicesHelper.DBServer[eST.READONLY];
+  oSession.Clear();
+  var VitaaidCategory = CategoryHelper.getVitaaidCategory(oSession); //DBSession.QueryDataElement<Category>().Where(x => x.Category_Type == 5).ToList();
+  oSession.Close();
+}
+@Html.DevExpress().DropDownEdit(settings =>
+{
+    settings.Name = "VitaaidCategoryComboBox";
+    settings.Width = 285;
+    settings.Properties.DropDownWindowStyle.BackColor = Color.FromArgb(0xEDEDED);
+    settings.SetDropDownWindowTemplateContent(c =>
+    {
+        @Html.DevExpress().ListBox(listBoxSettings =>
+        {
+            listBoxSettings.Name = "VitaaidCategoryCheckListBox";
+            listBoxSettings.ControlStyle.Border.BorderWidth = 0;
+            listBoxSettings.ControlStyle.BorderBottom.BorderWidth = 1;
+            listBoxSettings.ControlStyle.BorderBottom.BorderColor = Color.FromArgb(0xDCDCDC);
+            listBoxSettings.Height = Unit.Pixel(200);
+            listBoxSettings.Width = Unit.Percentage(100);
+
+            listBoxSettings.Properties.EnableSelectAll = true;
+            listBoxSettings.Properties.FilteringSettings.ShowSearchUI = true;
+            listBoxSettings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+            foreach (WebDB.DBBO.UnitType ac in VitaaidCategory)
+          {
+                int iValue = ac.AbbrName.StringToInt();
+                listBoxSettings.Properties.Items.Add(ac.Name, iValue).Selected = Model?.VitaaidCategoryContains(iValue) ?? false;
+            }
+
+            listBoxSettings.Properties.ClientSideEvents.SelectedIndexChanged = "updateVitaaidText";
+            listBoxSettings.Properties.ClientSideEvents.Init = "updateVitaaidText";
+        }).Render();
+        ViewContext.Writer.Write("<div style=\"margin: 6px; overflow: hidden;\">");
+        @Html.DevExpress().Button(buttonSettings =>
+        {
+            buttonSettings.Name = "buttonVitaaidCategoryClose";
+            buttonSettings.Text = "Close";
+            buttonSettings.Style.Add("float", "right");
+            buttonSettings.ClientSideEvents.Click = "function(s, e){ VitaaidCategoryComboBox.HideDropDown(); }";
+            buttonSettings.Height = 26;
+        }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+    settings.Properties.AnimationType = AnimationType.None;
+    settings.Properties.ClientSideEvents.TextChanged = "synchronizeVitaaidListBoxValues";
+    settings.Properties.ClientSideEvents.DropDown = "synchronizeVitaaidListBoxValues";
+}).GetHtml()

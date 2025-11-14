@@ -1,0 +1,231 @@
+﻿@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@using MySystem.Base.Extensions;
+@using WebDB.DBBO;
+@using WebDB.DBPO;
+@using WebDB.DBPO.Helper;
+@using MyHibernateUtil;
+@using backend.vitaaid.com;
+
+@model Member
+
+<script type="text/javascript">
+  function onUploadLicence(s, e) {
+    document.getElementById("ucDragAndDrop_TextBox0_Input").click();
+  }
+  function delay(callback, ms) {
+    var timer = 0;
+    return function () {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        callback.apply(context, args);
+      }, ms || 0);
+    };
+  }
+  $("#CustomerCode_I").keyup(delay(function (e) {
+    console.log('Time elapsed!', this.value);
+    if (this.value != null && this.value != undefined && this.value.length > 5) {
+      $.ajax({
+        type: "GET",
+        url: "Member/CheckAccount?AccountNo=" + this.value,
+        success: function (response) {
+          if (response === "True")
+            $("#account-message").text("That account is taken.");
+          else
+            $("#account-message").text("It is a new account.");
+        }
+      });
+    }
+  }, 500));
+</script>
+
+@using (Ajax.BeginForm("MemberEditFormUpdatePartial", "Member", new { id = Model.ID },
+                                        new AjaxOptions { HttpMethod = "POST" },
+                                        new { @id = "memberBasicInfoForm", @name = "memberBasicInfoForm" }))
+{
+  Html.DevExpress().FormLayout(settings =>
+  {
+    settings.Name = "pvEditForm";
+    settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+    settings.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+    settings.Height = Unit.Percentage(100);
+    settings.Width = Unit.Percentage(100);
+    settings.ColumnCount = 2;
+    settings.Items.Add(m => m.ID, s =>
+    {
+      s.NestedExtensionType = FormLayoutNestedExtensionItemType.TextBox;
+      var textbox = (TextBoxSettings)s.NestedExtensionSettings;
+      textbox.ReadOnly = true;
+    });
+    settings.Items.Add((s) =>
+    {
+      s.RowSpan = 3;
+      s.Caption = "";
+      if (string.IsNullOrWhiteSpace(Model.LicencePhoto))
+      {
+        s.SetNestedContent("<div class='licence-photo-block'><img src=\"" + EnvHelper.BASE_DIR + "noimg.jpg\" alt=\"\"></img></div>");
+      }
+      else
+      {
+        string licencePhotoPath = EnvHelper.MEMBER_DIR + Uri.EscapeUriString(Model.LicencePhoto);
+        if (File.Exists(Server.MapPath(EnvHelper.MEMBER_DIR + Model.LicencePhoto)))
+        {
+          if (licencePhotoPath.EndsWith(".pdf", true, System.Globalization.CultureInfo.CurrentCulture))
+          {
+            s.SetNestedContent("<div class='licence-photo-block'><embed src=\"" + licencePhotoPath + "\"></embed><a class='licence-viewer' href='" + licencePhotoPath + "' target='_blank'><img class='dxm-image dx-vam' src='Content/Images/eye-button.svg'></img></a></div>");
+          }
+          else
+          {
+            s.SetNestedContent("<div class='licence-photo-block'><img src=\"" + licencePhotoPath + "\" alt=\"\"></img><a class='licence-viewer' href='" + licencePhotoPath + "' target='_blank'><img class='dxm-image dx-vam' src='Content/Images/eye-button.svg'></img></a></div>");
+          }
+        }
+        else
+        {
+          s.SetNestedContent("<div class='licence-photo-block'><img src=\"" + EnvHelper.BASE_DIR + "broken.png\" alt=\"\"></img></div>");
+        }
+      }
+    });
+    settings.Items.Add(m => m.MemberStatus, s =>
+    {
+      //s.SetNestedContent(Html.EnumDropDownListFor(x => x.MemberStatus, new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+      s.SetNestedContent(Html.DropDownListFor(x => x.MemberStatus, EnumHelper.GetSelectList(typeof(eMEMBERSTATUS)).OrderBy(y => y.Value), new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+    });
+    settings.Items.Add(m => m.CustomerCode, s =>
+    {
+      s.Caption = "Account";
+      s.NestedExtensionSettings.Width = Unit.Percentage(100);
+
+      s.SetNestedContent(() =>
+      {
+        Html.DevExpress().TextBoxFor(x => x.CustomerCode).Render();
+        Html.DevExpress().Label(sl =>
+        {
+          sl.Name = "account-message";
+        }).Render();
+      });
+
+
+
+    });
+    settings.Items.Add(m => m.MemberType, s =>
+    {
+      //s.SetNestedContent(Html.EnumDropDownListFor(x => x.MemberType, new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+      s.SetNestedContent(Html.DropDownListFor(x => x.MemberType, EnumHelper.GetSelectList(typeof(eMEMBERTYPE)).OrderBy(y => y.Value), new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+    });
+    settings.Items.Add(m => m.LicencePhoto, s =>
+    {
+      s.ColumnSpan = 1;
+      s.SetNestedContent(() =>
+      {
+        Html.DevExpress().TextBoxFor(o => o.LicencePhoto, tbSetting =>
+        {
+          tbSetting.ReadOnly = true;
+        }).Render();
+        Html.DevExpress().Button(btnSetting =>
+        {
+          btnSetting.Name = "btnUplaodLicence";
+          btnSetting.Text = "...";
+          btnSetting.ClientSideEvents.Click = "onUploadLicence";
+        }).Render();
+
+      });
+
+    });
+    settings.Items.Add(m => m.PractitionerType, s =>
+    {
+      var oSession = ServicesHelper.DBServer[eST.READONLY];
+      oSession.Clear();
+      s.SetNestedContent(Html.DropDownListFor(x => x.PractitionerType,
+      UnitTypeHelper.getUnitTypeNames(eUNITTYPE.PRACTICE_TYPE, oSession).Select(x => new SelectListItem { Text = x, Value = x }),
+      new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+      oSession.Close();
+    });
+    settings.Items.Add(m => m.OtherPractitionerType);
+    settings.Items.Add(m => m.PhysicanCode);
+    settings.Items.Add(m => m.Pat_pcode);
+    settings.Items.Add(m => m.Email, s =>
+    {
+      s.SetNestedContent(() =>
+      {
+        //ViewContext.Writer.Write(
+        //    Html.DevExpress().TextBoxFor(x => x.Email).GetHtml());
+        Html.DevExpress().TextBoxFor(x => x.Email).Render();
+        Html.DevExpress().Button(btnSetting =>
+        {
+          btnSetting.Name = "btnAddToConstantContact";
+          btnSetting.Text = "Add to ConstantContact system";
+          btnSetting.ClientSideEvents.Click = "onAddToConstantContact";
+        }).Render();
+      });
+    });
+    settings.Items.Add(m => m.Password);
+    settings.Items.Add(m => m.Prefix, s =>
+    {
+      //s.SetNestedContent(Html.EnumDropDownListFor(x => x.Prefix, new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+      s.SetNestedContent(Html.DropDownListFor(x => x.Prefix, EnumHelper.GetSelectList(typeof(ePREFIX)).OrderBy(y => y.Value), new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+    });
+    settings.Items.Add(m => m.Name, s =>
+    {
+      s.NestedExtensionSettings.Width = Unit.Percentage(100);
+    });
+    settings.Items.Add(m => m.FirstName);
+    settings.Items.Add(m => m.LastName);
+    settings.Items.Add(m => m.ClinicName);
+    settings.Items.Add(m => m.JoinTime, s =>
+    {
+      var joinTime = (DateEditSettings)s.NestedExtensionSettings;
+      joinTime.ReadOnly = true;
+    });
+    settings.Items.Add(m => m.Address);
+    settings.Items.Add(m => m.City);
+    settings.Items.Add(m => m.Province);
+    settings.Items.Add(m => m.Country);
+    settings.Items.Add(m => m.ZipCode);
+    settings.Items.Add(m => m.Telephone);
+    settings.Items.Add(m => m.Fax);
+    settings.Items.Add(m => m.LicenceNo);
+    settings.Items.Add(m => m.PermittedSite, s =>
+    {
+      s.SetNestedContent(Html.DropDownListFor(x => x.PermittedSite, EnumHelper.GetSelectList(typeof(eWEBSITE)).OrderBy(y => y.Value), new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+    });
+    settings.Items.Add(m => m.SalesRep, s =>
+    {
+      s.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write(
+            Html.DropDownListFor(x => x.SalesRep,
+            backend.vitaaid.com.Model.MemberHelper.getSalesRep().Select(x => new SelectListItem { Text = x.ShortName, Value = x.ShortName }),
+            new { @class = "MyEnumDropList dxeButtonEditSys dxeButtonEdit_Office365 dxeEditArea_Office365" }).ToHtmlString());
+        Html.DevExpress().Button(btnSetting =>
+        {
+          btnSetting.Name = "btnSendEmail";
+          btnSetting.Text = "Send follow up email";
+          btnSetting.ClientSideEvents.Click = "onSendEmail";
+        }).Render();
+      });
+    });
+    settings.Items.Add(m => m.bReferral, s =>
+    {
+      s.Caption = "On referral list";
+    });
+    settings.Items.Add(m => m.IsSubscribe, s =>
+    {
+      s.Caption = "Receive newsletters?";
+    });
+    settings.Items.Add(m => m.LicenceVerifyMethod, s =>
+    {
+      s.NestedExtensionType = FormLayoutNestedExtensionItemType.Label;
+      s.Caption = "Note";
+    });
+  }).Bind(Model).GetHtml();
+}
+
+@{
+  Html.RenderPartial("_MemberUploadLicencePartial", (object)Model);
+}
+

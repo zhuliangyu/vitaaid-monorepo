@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.prev-idx-m {
+  @include mdivimg('prev-idx-m', 8, 15);
+}
+.next-idx-m {
+  @include mdivimg('next-idx-m', 8, 15);
+}
+.fist-last-idx {
+  @include media('<tablet') {
+    vertical-align: middle;
+  }
+}
+.more-page {
+  color: var(--marine-blue);
+  @include clampattr(margin-left, 8);
+  @include clampattr(margin-right, 8);
+}
+.page-navigate {
+  display: block;
+  text-align: center;
+  @include clampattr(font-size, 15);
+}
+
+.nav-button {
+  @include clampattr(margin-left, 8);
+  @include clampattr(margin-right, 8);
+  color: var(--marine-blue);
+}
+
+.selected-idx {
+  text-decoration: underline;
+  font-weight: 600;
+}

@@ -1,0 +1,159 @@
+@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@model List<TherapeuticFocus>
+
+@{
+    var therapeutic = Html.DevExpress().GridView(therapeuticSettings => {
+        therapeuticSettings.Name = "tfView";
+        therapeuticSettings.KeyFieldName = "ID";
+
+        therapeuticSettings.CallbackRouteValues = new { Controller = "TherapeuticFocus", Action = "TherapeuticFocusPartial" };
+        therapeuticSettings.CustomActionRouteValues = new { Controller = "TherapeuticFocus", Action = "TherapeuticFocusCustomActionPartial" };
+        therapeuticSettings.SettingsEditing.AddNewRowRouteValues = new { Controller = "TherapeuticFocus", Action = "TherapeuticFocusAddNewPartial" };
+        therapeuticSettings.SettingsEditing.UpdateRowRouteValues = new { Controller = "TherapeuticFocus", Action = "TherapeuticFocusUpdatePartial" };
+
+        therapeuticSettings.EnablePagingGestures = AutoBoolean.False;
+
+        therapeuticSettings.ControlStyle.CssClass = "therapeutic";
+        therapeuticSettings.Width = Unit.Percentage(100);
+
+        therapeuticSettings.Styles.Cell.Wrap = DefaultBoolean.False;
+        therapeuticSettings.Styles.PagerBottomPanel.CssClass = "pager";
+        therapeuticSettings.Styles.FocusedRow.CssClass = "focused";
+        therapeuticSettings.Styles.AlternatingRow.Enabled = DefaultBoolean.True;
+
+        therapeuticSettings.SettingsBehavior.AllowFocusedRow = true;
+        therapeuticSettings.SettingsBehavior.AllowSelectByRowClick = true;
+        therapeuticSettings.SettingsBehavior.AllowEllipsisInText = true;
+        therapeuticSettings.SettingsBehavior.AllowDragDrop = false;
+
+        therapeuticSettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+        therapeuticSettings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+        //therapeuticSettings.SettingsEditing.EditFormColumnCount = 2;
+
+        therapeuticSettings.Settings.VerticalScrollBarMode = ScrollBarMode.Hidden;
+        therapeuticSettings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        //therapeuticSettings.Settings.ShowHeaderFilterButton = true;
+        therapeuticSettings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+        therapeuticSettings.SettingsPager.PageSize = 20;
+        therapeuticSettings.SettingsPager.EnableAdaptivity = true;
+        therapeuticSettings.SettingsPager.PageSizeItemSettings.Visible = true;
+
+        //therapeuticSettings.SettingsExport.EnableClientSideExportAPI = true;
+        //therapeuticSettings.SettingsExport.ExportSelectedRowsOnly = true;
+
+        therapeuticSettings.SettingsPopup.EditForm.SettingsAdaptivity.MaxWidth = 960;
+        therapeuticSettings.SettingsPopup.EditForm.SettingsAdaptivity.Mode = PopupControlAdaptivityMode.Always;
+        therapeuticSettings.SettingsPopup.EditForm.SettingsAdaptivity.VerticalAlign = PopupAdaptiveVerticalAlign.WindowCenter;
+        therapeuticSettings.SetEditFormTemplateContent(c =>
+        {
+            var dataObject = c.Grid.IsNewRowEditing ? new TherapeuticFocus() : c.Grid.GetRow(c.VisibleIndex);
+            Html.RenderPartial("_TherapeuticFocusNewPartial", dataObject);
+        });
+
+        therapeuticSettings.CommandColumn.Visible = true;
+        therapeuticSettings.CommandColumn.ShowSelectCheckbox = true;
+        therapeuticSettings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+        therapeuticSettings.CommandColumn.VisibleIndex = 0;
+        therapeuticSettings.CommandColumn.Width = Unit.Pixel(52);
+
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "ID";
+            columnSettings.Visible = false;
+        });
+
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "sCategory";
+            columnSettings.Caption = "Category";
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.Width = System.Web.UI.WebControls.Unit.Pixel(150);
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Author";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Issue";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Volume";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "No";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Topic";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Tags";
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Banner";
+            columnSettings.Visible = false;
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Thumb";
+            columnSettings.Visible = false;
+        });
+
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "Published";
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "VisibleSite";
+            columnSettings.Caption = "Site";
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.ColumnType = MVCxGridViewColumnType.TextBox;
+        });
+
+        therapeuticSettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "UpdatedDate";
+            columnSettings.Width = System.Web.UI.WebControls.Unit.Pixel(130);
+            columnSettings.PropertiesEdit.DisplayFormatString = "d";
+        });
+
+        therapeuticSettings.ClientSideEvents.Init = "onTherapeuticFocusInit";
+        therapeuticSettings.ClientSideEvents.SelectionChanged = "onTherapeuticFocusSelectionChanged";
+        therapeuticSettings.ClientSideEvents.BeginCallback = "onTherapeuticFocusBeginCallback";
+        therapeuticSettings.ClientSideEvents.EndCallback = "onTherapeuticFocusEndCallback";
+        therapeuticSettings.ClientSideEvents.FocusedRowChanged = "onTFRefreshEditFormCallback";
+
+
+        therapeuticSettings.InitNewRow += (s, e) => {
+            e.NewValues["Published"] = false;
+            e.NewValues["VisibleSite"] = 255;// (eWEBSITE.CA);
+        };
+        therapeuticSettings.CellEditorInitialize = (s, e) => {
+            ((ASPxEdit)e.Editor).ValidationSettings.Display = Display.Dynamic;
+        };
+    });
+    if(ViewBag.GeneralError != null) {
+        therapeutic.SetEditErrorText(ViewBag.GeneralError);
+    }
+}
+
+@therapeutic.Bind(Model).GetHtml()
+

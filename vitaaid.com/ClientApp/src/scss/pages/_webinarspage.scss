@@ -1,0 +1,201 @@
+@use '../abstracts' as *;
+
+.webinars {
+  @include clampattr(margin-top, 22);
+  @include clampattr(margin-bottom, 100);
+
+  .webinar-list {
+    padding-left: 0;
+    padding-right: 0;
+
+    .webinar-info-table {
+      width: 100%;
+      border-collapse: separate;
+      @include media('<tablet') {
+        @include clampattr(-webkit-border-vertical-spacing, 12);
+      }
+      @include media('>=tablet') {
+        @include clampattr(-webkit-border-vertical-spacing, 50);
+      }
+      -webkit-border-horizontal-spacing: 0px;
+    }
+
+    .title {
+      @include media('<tablet') {
+        @include clampattr(font-size, 25);
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 6);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 35);
+      }
+      color: var(--ocean-blue);
+      font-weight: 600;
+    }
+
+    .category-title {
+      @include clampattr(font-size, 15);
+    }
+
+    .webinar-brief-block {
+      .td-thumb-img {
+        border-bottom: 1px solid #ccc;
+        @include media('<tablet') {
+          @include clampattr(width, 105);
+          @include clampattr(height, 105);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 115);
+          @include clampattr(height, 115);
+        }
+        @include clampattr(padding-bottom, 28);
+        vertical-align: top;
+      }
+
+      .thumb-img {
+        @include media('<tablet') {
+          @include clampattr(width, 105);
+          @include clampattr(height, 105);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 115);
+          @include clampattr(height, 115);
+        }
+        // object-fit: contain;
+        border-radius: 10px;
+      }
+
+      .brief-content {
+        vertical-align: bottom;
+        @include clampattr(padding-bottom, 20);
+        border-bottom: 1px solid #ccc;
+        @include media('<tablet') {
+          @include clampattr(padding-right, 20);
+        }
+        .brief-topic {
+          display: block;
+
+          button {
+            @include clampattr(font-size, 22);
+            @include clampattr(line-height, 30);
+            color: var(--peacock-blue);
+          }
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(max-width, 715);
+          }
+        }
+
+        .content-line {
+          @include media('<tablet') {
+            width: 100%;
+          }
+          @include media('>=tablet') {
+            @include clampattr(width, 450);
+          }
+          height: 1px;
+        }
+
+        .info {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+          color: var(--greyish-brown);
+        }
+      }
+    }
+  }
+
+  .page-navigate {
+    display: block;
+    text-align: center;
+    @include clampattr(font-size, 15);
+  }
+
+  .nav-button {
+    @include clampattr(margin-left, 8);
+    @include clampattr(margin-right, 8);
+    color: var(--marine-blue);
+  }
+
+  .selected-idx {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .more-page {
+    color: var(--marine-blue);
+    @include clampattr(margin-left, 8);
+    @include clampattr(margin-right, 8);
+  }
+}
+.webinar-related-resources {
+  .webinar-category-block {
+    @include clampattr(width, 164);
+  }
+
+  .webinar-product-block {
+    @include clampattr(width, 164);
+    @include clampattr(margin-top, 30);
+    @include clampattr(margin-left, 30);
+  }
+
+  .related-title {
+    @include clampattr(font-size, 15);
+    color: var(--marine-blue);
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .list-img {
+    vertical-align: baseline;
+    margin-right: 4px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .category-link {
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 25);
+    display: block;
+    color: var(--greyish-brown);
+    padding-left: 0;
+  }
+
+  .related-product-list {
+    @include clampattr(margin-top, 20);
+  }
+
+  .related-product-img {
+    @include clampattr(max-width, 110);
+    @include clampattr(max-height, 200);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: scale-down;
+  }
+
+  .related-product-name {
+    display: block;
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 19);
+    text-align: center;
+
+    a {
+      color: var(--marine-blue) !important;
+    }
+  }
+
+  .related-product-info {
+    display: block;
+    @include clampattr(font-size, 12);
+    @include clampattr(line-height, 19);
+    @include clampattr(margin-bottom, 38);
+    color: var(--greyish-brown);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}

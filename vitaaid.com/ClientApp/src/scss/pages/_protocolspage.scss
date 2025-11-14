@@ -1,0 +1,316 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.protocols-page {
+  .banner-img-div {
+    position: relative;
+    // border-radius: 10px;
+    border: 1pt solid #ccc;
+    overflow: hidden;
+  }
+  @include media('<tablet') {
+    .overlay-m {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+    }
+  }
+  .banner-img {
+    @include media('<tablet') {
+      width: 100%;
+    }
+    @include media('>=tablet') {
+      @include clampattr(width, 275);
+      @include clampattr(height, 180);
+    }
+  }
+  .detail-banner-img-m {
+    width: 100vw;
+  }
+
+  .protocols {
+    @include clampattr(margin-top, 22);
+    @include clampattr(margin-bottom, 100);
+
+    .protocol-list {
+      padding-left: 0;
+      padding-right: 0;
+
+      .protocol-info-table {
+        @include clampattr(width, 1050);
+        border-collapse: separate;
+        @include clampattr(-webkit-border-vertical-spacing, 24);
+        -webkit-border-horizontal-spacing: 0px;
+      }
+
+      .title {
+        @include media('<tablet') {
+          @include clampattr(font-size, 25);
+          border-bottom: 1px solid var(--grey-borderline);
+          @include clampattr(padding-bottom, 6);
+          @include clampattr(margin-bottom, 14);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 35);
+        }
+        color: var(--ocean-blue);
+        font-weight: 600;
+      }
+
+      .category-title {
+        @include clampattr(font-size, 15);
+      }
+
+      .protocol-brief-block {
+        .td-banner-img {
+          border-bottom: 1px solid #ccc;
+          @include clampattr(width, 275);
+          @include clampattr(height, 180);
+          @include clampattr(padding-bottom, 26);
+        }
+
+        .brief-content {
+          position: relative;
+          vertical-align: bottom;
+          @include clampattr(padding-bottom, 26);
+          @include media('<tablet') {
+            @include clampattr(margin-top, 8);
+            @include clampattr(margin-bottom, 20);
+          }
+          @include media('>=tablet') {
+            @include clampattr(padding-left, 54);
+          }
+          border-bottom: 1px solid #ccc;
+
+          .brief-topic {
+            display: block;
+
+            button {
+              @include clampattr(font-size, 22);
+              @include clampattr(line-height, 30);
+              color: var(--peacock-blue);
+            }
+
+            @include clampattr(max-width, 715);
+          }
+
+          .seperate-block {
+            @include clampattr(height, 14);
+          }
+          .content-line {
+            // position: absolute;
+            @include media('<tablet') {
+              width: 100%;
+            }
+            @include media('>=tablet') {
+              @include clampattr(width, 720);
+            }
+            height: 1px;
+            vertical-align: super;
+            // @include clampattr(top, 38);
+          }
+
+          .info-header {
+            @include clampattr(font-size, 18);
+            @include clampattr(line-height, 25);
+            color: var(--marine-blue);
+          }
+
+          .info {
+            div {
+              display: contents;
+            }
+
+            @include clampattr(margin-top, 8);
+            @include clampattr(font-size, 15);
+            @include clampattr(line-height, 22);
+            color: var(--greyish-brown);
+          }
+
+          .read-more {
+            @include clampattr(font-size, 15);
+            @include clampattr(line-height, 22);
+            color: var(--peacock-blue);
+          }
+        }
+      }
+    }
+  }
+
+  .protocol-related-resources {
+    .protocol-category-block {
+      @include clampattr(width, 164);
+    }
+
+    .protocol-product-block {
+      @include clampattr(width, 164);
+      @include clampattr(margin-top, 30);
+      margin-left: auto;
+      margin-right: 0px;
+    }
+
+    .related-title {
+      @include clampattr(font-size, 15);
+      color: var(--marine-blue);
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .list-img {
+      vertical-align: baseline;
+      margin-right: 4px;
+      width: 10px;
+      height: 10px;
+    }
+
+    .category-link {
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 25);
+      display: block;
+      color: var(--greyish-brown);
+      padding-left: 0;
+    }
+
+    .related-product-list {
+      @include clampattr(margin-top, 20);
+    }
+
+    .related-product-img {
+      @include clampattr(max-width, 110);
+      @include clampattr(max-height, 200);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: scale-down;
+    }
+
+    .related-product-name {
+      display: block;
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 19);
+      text-align: center;
+
+      a {
+        color: var(--marine-blue) !important;
+      }
+    }
+
+    .related-product-info {
+      display: block;
+      @include clampattr(font-size, 12);
+      @include clampattr(line-height, 19);
+      @include clampattr(margin-bottom, 38);
+      color: var(--greyish-brown);
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  }
+
+  .protocol-detail {
+    @include clampattr(margin-bottom, 100);
+
+    .col-protocol-body {
+      @include clampattr(margin-top, 22);
+      @include media('>=tablet') {
+        @include importantclampattr(padding-right, 36);
+      }
+    }
+    .detail-banner-img-div-m {
+      @extend .banner-img-div;
+      width: 100vw;
+      margin-left: -24px;
+    }
+    .protocol-download-btn {
+      @include media('<tablet') {
+        display: flex;
+        margin-right: 0px;
+        margin-left: auto;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 110);
+      }
+      @include clampattr(font-size, 15);
+      font-weight: 300;
+      color: var(--greyish-brown);
+
+      .download-img {
+        @include media('<tablet') {
+          @include clampattr(width, 25);
+          @include clampattr(height, 22);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 32);
+          @include clampattr(height, 28);
+        }
+      }
+    }
+
+    .brief-content {
+      position: relative;
+      vertical-align: bottom;
+      @include media('>=tablet') {
+        @include clampattr(padding-left, 54);
+      }
+      .header-line1 {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        @include media('<tablet') {
+          @include clampattr(padding-top, 6);
+          @include clampattr(margin-bottom, 12);
+        }
+        @include clampattr(padding-bottom, 6);
+        .protocol-topic {
+          @include clampattr(font-size, 22);
+          @include clampattr(line-height, 30);
+          color: #007bc3;
+          @include clampattr(width, 630);
+        }
+      }
+
+      .protocol-author-date {
+        @include media('<tablet') {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 18);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 17);
+          @include clampattr(line-height, 22);
+        }
+        color: var(--greyish-brown);
+      }
+    }
+    .protocol-content {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 12);
+        border-bottom: 1px solid var(--grey-borderline);
+        @include clampattr(padding-bottom, 20);
+        @include clampattr(margin-bottom, 20);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 22);
+      }
+    }
+
+    .notice {
+      border: 1px solid var(--warm-grey);
+      border-radius: 10px;
+      @include clampattr(font-size, 15);
+      @include clampattr(line-height, 18);
+      color: var(--warm-grey);
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 60);
+      }
+      @include clampattr(padding-top, 12);
+      @include clampattr(padding-bottom, 12);
+      @include clampattr(padding-left, 20);
+      @include clampattr(padding-right, 20);
+    }
+  }
+}

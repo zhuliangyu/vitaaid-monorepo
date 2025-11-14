@@ -1,0 +1,197 @@
+﻿@use '../../abstracts' as *;
+@use '../../base' as *;
+
+.shopping_cart_detail {
+  @include media('<tablet') {
+    @include main-body-bottom-line;
+  }
+  // @include clampattr(margin-bottom, 132);
+  @include media('>=tablet') {
+    @include clampattr(width, 1280);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /*  padding-left: 20px;
+  padding-right: 20px;
+*/
+  .row {
+    /*    @include clampattr(margin-left, $page-lr-padding);
+    @include clampattr(margin-right, $page-lr-padding);
+*/
+  }
+
+  .title {
+    @include clampattr(font-size, 25);
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 6);
+    }
+    @include media('>=tablet') {
+      font-weight: 600;
+      @include clampattr(padding-bottom, 14);
+    }
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .header {
+    @include media('<tablet') {
+      @include clampattr(padding-top, 6);
+      border-bottom: 1px solid var(--grey-borderline);
+      margin-bottom: 1.6rem;
+      padding-bottom: 1rem;
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-top, 14);
+    }
+  }
+
+  .header-label {
+    @include clampattr(font-size, 20);
+    @include media('>=tablet') {
+      font-weight: 600;
+    }
+    @include clampattr(line-height, 24);
+    color: var(--ocean-blue);
+  }
+
+  .header-value {
+    font-weight: 400;
+    color: var(--greyish-brown);
+  }
+
+  // .cart-detail-table {
+  // @include clampattr(margin-top, 14);
+  // width: 100%;
+  // table-layout: fixed;
+
+  // .table-header {
+  //   border-top: 1px solid var(--grey-borderline);
+  //   border-bottom: 1px solid var(--grey-borderline);
+  //   @include clampattr(font-size, 18);
+  //   @include clampattr(line-height, 32);
+  //   font-weight: 600;
+  //   color: var(--marine-blue);
+  // }
+
+  // .table-body {
+  //   @include clampattr(font-size, 15);
+  //   @include clampattr(line-height, 25);
+  //   font-weight: 400;
+  //   color: var(--greyish-brown);
+  //   border-bottom: 1px solid var(--grey-borderline);
+  // }
+
+  // tbody::after {
+  //   display: block;
+  //   content: ' ';
+  //   width: 100%;
+  //   @include clampattr(height, 16);
+  //   padding-left: 1px;
+  // }
+
+  // .table-cell {
+  //   @include clampattr(margin-top, 16);
+  // }
+
+  // .remove-button {
+  //   width: 20px;
+  //   padding: 0px;
+  //   text-align: start;
+  // }
+
+  // .qty-input {
+  //   @include clampattr(width, 52);
+  //   @include clampattr(border-radius, 10);
+  //   outline: none;
+  //   border: 1px solid var(--grey-borderline);
+  //   text-align: center;
+  // }
+  // }
+
+  .cart-summary {
+    text-align: end;
+    color: var(--greyish-brown);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include media('<tablet') {
+      border-top: 1px solid var(--grey-borderline);
+      @include clampattr(margin-top, 14);
+      @include clampattr(padding-top, 12);
+      @include clampattr(padding-bottom, 12);
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 60);
+      @include clampattr(padding-bottom, 12);
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+  }
+
+  .cart-action {
+    text-align: end;
+    @include clampattr(margin-top, 24);
+    @include clampattr(padding-bottom, 24);
+    @include clampattr(font-size, 15);
+    font-weight: 600;
+    @include clampattr(line-height, 25);
+    color: var(--greyish-brown);
+    border-bottom: 1px solid var(--grey-borderline);
+
+    button {
+      @include clampattr(border-radius, 10);
+      outline: none;
+      @include media('<tablet') {
+        @include mobile-btn;
+        background: var(--marine-blue);
+        border: 1px solid #bccad3;
+        color: white;
+        @include clampattr(margin-left, 12);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 12);
+        @include clampattr(margin-left, 8);
+        @include clampattr(height, 30);
+        background: transparent;
+        font-weight: 300;
+        color: var(--marine-blue);
+        border-color: #becad3;
+        border-style: solid;
+      }
+    }
+  }
+
+  .cart-note {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 14);
+      p {
+        @include clampattr(font-size, 20);
+        @include clampattr(line-height, 22);
+        color: var(--marine-blue);
+      }
+
+      li {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+        color: #5c5c5c;
+      }
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 30);
+      p {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 40);
+        font-weight: 300;
+        color: var(--marine-blue);
+      }
+
+      li {
+        @include clampattr(font-size, 14);
+        @include clampattr(line-height, 20);
+        font-weight: 300;
+        color: #5c5c5c;
+      }
+    }
+  }
+}

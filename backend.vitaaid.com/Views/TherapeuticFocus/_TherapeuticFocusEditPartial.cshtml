@@ -1,0 +1,267 @@
+﻿@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@using MySystem.Base.Extensions;
+@using WebDB.DBBO;
+@using WebDB.DBPO;
+@using WebDB.DBPO.Helper;
+@using backend.vitaaid.com;
+@using MyHibernateUtil;
+
+@model TherapeuticFocus
+
+<script type="text/javascript">
+    (function () {
+        var selectedIds;
+        $(document).ready(function () {
+            $('.therapeutic-topic').on('click', function () {
+                $("#therapeuticBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'TherapeuticFocus/HtmlEditorPart',
+                    data: { id: @Model.ID, type: 'Topic' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Topic');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.therapeutic-blog-content').on('click', function () {
+                $("#therapeuticBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'TherapeuticFocus/HtmlEditorPart',
+                    data: { id: @Model.ID, type: 'BlogContent' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Contents');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+            $('.therapeutic-reference').on('click', function () {
+                $("#therapeuticBasicInfoForm").submit();
+                $.ajax({
+                    type: "POST",
+                    url: 'TherapeuticFocus/HtmlEditorPart',
+                    data: { id: @Model.ID, type: 'Reference' },
+                    success: function (response) {
+                        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+                        pv.SetHeaderText('Reference');
+                        $("#htmleditor").html(response);
+                        pcModalMode.Show();
+                    }
+                });
+            });
+        });
+    })();
+    function updateHtml(s, e) {
+        var pv = ASPxClientPopupControl.Cast('pcModalMode');
+        var editor = ASPxClientHtmlEditor.Cast("htmlData");
+        editor.PerformDataCallback("", function (s) {
+            $.ajax({
+                type: "POST",
+                url: 'TherapeuticFocus/TherapeuticFocusEditFormPartial',
+                data: { id: @Model.ID  },
+                success: function (response) {
+                    $("#therapeuticEditableContainer").html(response);
+                }
+            });
+        });
+        pcModalMode.Hide();
+
+        var formView = ASPxClientGridView.Cast('therapeuticView');
+        formView.Refresh();
+    }
+    //function synchronizeCategory(dropDown, args) {
+    //    cmbCategory.SetText(cmbCategory.FindItemByValue(cmbCategory.GetText()).text);
+    //}
+
+</script>
+
+@{
+  var oSession = ServicesHelper.DBServer[eST.READONLY];
+  oSession.Clear();
+  IList<string> tfCategory = UnitTypeHelper.getUnitTypeNames(eUNITTYPE.THERAPEUTIC_FOCUS, oSession);
+  oSession.Close();
+}
+
+@Html.DevExpress().PopupControl(
+    settings =>
+    {
+      settings.Name = "pcModalMode";
+      settings.Width = 1024;
+      settings.AllowDragging = true;
+      settings.CloseAction = CloseAction.CloseButton;
+      settings.CloseOnEscape = true;
+      settings.PopupAnimationType = AnimationType.None;
+      settings.HeaderText = "Therapeutic Focus";
+      settings.Modal = true;
+      settings.AutoUpdatePosition = true;
+      settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+      settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+      settings.SetContent(() =>
+      {
+      using (Html.BeginForm())
+      {
+        //Html.Hidden("ProductID");
+
+        @Html.DevExpress().FormLayout(s =>
+        {
+          s.Name = "ModalModeFormLayout";
+          s.RequiredMarkDisplayMode = RequiredMarkMode.None;
+          s.Width = Unit.Percentage(100);
+          s.Height = Unit.Percentage(100);
+
+          s.NestedExtensionWidth = Unit.Percentage(100);
+          s.Items.Add(i =>
+          {
+            i.ShowCaption = DefaultBoolean.False;
+            i.SetNestedContent("<div id='htmleditor'></div>");
+          });
+          s.Items.Add(i =>
+          {
+            i.ShowCaption = DefaultBoolean.False;
+            i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+            i.SetNestedContent(() =>
+            {
+              Html.DevExpress().Button(
+                  buttonSettings =>
+                  {
+                    buttonSettings.Name = "btnCancel";
+                    buttonSettings.ControlStyle.CssClass = "button";
+                    buttonSettings.Width = 80;
+                    buttonSettings.Text = "Cancel";
+                    buttonSettings.ClientSideEvents.Click = "function(s, e){ pcModalMode.Hide(); }";
+                  }
+              ).Render();
+              Html.DevExpress().Button(
+                  buttonSettings =>
+                  {
+                    buttonSettings.Name = "btnUpdate";
+                    buttonSettings.ControlStyle.CssClass = "button";
+                    buttonSettings.Width = 80;
+                    buttonSettings.Text = "OK";
+                    buttonSettings.ClientSideEvents.Click = "updateHtml";
+                  }
+              ).Render();
+            });
+          });        
+      }).Render();
+    }
+        });
+
+        //settings.ClientSideEvents.CloseUp = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(null, '', true); }";
+    }).GetHtml()
+
+@using (Ajax.BeginForm("TherapeuticFocusEditFormUpdatePartial", "TherapeuticFocus", new { id = Model.ID }, new AjaxOptions { HttpMethod = "POST" }, new { @id = "therapeuticBasicInfoForm", @name = "therapeuticBasicInfoForm" }))
+{
+  Html.DevExpress().FormLayout(settings =>
+  {
+    settings.Name = "pvEditForm";
+    settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+    settings.Width = Unit.Percentage(100);
+
+    settings.Items.AddGroupItem(g =>
+    {
+      g.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+      g.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+      g.ShowCaption = DefaultBoolean.False;
+      g.Height = Unit.Percentage(100);
+      g.Width = Unit.Percentage(100);
+      g.ColumnCount = 3;
+      g.Items.Add(m => m.Author);
+      g.Items.Add(m => m.sCategory, s =>
+      {
+        s.NestedExtensionType = FormLayoutNestedExtensionItemType.ComboBox;
+        s.Caption = "Category";
+        var combox = (ComboBoxSettings)s.NestedExtensionSettings;
+        combox.Name = "sCategory";
+        tfCategory.Action(x => combox.Properties.Items.Add(x));
+      });
+      g.Items.Add(m => m.ThumbImage, s =>
+      {
+        s.Caption = "Thumbnail";
+        s.RowSpan = 3;
+        var image = (BinaryImageEditSettings)s.NestedExtensionSettings;
+        image.Properties.EnableServerResize = false;
+        image.Properties.ImageSizeMode = ImageSizeMode.FitProportional;
+        image.CallbackRouteValues = new { Action = "BinaryImagePhotoUpdate", Controller = "TherapeuticFocus", Target = "ThumbImage" };
+        image.Properties.EditingSettings.Enabled = true;
+        image.Properties.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+        image.Properties.EditingSettings.UploadSettings.TemporaryFolder = EnvHelper.CACHE_DIR;
+        image.Properties.EditingSettings.UploadSettings.UploadMode = UploadControlUploadMode.Auto;
+        image.Properties.ClientSideEvents.ValueChanged = "saveThumbFileName";
+      });
+      g.Items.Add(m => m.Issue);
+      g.Items.Add(m => m.Volume);
+      g.Items.Add(m => m.No);
+      g.Items.Add(m => m.Published);
+      //g.Items.Add(m => m.VisibleSite, s =>
+      //{
+      //    s.Caption = "Site";
+      //});
+      //g.Items.Add(m => m.Topic, s =>
+      //{
+      //    s.Width = Unit.Percentage(100);
+      //    s.ColumnSpan = 3;
+      //});
+      g.Items.Add(m => m.Tags, s =>
+      {
+        s.ColumnSpan = 3;
+      });
+      g.Items.Add(m => m.BannerImage, s =>
+      {
+        s.ColumnSpan = 3;
+        s.NestedExtensionType = FormLayoutNestedExtensionItemType.BinaryImage;
+        var image = (BinaryImageEditSettings)s.NestedExtensionSettings;
+        image.Properties.EnableServerResize = false;
+        image.Properties.ImageSizeMode = ImageSizeMode.FitProportional;
+        image.CallbackRouteValues = new { Action = "BinaryImagePhotoUpdate", Controller = "TherapeuticFocus" };
+        image.Properties.EditingSettings.Enabled = true;
+        image.Properties.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+        image.Properties.EditingSettings.UploadSettings.TemporaryFolder = EnvHelper.CACHE_DIR;
+        image.Properties.EditingSettings.UploadSettings.UploadMode = UploadControlUploadMode.Auto;
+        image.Properties.ClientSideEvents.ValueChanged = "saveBannerFileName";
+      });
+    });
+    //settings.Items.Add(m => m.BannerImage, i =>
+    //{
+    //    i.Caption = "BannerImage";
+    //});
+
+    settings.Items.Add(m => m.Topic, i =>
+    {
+      i.Caption = "Topic";
+      i.CaptionStyle.CssClass = "PopHtmlEditor therapeutic-topic";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Topic + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.BlogContent, i =>
+    {
+      i.Caption = "Contents";
+      i.CaptionStyle.CssClass = "PopHtmlEditor therapeutic-blog-content";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.BlogContent + "</div>");
+      });
+    });
+    settings.Items.Add(m => m.Reference, i =>
+    {
+      i.Caption = "Reference";
+      i.CaptionStyle.CssClass = "PopHtmlEditor therapeutic-reference";
+      i.SetNestedContent(() =>
+      {
+        ViewContext.Writer.Write("<div>" + Model.Reference + "</div>");
+      });
+    });
+
+  }).Bind(Model).GetHtml();
+  @Html.Hidden("ThumbImage_hiddenFieldID");
+  @Html.Hidden("BannerImage_hiddenFieldID");
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Formulation" table="Formulation" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+    <component name="Items"  class="MySystem.Base.NSeqList`1[FormulationItem], MySystem.Base">
+      <bag name="innerList" table="FormulationItem" lazy="true" cascade="delete"  order-by="Sequence">
+        <key column="FormulationID" />
+        <one-to-many class="FormulationItem" />
+      </bag>      
+    </component>
+    <property name="FormulationCode" type ="TrimString">
+      <column name="FormulationCode" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="EDI850PO1Loop" table="EDI850PO1Loop" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+	  <many-to-one name="oVAOrder">
+		  <column name="VAOrderID" sql-type="int" not-null="false" />
+	  </many-to-one>
+
+	  <property name="VAPONo" type ="TrimString">
+		  <column name="VAPONo" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="ST_TransactionSetControlNumber_02" type ="TrimString">
+		  <column name="ST_TransactionSetControlNumber_02" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="BEG_PurchaseOrderNumber_03" type ="TrimString">
+		  <column name="BEG_PurchaseOrderNumber_03" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="BEG_Date_05" type ="TrimString">
+		  <column name="BEG_Date_05" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  	  
+	  <property name="PO1_AssignedIdentification_01" type ="TrimString">
+		  <column name="PO1_AssignedIdentification_01" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PO1_Quantity_02" type ="TrimString">
+		  <column name="PO1_Quantity_02" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PO1_UnitorBasisforMeasurementCode_03" type ="TrimString">
+		  <column name="PO1_UnitorBasisforMeasurementCode_03" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="PO1_UnitPrice_04" type ="TrimString">
+		  <column name="PO1_UnitPrice_04" sql-type="nvarchar" not-null="false" />
+	  </property>
+
+	  <property name="PO1_ProductServiceIDQualifier_06" type ="TrimString">
+		  <column name="PO1_ProductServiceIDQualifier_06" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PO1_ProductServiceID_07" type ="TrimString">
+		  <column name="PO1_ProductServiceID_07" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PO1_ProductServiceIDQualifier_08" type ="TrimString">
+		  <column name="PO1_ProductServiceIDQualifier_08" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PO1_ProductServiceID_09" type ="TrimString">
+		  <column name="PO1_ProductServiceID_09" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PID_ItemDescriptionType_01" type ="TrimString">
+		  <column name="PID_ItemDescriptionType_01" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PID_ProductProcessCharacteristicCode_02" type ="TrimString">
+		  <column name="PID_ProductProcessCharacteristicCode_02" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  
+	  <property name="PID_Description_05" type ="TrimString">
+          <column name="PID_Description_05" sql-type="nvarchar" not-null="false" />
+      </property>
+
+	  <property name="UpdatedDate">
+		<column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+	  </property>
+	  <property name="UpdatedID">
+		  <column name="UpdatedID" sql-type="DATETIME2" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

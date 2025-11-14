@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="ProductImage" table="ProductImage" lazy="true" >
+		<id name="ID" column="ID">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="oProduct">
+			<column name="oProduct" sql-type="int" not-null="false" />
+		</many-to-one>
+		<property name="ProductCode" type ="TrimString">
+			<column name="ProductCode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="FrontImage">
+			<column name="FrontImage" sql-type="int" not-null="false" />
+		</property>
+		<property name="ImageName" type ="TrimString">
+			<column name="ImageName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="LargeImageName" type ="TrimString">
+			<column name="LargeImageName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Flag">
+			<column name="Flag" sql-type="smalldatetime" not-null="false" />
+		</property>
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

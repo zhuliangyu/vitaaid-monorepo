@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="VAPayment" table="VAPayment">
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+    <many-to-one name="oInvoice">
+      <column name="oInvoice" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="InvoiceNo" type ="TrimString">
+	  <column name="InvoiceNo" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="InvoiceDate">
+	  <column name="InvoiceDate" sql-type="DATETIME2" not-null="false" />
+	</property>
+	<property name="AccountNO" type ="TrimString">
+	  <column name="AccountNO" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="InvoiceTotalAmount">
+	  <column name="InvoiceTotalAmount" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="BalanceDueBeforePaying">
+	  <column name="DueBalanceBeforePaying" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="PayAmount">
+	  <column name="PayAmount" sql-type="decimal" not-null="false" />
+	</property>
+	<property name="Currency" type ="TrimString">
+	  <column name="Currency" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ExchangeRate" type="Double">
+	  <column name="ExchangeRate" not-null="false" sql-type="FLOAT" />
+	</property>
+	  <property name="PaymentMethod" type="eVAPAYMENT">
+		  <column name="PaymentMethod" sql-type="int" not-null="false" />
+	  </property>
+
+	  <property name="PaymentType" type ="TrimString">
+	  <column name="PaymentType" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="PaymentNote" type ="TrimString">
+	  <column name="PaymentNote" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="BalanceDue">
+	  <column name="DueBalance" sql-type="decimal" not-null="false" />
+	</property>
+    <property name="PaymentStatus" type ="TrimString">
+      <column name="PaymentStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TransactionID" type ="TrimString">
+      <column name="TransactionID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TransactionDate" type="DateTime">
+      <column name="TransactionDate" not-null="false" sql-type="DATETIME2" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+	  <column name="DataStatus" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedID" type ="TrimString">
+	  <column name="CreatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="CreatedDate" type="DateTime">
+	  <column name="CreatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+	<property name="UpdatedID" type ="TrimString">
+	  <column name="UpdatedID" not-null="false" sql-type="nvarchar" />
+	</property>
+	<property name="UpdatedDate" type="DateTime">
+	  <column name="UpdatedDate" not-null="false" sql-type="DATETIME2" />
+	</property>
+  </class>
+</hibernate-mapping>

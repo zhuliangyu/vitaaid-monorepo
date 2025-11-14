@@ -1,0 +1,234 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+@use 'variables' as *;
+@use 'sass:math';
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Kitty Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+@mixin bg($name, $width, $height) {
+  background-image: url('/img/#{$name}');
+  width: 100%;
+  height: #{math.div($height * 100, $width)}vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin mdivimg($name, $width, $height) {
+  width: #{math.div($width, 10)}rem;
+  height: #{math.div($height, 10)}rem;
+  background-image: url('/img/#{$name}.png');
+  background-image: -webkit-image-set(
+    url('/img/#{$name}.png') 1x,
+    url('/img/#{$name}@2x.png') 2x,
+    url('/img/#{$name}@3x.png') 3x
+  );
+  background-image: image-set(
+    url('/img/#{$name}.png') 1x,
+    url('/img/#{$name}@2x.png') 2x,
+    url('/img/#{$name}@3x.png') 3x
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin gdivimg($name, $width, $height) {
+  background-image: url('/img/#{$name}');
+
+  @media (min-width: 1025px) {
+    width: #{math.div($width * 100, $defVW)}vw;
+    height: #{math.div($height * 100, $defVW)}vw;
+  }
+
+  @media (max-width: 1024px) {
+    width: #{math.div($width, 10)}rem;
+    height: #{math.div($height, 10)}rem;
+  }
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin divimg($name, $width, $height) {
+  background-image: url('/img/#{$name}');
+  width: #{math.div($width, 10)}rem;
+  height: #{math.div($height, 10)}rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin gclampattr($attr, $size) {
+  @if $size ==
+    $page-lr-padding and
+    (
+      $attr ==
+        'margin-left' or
+        $attr ==
+        'margin-right' or
+        $attr ==
+        'padding-left' or
+        $attr ==
+        'padding-right'
+    )
+  {
+    @media (max-width: 1024px) {
+      #{$attr}: 10px;
+    }
+
+    @media (min-width: 1025px) {
+      #{$attr}: clamp(
+        #{math.div($size, 100)}rem,
+        #{math.div($size * 100, $defVW)}vw,
+        #{math.div($size, 10)}rem
+      );
+    }
+  } @else {
+    #{$attr}: clamp(
+      #{math.div($size, 100)}rem,
+      #{math.div($size * 100, $defVW)}vw,
+      #{math.div($size, 10)}rem
+    );
+    /*      @media (max-width: 1024px) {
+        #{$attr}: #{math.div($size, 10)}rem;
+      }
+*/ /*#{$attr}: clamp( #{math.div($size, 10)}px, #{math.div($size * 100, $defVW)}vw, #{$size}px );*/
+  }
+}
+@mixin clampattr($attr, $size) {
+  /*  @if $attr == 'font-size' {
+    @if $size >= 24 {
+      #{$attr}: clamp( #{math.div($size, 20)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem );
+          } @else if $size >= 15 {
+      #{$attr}: clamp(
+        #{math.div($size, 12.5)}rem,
+        #{math.div($size * 100, $defVW)}vw,
+        #{math.div($size, 10)}rem
+      );
+
+    }
+    @else if $size >= 12 {
+      #{$attr}: clamp( #{math.div($size, 15)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem );
+    }
+    @else {
+      #{$attr}: #{$size}px;
+    }
+  }*/
+  @if $size ==
+    $page-lr-padding and
+    (
+      $attr ==
+        'margin-left' or
+        $attr ==
+        'margin-right' or
+        $attr ==
+        'padding-left' or
+        $attr ==
+        'padding-right'
+    )
+  {
+    @media (max-width: 1024px) {
+      #{$attr}: 10px;
+    }
+
+    @media (min-width: 1025px) {
+      #{$attr}: clamp(
+        #{math.div($size, 100)}rem,
+        #{math.div($size * 100, $defVW)}vw,
+        #{math.div($size, 10)}rem
+      );
+    }
+  } @else {
+    #{$attr}: #{math.div($size, 10)}rem; /* #{$size}px; */
+  }
+}
+
+@mixin importantclampattr($attr, $size) {
+  @if $size ==
+    $page-lr-padding and
+    (
+      $attr ==
+        'margin-left' or
+        $attr ==
+        'margin-right' or
+        $attr ==
+        'padding-left' or
+        $attr ==
+        'padding-right'
+    )
+  {
+    @media (max-width: 1024px) {
+      #{$attr}: 10px !important;
+    }
+
+    @media (min-width: 1025px) {
+      #{$attr}: clamp(
+        #{math.div($size, 100)}rem,
+        #{math.div($size * 100, $defVW)}vw,
+        #{math.div($size, 10)}rem
+      ) !important;
+    }
+  } @else {
+    #{$attr}: #{math.div($size, 10)}rem !important; /* #{$size}px !important; */
+  }
+  /*  @if $attr == 'font-size' {
+    @if $size >= 24 {
+      #{$attr}: clamp( #{math.div($size, 20)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem ) !important;
+    }
+    @else if $size >= 15 {
+      #{$attr}: clamp( #{math.div($size, 12.5)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem ) !important;
+    }
+    @else if $size >= 12 {
+      #{$attr}: clamp( #{math.div($size, 11)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem ) !important;
+    }
+    @else {
+      #{$attr}: #{$size}px !important;
+    }
+  }
+  @else {
+    #{$attr}: clamp( #{math.div($size, 20)}rem, #{math.div($size * 100, $defVW)}vw, #{math.div($size, 10)}rem ) !important;
+  }
+*/
+}
+
+@mixin image_content($name) {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  content: url('/img/#{$name}');
+}
+
+@mixin mobile-btn {
+  @include clampattr(font-size, 15);
+  @include clampattr(line-height, 24);
+  @include clampattr(height, 25);
+  @include clampattr(padding-top, 0);
+  @include clampattr(padding-bottom, 0);
+}

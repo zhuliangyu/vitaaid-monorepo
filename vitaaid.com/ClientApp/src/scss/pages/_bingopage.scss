@@ -1,0 +1,679 @@
+﻿@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+.bingo-page {
+
+  .bingo-textfont {
+    font-family: Arial;
+    color: var(--light-navy-blue);
+  }
+
+  .bingo-header {
+    @include bg('bingo-smart.png', 1983, 727);
+    @extend .bingo-textfont;
+
+    .top-left-text {
+      @include clampattr(padding-top, 200);
+      @include clampattr(padding-left, 90);
+      z-index: 9999;
+    }
+
+    .line1 {
+      font-weight: bold;
+      @include clampattr(font-size, 96);
+      @include clampattr(line-height, 117);
+    }
+
+    .line2 {
+      @include clampattr(font-size, 80);
+      @include clampattr(line-height, 106);
+    }
+
+    .line3 {
+      font-weight: bold;
+      @include clampattr(font-size, 70);
+      @include clampattr(line-height, 96);
+    }
+
+    .top-right-icon {
+      @include divimg('bingo-smart2.png', 746, 456);
+      float: right;
+      position: absolute;
+      @include clampattr(margin-top, 50);
+      @include clampattr(margin-right, 70);
+      right: 0;
+      top: 0;
+    }
+
+    .bottom-right-text {
+      float: right;
+      position: absolute;
+      @include clampattr(margin-top, 556);
+      @include clampattr(margin-right, 122);
+      right: 0;
+      top: 0;
+      text-align: right;
+    }
+
+    .line4 {
+      font-weight: bold;
+      @include clampattr(font-size, 60);
+      @include clampattr(line-height, 70);
+    }
+
+    .line5 {
+      font-weight: bold;
+      @include clampattr(font-size, 48);
+      @include clampattr(line-height, 70);
+    }
+  }
+
+  .bingo-welcome {
+    @extend .bingo-textfont;
+    @include clampattr(margin-top, 60);
+    @include clampattr(margin-left, 116);
+
+    .line1 {
+      @include clampattr(margin-top, 10);
+      @include clampattr(font-size, 70);
+      @include clampattr(line-height, 72);
+      @include clampattr(margin-bottom, 10);
+      text-align: center;
+    }
+
+    .line2 {
+      @include clampattr(font-size, 70);
+      @include clampattr(line-height, 72);
+      @include clampattr(margin-bottom, 30);
+      text-align: center;
+    }
+
+    .line3 {
+      @include clampattr(font-size, 36);
+      @include clampattr(line-height, 72);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .rowpuzzle {
+      @include clampattr(margin-top, 20);
+      @include clampattr(margin-left, 10);
+      @include clampattr(margin-right, 10);
+
+      .col,
+      .col-1,
+      .col-10,
+      .col-11,
+      .col-12,
+      .col-2,
+      .col-3,
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8,
+      .col-9,
+      .col-auto,
+      .col-lg,
+      .col-lg-1,
+      .col-lg-10,
+      .col-lg-11,
+      .col-lg-12,
+      .col-lg-2,
+      .col-lg-3,
+      .col-lg-4,
+      .col-lg-5,
+      .col-lg-6,
+      .col-lg-7,
+      .col-lg-8,
+      .col-lg-9,
+      .col-lg-auto,
+      .col-md,
+      .col-md-1,
+      .col-md-10,
+      .col-md-11,
+      .col-md-12,
+      .col-md-2,
+      .col-md-3,
+      .col-md-4,
+      .col-md-5,
+      .col-md-6,
+      .col-md-7,
+      .col-md-8,
+      .col-md-9,
+      .col-md-auto,
+      .col-sm,
+      .col-sm-1,
+      .col-sm-10,
+      .col-sm-11,
+      .col-sm-12,
+      .col-sm-2,
+      .col-sm-3,
+      .col-sm-4,
+      .col-sm-5,
+      .col-sm-6,
+      .col-sm-7,
+      .col-sm-8,
+      .col-sm-9,
+      .col-sm-auto,
+      .col-xl,
+      .col-xl-1,
+      .col-xl-10,
+      .col-xl-11,
+      .col-xl-12,
+      .col-xl-2,
+      .col-xl-3,
+      .col-xl-4,
+      .col-xl-5,
+      .col-xl-6,
+      .col-xl-7,
+      .col-xl-8,
+      .col-xl-9,
+      .col-xl-auto {
+        @include importantclampattr(padding-left, 5);
+        @include importantclampattr(padding-right, 5);
+      }
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    .rowpuzzle {
+      @include clampattr(margin-top, 20);
+      @include clampattr(margin-left, 40);
+      @include clampattr(margin-right, 40);
+
+      .col,
+      .col-1,
+      .col-10,
+      .col-11,
+      .col-12,
+      .col-2,
+      .col-3,
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8,
+      .col-9,
+      .col-auto,
+      .col-lg,
+      .col-lg-1,
+      .col-lg-10,
+      .col-lg-11,
+      .col-lg-12,
+      .col-lg-2,
+      .col-lg-3,
+      .col-lg-4,
+      .col-lg-5,
+      .col-lg-6,
+      .col-lg-7,
+      .col-lg-8,
+      .col-lg-9,
+      .col-lg-auto,
+      .col-md,
+      .col-md-1,
+      .col-md-10,
+      .col-md-11,
+      .col-md-12,
+      .col-md-2,
+      .col-md-3,
+      .col-md-4,
+      .col-md-5,
+      .col-md-6,
+      .col-md-7,
+      .col-md-8,
+      .col-md-9,
+      .col-md-auto,
+      .col-sm,
+      .col-sm-1,
+      .col-sm-10,
+      .col-sm-11,
+      .col-sm-12,
+      .col-sm-2,
+      .col-sm-3,
+      .col-sm-4,
+      .col-sm-5,
+      .col-sm-6,
+      .col-sm-7,
+      .col-sm-8,
+      .col-sm-9,
+      .col-sm-auto,
+      .col-xl,
+      .col-xl-1,
+      .col-xl-10,
+      .col-xl-11,
+      .col-xl-12,
+      .col-xl-2,
+      .col-xl-3,
+      .col-xl-4,
+      .col-xl-5,
+      .col-xl-6,
+      .col-xl-7,
+      .col-xl-8,
+      .col-xl-9,
+      .col-xl-auto {
+        @include importantclampattr(padding-left, 10);
+        @include importantclampattr(padding-right, 10);
+      }
+    }
+  }
+
+  @media (min-width: 1281px) {
+    .rowpuzzle {
+      @include clampattr(margin-top, 20);
+      @include clampattr(margin-left, 160);
+      @include clampattr(margin-right, 160);
+
+      .col,
+      .col-1,
+      .col-10,
+      .col-11,
+      .col-12,
+      .col-2,
+      .col-3,
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8,
+      .col-9,
+      .col-auto,
+      .col-lg,
+      .col-lg-1,
+      .col-lg-10,
+      .col-lg-11,
+      .col-lg-12,
+      .col-lg-2,
+      .col-lg-3,
+      .col-lg-4,
+      .col-lg-5,
+      .col-lg-6,
+      .col-lg-7,
+      .col-lg-8,
+      .col-lg-9,
+      .col-lg-auto,
+      .col-md,
+      .col-md-1,
+      .col-md-10,
+      .col-md-11,
+      .col-md-12,
+      .col-md-2,
+      .col-md-3,
+      .col-md-4,
+      .col-md-5,
+      .col-md-6,
+      .col-md-7,
+      .col-md-8,
+      .col-md-9,
+      .col-md-auto,
+      .col-sm,
+      .col-sm-1,
+      .col-sm-10,
+      .col-sm-11,
+      .col-sm-12,
+      .col-sm-2,
+      .col-sm-3,
+      .col-sm-4,
+      .col-sm-5,
+      .col-sm-6,
+      .col-sm-7,
+      .col-sm-8,
+      .col-sm-9,
+      .col-sm-auto,
+      .col-xl,
+      .col-xl-1,
+      .col-xl-10,
+      .col-xl-11,
+      .col-xl-12,
+      .col-xl-2,
+      .col-xl-3,
+      .col-xl-4,
+      .col-xl-5,
+      .col-xl-6,
+      .col-xl-7,
+      .col-xl-8,
+      .col-xl-9,
+      .col-xl-auto {
+        @include importantclampattr(padding-left, 15);
+        @include importantclampattr(padding-right, 15);
+      }
+    }
+  }
+
+  .BingoInitBack {
+    background-color: var(--light-periwinkle);
+  }
+
+  .BingoOKBack {
+    background-color: var(--weird-green);
+  }
+
+  .BingoNGBack {
+    background-color: var(--tomato);
+  }
+
+  .BingoPuzzle {
+    @extend .bingo-textfont;
+  }
+
+
+  @media (max-width: 1280px) {
+
+    .BingoPuzzle {
+      border-radius: 10px;
+      border-width: 0px;
+      @include clampattr(padding-top, 18);
+      @include clampattr(padding-left, 16);
+      @include clampattr(padding-right, 16);
+      @include clampattr(font-size, 18);
+      @include clampattr(height, 300);
+
+      .otherBlock {
+        position: absolute;
+        @include clampattr(bottom, 10);
+        @include clampattr(left, 31);
+        @include clampattr(right, 31);
+        // @include clampattr(height, 40);
+
+        .answerChoice {
+          width: 100%;
+          border: 1px solid;
+          border-color: var(--light-navy-blue);
+          border-radius: 2px;
+          border-width: 0px;
+          outline-width: 0;
+        }
+
+        .sponsorBlock {
+          text-align: right;
+
+          .label {
+            position: relative;
+            @include clampattr(font-size, 12);
+            font-style: italic;
+          }
+
+          .name {
+            position: relative;
+            @include clampattr(font-size, 12);
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1281px) {
+
+    .BingoPuzzle {
+      border-radius: 10px;
+      border-width: 0px;
+      @include clampattr(padding-top, 18);
+      @include clampattr(padding-left, 16);
+      @include clampattr(padding-right, 16);
+      @include clampattr(font-size, 18);
+      @include clampattr(line-height, 30);
+      @include clampattr(height, 390);
+
+      .otherBlock {
+        position: absolute;
+        @include clampattr(bottom, 10);
+        @include clampattr(left, 31);
+        @include clampattr(right, 31);
+
+        .answerChoice {
+          width: 100%;
+          border: 1px solid;
+          border-color: var(--light-navy-blue);
+          border-radius: 2px;
+          border-width: 0px;
+          outline-width: 0;
+        }
+
+        .sponsorBlock {
+          text-align: right;
+
+          .label {
+            position: relative;
+            @include clampattr(font-size, 12);
+            font-style: italic;
+          }
+
+          .name {
+            position: relative;
+            @include clampattr(font-size, 12);
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  .bingo-check-answer {
+    @extend .rowpuzzle;
+    margin-top: 0px;
+    @include clampattr(padding-top, 48);
+
+    .BingoWin {
+      @extend .bingo-textfont;
+      @include clampattr(font-size, 36);
+      font-weight: bold;
+    }
+
+    .bingo-flag {
+      @include clampattr(font-size, 48);
+      color: orangered;
+    }
+
+    .checkAnswerButton {
+      @extend .bingo-textfont;
+      float: right;
+      object-fit: contain;
+      border-radius: 10px;
+      border: solid 1px;
+      border-color: var(--warm-grey);
+      background-color: var(--light-periwinkle);
+      @include clampattr(font-size, 24);
+      @include clampattr(line-height, 60);
+    }
+  }
+
+  .bingo-user-info {
+    @extend .rowpuzzle;
+    @extend .bingo-textfont;
+    @include clampattr(padding-top, 24);
+    @include clampattr(font-size, 24);
+    @include clampattr(line-height, 48);
+
+    label {
+      margin-right: 10px;
+    }
+
+    input {
+      background-color: var(--light-periwinkle);
+      border-radius: 10px;
+      border-width: 0px;
+      outline-width: 0;
+      margin-right: 10px;
+      padding-left: 8px;
+      color: var(light-navy-blue-Two);
+    }
+
+    div {
+      display: inline-block;
+    }
+
+    @media (max-width: 1280px) {
+      #firstname {
+        @include clampattr(width, 200);
+      }
+
+      #lastname {
+        @include clampattr(width, 200);
+      }
+
+      #email {
+        @include clampattr(width, 555);
+      }
+
+      .field-error {
+        font-size: 12px;
+        color: red;
+      }
+    }
+
+    @media (min-width: 1281px) {
+      #firstname {
+        @include clampattr(width, 277);
+      }
+
+      #lastname {
+        @include clampattr(width, 277);
+      }
+
+      #email {
+        @include clampattr(width, 765);
+      }
+
+      .field-error {
+        font-size: 12px;
+        color: red;
+      }
+    }
+
+    .summitButton {
+      @extend .bingo-textfont;
+      object-fit: contain;
+      border-radius: 10px;
+      border: solid 1px;
+      border-color: var(--warm-grey);
+      background-color: var(--light-periwinkle);
+      @include clampattr(font-size, 24);
+      @include clampattr(line-height, 60);
+      padding-left: 30px;
+      padding-right: 30px;
+      position: absolute;
+      right: 14px;
+      top: 0;
+    }
+
+    .success-msg {
+      @include clampattr(font-size, 36);
+    }
+  }
+
+  .bingo-footer {
+    @extend .rowpuzzle;
+    @include clampattr(margin-top, 80);
+
+    .line1 {
+      @extend .bingo-textfont;
+      @include clampattr(font-size, 35);
+      font-weight: bold;
+      color: rgb(57, 97, 189);
+    }
+
+    .line2 {
+      @extend .bingo-textfont;
+      @include clampattr(font-size, 30);
+      font-weight: bold;
+      color: rgb(57, 97, 189);
+    }
+
+    // .bingo-logos {
+    //   content: @include image_content('bingo-logos.png', 1545, 351);
+    //   margin-top: clamp(4.4rem, #{8800 / $defVW}vw, 8.8rem);
+    // }
+  }
+
+  .purepharmacy_logo {
+    @include image_content('purepharmacy_logo.png');
+    @include clampattr(width, 281);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .sibo-logo {
+    @include image_content('SIBO-Logo2.png');
+    @include clampattr(width, 322);
+    margin-right: auto;
+    margin-left: auto;
+    // @include clampattr(margin-top, 10);
+  }
+
+  .foodMarble_logo {
+    @include image_content('foodmarble_logo_2.png');
+    @include clampattr(width, 515);
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .sibo_diagnostics_logo {
+    @include image_content('2025_SIBO_Diagnostics_Logo.jpg');
+    @include clampattr(width, 300);
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .fullscript_logo {
+    @include image_content('2025_Fullscript_Logo.jpg');
+    @include clampattr(width, 300);
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .vitaaid-logo {
+    @include image_content('VitaAid_Logo.jpg');
+    @include clampattr(width, 515);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .innovision-logo {
+    @include image_content('IVPM_black.jpg');
+    @include clampattr(width, 500);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .crna-logo {
+    @include image_content('CRNA_Banner.jpg');
+    @include clampattr(width, 515);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .Emerson-Logo {
+    @include image_content('2022-Emerson-Logo_green_320x238.png');
+    @include clampattr(width, 200);
+    margin: 0 auto;
+  }
+
+  .excellanalytical_logo {
+    @include image_content('excellanalytical_logo.png');
+    @include clampattr(width, 228);
+    margin: 0 auto;
+  }
+
+  .outsmart-logo {
+    @include image_content('Outsmart_EMR_744x488.png');
+    @include clampattr(width, 200);
+    margin: 0 auto;
+  }
+
+  .qac-logo {
+    @include image_content('quantumallergycanada.png');
+    @include clampattr(width, 200);
+    margin: 0 auto;
+  }
+
+  .sibo-white-2023-logo {
+    @include image_content('sibo_white_logo.jpg');
+    @include clampattr(width, 200);
+    margin: 0 auto;
+  }
+
+}

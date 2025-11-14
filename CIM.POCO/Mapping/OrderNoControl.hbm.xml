@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="OrderNoControl" table="OrderNoControl" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="VendorCode" type ="TrimString">
+      <column name="VendorCode" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="Year">
+      <column name="Year" sql-type="int" not-null="true" />
+    </property>
+    <property name="SerierNo">
+      <column name="SerierNo" sql-type="int" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

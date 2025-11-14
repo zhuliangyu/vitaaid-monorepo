@@ -1,0 +1,351 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+// div[class='row'] {
+//   outline: 1px dotted rgba(0, 0, 0, 0.25);
+// }
+
+// div[class^='col-'] {
+//   background-color: rgba(255, 0, 0, 0.2);
+//   outline: 1px dotted rgba(0, 0, 0, 0.5);
+// }
+.registration {
+  @extend .main-body-bottom-line;
+
+  // @include clampattr(margin-bottom, 100);
+  // @include clampattr(width, 1280);
+  // margin-left: auto;
+  // margin-right: auto;
+  // padding-left: 2px;
+  // padding-right: 2px;
+
+  .registration-row {
+    /*    @include clampattr(margin-left, $page-lr-padding);
+    @include clampattr(margin-right, $page-lr-padding);
+*/
+  }
+
+  .registration-col-12 {
+    padding: 0px;
+    @include clampattr(margin-top, 32);
+  }
+
+  .title {
+    @include clampattr(font-size, 25);
+    font-weight: 600;
+    color: var(--marine-blue);
+    padding: 0px;
+  }
+
+  .complete-account-information {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 6);
+      @include clampattr(padding-top, 9);
+    }
+    @include media('>=tablet') {
+      margin: 12px 0px;
+    }
+
+    border-top: 1px solid var(--grey-borderline);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include clampattr(padding-bottom, 8);
+
+    .subtitle {
+      @include media('<tablet') {
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        font-weight: 600;
+        @include clampattr(line-height, 40);
+      }
+      @include clampattr(font-size, 20);
+      color: var(--ocean-blue);
+    }
+
+    .info-content {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 20);
+        font-weight: 300;
+      }
+      color: #5c5c5c;
+    }
+  }
+
+  .registration-form {
+    .col-12 {
+      padding: 0px;
+    }
+    @include media('<tablet') {
+      .fields-block-m {
+        border-bottom: 1px solid var(--grey-borderline);
+      }
+    }
+    .left-side {
+      padding: 0;
+
+      div {
+        @include media('<tablet') {
+          display: block;
+        }
+        @include media('>=tablet') {
+          display: inline-block;
+        }
+        vertical-align: top;
+        position: relative;
+      }
+    }
+
+    .right-side {
+      @include media('>=tablet') {
+        @include importantclampattr(padding-left, 99);
+      }
+
+      div {
+        @include media('<tablet') {
+          display: block;
+        }
+        @include media('>=tablet') {
+          display: inline-block;
+        }
+        vertical-align: top;
+        position: relative;
+      }
+    }
+
+    @include media('>=tablet') {
+      .col2-div {
+        @include clampattr(margin-left, $col-gap);
+      }
+    }
+
+    .error-msg {
+      color: var(--error-color);
+      display: block !important;
+
+      @include media('>=tablet') {
+        position: absolute !important;
+        @include clampattr(bottom, 12);
+      }
+    }
+
+    .col2-error-msg {
+      @extend .error-msg;
+      @include clampattr(margin-left, 32);
+    }
+
+    .file-error-msg {
+      color: var(--error-color);
+      display: block !important;
+      @include clampattr(bottom, 12);
+    }
+
+    td {
+      vertical-align: top;
+    }
+
+    .td1 {
+      @include clampattr(width, 283);
+    }
+
+    .td2 {
+      @include clampattr(width, 464);
+    }
+
+    .td3 {
+      @include clampattr(width, 283);
+    }
+
+    .td4 {
+      @include clampattr(width, 250);
+    }
+    @include media('>=tablet') {
+      .colspan2 {
+        @include importantclampattr(width, 532);
+      }
+    }
+    .col-input {
+      @include clampattr(height, 35);
+      @include clampattr(border-radius, 10);
+      outline: none;
+      border: 1px solid #ccc;
+      @include clampattr(padding-left, $input-padding-left);
+      @include media('<tablet') {
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 250);
+        @include clampattr(margin-bottom, 30);
+      }
+    }
+
+    .col1-input {
+      @extend .col-input;
+      @include clampattr(width, 250);
+    }
+
+    .col2-input {
+      @extend .col-input;
+      @include clampattr(width, 250);
+      @include clampattr(margin-left, 32);
+    }
+
+    select {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        background: transparent;
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+      }
+
+      @include importantclampattr(padding-left, $select-padding-left);
+      color: #5c5c5c;
+    }
+
+    .other-pract {
+      @include importantclampattr(width, 88);
+      @include clampattr(margin-right, 8);
+    }
+
+    .input-other {
+      @include importantclampattr(width, 155);
+    }
+    @include media('<tablet') {
+      .input-m {
+        @include clampattr(margin-bottom, 20);
+      }
+      .other-type-m {
+        width: 100% !important;
+      }
+    }
+
+    .licence-verify-block {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 20);
+        @include clampattr(font-size, 14);
+        font-weight: 300;
+      }
+
+      input[type='file']::file-selector-button {
+        background-color: transparent;
+        border: 1px solid #cccccc;
+        @include clampattr(border-radius, 10);
+        @include clampattr(height, 35);
+      }
+
+      .file-uploader {
+        color: #5c5c5c !important;
+      }
+      input[type='file']::file-selector-button {
+        color: var(--marine-blue);
+      }
+
+      .disable {
+        cursor: not-allowed;
+        pointer-events: none;
+        color: #cccccc !important;
+      }
+
+      .upload-desc {
+        @include media('<tablet') {
+          color: #5c5c5c;
+        }
+        @include clampattr(margin-top, 18);
+        white-space: normal;
+        width: 100%;
+      }
+
+      input[type='radio'] {
+        @include clampattr(margin-right, 8);
+      }
+
+      label {
+        display: block;
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+        }
+      }
+    }
+
+    .verification-block {
+      @include clampattr(font-size, 14);
+      @include clampattr(margin-top, 25);
+      @include clampattr(margin-bottom, 8);
+      font-weight: 300;
+      color: #5c5c5c;
+    }
+    .choose-file-m {
+      color: var(--marine-blue);
+    }
+    .label-of-select {
+      @include clampattr(line-height, 15);
+    }
+    label {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        font-weight: 300;
+      }
+      color: #5c5c5c;
+    }
+
+    input[type='checkbox'] {
+      @include clampattr(margin-right, 8);
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+      }
+    }
+
+    .button-block {
+      @include media('<tablet') {
+        @include clampattr(padding-top, 8);
+      }
+      @include media('>=tablet') {
+        text-align: end;
+        @include clampattr(padding-top, 50);
+      }
+
+      button {
+        @include clampattr(border-radius, 10);
+        outline: none;
+        @include media('<tablet') {
+          @include mobile-btn;
+          background: var(--marine-blue);
+          border: 1px solid #bccad3;
+          color: white;
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 12);
+          @include clampattr(width, 70);
+          @include clampattr(height, 30);
+          font-weight: 300;
+          color: var(--marine-blue);
+          border: 1px solid #608396;
+          background-color: transparent;
+        }
+      }
+    }
+    // input[required] {
+    //   background-image: linear-gradient(
+    //     90deg,
+    //     transparent,
+    //     transparent 50%,
+    //     #e70b0b 50%,
+    //     #e70b0b 100%
+    //   );
+    //   background-position: top right;
+    //   background-size: 10px 35px;
+    //   background-repeat: no-repeat;
+    // }
+  }
+}

@@ -1,0 +1,16 @@
+﻿@use '../../abstracts/mixins' as *;
+@use '../../abstracts/variables' as *;
+
+.address-book {
+  @include clampattr(margin-top, 36);
+  @include clampattr(margin-bottom, 132);
+
+  .title {
+    @include clampattr(font-size, 25);
+    font-weight: 600;
+    color: var(--marine-blue);
+    @include clampattr(padding-bottom, 14);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+}
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="StabilityTestData" table="StabilityTestData" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oStabilityForm">
+      <column name="StabilityFormID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="TestName" type ="TrimString">
+      <column name="TestName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDesc" type ="TrimString">
+      <column name="TestDesc" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestSpec" type ="TrimString">
+      <column name="TestSpec" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestMethod" type ="TrimString">
+      <column name="TestMethod" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Result0" type ="TrimString">
+      <column name="Result0" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestUser0" type ="TrimString">
+      <column name="TestUser0" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDate0">
+      <column name="TestDate0" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Result12" type ="TrimString">
+      <column name="Result12" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestUser12" type ="TrimString">
+      <column name="TestUser12" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDate12">
+      <column name="TestDate12" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Result24" type ="TrimString">
+      <column name="Result24" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestUser24" type ="TrimString">
+      <column name="TestUser24" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDate24">
+      <column name="TestDate24" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Result36" type ="TrimString">
+      <column name="Result36" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestUser36" type ="TrimString">
+      <column name="TestUser36" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDate36">
+      <column name="TestDate36" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Result48" type ="TrimString">
+      <column name="Result48" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestUser48" type ="TrimString">
+      <column name="TestUser48" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDate48">
+      <column name="TestDate48" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="GroupName" type ="TrimString">
+      <column name="GroupName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <!-- Other -->
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

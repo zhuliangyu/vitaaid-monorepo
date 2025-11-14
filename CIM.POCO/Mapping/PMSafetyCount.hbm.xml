@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PMSafetyCount" table="PMSafetyCount" lazy="true" >
+    <id name="category" column="category" type ="TrimString">
+      <generator class="assigned" />
+    </id>
+    <property name="packagetype">
+      <column name="packagetype" sql-type="int" not-null="false" />
+    </property>
+    <property name="SafetyCount">
+      <column name="SafetyCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="whstockcount">
+      <column name="whstockcount" sql-type="int" not-null="false" />
+    </property>
+    <property name="whstockweight">
+      <column name="whstockweight" sql-type="float" not-null="false" />
+    </property>
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CurrPMClosedStock_v" table="CurrPMClosedStock_v" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<property name="ReceivingNo" type ="TrimString">
+	  <column name="ReceivingNo" sql-type="nvarchar" not-null="true" />
+	</property>
+	<property name="BoxNo">
+	  <column name="BoxNo" sql-type="int" not-null="true" />
+	</property>
+	<property name="PackingCode" type ="TrimString">
+	  <column name="PackingCode" sql-type="nvarchar" not-null="true" />
+	</property>
+	<property name="PackageType" type="ePACKAGETYPE">
+	  <column name="PackageType" sql-type="int" not-null="true" />
+	</property>
+	<property name="Name" type ="TrimString">
+	  <column name="Name" sql-type="nvarchar" not-null="true" />
+	</property>
+	<property name="LotNumber" type ="TrimString">
+	  <column name="LotNumber" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="WeightPerUnit">
+	  <column name="WeightPerUnit" sql-type="float" not-null="false" />
+	</property>
+	<property name="ReleaseDate">
+	  <column name="ReleaseDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="StockCount">
+	  <column name="StockCount" sql-type="int" not-null="false" />
+	</property>
+	<property name="SupplyCount">
+	  <column name="SupplyCount" sql-type="int" not-null="false" />
+	</property>
+	<property name="StockWeight">
+	  <column name="StockWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="SupplyWeight">
+	  <column name="SupplyWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="SafeStock">
+	  <column name="SafeStock" sql-type="float" not-null="false" />
+	</property>
+	<property name="ExpireDate">
+	  <column name="ExpireDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="StockLocation" type ="TrimString">
+	  <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="UpdatedDate">
+	  <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="Comment" type ="TrimString">
+	  <column name="Comment" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Currency1" type ="TrimString">
+	  <column name="Currency1" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="UnitCostForeignCurrency" type ="Decimal">
+	  <column name="UnitCostForeignCurrency" sql-type="money" not-null="false" />
+	</property>
+	<property name="UnitCostTax" type ="Decimal">
+	  <column name="UnitCostTax" sql-type="money" not-null="false" />
+	</property>
+	<property name="UnitCost" type ="Decimal">
+	  <column name="UnitCost" sql-type="money" not-null="false" />
+	</property>
+	<many-to-one name="Supplier">
+	  <column name="Supplier" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="InWH">
+	  <column name="InWH" sql-type="int" not-null="false" />
+	</property>
+	<many-to-one name="PackageSpec">
+	  <column name="PackageSpec" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="Division" type ="TrimString">
+	  <column name="Division" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Disposal">
+	  <column name="Disposal" sql-type="int" not-null="false" />
+	</property>
+	<property name="PriceChecked">
+	  <column name="PriceChecked" sql-type="int" not-null="false" />
+	</property>
+	<property name="GrossWeight">
+	  <column name="GrossWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="BoxWeight">
+	  <column name="BoxWeight" sql-type="float" not-null="false" />
+	</property>
+	<property name="ReceivedBy" type ="TrimString">
+	  <column name="ReceivedBy" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ReceivedDate">
+	  <column name="ReceivedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="ApprovedBy" type ="TrimString">
+	  <column name="ApprovedBy" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ApprovedDate">
+	  <column name="ApprovedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="StockLastYear">
+	  <column name="StockLastYear" sql-type="float" not-null="false" />
+	</property>
+	<property name="ClosedDate">
+	  <column name="ClosedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="ExchangeRate">
+	  <column name="ExchangeRate" sql-type="float" not-null="false" />
+	</property>
+	<property name="ExchangeRateDate">
+	  <column name="ExchangeRateDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="DisposalDate">
+	  <column name="DisposalDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<property name="RetestDate">
+	  <column name="RetestDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	<many-to-one name="oPurchasePMReq">
+	  <column name="oPurchasePMReq" sql-type="int" not-null="false" />
+	</many-to-one>
+  </class>
+</hibernate-mapping>

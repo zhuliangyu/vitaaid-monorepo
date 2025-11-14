@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Supplier" table="Supplier" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Code" type ="TrimString">
+      <column name="SupplierCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Name" type ="TrimString">
+      <column name="SupplierName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Active">
+      <column name="Active" sql-type="int" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

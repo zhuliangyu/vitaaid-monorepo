@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SPCValue" table="SPCValue" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oSPCSheet">
+      <column name="oSPCSheet" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Value">
+      <column name="Value" sql-type="float" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

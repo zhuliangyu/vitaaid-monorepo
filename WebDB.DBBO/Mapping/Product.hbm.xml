@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="Product" table="Products" lazy="true" >
+		<id name="ID" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="OldID">
+			<column name="OldID" sql-type="int" not-null="false" />
+		</property>
+
+		<property name="Category" type ="TrimString">
+			<column name="category" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ProductName" type ="TrimString">
+			<column name="ProductName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Function" type ="TrimString">
+			<column name="[Function]" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ProductCode" type ="TrimString">
+			<column name="ProductCode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Tags" type ="TrimString">
+			<column name="Tags" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Description" type ="TrimString">
+			<column name="Description" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Indications" type ="TrimString">
+			<column name="Indications" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Combination" type ="TrimString">
+			<column name="Combination" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Suggest" type ="TrimString">
+			<column name="Suggest" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ProductSheet" type ="TrimString">
+			<column name="ProductSheet" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="image" type ="TrimString">
+			<column name="image" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="TimeStamp" >
+			<column name="TimeStamp" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="Size" type ="TrimString">
+			<column name="Size" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Size2" type ="TrimString">
+			<column name="Size2" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Caution" type ="TrimString">
+			<column name="Caution" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="NPN" type ="TrimString">
+			<column name="NPN" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Featured">
+			<column name="Featured" sql-type="int" not-null="false" />
+		</property>
+		<property name="SupplementFact" type ="TrimString">
+			<column name="SupplementFact" sql-type="nvarchar" not-null="false" />
+		</property>
+
+		<property name="VisibleSite" type ="eWEBSITE">
+			<column name="VisibleSite" sql-type="int" not-null="true" />
+		</property>
+		<property name="Published">
+			<column name="Published" sql-type="int" not-null="false" />
+		</property>
+		<property name="AdditionalInfo" type ="TrimString">
+			<column name="AdditionalInfo" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Category1" type ="TrimString">
+			<column name="category1" sql-type="nvarchar" not-null="false" />
+		</property>
+    <property name="ServingSize">
+      <column name="ServingSize" sql-type="int" not-null="false" />
+    </property>
+    <property name="ServingUnit" type ="TrimString">
+      <column name="ServingUnit" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ServingsPerContainer">
+      <column name="ServingsPerContainer" sql-type="int" not-null="false" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+
+
+	</class>
+</hibernate-mapping>

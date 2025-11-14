@@ -1,0 +1,177 @@
+﻿@use '../abstracts' as *;
+@use '../base' as *;
+
+.order-detail {
+  .header {
+    @include clampattr(margin-top, 8);
+    @include clampattr(padding-bottom, 8);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .header-label {
+    @include clampattr(font-size, 20);
+    @include media('>=tablet') {
+      font-weight: 600;
+    }
+    @include clampattr(line-height, 24);
+    color: var(--ocean-blue);
+  }
+
+  .address-summary {
+    @include clampattr(margin-top, 6);
+    @include media('<tablet') {
+      border-bottom: 1px solid var(--grey-borderline);
+      @include clampattr(padding-bottom, 10);
+      @include clampattr(margin-bottom, 16);
+    }
+    .address {
+      @include media('<tablet') {
+        @include clampattr(font-size, 18);
+        @include clampattr(line-height, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 25);
+      }
+      color: var(--greyish-brown);
+    }
+    .gap-address-m {
+      @include media('<tablet') {
+        @include clampattr(height, 20);
+        width: 100%;
+      }
+    }
+  }
+
+  // .cart-detail-table {
+  //   @include clampattr(margin-top, 14);
+  //   width: 100%;
+  //   table-layout: fixed;
+
+  //   .table-header {
+  //     border-top: 1px solid var(--grey-borderline);
+  //     border-bottom: 1px solid var(--grey-borderline);
+  //     @include clampattr(font-size, 18);
+  //     @include clampattr(line-height, 32);
+  //     font-weight: 600;
+  //     color: var(--marine-blue);
+  //   }
+
+  //   .table-body {
+  //     @include clampattr(font-size, 15);
+  //     @include clampattr(line-height, 25);
+  //     font-weight: 400;
+  //     color: var(--greyish-brown);
+  //     border-bottom: 1px solid var(--grey-borderline);
+  //   }
+
+  //   tbody::after {
+  //     display: block;
+  //     content: ' ';
+  //     width: 100%;
+  //     @include clampattr(height, 16);
+  //     padding-left: 1px;
+  //   }
+
+  //   .table-cell {
+  //     @include clampattr(margin-top, 16);
+  //   }
+
+  //   .price-div {
+  //     text-align: center;
+  //     @include clampattr(width, 80);
+  //   }
+  // }
+
+  // .order-detail-row-m {
+  //   margin-left: #{calc($page-lr-padding-m * -1)}px;
+  //   margin-right: #{calc($page-lr-padding-m * -1)}px;
+  //   padding-left: #{$page-lr-padding-m}px;
+  //   padding-right: #{$page-lr-padding-m}px;
+  //   @include clampattr(padding-top, 6);
+  //   @include clampattr(padding-bottom, 6);
+  // }
+  // .row-idx-0 {
+  //   background: var(--whisper-grey);
+  // }
+  // .detail-info-m {
+  //   @include clampattr(line-height, 24);
+  //   .title {
+  //     @include clampattr(font-size, 20);
+  //     color: var(--peacock-blue);
+  //   }
+  //   .value {
+  //     @include clampattr(font-size, 18);
+  //     color: var(--greyish-brown);
+  //   }
+  // }
+  .cart-summary-1 {
+    @include media('<tablet') {
+      border-top: 1px solid var(--grey-borderline);
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+      @include clampattr(padding-top, 10);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 42);
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+    text-align: end;
+    @include clampattr(padding-bottom, 12);
+    color: var(--greyish-brown);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .cart-summary-tax {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+      @include clampattr(padding-top, 10);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 12);
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+    text-align: end;
+    @include clampattr(padding-bottom, 12);
+    color: var(--greyish-brown);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+
+  .cart-credit {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+      @include clampattr(padding-top, 10);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+    text-align: end;
+    color: var(--greyish-brown);
+  }
+
+  .cart-summary-total {
+    @include media('<tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 24);
+      @include clampattr(padding-top, 10);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 12);
+      @include clampattr(font-size, 15);
+      font-weight: 600;
+      @include clampattr(line-height, 25);
+    }
+    text-align: end;
+    color: var(--marine-blue);
+    @include clampattr(padding-bottom, 12);
+    border-bottom: 1px solid var(--grey-borderline);
+  }
+}

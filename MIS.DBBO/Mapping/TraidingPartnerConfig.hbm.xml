@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="TraidingPartnerConfig" table="TraidingPartnerConfig" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+      <property name="VENDOR_NUMBER" type ="TrimString">
+          <column name="VENDOR_NUMBER" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="EDI_QUALIFIER" type ="TrimString">
+          <column name="EDI_QUALIFIER" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="EDI_ISA_ID" type ="TrimString">
+          <column name="EDI_ISA_ID" sql-type="nvarchar" not-null="false" />
+      </property>
+    <property name="EDI_GS_ID" type ="TrimString">
+      <column name="EDI_GS_ID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="INTERCHANGE_STANDARDS_ID" type ="TrimString">
+      <column name="INTERCHANGE_STANDARDS_ID" sql-type="nvarchar" not-null="false" />
+    </property>
+      <property name="INTERCHANGE_VERSION_ID" type ="TrimString">
+          <column name="INTERCHANGE_VERSION_ID" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ACT_REQUESTED" type ="TrimString">
+          <column name="ACT_REQUESTED" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="USAGE_INDICATOR" type ="TrimString">
+          <column name="USAGE_INDICATOR" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ISA_CONTROL_NUM" type ="TrimString">
+          <column name="ISA_CONTROL_NUM" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="GS_CONTROL_NUM" type ="TrimString">
+          <column name="GS_CONTROL_NUM" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="ST_CONTROL_NUM" type ="TrimString">
+          <column name="ST_CONTROL_NUM" sql-type="nvarchar" not-null="false" />
+      </property>
+  </class>
+</hibernate-mapping>

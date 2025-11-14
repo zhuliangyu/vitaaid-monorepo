@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="Bingo" table="Bingo" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Sponsor">
+      <column name="Sponsor" sql-type="nvarchar" not-null="false" />
+    </property>
+		<property name="Question">
+			<column name="Question" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Choices">
+			<column name="Choices" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Answer">
+			<column name="Answer" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="SponsorType">
+			<column name="SponsorType" sql-type="nvarchar" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

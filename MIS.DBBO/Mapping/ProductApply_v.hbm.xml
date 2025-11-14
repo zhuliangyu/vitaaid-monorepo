@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<class name="ProductApply_v" table="ProductApply_v" lazy="true" >
+		<id name="ID" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="CustomerCode" type ="TrimString">
+			<column name="CustomerCode" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="CustomerName" type ="TrimString">
+			<column name="CustomerName" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="CustomerEmail1" type ="TrimString">
+			<column name="CustomerEmail1" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="CustomerTel1" type ="TrimString">
+			<column name="CustomerTel1" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="ProductCode" type ="TrimString">
+			<column name="ProductCode" sql-type="nvarchar" not-null="true" />
+		</property>
+		<!--<property name="MESProductCode" type ="TrimString">
+			<column name="MESProductCode" sql-type="nvarchar" not-null="true" />
+		</property>-->
+		<property name="ProductName" type ="TrimString">
+			<column name="ProductName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ApplyCountBottle">
+			<column name="ApplyCountBottle" sql-type="int" not-null="false" />
+		</property>
+		<property name="ApplyDate">
+			<column name="ApplyDate" sql-type="smalldatetime" not-null="false" />
+		</property>
+		<property name="LotInfo" type ="TrimString">
+			<column name="LotInfo" sql-type="nvarchar" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

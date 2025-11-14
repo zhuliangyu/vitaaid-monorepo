@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="FinishProductApply" table="FinishProductApply" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="ApplySequenceNumber">
+      <column name="ApplySequenceNumber" sql-type="int" not-null="false" />
+    </property>
+    <property name="InvoiceNo" type ="TrimString">
+      <column name="ApplyCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SupplyCode" type ="TrimString">
+      <column name="SupplyCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductName" type ="TrimString">
+      <column name="ProductName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="MESProductCode" type ="TrimString">
+      <column name="MESProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LotNumber" type ="TrimString">
+      <column name="LotNumber" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="StockCountBottleBefore">
+      <column name="StockCountBottleBefore" sql-type="int" not-null="false" />
+    </property>
+    <property name="ApplyCountBottle">
+      <column name="ApplyCountBottle" sql-type="int" not-null="false" />
+    </property>
+    <property name="StockCountBottleAfter">
+      <column name="StockCountBottleAfter" sql-type="int" not-null="false" />
+    </property>
+    <property name="SalesPrice" type="Decimal">
+      <column name="SalesPrice" not-null="false" precision="18" scale="2"/>
+    </property>
+    <property name="StockLocation" type ="TrimString">
+      <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Status" type ="TrimString">
+      <column name="Status" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="AccountNO" type ="TrimString">
+      <column name="CustomerID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ApplyID" type ="TrimString">
+      <column name="ApplyID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ApplyDate">
+      <column name="ApplyDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

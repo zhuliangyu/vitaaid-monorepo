@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="SupplyCode_v" table="SupplyCode_v" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="SupplyCode" type ="TrimString">
+      <column name="SupplyCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="sType" type ="TrimString">
+      <column name="sType" sql-type="nvarchar" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

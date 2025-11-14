@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Operation" table="Operation" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <property name="OperationType" type="eOPERATION">
+      <column name="OperationType" sql-type="int" not-null="false" />
+    </property>
+    <property name="Parameter1" type ="TrimString">
+      <column name="Parameter1" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Parameter2" type ="TrimString">
+      <column name="Parameter2" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Note" type ="TrimString">
+      <column name="Note" sql-type="nvarchar" not-null="false" />
+    </property>
+
+    <property name="MeshSize">
+      <column name="MeshSize" sql-type="int" not-null="false" />
+    </property>
+    <property name="KeepInContainer" type="eKEEPIN">
+      <column name="KeepInContainer" sql-type="int" not-null="false" />
+    </property>
+
+    <component name="Operands"  class="MySystem.Base.NSeqList`1[Operand], MySystem.Base">
+      <bag name="innerList" cascade="all" lazy="true" order-by="Sequence" >
+        <key column="OperationID" />
+        <one-to-many class="Operand" />
+      </bag>
+    </component>
+  </class>
+</hibernate-mapping>

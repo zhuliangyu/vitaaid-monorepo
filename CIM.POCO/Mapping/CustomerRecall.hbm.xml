@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CustomerRecall" table="CustomerRecall" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oRecall">
+      <column name="Recall" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CustomerCode" type ="TrimString">
+      <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerName" type ="TrimString">
+      <column name="CustomerName" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="CustomerEmail" type ="TrimString">
+      <column name="CustomerEmail" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CustomerTel" type ="TrimString">
+      <column name="CustomerTel" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SendEmailStatus" type ="TrimString">
+      <column name="SendEmailStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RecallStatus" type ="TrimString">
+      <column name="RecallStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="NotifyMethod" type ="TrimString">
+      <column name="NotifyMethod" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RecallDate">
+      <column name="RecallDate" sql-type="datetime2" not-null="false" />
+    </property>
+    <bag name="oRecallDetails" table="RecallDetail" lazy="true">
+      <key column="oCustomer"/>
+      <one-to-many class="RecallDetail"/>
+    </bag>
+	
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+		  <column name="CreatedDate" sql-type="DateTime2" not-null="false" />
+	  </property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+		  <column name="UpdatedDate" sql-type="DateTime2" not-null="false" />
+	  </property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

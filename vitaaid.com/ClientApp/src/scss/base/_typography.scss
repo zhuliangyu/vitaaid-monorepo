@@ -1,0 +1,20 @@
+@use '../abstracts' as *;
+/**
+ * Basic typography style for copy text
+ */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@include media('<tablet') {
+  body {
+    font-family: Calibri, Candara, Carlito !important;
+  }
+}
+// non mobile
+@include media('>=tablet') {
+  body {
+    font-family: SegoeUI !important;
+  }
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PMDetailApplyLog" table="PMDetailApplyLog" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="PackageCode" type ="TrimString">
+      <column name="PackageCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PackageType" type="ePACKAGETYPE">
+      <column name="PackageType" sql-type="int" not-null="true" />
+    </property>
+    <property name="PackageName" type ="TrimString">
+      <column name="PackageName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ReceivingNo" type ="TrimString">
+      <column name="ReceivingNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="BoxNo">
+      <column name="BoxNo" sql-type="int" not-null="false" />
+    </property>
+    <property name="LotNo" type ="TrimString">
+      <column name="LotNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductCode" type ="TrimString">
+      <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProductionName" type ="TrimString">
+      <column name="ProductionName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LogType" type ="TrimString">
+      <column name="LogType" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ApplyWeight">
+      <column name="ApplyWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="ApplyCount">
+      <column name="ApplyCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="BeforeStockWeight">
+      <column name="BeforeStockWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="AfterStockWeight">
+      <column name="AfterStockWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="BeforeStockCount">
+      <column name="BeforeStockCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="AfterStockCount">
+      <column name="AfterStockCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="GroupCode" type ="TrimString">
+      <column name="GroupCode" sql-type="nvarchar" not-null="false" />
+    </property>
+
+  </class>
+</hibernate-mapping>

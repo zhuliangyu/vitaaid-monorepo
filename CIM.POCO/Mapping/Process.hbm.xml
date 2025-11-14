@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Process" table="Process" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+
+    <many-to-one name="Route">
+      <column name="RouteID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Sequence" type ="TrimString">
+      <column name="Sequence" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="LoopCount">
+      <column name="LoopCount" sql-type="int" not-null="true" />
+    </property>
+    <property name="Skippable">
+      <column name="Skippable" sql-type="int" not-null="true" />
+    </property>
+    <property name="ProcessType" type ="ePROCESSTYPE">
+      <column name="ProcessType" sql-type="int" not-null="false" />
+    </property>
+    <property name="ProcessCode" type ="TrimString">
+      <column name="ProcessCode" sql-type="nvarchar" not-null="true" />
+    </property>
+
+
+    <bag name="TempOperands" table="TempOperand" lazy="true" cascade="all">
+      <key column="MainProcessID" />
+      <one-to-many class="TempOperand" />
+    </bag>
+
+
+    <component name="Steps"  class="MySystem.Base.NSeqList`1[Step], MySystem.Base">
+      <bag name="innerList" lazy="true" order-by="Sequence" >
+        <key column="ProcessID" />
+        <one-to-many class="Step" />
+      </bag>
+    </component>
+
+    <bag name="SubProcesses" table="Process" lazy="true" cascade="all" order-by="Sequence">
+      <key column="ParentProcess" />
+      <one-to-many class="Process" />
+    </bag>
+
+  </class>
+</hibernate-mapping>

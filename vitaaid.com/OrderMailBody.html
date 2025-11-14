@@ -1,0 +1,123 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Order Received Confirmation</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=charset=windows-1252">
+<body>
+<table cellspacing="0" cellpadding="0" width="500" border="0">
+	<tbody>
+	<tr>
+		<td><font face="Verdana" size="2">Dear {TitleBill},<br><br><b><font color="#000080">Your order has been received. We will process and ship your order within the next 24-48 hours once the payment has been confirmed.<br></font></b>
+		<br>The details of your order are listed below. Dated on {OrderDate} (PST)<br></font></td></tr>
+	<tr>
+		<td><br><font face="Verdana" size="2">Order Number:<b><font color="#800080">{PONo}</font></b></font></td></tr></tbody></table>
+<table width="500" bgcolor="#267CBB" border="0">
+	<tbody>
+	<tr>
+		<td width="100%" bgcolor="#ffffff">
+			<table cellspacing="0" cellpadding="3" width="100%" border="0">
+				<tbody>
+				<tr>
+					<td width="100%"><b><font face="Verdana" color="#267cbb" size="2">Shipping Address</font></b> 
+						<table width="100%">
+							<tbody>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" color="#000000" size="2">Shipped to:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{TitleShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Address</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{AddrShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">City</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{CityShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">State/Province</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{ProvinceShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Country:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{CountryShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Zip Code</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{ZipCodeShip}</font></td>
+								</tr>
+								{DropShipMsg}
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Telephone</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{TelShip}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Email</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{Email}</font></td>
+								</tr>
+								<tr>
+									<td valign="center" align="right" width="37%" bgcolor="#9acee2"><font face="Verdana" size="2">Customer's Remarks</font><font color="#000000" size="2">:</font></td>
+									<td align="left" width="63%" bgcolor="#ffffff"><font face="Verdana" size="2">{Comment}</font></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b><font face="Verdana" color="#267cbb" size="2">Product(s)</font></b> 
+						<div align="center">
+						<center>
+						<table width="100%">
+							<tbody>
+							<tr>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">#</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Code</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Product Name</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Quantity</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Unit Price</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Discount</font></td>
+								<td bgcolor="#9acee2"><font face="Verdana" size="2">Sub Total</font></td>
+							</tr>{OrderItems}</tbody></table></center></div></td>
+							</tr>
+						<tr>
+							<td>
+										<div align="center">
+											<center>
+											<table cellspacing="0" cellpadding="2" width="100%" border="0" id="v1table6">
+												<tbody>
+													<tr>
+														<td align="right" width="78%" bgcolor="#FFFFFF"><font face="Verdana" size="2">Net Sales:</font></td>
+														<td align="right" width="22%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{NetSales}</font></td>
+													</tr>
+													<tr>
+														<td align="right" width="78%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{cartDiscountName}</font></td>
+														<td align="right" width="22%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{cartDiscountDetail}</font></td>
+													</tr>
+													<tr>
+														<td align="right" width="78%" bgcolor="#FFFFFF"><font face="Verdana" size="2">Shipping &amp; Handling:</font></td>
+														<td align="right" width="22%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{ShippingFee}</font></td>
+													</tr>
+												  {RemoteAreaBlock}
+													<tr>
+														<td align="right" width="78%" bgcolor="#FFFFFF"><font face="Verdana" size="2">Subtotal:</font></td>
+														<td align="right" width="22%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{Subtotal}</font></td>
+													</tr>
+													<tr>
+														<td align="right" width="78%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{TaxTitle}</font></td>
+														<td align="right" width="22%" bgcolor="#FFFFFF"><font face="Verdana" size="2">{TaxAmount}</font></td>
+													</tr>
+													<tr>
+														<td align="right" width="78%" bgcolor="#267CBB"><font face="Verdana" size="2" color="#FFFFFF">Total({Currency}):</font></td>
+														<td align="right" width="22%" bgcolor="#267CBB"><font face="Verdana" size="2" color="#FFFFFF">{Total}</font></td>
+													</tr>
+												</tbody></table>
+											</center></div>
+							</td></tr><tr><td>
+							 <ul><font face="Verdana" size="2">
+							<li>Your order number is [{PONo}]. Please make a note of this for future reference.
+							</li><li>If you have problem regarding your order, please call our customer service at <b>1-800-490-1738</b> or email us at 
+							<a href="mailto:cs@vitaaid.com">cs@vitaaid.com</a></li></font></ul></td></tr></tbody></table>
+							</td></tr></tbody></table><br>
+							<img src="https://www.vitaaid.com/VitaAid_Logo-small.jpg" border="0">
+<div><font face="Verdana" size="2">VITAAID.COM</font><font face="Arial" size="2"><font face="Verdana" size="2"> </font></font><font face="Verdana" size="2">
+<a href="http://www.vitaaid.com" target="_blank" rel="noreferrer">http://www.vitaaid.com</a><br>Email: 
+<a href="mailto:info@vitaaid.com">info@vitaaid.com</a></font></div></div>
+</body>
+</html>

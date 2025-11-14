@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="TherapeuticProtocol" table="Therapeutic_Protocols" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+		
+    <property name="Category">
+      <column name="category" sql-type="int" not-null="false" />
+    </property>
+		<property name="Author" type = "TrimString">
+			<column name="author" sql-type="nvarchar" not-null="false" />
+		</property>
+    <property name="Issue" type = "TrimString">
+      <column name="issue_date" sql-type="nvarchar" not-null="false" />
+    </property>
+		<property name="Topic"  type = "TrimString">
+			<column name="topic" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="BlogContent"  type = "TrimString">
+			<column name="blog_content" sql-type="nvarchar" not-null="false" />
+		</property>
+
+		<property name="Banner"  type = "TrimString">
+			<column name="banner_image" sql-type="nvarchar" not-null="false" />
+		</property>
+
+		<property name="Tags"  type = "TrimString">
+			<column name="tags" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="PDFFile"  type = "TrimString">
+			<column name="pdf" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="VisibleSite" type ="eWEBSITE">
+			<column name="VisibleSite" sql-type="int" not-null="true" />
+		</property>
+		<property name="Published">
+			<column name="Published" sql-type="int" not-null="false" />
+		</property>
+
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+
+	</class>
+</hibernate-mapping>

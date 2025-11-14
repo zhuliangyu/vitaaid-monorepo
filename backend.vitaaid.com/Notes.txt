@@ -1,0 +1,29 @@
+﻿// create junction link
+mklink /J ProductImages g:\websites\vitaaid.com\ClientApp\build\ProductImages
+// delete junction link
+rmdir ProductImages
+
+ProductHelper.SaveImage
+
+public const string PRODUCT_DIR = BASE_DIR + @"product/";
+
+/ProductImages/product/VA141 BabyMom PB15 DF 400x400.png
+
+/ProductImages/product/VA141 BabyMom PB15 DF 400x400.png
+
+/ProductImages/product/large
+
+large/
+
+
+1>------ Rebuild All started: Project: BouncyCastle, Configuration: Debug x64 ------
+2>------ Rebuild All started: Project: MySystem.Base.Win, Configuration: Debug Any CPU ------
+3>------ Rebuild All started: Project: ECSServerObj, Configuration: Debug Any CPU ------
+4>------ Rebuild All started: Project: MySystem.Base, Configuration: Debug Any CPU ------
+5>------ Rebuild All started: Project: MyHibernateUtil, Configuration: Debug Any CPU ------
+6>------ Rebuild All started: Project: WebServiceMiddlewares, Configuration: Debug Any CPU ------
+7>------ Rebuild All started: Project: WebDB.DBBO, Configuration: Debug Any CPU ------
+8>------ Rebuild All started: Project: MIS.DBBO, Configuration: Debug Any CPU ------
+9>------ Rebuild All started: Project: WebDB.DBPO, Configuration: Debug Any CPU ------
+10>------ Rebuild All started: Project: MIS.DBPO, Configuration: Debug Any CPU ------
+11>------ Rebuild All started: Project: backend.vitaaid.com, Configuration: Debug Any CPU ------

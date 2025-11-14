@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="XactHistoryRecall" table="XactHistoryRecall" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<many-to-one name="oRecall">
+	  <column name="Recall" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="oCustomer">
+	  <column name="CustomerRecall" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="CustomerCode" type ="TrimString">
+	  <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="CustomerName" type ="TrimString">
+	  <column name="CustomerName" sql-type="nvarchar" not-null="true" />
+	</property>
+	<property name="ApplyDate">
+	  <column name="ApplyDate" sql-type="datetime2" not-null="false" />
+	</property>
+	<!--<property name="ApplyTime" type ="TrimString">
+	  <column name="ApplyTime" sql-type="nvarchar" not-null="false" />
+	</property>-->
+	<property name="ApplyCountBottle">
+	  <column name="ApplyCountBottle" sql-type="int" not-null="false" />
+	</property>
+	  <many-to-one name="oRecallDetail">
+		  <column name="oRecallDetail" sql-type="int" not-null="false" />
+	  </many-to-one>
+	  <property name="ComplaintNo" type ="TrimString">
+		  <column name="ComplaintNo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="ProductCode" type ="TrimString">
+		  <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+	  </property>
+  </class>
+</hibernate-mapping>

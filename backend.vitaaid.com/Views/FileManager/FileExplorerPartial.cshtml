@@ -1,0 +1,75 @@
+﻿@using backend.vitaaid.com.Models.FileManager;
+@using backend.vitaaid.com.Code;
+@using WebDB.DBPO;
+
+@Html.DevExpress().FileManager(
+    settings =>
+    {
+        settings.Name = "fileManager";
+        settings.CallbackRouteValues = new { Controller = "FileManager", Action = "FileExplorerPartial" };
+        settings.CustomActionRouteValues = new { Controller = "FileManager", Action = "CustomToolbarAction" };
+        settings.DownloadRouteValues = new { Controller = "FileManager", Action = "DownloadFiles" };
+
+        settings.ClientSideEvents.CustomCommand = "OnCustomCommand";
+        settings.SettingsFileList.View = Session["aspxFileExplorerView"] == null ? FileListView.Thumbnails : (FileListView)Session["aspxFileExplorerView"];
+        settings.SettingsFileList.DetailsViewSettings.AllowColumnDragDrop = FileManagerHelper.Options.SettingsDetailsView.AllowColumnDragDrop;
+        settings.SettingsFileList.DetailsViewSettings.AllowColumnResize = FileManagerHelper.Options.SettingsDetailsView.AllowColumnResize;
+        settings.SettingsFileList.DetailsViewSettings.AllowColumnSort = FileManagerHelper.Options.SettingsDetailsView.AllowColumnSort;
+        settings.SettingsFileList.DetailsViewSettings.ShowHeaderFilterButton = FileManagerHelper.Options.SettingsDetailsView.ShowHeaderFilterButton;
+
+        settings.Settings.ThumbnailFolder = Url.Content(EnvHelper.THUMB_DIR);
+        settings.Settings.AllowedFileExtensions = FileManagerHelper.AllowedFileExtensions;
+        settings.Settings.InitialFolder = EnvHelper.BASE_DIR;
+        settings.Height = Unit.Pixel(800);
+        settings.SettingsEditing.Assign(FileManagerHelper.Options.SettingsEditing);
+        settings.SettingsToolbar.Assign(FileManagerHelper.Options.SettingsToolbar);
+        settings.SettingsFolders.Assign(FileManagerHelper.Options.SettingsFolders);
+        if (settings.SettingsFileList.View == FileListView.Thumbnails)
+        {
+            settings.SettingsFileList.Assign(FileManagerHelper.Options.SettingsFileList);
+        }
+        settings.SettingsBreadcrumbs.Assign(FileManagerHelper.Options.SettingsBreadcrumbs);
+
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarCreateButton());
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarRenameButton());
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarMoveButton());
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarDeleteButton()); ;
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarSpacer() { Width = Unit.Pixel(0) });
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarRefreshButton());
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarDownloadButton());
+        settings.SettingsToolbar.Items.Add(new FileManagerToolbarSpacer() { Width = Unit.Pixel(0) });
+
+        var isThumbnailsView = settings.SettingsFileList.View == FileListView.Thumbnails;
+
+
+        var thumbnailsViewButton = new FileManagerToolbarCustomButton();
+        thumbnailsViewButton.CommandName = "ChangeView-Thumbnails";
+        //thumbnailsViewButton.Text = "Thumbnails View";
+        thumbnailsViewButton.GroupName = "ViewMode";
+        thumbnailsViewButton.Image.IconID = IconID.GridCards16x16;
+        thumbnailsViewButton.Checked = isThumbnailsView;
+        settings.SettingsToolbar.Items.Add(thumbnailsViewButton);
+
+        var detailsViewButton = new FileManagerToolbarCustomButton();
+        detailsViewButton.CommandName = "ChangeView-Details";
+        //detailsViewButton.Text = "Details View";
+        detailsViewButton.GroupName = "ViewMode";
+        detailsViewButton.Image.IconID = IconID.GridGrid16x16;
+        detailsViewButton.Checked = !isThumbnailsView;
+        settings.SettingsToolbar.Items.Add(detailsViewButton);
+
+        settings.SettingsUpload.Assign(FileManagerHelper.Options.SettingsUpload);
+        settings.SettingsUpload.UseAdvancedUploadMode = true;
+
+        //settings.SettingsPermissions.AccessRules.Add(new FileManagerFolderAccessRule { Path = "System", Edit = Rights.Deny });
+
+        settings.SettingsAdaptivity.Enabled = true;
+
+        //settings.FileUploading = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+        //settings.FolderCreating = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+        //settings.ItemRenaming = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+        //settings.ItemDeleting = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+        //settings.ItemMoving = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+        //settings.ItemCopying = (s, e) => { FileManagerHelper.ValidateSiteEdit(e); };
+    }
+).BindToFolder(Model).GetHtml()

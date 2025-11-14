@@ -1,0 +1,61 @@
+@using WebDB.DBPO;
+
+@{
+    ViewBag.Title = "File Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head {
+    @*<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Member.css")" />
+        <script type="text/javascript" src="@Url.Content("~/Content/Member.js")"></script>*@
+}
+
+@section PageToolbar {
+    @Html.DevExpress().Menu(menuSettings =>
+{
+    menuSettings.Name = "pageToolbar";
+
+    menuSettings.ItemAutoWidth = false;
+    menuSettings.AllowSelectItem = false;
+    menuSettings.ApplyItemStyleToTemplates = true;
+
+    menuSettings.SettingsAdaptivity.Enabled = true;
+    menuSettings.SettingsAdaptivity.EnableAutoHideRootItems = true;
+    menuSettings.SettingsAdaptivity.EnableCollapseRootItemsToIcons = true;
+    menuSettings.SettingsAdaptivity.CollapseRootItemsToIconsAtWindowInnerWidth = 600;
+
+    menuSettings.Width = Unit.Percentage(100);
+    menuSettings.ControlStyle.SeparatorWidth = Unit.Pixel(0);
+    menuSettings.ControlStyle.CssClass = "page-toolbar";
+
+    menuSettings.Styles.Item.CssClass = "item";
+    menuSettings.Styles.Item.VerticalAlign = VerticalAlign.Middle;
+
+    menuSettings.Images.Item.Width = Unit.Pixel(16);
+    menuSettings.Images.Item.Height = Unit.Pixel(16);
+
+    menuSettings.Items.Add(item =>
+    {
+        item.Enabled = false;
+        item.SetTemplateContent(template => ViewContext.Writer.Write("<h1>File Manager</h1>"));
+    });
+
+}).GetHtml()
+}
+
+<script>
+    function OnCustomCommand(s, e) {
+        var args = e.commandName.split("-");
+        switch (args[0]) {
+            case "ChangeView":
+                fileManager.PerformCallback({ viewType: args[1] });
+                break;
+        }
+    }
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("FileExplorerPartial", EnvHelper.BASE_DIR)
+}

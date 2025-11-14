@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="FabEQAssignment" table="FabEQAssignment" lazy="true" >
+        <id name="ID" column="ID">
+            <generator class="identity" />
+        </id>
+        <property name="ProcessOPID" type ="TrimString">
+            <column name="ProcessOPID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <many-to-one name="oFabProduction">
+            <column name="FabProductionID" sql-type="int" not-null="false"/>
+        </many-to-one>
+        <property name="ProductCode" type ="TrimString">
+            <column name="ProductCode" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="ProductVersion">
+            <column name="ProductVersion" sql-type="int" not-null="false" />
+        </property>
+        <property name="ProductName" type ="TrimString">
+            <column name="ProductName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <many-to-one name="oEQ">
+            <column name="EQID" sql-type="int" not-null="false"/>
+        </many-to-one>
+        <property name="EQName" type ="TrimString">
+            <column name="EQName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="EQTypeName" type ="TrimString">
+            <column name="EQTypeName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <many-to-one name="oEQRecipe">
+            <column name="EQRecipeID" sql-type="int" not-null="false"/>
+        </many-to-one>
+        <property name="RecipeName" type ="TrimString">
+            <column name="RecipeName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <many-to-one name="oLot">
+            <column name="LotID" sql-type="int" not-null="false"/>
+        </many-to-one>
+        <property name="LotNo" type ="TrimString">
+            <column name="LotNo" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="DataStatus" type ="TrimString">
+            <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="CreatedID" type ="TrimString">
+            <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="CreatedDate">
+            <column name="CreatedDate" sql-type="datetime2" not-null="false" />
+        </property>
+        <property name="UpdatedID" type ="TrimString">
+            <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="UpdatedDate">
+            <column name="UpdatedDate" sql-type="datetime2" not-null="false" />
+        </property>
+    </class>
+
+</hibernate-mapping>

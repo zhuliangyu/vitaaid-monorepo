@@ -1,0 +1,177 @@
+@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@model List<WebDB.DBBO.UnitType>
+
+@{
+    var systemCategory = Html.DevExpress().GridView(systemCategorySettings =>
+    {
+        systemCategorySettings.Name = "systemCategory";
+        systemCategorySettings.KeyFieldName = "ID";
+
+        systemCategorySettings.CallbackRouteValues = new
+        {
+            Controller = "SystemCategory",
+            Action = "SystemCategoryPartial" };
+        systemCategorySettings.CustomActionRouteValues = new { Controller = "SystemCategory", Action = "SystemCategoryCustomActionPartial" };
+        systemCategorySettings.SettingsEditing.AddNewRowRouteValues = new { Controller = "SystemCategory", Action = "SystemCategoryAddNewPartial" };
+        systemCategorySettings.SettingsEditing.UpdateRowRouteValues = new { Controller = "SystemCategory", Action = "SystemCategoryUpdatePartial" };
+
+        systemCategorySettings.EnablePagingGestures = AutoBoolean.False;
+
+        systemCategorySettings.ControlStyle.CssClass = "system-category";
+        systemCategorySettings.Width = Unit.Percentage(100);
+
+        systemCategorySettings.Styles.Cell.Wrap = DefaultBoolean.False;
+        systemCategorySettings.Styles.PagerBottomPanel.CssClass = "pager";
+        systemCategorySettings.Styles.FocusedRow.CssClass = "focused";
+
+        systemCategorySettings.SettingsBehavior.AllowFocusedRow = true;
+        systemCategorySettings.SettingsBehavior.AllowSelectByRowClick = true;
+        systemCategorySettings.SettingsBehavior.AllowEllipsisInText = true;
+        systemCategorySettings.SettingsBehavior.AllowDragDrop = false;
+
+        systemCategorySettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+        systemCategorySettings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+        //systemCategorySettings.SettingsEditing.EditFormColumnCount = 2;
+
+        systemCategorySettings.SettingsSearchPanel.CustomEditorName = "searchButtonEdit";
+
+        //systemCategorySettings.Settings.VerticalScrollBarMode = ScrollBarMode.Hidden;
+        //systemCategorySettings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        systemCategorySettings.Settings.ShowHeaderFilterButton = true;
+
+        systemCategorySettings.SettingsPager.PageSize = 20;
+        systemCategorySettings.SettingsPager.EnableAdaptivity = true;
+        systemCategorySettings.SettingsPager.PageSizeItemSettings.Visible = true;
+
+        systemCategorySettings.SettingsExport.EnableClientSideExportAPI = true;
+        systemCategorySettings.SettingsExport.ExportSelectedRowsOnly = true;
+
+        systemCategorySettings.CommandColumn.Visible = true;
+        systemCategorySettings.CommandColumn.ShowSelectCheckbox = true;
+        systemCategorySettings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.AllPages;
+        systemCategorySettings.CommandColumn.VisibleIndex = 0;
+        systemCategorySettings.CommandColumn.Width = Unit.Pixel(100);
+
+        systemCategorySettings.SettingsCommandButton.UpdateButton.ButtonType = GridCommandButtonRenderMode.Image;
+        systemCategorySettings.SettingsCommandButton.UpdateButton.Image.Url = "~/Content/Images/save.svg";
+        systemCategorySettings.SettingsCommandButton.UpdateButton.Image.Width = 16;
+        systemCategorySettings.SettingsCommandButton.UpdateButton.Image.Height = 16;
+
+        systemCategorySettings.SettingsCommandButton.CancelButton.ButtonType = GridCommandButtonRenderMode.Image;
+        systemCategorySettings.SettingsCommandButton.CancelButton.Image.Url = "~/Content/Images/Undo.svg";
+        systemCategorySettings.SettingsCommandButton.CancelButton.Image.Width = 16;
+        systemCategorySettings.SettingsCommandButton.CancelButton.Image.Height = 16;
+
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.FieldName = "ID";
+            columnSettings.Visible = false;
+        });
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "Name";
+            columnSettings.EditorProperties().TextBox(p =>
+            {
+                p.Width = Unit.Percentage(100);
+            });
+        });
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "uType";
+            columnSettings.Caption = "Category";
+            columnSettings.EditorProperties().ComboBox(p =>
+            {
+                p.DropDownStyle = DropDownStyle.DropDownList;
+                p.DataSource = EnumHelper.GetSelectList(typeof(eUNITTYPE)).OrderBy(y => y.Value);
+            });
+        });
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.True;
+            columnSettings.FieldName = "AbbrName";
+            columnSettings.Caption = "Value(max size:400)";
+            columnSettings.EditFormSettings.ColumnSpan = 2;
+        });
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.False;
+            columnSettings.FieldName = "Comment";
+            columnSettings.Caption = "Value 1(max size:2000)";
+            columnSettings.EditFormSettings.ColumnSpan = 2;
+
+            columnSettings.EditorProperties().Memo(p =>
+            {
+                p.Height = Unit.Pixel(200);
+            });
+        });
+        systemCategorySettings.Columns.Add(columnSettings =>
+        {
+            columnSettings.Settings.AllowHeaderFilter = DefaultBoolean.False;
+            columnSettings.FieldName = "Multiply";
+            columnSettings.Caption = "Value 2(number)";
+        });
+        /*
+        systemCategorySettings.SetEditFormTemplateContent((s) =>
+        {
+            Html.DevExpress().FormLayout(flSettings =>
+            {
+                flSettings.Name = "FormLayoutProducts";
+                flSettings.Width = Unit.Percentage(100);
+                flSettings.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+                flSettings.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 700;
+                flSettings.ColCount = 2;
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "ID";
+                    i.Visible = false;
+                });
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "uType";
+                    i.Caption = "Category";
+                    i.NestedExtensionType = FormLayoutNestedExtensionItemType.ComboBox;
+                    var comboBox = ((ComboBoxSettings) i.NestedExtensionSettings);
+                    comboBox.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                    comboBox.Properties.DataSource = EnumHelper.GetSelectList(typeof(eUNITTYPE)).OrderBy(y => y.Value);
+                });
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "Name";
+                });
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "AbbrName";
+                    i.Caption = "Value(text)";
+                });
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "Multiply";
+                    i.Caption = "Value 1(number)";
+                });
+                flSettings.Items.Add(i =>
+                {
+                    i.FieldName = "Comment";
+                    i.Caption = "Value 2(text, max size: 2000)";
+                    i.NestedExtensionType = FormLayoutNestedExtensionItemType.Memo;
+                });
+
+            }).Render();
+        });
+        */
+        systemCategorySettings.ClientSideEvents.Init = "onSystemCategoryInit";
+        systemCategorySettings.ClientSideEvents.SelectionChanged = "onSystemCategorySelectionChanged";
+        systemCategorySettings.ClientSideEvents.BeginCallback = "onSystemCategoryBeginCallback";
+
+    });
+    if (ViewBag.GeneralError != null)
+    {
+        systemCategory.SetEditErrorText(ViewBag.GeneralError);
+    }
+}
+
+@systemCategory.Bind(Model).GetHtml()

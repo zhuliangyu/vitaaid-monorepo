@@ -1,0 +1,55 @@
+2021-12-10 16:07:31.9726 Info Message Template Auto Format enabled
+2021-12-10 16:07:31.9922 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:07:32.0495 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:07:32.0495 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:07:32.1020 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=45, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:12:29.0149 Info Message Template Auto Format enabled
+2021-12-10 16:12:29.0323 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:12:29.0770 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:12:29.1146 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:12:29.1560 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=55, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:14:58.3521 Info Message Template Auto Format enabled
+2021-12-10 16:14:58.3695 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:14:58.4303 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:14:58.4394 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:14:58.4783 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=55, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:18:56.8931 Info Message Template Auto Format enabled
+2021-12-10 16:18:56.9098 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:18:56.9541 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:18:56.9697 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:18:57.0119 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:27:26.3652 Info Message Template Auto Format enabled
+2021-12-10 16:27:26.3833 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:27:26.4533 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:27:26.4533 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:27:26.5133 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:34:02.5525 Info Message Template Auto Format enabled
+2021-12-10 16:34:02.5696 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:34:02.6329 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:34:02.6428 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:34:02.6796 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:40:36.0986 Info Message Template Auto Format enabled
+2021-12-10 16:40:36.1156 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:40:36.1728 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:40:36.1728 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:40:36.2193 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:41:37.7274 Info Message Template Auto Format enabled
+2021-12-10 16:41:37.7443 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:41:37.8008 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:41:37.8008 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:41:37.8474 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:45:51.2153 Info Message Template Auto Format enabled
+2021-12-10 16:45:51.2408 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:45:51.3067 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:45:51.3163 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:45:51.3566 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:48:50.8627 Info Message Template Auto Format enabled
+2021-12-10 16:48:50.8800 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:48:50.9235 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:48:50.9395 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:48:50.9814 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config
+2021-12-10 16:53:42.9063 Info Message Template Auto Format enabled
+2021-12-10 16:53:42.9242 Info Loading assembly: NLog.Web.AspNetCore
+2021-12-10 16:53:42.9884 Info Adding target FileTarget(Name=alldata)
+2021-12-10 16:53:42.9884 Info Adding target FileTarget(Name=otherFile-web)
+2021-12-10 16:53:43.0403 Info Validating config: TargetNames=alldata, otherFile-web, ConfigItems=54, FilePath=C:\Work\VitaaidCMS\vitaaid.com\bin\Debug\net5.0-windows\nlog.config

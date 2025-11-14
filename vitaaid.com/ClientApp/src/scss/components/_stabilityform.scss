@@ -1,0 +1,286 @@
+@use '../abstracts' as *;
+@use '../base' as *;
+
+.sf-header {
+  @include media('<tablet') {
+    @include clampattr(padding-top, 18);
+  }
+  @include media('>=tablet') {
+    @include clampattr(width, 1280);
+    @include clampattr(margin-top, 76);
+    @include clampattr(height, 350);
+  }
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+
+  .sf-product-img-col {
+    // @include media('<tablet') {
+    //   width: 100%;
+    //   @include clampattr(max-height, 180);
+    // }
+    @include media('>=tablet') {
+      @include clampattr(width, 480);
+    }
+  }
+}
+.sf-product-img {
+  @include media('<tablet') {
+    @include clampattr(max-height, 180);
+  }
+  @include media('>=tablet') {
+    @include clampattr(max-height, 348);
+  }
+
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: scale-down;
+}
+
+/* StabilityFormEmpty */
+// .sf-empty-product-info {
+//   display: inline-block;
+//   margin-top: auto;
+//   margin-bottom: auto;
+//   @include clampattr(margin-left, 128);
+//   height: 100%;
+// .line1 {
+//   @include clampattr(font-size, 20);
+//   @include clampattr(line-height, 35.5);
+//   @include clampattr(margin-left, 14);
+//   color: var(--marine-blue);
+//   font-weight: 600;
+// }
+// .empty-product-line {
+//   @include clampattr(margin-top, 24);
+//   @include clampattr(margin-bottom, 16);
+//   @include divimg('empty-product-line.png', 650, 1);
+//   height: 1px;
+// }
+// .line2 {
+//   @include clampattr(font-size, 20);
+//   @include clampattr(line-height, 40);
+//   @include clampattr(width, 510);
+//   @include clampattr(margin-left, 14);
+//   color: var(--marine-blue);
+// }
+//}
+
+.sf-product-info {
+  @include media('<tablet') {
+    @include clampattr(margin-top, 36);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-left, 20);
+    @include clampattr(margin-right, 124);
+  }
+  // padding-left: 10%;
+  // padding-right: 12%;
+  // vertical-align: middle;
+  // margin-top: 42px;
+  .sf-product-info-table {
+    width: 100%;
+    border-collapse: separate;
+    -webkit-border-horizontal-spacing: 0px;
+  }
+  .sf-empty-product-desc {
+    @include media('<tablet') {
+      border-bottom: 1px solid #ccc;
+      @include clampattr(font-size, 18);
+      @include clampattr(padding-top, 3);
+      @include clampattr(padding-bottom, 9);
+    }
+    @include media('>=tablet') {
+      @include clampattr(font-size, 20);
+      @include clampattr(width, 400);
+    }
+
+    color: var(--marine-blue);
+  }
+}
+.sf-product-info-title {
+  border-bottom: 1px solid #ccc;
+  @include media('<tablet') {
+    @include clampattr(font-size, 18);
+    @include clampattr(height, 34);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 20);
+    @include clampattr(padding-bottom, 12);
+  }
+
+  font-weight: 600;
+  color: var(--marine-blue);
+  white-space: nowrap;
+}
+.sf-product-info-data {
+  border-bottom: 1px solid #ccc;
+  @include media('<tablet') {
+    @include clampattr(font-size, 18);
+    @include clampattr(padding-left, 20);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 20);
+    @include clampattr(padding-left, 58);
+    @include clampattr(padding-bottom, 12); // padding-left: 9%;
+  }
+
+  color: #242424;
+  width: 100%;
+}
+
+.sf-line_product_td_img_hd {
+  @include image_content('line-product_td.png');
+  @include clampattr(margin-top, 12);
+  @include clampattr(margin-bottom, 12);
+  width: 100%;
+  height: 1px;
+}
+
+.sf-detail {
+  position: relative;
+  @include media('<tablet') {
+    @include clampattr(margin-top, 32);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 76);
+  }
+
+  .PerformanceTestGroup {
+    @include clampattr(margin-bottom, 56);
+  }
+  .ChemicalContaminantGroup {
+    @include clampattr(margin-bottom, 56);
+  }
+  .MicrobialContaminantGroup {
+    @include clampattr(margin-bottom, 56);
+  }
+  .MiscTestGroup {
+    @include clampattr(margin-bottom, 56);
+  }
+}
+.spec-method-m {
+  @include clampattr(margin-top, 24);
+}
+.sf-TableHdr {
+  @include media('<tablet') {
+    @include clampattr(font-size, 18);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 20);
+  }
+
+  color: var(--marine-blue);
+}
+.sf-TableHdrCenter {
+  @include clampattr(font-size, 20);
+  color: var(--marine-blue);
+  text-align: center;
+}
+.sf-CellData {
+  @include media('<tablet') {
+    @include clampattr(font-size, 15);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 16);
+  }
+  @include clampattr(margin-top, 8);
+
+  color: var(--warm-grey);
+}
+.spec-method-CellData-m {
+  @extend .sf-CellData;
+  margin-top: 0px;
+}
+
+.sf-CellDataCenter {
+  @include clampattr(font-size, 15);
+  color: var(--warm-grey);
+  @include clampattr(margin-top, 8);
+  text-align: center;
+}
+
+.sf-RowInResultDetailPanel {
+  @include clampattr(margin-top, 15);
+}
+
+.sf-ResultColInDetailPanel {
+  @include clampattr(margin-bottom, 8);
+}
+.sf-DummyColInDetailPanel {
+  @include clampattr(margin-top, 30);
+}
+.sf-ResultData {
+  @include clampattr(font-size, 15);
+  color: var(--green);
+}
+.ResultHeader {
+  @include media('<tablet') {
+    @include clampattr(font-size, 18);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 20);
+  }
+
+  color: var(--marine-blue);
+}
+.sf-ResultDataDetail {
+  @include clampattr(font-size, 15);
+  color: var(--warm-grey);
+}
+.sf-TestDescHeader {
+  @include media('<tablet') {
+    @include clampattr(font-size, 18);
+    @include clampattr(margin-top, 15);
+  }
+  @include media('>=tablet') {
+    @include clampattr(font-size, 20);
+    @include clampattr(margin-top, 22);
+  }
+
+  color: var(--marine-blue);
+}
+
+.line_td_sf {
+  @include clampattr(margin-top, 12);
+}
+.sf-plus_button {
+  /* float: right; */
+  border-width: 0px;
+  background-color: transparent;
+  color: var(--marine-blue);
+  width: 28px;
+  position: absolute;
+  top: 0px;
+  right: 15px;
+}
+
+.sf-plus_button::after {
+  content: '+';
+}
+.sf-minus_button {
+  float: right;
+  border-width: 0px;
+  background-color: transparent;
+  color: var(--marine-blue);
+  width: 28px;
+  position: absolute;
+  top: 0px;
+  right: 15px;
+}
+.sf-minus_button::after {
+  content: '-';
+}
+.sf-result_gauge {
+  @include clampattr(width, 180);
+  @include media('>=tablet') {
+    margin-left: auto;
+    margin-right: auto;
+    @include clampattr(margin-top, 44);
+  }
+}

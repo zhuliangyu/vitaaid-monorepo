@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Ingredient" table="Ingredient" lazy="false" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

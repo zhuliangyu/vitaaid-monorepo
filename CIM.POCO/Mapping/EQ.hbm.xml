@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+	<class name="EQ" table="EQ" lazy="true" >
+		<id name="ID" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="Name" type ="TrimString">
+			<column name="Name" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Description" type ="TrimString">
+			<column name="Description" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="SerialNo" type ="TrimString">
+			<column name="SerialNo" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Model" type ="TrimString">
+			<column name="Model" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="DefaultRecipeID" type ="TrimString">
+			<column name="DefaultRecipeID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="EQType" type ="eEQTYPE">
+			<column name="EQType" sql-type="int" not-null="false" />
+		</property>
+		<property name="Status" type ="TrimString">
+			<column name="Status" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="SubType">
+			<column name="SubType" sql-type="int" not-null="false" />
+		</property>
+		<property name="EQDataTemplateName" type ="TrimString">
+			<column name="EQDataTemplateName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<many-to-one name="oEQDataTemplate">
+			<column name="oEQDataTemplate" sql-type="int" not-null="false"/>
+		</many-to-one>
+		<bag name="EQDataList" table="EQData">
+			<key column="EQID"/>
+			<one-to-many class="EQData"/>
+		</bag>
+
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+		</property>
+	</class>
+
+
+</hibernate-mapping>

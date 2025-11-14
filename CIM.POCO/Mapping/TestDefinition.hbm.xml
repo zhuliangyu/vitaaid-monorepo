@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TestDefinition" table="TestDefinition" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <many-to-one name="oProduct">
+      <column name="ProductID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="TestName" type ="TrimString">
+      <column name="TestName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="TestDesc" type ="TrimString">
+      <column name="TestDesc" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LabelClaim" type ="TrimString">
+      <column name="LabelClaim" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="LowerBound">
+      <column name="LowerBound" sql-type="float" not-null="false"/>
+    </property>
+    <property name="UpperBound">
+      <column name="UpperBound" sql-type="float" not-null="false"/>
+    </property>
+    <property name="Assay" type ="TrimString">
+      <column name="Assay" sql-type="nvarchar" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

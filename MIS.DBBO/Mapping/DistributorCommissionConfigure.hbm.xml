@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="DistributorCommissionConfigure" table="DistributorCommissionConfigure" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oDistributor">
+      <column name="oDistributor" sql-type="int" not-null="false" />
+    </many-to-one>
+
+    <property name="DistributorAccount" type ="TrimString">
+      <column name="DistributorAccount" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="DistributorName" type ="TrimString">
+      <column name="DistributorName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesRep" type ="TrimString">
+      <column name="SalesRep" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SalesRepAccount" type ="TrimString">
+      <column name="SalesRepAccount" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CountryName" type ="TrimString">
+      <column name="CountryName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ProvinceID" type ="TrimString">
+      <column name="ProvinceID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Rate">
+      <column name="Rate" sql-type="float" not-null="false" />
+    </property>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

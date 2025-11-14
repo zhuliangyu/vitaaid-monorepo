@@ -1,0 +1,122 @@
+/* Left Panel */
+.filters-navbar .item,
+.filters-navbar ul.dxnb-content {
+    border-right: none;
+}
+
+.filters-navbar .item {
+    padding-left: 24px !important;
+}
+
+/* GridView borders */
+.system-category:focus {
+    outline: none;
+}
+
+.system-category .dxgvCSD,
+.system-category .pager {
+    border-left: none;
+    border-right: none;
+}
+
+.system-category .dxgvLVR > td.dxgv {
+    border-bottom: none !important;
+}
+
+/* GridView Custom Styles */
+.system-category .votes-column {
+    display: inline-block;
+    min-width: 1em;
+    min-height: 1em;
+    font-size: 11px;
+    line-height: .99;
+    border-radius: 2em;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 3px 5px 2px;
+    text-align: center;
+}
+
+.system-category .status-column {
+    display: inline-block;
+    min-width: 1em;
+    min-height: 1em;
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: .99;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    padding: 2px 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.system-category .focused .status-column {
+    border: solid 1px #fff;
+}
+
+.system-category .status-column.active {
+    font-weight: bold;
+}
+
+    .system-category .status-column.active::after {
+        content: "active";
+    }
+
+.system-category .status-column.closed::after {
+    content: "closed";
+}
+
+.system-category .column-image {
+    width: 12px;
+    height: 12px;
+}
+
+.system-category .priority1 {
+    background-image: url('Images/priority1.svg');
+}
+
+.system-category .priority2 {
+    background-image: url('Images/priority2.svg');
+}
+
+.system-category .priority3 {
+    background-image: url('Images/priority3.svg');
+}
+
+.system-category .focused .priority1 {
+    background-image: url('Images/priority1-white.svg');
+}
+
+.system-category .focused .priority2 {
+    background-image: url('Images/priority2-white.svg');
+}
+
+.system-category .focused .priority3 {
+    background-image: url('Images/priority3-white.svg');
+}
+
+.system-category .kind1 {
+    background-image: url('Images/kind1.svg');
+}
+
+.system-category .kind2 {
+    background-image: url('Images/kind2.svg');
+}
+
+.system-category .focused .kind1 {
+    background-image: url('Images/kind1-white.svg');
+}
+
+.system-category .focused .kind2 {
+    background-image: url('Images/kind2-white.svg');
+}
+
+/* GridView filter panel */
+.filter-panel {
+    padding: 16px;
+    padding-left: 18px;
+}
+
+.system-category textarea {
+    resize: vertical;
+}

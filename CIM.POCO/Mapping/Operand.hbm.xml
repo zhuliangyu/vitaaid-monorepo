@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Operand" table="Operand" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="true" />
+    </property>
+    <many-to-one name="TempOperand">
+      <column name="TempOperandID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="RawMaterialOperand">
+      <column name="RawMaterialOperand" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Parameter" type ="TrimString">
+      <column name="Parameter" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Proportions">
+      <column name="Proportions" sql-type="int" not-null="false" />
+    </property>
+    <property name="MeshSize">
+      <column name="MeshSize" sql-type="int" not-null="false" />
+    </property>
+
+    <property name="OperandType" type="eOPERAND">
+      <column name="OperandType" sql-type="int" not-null="true" />
+    </property>
+
+  </class>
+</hibernate-mapping>

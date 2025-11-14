@@ -1,0 +1,189 @@
+@using WebDB.DBBO;
+@model List<Product>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head {
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Product.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/ProductImage.css")" />
+    <script type="text/javascript" src="@Url.Content("~/Content/Product.js")"></script>
+}
+
+@section PageToolbar {
+    @Html.DevExpress().Menu(menuSettings =>
+{
+    menuSettings.Name = "pageToolbar";
+
+    menuSettings.ItemAutoWidth = false;
+    menuSettings.AllowSelectItem = false;
+    menuSettings.ApplyItemStyleToTemplates = true;
+
+    menuSettings.SettingsAdaptivity.Enabled = true;
+    menuSettings.SettingsAdaptivity.EnableAutoHideRootItems = true;
+    menuSettings.SettingsAdaptivity.EnableCollapseRootItemsToIcons = true;
+    menuSettings.SettingsAdaptivity.CollapseRootItemsToIconsAtWindowInnerWidth = 600;
+
+    menuSettings.Width = Unit.Percentage(100);
+    menuSettings.ControlStyle.SeparatorWidth = Unit.Pixel(0);
+    menuSettings.ControlStyle.CssClass = "page-toolbar";
+
+    menuSettings.Styles.Item.CssClass = "item";
+    menuSettings.Styles.Item.VerticalAlign = VerticalAlign.Middle;
+
+    menuSettings.Images.Item.Width = Unit.Pixel(16);
+    menuSettings.Images.Item.Height = Unit.Pixel(16);
+
+    menuSettings.Items.Add(item =>
+    {
+        item.Enabled = false;
+        item.SetTemplateContent(template => ViewContext.Writer.Write("<h1>Product Maintaince</h1>"));
+    });
+
+    menuSettings.Items.Add(item =>
+    {
+        item.Name = "New";
+        item.Text = "New";
+        item.Alignment = MenuItemAlignment.Right;
+        item.AdaptivePriority = 2;
+        item.Image.Url = "Content/Images/add.svg";
+    });
+    menuSettings.Items.Add(item =>
+    {
+        item.Name = "Save";
+        item.Text = "Save";
+        item.Alignment = MenuItemAlignment.Right;
+        item.AdaptivePriority = 2;
+        item.Image.Url = "Content/Images/Save.svg";
+    });
+    menuSettings.Items.Add(item =>
+    {
+        item.Name = "Delete";
+        item.Text = "Delete";
+        item.Alignment = MenuItemAlignment.Right;
+        item.AdaptivePriority = 2;
+        item.Image.Url = "Content/Images/delete.svg";
+    });
+    //menuSettings.Items.Add(item =>
+    //    {
+    //    item.Name = "Export";
+    //    item.Text = "Export";
+    //    item.Alignment = MenuItemAlignment.Right;
+    //    item.AdaptivePriority = 2;
+    //    item.Image.Url = "Content/Images/export.svg";
+    //});
+    menuSettings.Items.Add(item =>
+    {
+        item.Name = "ToggleFilterPanel";
+        item.Text = "";
+        item.GroupName = "Filter";
+        item.Alignment = MenuItemAlignment.Right;
+        item.AdaptivePriority = 1;
+        item.Image.Url = "Content/Images/search.svg";
+        item.Image.UrlChecked = "Content/Images/search-selected.svg";
+    });
+    menuSettings.ClientSideEvents.ItemClick = "onPageToolbarItemClick";
+}).GetHtml()
+
+    @Html.DevExpress().Panel(panelSettings =>
+    {
+        panelSettings.Name = "filterPanel";
+    panelSettings.Collapsible = true;
+    panelSettings.ControlStyle.CssClass = "filter-panel";
+
+    panelSettings.SettingsCollapsing.ExpandEffect = PanelExpandEffect.Slide;
+    panelSettings.SettingsCollapsing.AnimationType = AnimationType.None;
+    panelSettings.SettingsCollapsing.ExpandButton.Visible = false;
+
+    panelSettings.SetContent(() =>
+        {
+            Html.DevExpress().ButtonEdit(buttonEditSettings =>
+            {
+            buttonEditSettings.Name = "searchButtonEdit";
+            buttonEditSettings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.Always;
+            buttonEditSettings.Properties.Caption = "Search";
+            buttonEditSettings.Width = Unit.Percentage(100);
+        }).GetHtml();
+    });
+
+    panelSettings.ClientSideEvents.Expanded = "onFilterPanelExpanded";
+    panelSettings.ClientSideEvents.Collapsed = "adjustPageControls";
+}).GetHtml()
+}
+
+@*@section LeftPanelContent {
+        @Html.Partial("LeftPanelPartial")
+    }*@
+
+@*@section RightPanelContent {
+    <div class="settings-content">
+        <h2>Settings</h2>
+        <p>Place your content here</p>
+    </div>
+}*@
+
+
+@Html.AntiForgeryToken()
+@Html.DevExpress().Splitter(settings =>
+{
+    settings.Name = "splitter";
+    settings.Width = Unit.Percentage(100);
+    settings.Height = Unit.Percentage(100);
+    settings.Orientation = Orientation.Horizontal;
+    settings.FullscreenMode = true;
+    settings.ClientSideEvents.PaneResized = "panelResize";
+    settings.Panes.Add(pane =>
+    {
+        pane.Name = "Pane 0";
+        pane.Size = Unit.Percentage(30);
+        pane.ScrollBars = ScrollBars.Auto;
+        pane.SetContent(Html.Partial("ProductPartial").ToHtmlString());
+    });
+    settings.Panes.Add(pane =>
+    {
+        pane.Name = "Pane 1";
+        pane.Size = Unit.Percentage(70);
+        pane.Panes.Add(subPane =>
+        {
+            subPane.ScrollBars = ScrollBars.Auto;
+            subPane.Name = "Pane 1 - 1";
+            subPane.Size = Unit.Percentage(65);
+            subPane.SetContent("<div id='productEditableContainer'>" + Html.Partial("_ProductEditPartial", (object)Model[0]).ToHtmlString() + "</div>");
+        });
+        pane.Panes.Add(subPane =>
+        {
+            //subPane.ScrollBars = ScrollBars.Auto;
+            subPane.Name = "Pane 1 - 2";
+            subPane.Size = Unit.Percentage(35);
+
+            subPane.Panes.Add(subsubPane =>
+            {
+                subsubPane.Name = "Pane 1 - 2 - 1";
+                subsubPane.Size = Unit.Percentage(50);
+                subsubPane.SetContent(() =>
+                {
+                    ViewData["ProductID"] = Model[0].ID;
+                    using (Html.BeginForm("ProductImageWithForm", "Product", new { ProductID = Model[0].ID }, FormMethod.Post, new { id = "ImagesListBody", name = "ImagesListBody" }))
+                    {
+                        Html.RenderPartial("_ProductImagePartial", (object)(Model[0].oProductImages));
+                    }
+                });
+            });
+            subPane.Panes.Add(subsubPane =>
+            {
+                subsubPane.Name = "Pane 1 - 2 - 2";
+                subsubPane.Size = Unit.Percentage(50);
+                subsubPane.SetContent(() =>
+                {
+                    ViewData["ProductID"] = Model[0].ID;
+                    ViewContext.Writer.Write("<div id='ingredientBody'>" +
+                        Html.Partial("_ProductIngredientPartial", (object)(Model[0].oIngredients)).ToHtmlString() + "</div>");
+                });
+            });
+        });
+    });
+}).GetHtml();
+
+

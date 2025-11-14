@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RawMaterialSpec" table="RawMaterialSpec" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="CategoryCode" type ="TrimString">
+      <column name="CategoryCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="OldRawMaterialCode" type ="TrimString">
+      <column name="OldRawMaterialCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="Supplier">
+      <column name="Supplier" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Category">
+      <column name="Category" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="RawMaterialName" type ="TrimString">
+      <column name="RawMaterialName" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="CategoryName" type ="TrimString">
+      <column name="CategoryName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ab" type ="TrimString">
+      <column name="ab" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SpecCode" type ="TrimString">
+      <column name="SpecCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Density">
+      <column name="Density" sql-type="float" not-null="false" />
+    </property>
+    <property name="Memo" type ="TrimString">
+      <column name="Memo" sql-type="nvarchar" not-null="false" />
+    </property>
+	  <property name="PurchaseMemo" type ="TrimString">
+		  <column name="PurchaseMemo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <bag name="RawMaterialSpecDetails" table="RawMaterialSpecDetail" lazy="true" cascade="all">
+      <key column="RawMaterialSpecID" />
+      <one-to-many class="RawMaterialSpecDetail" />
+    </bag>
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

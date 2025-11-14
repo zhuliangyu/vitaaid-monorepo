@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="EDCData" table="EDCData" lazy="true" >
+        <id name="ID" column="ID">
+            <generator class="identity" />
+        </id>
+        <many-to-one name="oEQ">
+            <column name="EQID" sql-type="int" not-null="false" />
+        </many-to-one>
+        <property name="EQName" type ="TrimString">
+            <column name="EQName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="EDCName" type ="TrimString">
+            <column name="EDCName" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="EDCValue" type ="TrimString">
+            <column name="EDCValue" sql-type="nvarchar" not-null="false" />
+        </property>
+      <property name="ItemType" type ="TrimString">
+        <column name="ItemType" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="TimeStamp">
+        <column name="TimeStamp" sql-type="long" not-null="false" />
+      </property>
+      <property name="CreatedID" type ="TrimString">
+            <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+        </property>
+        <property name="CreatedDate">
+            <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+        </property>
+
+    </class>
+</hibernate-mapping>

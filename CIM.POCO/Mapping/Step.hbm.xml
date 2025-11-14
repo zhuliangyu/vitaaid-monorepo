@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Step" table="Step" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Process">
+      <column name="ProcessID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Recipe">
+      <column name="RecipeID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="EQ">
+      <column name="EQID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Sequence">
+      <column name="Sequence" sql-type="int" not-null="false" />
+    </property>
+    <property name="Description" type ="TrimString">
+      <column name="Description" sql-type="nvarchar" not-null="false" />
+    </property>
+
+  </class>
+</hibernate-mapping>

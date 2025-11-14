@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebDB.DBBO" namespace="WebDB.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+	<typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+	<class name="Member" table="Member" lazy="true" >
+		<id name="ID" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="Name" type ="TrimString">
+			<column name="name" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="PractitionerType" type ="TrimString">
+			<column name="education" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="OtherPractitionerType" type ="TrimString">
+			<column name="cell" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ClinicName" type ="TrimString">
+			<column name="occupation" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Address" type ="TrimString">
+			<column name="address" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Province" type ="TrimString">
+			<column name="province" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Country" type ="TrimString">
+			<column name="country" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="City" type ="TrimString">
+			<column name="city" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="ZipCode" type ="TrimString">
+			<column name="zipcode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Telephone" type ="TrimString">
+			<column name="Telephone1" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Fax" type ="TrimString">
+			<column name="fax" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Email" type ="TrimString">
+			<column name="email" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="JoinTime" >
+			<column name="jointime" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="Password" type ="TrimString">
+			<column name="password" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="LicenceNo" type ="TrimString">
+			<column name="RefEmail" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="bReferral">
+			<column name="FreeGift" sql-type="int" not-null="false" />
+		</property>
+		<property name="MemberType" type ="eMEMBERTYPE">
+			<column name="MemberType" sql-type="int" not-null="false" />
+		</property>
+		<property name="Reason1" type ="TrimString">
+			<column name="Reason1" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="PhysicanCode" type ="TrimString">
+			<column name="PhysicanCode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="LicencePhoto" type ="TrimString">
+			<column name="Photo" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Pat_pcode" type ="TrimString">
+			<column name="Pat_pcode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CustomerCode" type ="TrimString">
+			<column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="FirstName" type ="TrimString">
+			<column name="FirstName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="LastName" type ="TrimString">
+			<column name="LastName" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="MemberStatus" type="eMEMBERSTATUS">
+			<column name="MemberStatus" sql-type="int" not-null="false" />
+		</property>
+		<property name="IsSubscribe">
+			<column name="IsSubscribe" sql-type="int" not-null="false" />
+		</property>
+		<property name="PermittedSite" type ="eWEBSITE">
+			<column name="PermittedSite" sql-type="int" not-null="true" />
+		</property>
+		<property name="Prefix" type ="ePREFIX">
+			<column name="Prefix" sql-type="int" not-null="false" />
+		</property>
+		<property name="SalesRep" type ="TrimString">
+			<column name="SalesRep" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="LicenceVerifyMethod" type ="TrimString">
+			<column name="LicenceVerifyMethod" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="DataStatus" type ="TrimString">
+			<column name="DataStatus" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="UpdatedID" type ="TrimString">
+			<column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedID" type ="TrimString">
+			<column name="CreatedID" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="CreatedDate">
+			<column name="CreatedDate" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="UpdatedDate">
+			<column name="UpdatedDate" sql-type="datetime" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

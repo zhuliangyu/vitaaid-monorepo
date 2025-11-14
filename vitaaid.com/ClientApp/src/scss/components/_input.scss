@@ -1,0 +1,57 @@
+﻿@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+/* reference: https://stackoverflow.com/questions/55636120/how-to-reproduce-google-login-form-effect */
+.g-input {
+  position: relative;
+/*  margin-bottom: 10px;
+*/  box-sizing: border-box;
+  display: inline-block;
+}
+
+.g-input label {
+  background: white;
+  /*padding: 3px;*/
+  font-size: 14px;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom left;
+  color: #757575;
+  position: absolute;
+  top: 7px;
+  @include clampattr(left, $input-padding-left);
+  z-index: 1;
+  cursor: text;
+}
+
+.g-input input, .g-input textarea {
+/*  border: 1px solid #ccc;
+*/
+  display: block;
+/*  padding: 10px;
+*/
+/*  border-radius: 10px;
+*/
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.g-input.fill {
+  display: block;
+  width: 100%;
+}
+
+.g-input input:focus, .g-input textarea:focus {
+  outline: 0;
+  border-color: #1873e8;
+}
+
+.g-input input:focus + label, .g-input input:not(:placeholder-shown) + label,
+.g-input textarea:focus + label, .g-input textarea:not(:placeholder-shown) + label,
+.g-input select + label {
+  transform: translateX(-3px) translateY(-16px);
+  font-size: 12px;
+  color: var(--marine-blue);
+  padding-left: 3px;
+  padding-right: 3px;
+}
+

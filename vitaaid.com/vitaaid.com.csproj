@@ -1,0 +1,844 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+		<IsPackable>false</IsPackable>
+		<SpaRoot>ClientApp\</SpaRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+		<UserSecretsId>713e52c4-5fdf-4ecc-bd8b-9670304e2759</UserSecretsId>
+		<Version>2.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.8" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.7.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NLog" Version="4.7.14" />
+		<PackageReference Include="NLog.MailKit" Version="4.0.0" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Compile Remove="ClientApp\build\ProductImages\**" />
+		<Content Remove="$(SpaRoot)**" />
+		<Content Remove="ClientApp\build\ProductImages\**" />
+		<EmbeddedResource Remove="ClientApp\build\ProductImages\**" />
+		<None Remove="$(SpaRoot)**" />
+		<None Remove="ClientApp\build\ProductImages\**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="country.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="ClientApp\build\ProductImages\blog\256x256bb.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\5-element-GI-S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\5-element-GI.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\5-HTP-Quality_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\5-HTP-Quality_S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\ACV_Wt_Loss_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\ACV_Wt_Loss_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\adobe-stock-221561827%402x.png" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_145390389.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_193908646.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_223838409.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_223838409_s.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_290290291.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_314831533.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\AdobeStock_314831533_s.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\ASD_prevalence_cdc.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\bacteria.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\bacteria_intestine_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\bacteria_intestine_S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\bacteria_in_gut_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Bifidus_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\bisglycino-Mg.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\Black-Pepper131010.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\blacksesameseeds.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\black_pepper_large.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\bone_HT.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\bone_HT_small.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\Bp.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\capsules.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\capsules_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\chili_pepper_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\chili_pepper_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Chlorella_Spoon_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Chlorella_Spoon_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\citrus-oil-L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\citrus-oil-s.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\cold.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\cold_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\curcumin_image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\curcumin_image_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\cvd.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\CVD_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\dihuang.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Di_Huang_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\DNJ.png" />
+		<None Remove="ClientApp\build\ProductImages\blog\elderberry-s.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\elderly %281%29.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\endurance.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\endurance_small.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\ensuring_quality_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\flax.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\flax_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_5750956_Subscription_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_5750956_Subscription_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_5941520_Subscription_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_5941520_Subscription_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_8104580_Subscription_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_8104580_Subscription_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Fotolia_8218923_Subscription_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\garlic.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\garlic_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\GI-TherapeuticFocus-L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\GI-TherapeuticFocus-S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\good_sleep_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\good_sleep_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\greentea.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\greentea_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\healthy_hormone_balance_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\healthy_hormone_balance_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\healthy_natural_vitamins_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\healthy_natural_vitamins_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\heart_health_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\heart_health_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Herbal Quality_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\High-Carb-Diet-L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\hops_bag_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\hops_bag_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\human_microbiota_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\human_microbiota_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\image Large.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\image small.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\inositol_insulin_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\iron_supp.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\iron_supp_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Isoflavones_AIE_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Isoflavones_AIE_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\joint_pain.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\joint_pain_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\kale_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\KD-Yin-Yang-Tai-Chi_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\KD-Yin-Yang-Tai-Chi_S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\kelp.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\kelp_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\lab_extract_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\lab_extract_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\leaf.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\leaf_small.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\leap.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\leap_small.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\LGS.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\LGS_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\lipid_atherosclerosis_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\lipid_atherosclerosis_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Liver_Health_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Liver_Health_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\magic_cube_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\matcha_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\Matcha_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Mg_Muscle_Constipation_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\Mg_Muscle_Constipation_S.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\MilkThistle_flower.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\MilkThistle_flower_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\mitochondria.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\mitochondria_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\mold_dish_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Neck_thyroid_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Neck_thyroid_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\neonatal_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\neurons_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\neuron_excitotory_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\neuron_excitotory_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Nov Newsletter pic Large.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Nov Newsletter pic small.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Obesity_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Panax_ginseng_s.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\blog\peppermint_GI_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\peppermint_GI_s.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\perinatal_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\pink_ribbon_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\pink_ribbon_s.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\PQQ_Nerve_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\PQQ_Nerve_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\prenatal_GDM_s.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\prenatal_neonatal_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\prenatal_neonatal_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\relax_grass_sunset_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\resting.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\resting_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\reverse_aging_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\reverse_aging_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\sb-2.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\sb-2_small.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\seasonal_allergy_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\seasonal_allergy_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\shilajit_crude.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\shilajit_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\skin-collagen-L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\skin-collagen-S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\smoking_cessation_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\smoking_cessation_s.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\stess.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\stess_small.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\st_Johns_wort_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\TCM-Herbs-L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\TCM-Herbs-S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\the whole picture.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\unnamed.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Vitamin D Sunlight Beach.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Vitamin D Sunlight Beach_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\Vitex 2000_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\blog\xenobiotic_detox_L.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\xenobiotic_detox_s.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\xray_bone.gif" />
+		<None Remove="ClientApp\build\ProductImages\blog\xray_bone_L.jpg" />
+		<None Remove="ClientApp\build\ProductImages\broken.png" />
+		<None Remove="ClientApp\build\ProductImages\cache\dxbiupload_36cb8a5725a3fe407c3e634e7446df8a.tmp" />
+		<None Remove="ClientApp\build\ProductImages\cache\dxbiupload_e7e9dd2967e4d69209f6fe4c4ee4f6ad.tmp" />
+		<None Remove="ClientApp\build\ProductImages\member\S_10120150512_114236.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_10769F76A3E-1EFF-4AD1-BB49-1AAE58C5BBAE.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_108IMAG2948.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_117Susan Le - CSNN - RHN Designation.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_118è¯ä¹¦.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_131cert of rego.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_134license pix.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_1362016 ND License.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_13screenshot 2.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_143Screen Shot 2014-10-15 at 1.04.31 PM.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_147ACV.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_153CSNN Diploma .jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_162Byblow CSNN diploma 001.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_16520773457_10154882261473424_1845009789_o.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_177image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_195IMG_5950.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_203photo.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_219C8D34495-2037-4C07-B8E0-A600B90B2ABD.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_225image.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_237CNPBC license.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_243EWilsonNDlisence.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_253State Health Services.bmp" />
+		<None Remove="ClientApp\build\ProductImages\member\S_257IMG_8965.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_266Screenshot_20190630_073617_com.android.gallery3d.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_277Medical License 2018.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_283Paula Chiro Certificate.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_301diploma.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_305Student card.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_318image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_320IMG_4723.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_323image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_3409E0C9D04-4BD2-4165-BB2F-C146E5A5BE25.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_353image.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_36Jonathan ND License.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_373IMG_6916.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_375RHNcertification.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_377Nicole Langille - Registered Holistic Nutritionist.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_384Bacc..jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_402The College of Naturopathic Physicians of BC Certificate.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_408LICENSE ND.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_4129BDCCF02-AD59-40DD-8749-2BDA56119955.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_414GradDiploma.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_421NA-040.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_444IMG_1859.PNG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_449img004.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_453ND diploma.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_453Nutritional_Certification.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_455Ambrose_License.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_460student ID.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_461BINM ID.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_482Dr Tishenko ND 001.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_483College of Homeopaths of Ontario certificate.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_484image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_511acupuncture diplomaJPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_512Inna Itskovich Student Card.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_513Aaron_Wong_ND_License.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_517IMG_0719[1].JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_521Student ID.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_527IMG_2815.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_536RN Verification.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_542IHN Diploma 001.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_550IMG_7530.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_552IMG_0412.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_554lic number 3011.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_561Washing MD Licence.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_565IMG_1903.PNG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_578alla%27s cert002.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_589Medical Degree.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_591IMG_0697.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_605Student ID BINM.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_605Untitle.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_609IMG_0549.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_60CNSCert.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_60ND Cert Dr Ashleigh Lane.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_610IMG_1579.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_615IndianAMcert098.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_630GucciardiLicense.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_637Student ID.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_644DC License 2017.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_644IMG_0863.PNG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_65cosmo.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_663erin.bellis %2832 of 36%29.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_677Student-Card.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_690CNO EC ANP Certificate.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_691File 2018-02-16, 9 53 14 AM.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_691IBCLClicense.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_69420131105_ND_License 2.tiff" />
+		<None Remove="ClientApp\build\ProductImages\member\S_719image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_719ND license.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_722CA ND License thru %2716.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_723coldefenxin.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_729Screen Shot 2014-10-04 at 5.59.33 PM.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_732IMG_6747.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_733BDDTN License JHong.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_744licenses.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_745Christina Marinucci, RHN.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_746Verification of RN Reg.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_757CCNM Student ID Card - As%27ad - Front.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_780FMA 2019.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_780Screen Shot 2019-06-24 at 6.04.15 PM.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_78Scan0001.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_791JDyck License 518 ND.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_803ND CERT CARD.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_807ND license.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_817RHN.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_824license.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_830ST_StudentID.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_831license to practice.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_852IMG_2652.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_853IMG_3252.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_861IMG_1110.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_862Diplome Naturo FranÃ§ois Rocca 500.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_86820150824_000922.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_87820961047_10155800420572384_1106584230_o.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_884scan 1-1.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_89020160606_163457.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_891FE415B6C-86FE-4A47-A45E-9A5464077BDE.png" />
+		<None Remove="ClientApp\build\ProductImages\member\S_8AK License.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_909Verification 2018.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_91ND Degree.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_920IMG_0667.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_924scan0001.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_937PWB Wash State ND license.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_94911-07-~4 %282%29 NC.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_95414749275696001121169537.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_956CNPBC license%281%29.jpeg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_956license ctcma010.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_957NUNM-ID.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_963BUSINESS LICENSE.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_964CSNN Graduate Certificate" />
+		<None Remove="ClientApp\build\ProductImages\member\S_974IMG_2059.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_974Orthomolecular nutrition.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_985image.jpg" />
+		<None Remove="ClientApp\build\ProductImages\member\S_997IMG_0632.JPG" />
+		<None Remove="ClientApp\build\ProductImages\member\S_998Maxime%27s MSHN Diploma.JPG" />
+		<None Remove="ClientApp\build\ProductImages\product\Cognicin_S.jpg" />
+		<None Remove="ClientApp\build\ProductImages\product\large\Cognicin.jpg" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_10120150512_114236.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_10769F76A3E-1EFF-4AD1-BB49-1AAE58C5BBAE.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_108IMAG2948.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_117Susan Le - CSNN - RHN Designation.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_118è¯ä¹¦.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_131cert of rego.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_134license pix.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_1362016 ND License.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_13screenshot 2.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_143Screen Shot 2014-10-15 at 1.04.31 PM.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_147ACV.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_153CSNN Diploma .jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_162Byblow CSNN diploma 001.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_16520773457_10154882261473424_1845009789_o.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_177image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_195IMG_5950.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_203photo.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_219C8D34495-2037-4C07-B8E0-A600B90B2ABD.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_225image.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_237CNPBC license.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_243EWilsonNDlisence.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_257IMG_8965.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_266Screenshot_20190630_073617_com.android.gallery3d.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_277Medical License 2018.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_283Paula Chiro Certificate.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_301diploma.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_305Student card.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_318image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_320IMG_4723.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_323image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_3409E0C9D04-4BD2-4165-BB2F-C146E5A5BE25.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_353image.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_36Jonathan ND License.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_373IMG_6916.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_375RHNcertification.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_377Nicole Langille - Registered Holistic Nutritionist.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_384Bacc..jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_402The College of Naturopathic Physicians of BC Certificate.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_408LICENSE ND.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_4129BDCCF02-AD59-40DD-8749-2BDA56119955.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_414GradDiploma.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_421NA-040.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_444IMG_1859.PNG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_449img004.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_453ND diploma.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_453Nutritional_Certification.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_455Ambrose_License.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_460student ID.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_461BINM ID.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_482Dr Tishenko ND 001.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_483College of Homeopaths of Ontario certificate.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_484image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_512Inna Itskovich Student Card.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_513Aaron_Wong_ND_License.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_517IMG_0719[1].JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_521Student ID.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_527IMG_2815.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_536RN Verification.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_542IHN Diploma 001.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_550IMG_7530.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_552IMG_0412.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_554lic number 3011.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_561Washing MD Licence.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_565IMG_1903.PNG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_578alla%27s cert002.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_589Medical Degree.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_591IMG_0697.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_605Student ID BINM.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_605Untitle.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_609IMG_0549.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_60CNSCert.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_60ND Cert Dr Ashleigh Lane.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_610IMG_1579.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_615IndianAMcert098.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_630GucciardiLicense.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_637Student ID.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_644DC License 2017.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_644IMG_0863.PNG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_65cosmo.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_663erin.bellis %2832 of 36%29.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_677Student-Card.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_690CNO EC ANP Certificate.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_691File 2018-02-16, 9 53 14 AM.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_691IBCLClicense.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_719image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_719ND license.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_722CA ND License thru %2716.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_723coldefenxin.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_729Screen Shot 2014-10-04 at 5.59.33 PM.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_732IMG_6747.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_733BDDTN License JHong.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_744licenses.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_745Christina Marinucci, RHN.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_746Verification of RN Reg.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_757CCNM Student ID Card - As%27ad - Front.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_780FMA 2019.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_780Screen Shot 2019-06-24 at 6.04.15 PM.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_78Scan0001.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_791JDyck License 518 ND.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_803ND CERT CARD.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_807ND license.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_817RHN.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_824license.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_830ST_StudentID.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_831license to practice.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_852IMG_2652.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_853IMG_3252.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_861IMG_1110.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_862Diplome Naturo FranÃ§ois Rocca 500.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_86820150824_000922.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_87820961047_10155800420572384_1106584230_o.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_884scan 1-1.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_89020160606_163457.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_891FE415B6C-86FE-4A47-A45E-9A5464077BDE.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_8AK License.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_909Verification 2018.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_91ND Degree.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_920IMG_0667.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_924scan0001.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_937PWB Wash State ND license.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_94911-07-~4 %282%29 NC.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_95414749275696001121169537.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_956CNPBC license%281%29.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_956license ctcma010.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_957NUNM-ID.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_963BUSINESS LICENSE.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_974IMG_2059.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_974Orthomolecular nutrition.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_985image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_997IMG_0632.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\0738ba6abe3e03928e9b49870df19fe0\S_998Maxime%27s MSHN Diploma.JPG.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\32c85552df60db24a1ec486f2a479ec6\broken.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\32c85552df60db24a1ec486f2a479ec6\noimg.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\16325930_10154989787699809_735747404_o.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\barlow.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\bobbynobg.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\dr-hamid-tajbakhsh.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\dr-lisa-ghent.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\dr-martin-kwok.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\dr-tomah-phillips.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\34c78a568dad56a6605be1166f97e6c7\shopping-cart%403x.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\35c2bc39280a00f6df5697a1d1d50b5f\Cognicin.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\35c2bc39280a00f6df5697a1d1d50b5f\VA-103-Bio-C-L.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\78af05b4878ad1f9f52ce043799e3aa5\Cognicin_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\78af05b4878ad1f9f52ce043799e3aa5\EmptyProduct%402x.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\78af05b4878ad1f9f52ce043799e3aa5\EmptyProduct%403x.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\78af05b4878ad1f9f52ce043799e3aa5\EmptyProduct.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\78af05b4878ad1f9f52ce043799e3aa5\VA-103-Bio-C-S.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\98deb7e5a198f0cc4934e6ef23252f0f\broken.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\98deb7e5a198f0cc4934e6ef23252f0f\noimg.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\caacd4239d672b95370f7e08cb2ba789\broken.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\caacd4239d672b95370f7e08cb2ba789\noimg.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\256x256bb.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\5-element-GI-S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\5-element-GI.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\5-HTP-Quality_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\5-HTP-Quality_S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\ACV_Wt_Loss_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\ACV_Wt_Loss_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\adobe-stock-221561827%402x.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_145390389.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_193908646.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_223838409.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_223838409_s.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_290290291.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_314831533.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\AdobeStock_314831533_s.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\ASD_prevalence_cdc.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bacteria.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bacteria_intestine_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bacteria_intestine_S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bacteria_in_gut_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Bifidus_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bisglycino-Mg.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Black-Pepper131010.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\blacksesameseeds.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\black_pepper_large.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bone_HT.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\bone_HT_small.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Bp.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\capsules.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\capsules_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\chili_pepper_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\chili_pepper_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Chlorella_Spoon_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Chlorella_Spoon_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\citrus-oil-L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\citrus-oil-s.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\cold.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\cold_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\curcumin_image.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\curcumin_image_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\cvd.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\CVD_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\dihuang.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Di_Huang_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\DNJ.png.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\elderberry-s.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\elderly %281%29.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\endurance.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\endurance_small.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\ensuring_quality_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\flax.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\flax_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_5750956_Subscription_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_5750956_Subscription_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_5941520_Subscription_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_5941520_Subscription_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_8104580_Subscription_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_8104580_Subscription_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Fotolia_8218923_Subscription_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\garlic.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\garlic_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\GI-TherapeuticFocus-L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\GI-TherapeuticFocus-S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\good_sleep_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\good_sleep_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\greentea.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\greentea_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\healthy_hormone_balance_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\healthy_hormone_balance_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\healthy_natural_vitamins_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\healthy_natural_vitamins_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\heart_health_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\heart_health_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Herbal Quality_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\High-Carb-Diet-L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\hops_bag_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\hops_bag_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\human_microbiota_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\human_microbiota_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\image Large.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\image small.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\inositol_insulin_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\iron_supp.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\iron_supp_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Isoflavones_AIE_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Isoflavones_AIE_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\joint_pain.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\joint_pain_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\kale_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\KD-Yin-Yang-Tai-Chi_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\KD-Yin-Yang-Tai-Chi_S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\kelp.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\kelp_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\lab_extract_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\lab_extract_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\leaf.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\leaf_small.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\leap.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\leap_small.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\LGS.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\LGS_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\lipid_atherosclerosis_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\lipid_atherosclerosis_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Liver_Health_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Liver_Health_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\magic_cube_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\matcha_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Matcha_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Mg_Muscle_Constipation_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Mg_Muscle_Constipation_S.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\MilkThistle_flower.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\MilkThistle_flower_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\mitochondria.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\mitochondria_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\mold_dish_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Neck_thyroid_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Neck_thyroid_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\neonatal_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\neurons_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\neuron_excitotory_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\neuron_excitotory_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Nov Newsletter pic Large.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Nov Newsletter pic small.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Obesity_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Panax_ginseng_s.jpeg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\peppermint_GI_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\peppermint_GI_s.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\perinatal_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\pink_ribbon_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\pink_ribbon_s.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\PQQ_Nerve_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\PQQ_Nerve_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\prenatal_GDM_s.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\prenatal_neonatal_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\prenatal_neonatal_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\relax_grass_sunset_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\resting.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\resting_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\reverse_aging_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\reverse_aging_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\sb-2.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\sb-2_small.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\seasonal_allergy_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\seasonal_allergy_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\shilajit_crude.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\shilajit_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\skin-collagen-L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\skin-collagen-S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\smoking_cessation_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\smoking_cessation_s.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\stess.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\stess_small.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\st_Johns_wort_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\TCM-Herbs-L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\TCM-Herbs-S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\the whole picture.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\unnamed.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Vitamin D Sunlight Beach.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Vitamin D Sunlight Beach_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\Vitex 2000_S.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\xenobiotic_detox_L.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\xenobiotic_detox_s.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\xray_bone.gif.png" />
+		<None Remove="ClientApp\build\ProductImages\thumb\cbc99d9aa38541ba0a69514a8228103b\xray_bone_L.jpg.png" />
+		<None Remove="ClientApp\build\ProductImages\webinar\16325930_10154989787699809_735747404_o.jpg" />
+		<None Remove="ClientApp\build\ProductImages\webinar\barlow.jpg" />
+		<None Remove="ClientApp\build\ProductImages\webinar\bobbynobg.jpg" />
+		<None Remove="ClientApp\build\ProductImages\webinar\dr-hamid-tajbakhsh.png" />
+		<None Remove="ClientApp\build\ProductImages\webinar\dr-lisa-ghent.png" />
+		<None Remove="ClientApp\build\ProductImages\webinar\dr-martin-kwok.png" />
+		<None Remove="ClientApp\build\ProductImages\webinar\dr-tomah-phillips.png" />
+		<None Remove="ClientApp\build\ProductImages\webinar\shopping-cart%403x.png" />
+		<None Remove="ClientApp\src\components\StabilityFormHeader.tsx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\AddressBook.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\ChangePassword.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\OrderHistory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\OrderHistoryDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\PatientOrderHistory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\PatientOrderHistoryDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Account\Profile.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Bingo\BingoPuzzle.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Blog\BlogCategoryList.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Blog\BlogInfoInCategory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Blog\BlogRelatedProductsList.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Layouts\desktop\Header.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Layouts\Footer.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Layouts\mobile\Country.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Layouts\mobile\Footer.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Layouts\mobile\Header.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\MessageBox.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\MyComponents.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\OrderDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Products\ProductDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Products\ProductInfoInCategory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Products\ProductsMaster.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Protocol\ProtocolDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Protocol\ProtocolInfoInCategory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Protocol\ProtocolRelatedProductsList.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Protocol\ProtocolsMaster.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\RedirectToUrl.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Registrion\PatientForm.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Registrion\PractitionerForm.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Registrion\RegistrationForm.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Registrion\StudientForm.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\AddressBookSetting.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\BillingShippingDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\OrderCompletion.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\PaymentMethod.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\ShoppingCartDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\ShoppingCart\ShoppingSummary.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\ChemicalContaminantGroup.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\ChemicalContaminantResultDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\CriticalIngredientGroup.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\CriticalIngredientResultDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\MicrobialContaminantGroup.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\MiscTestGroup.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\PerformanceTestGroup.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\StabilityFormComponents.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\StabilityFormDetail.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\StabilityForm\StabilityFormHeader.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Webinar\WebinarInfoInCategory.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\components\Webinar\WebinarRelatedProductsList.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\HandleErrors.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\NotFoundPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\AccountPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\BingoPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\BlogArticlePage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\BlogPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\BuildingTrustThroughQualityPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ContactUsPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\DosingCaculatorPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\DrawPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\HomePage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\HowToPurchaseProductsPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\InfoforPatientsPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\JoinOurMailingListPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\MedicalAdvisoryBoardPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\MedicalConsultancyTeamPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\OurVisionPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\PrivacyPolicyPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ProductsPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ProtocolsPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\QualityTrakPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\RegisterPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ResetPasswordPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ServicePage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ShippingPolicyPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\ShoppingCartPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\TechSupportPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\TermsNConditionPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\WebinarDetailPage.tsx" />
+		<TypeScriptCompile Remove="ClientApp\src\pages\WebinarsPage.tsx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CIM.DBPO\CIM.DBPO.csproj" />
+		<ProjectReference Include="..\CIM.POCO\CIM.POCO.csproj" />
+		<ProjectReference Include="..\ECSServerObj\ECSServerObj.csproj" />
+		<ProjectReference Include="..\MIS.DBBO\MIS.DBBO.csproj" />
+		<ProjectReference Include="..\MIS.DBPO\MIS.DBPO.csproj" />
+		<ProjectReference Include="..\MyHibernateUtil\MyHibernateUtil.csproj" />
+		<ProjectReference Include="..\MySystem.Base.Web\MySystem.Base.Web.csproj" />
+		<ProjectReference Include="..\MyToolkit.Base\MyToolkit.Base.csproj" />
+		<ProjectReference Include="..\WebDB.DBBO\WebDB.DBBO.csproj" />
+		<ProjectReference Include="..\WebDB.DBPO\WebDB.DBPO.csproj" />
+		<ProjectReference Include="..\WebServiceMiddlewares\WebServiceMiddlewares.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="cim.hibernate.cfg.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="OrderMailBody.html">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ResetPasswordMailBody.html">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="va.mis.ecsopicfg.ini">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="sysconfig.xml">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="webdb.hibernate.cfg.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="va.mis.hibernate.cfg.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="country.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="nlog.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="ClientApp\src\components\Layouts\common\" />
+		<Folder Include="ClientApp\src\pages\desktop\" />
+		<Folder Include="ClientApp\src\pages\mobile\" />
+		<Folder Include="log\" />
+	</ItemGroup>
+
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+	</Target>
+
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install -legacy-peer-deps" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(SpaRoot)build\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>%(DistFiles.Identity)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+				<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>
+
+</Project>

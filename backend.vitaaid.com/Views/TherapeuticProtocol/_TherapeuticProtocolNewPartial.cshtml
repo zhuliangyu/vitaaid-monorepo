@@ -1,0 +1,90 @@
+﻿@using WebDB.DBBO;
+@using System.Runtime;
+@using System.Collections.Generic;
+@using System.Drawing;
+@using WebDB.DBPO.Helper;
+
+@model TherapeuticProtocol
+
+@using (Ajax.BeginForm("NewTherapeuticProtocolPartial", "TherapeuticProtocol",
+    new AjaxOptions { HttpMethod = "POST"},
+    new { @id = "newTherapeuticProtocolForm", @name = "newTherapeuticProtocolForm" }))
+{
+  Html.DevExpress().FormLayout(settings =>
+  {
+    settings.Name = "pvNewForm";
+    settings.SettingsItems.ShowCaption = DefaultBoolean.True;
+    settings.Width = Unit.Percentage(100);
+    settings.Items.AddGroupItem(g =>
+    {
+      g.ColumnCount = 2;
+      g.ShowCaption = DefaultBoolean.False;
+      g.SettingsItemCaptions.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+
+      g.Items.Add(m => m.Issue, s =>
+      {
+        s.NestedExtension().TextBox(tb =>
+        {
+          tb.Width = Unit.Percentage(100);
+          tb.ShowModelErrors = true;
+          tb.Properties.ValidationSettings.Display = Display.Dynamic;
+          tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+        });
+      });
+      g.Items.Add(m => m.Author, s =>
+      {
+        s.NestedExtension().TextBox(tb =>
+        {
+          tb.Width = Unit.Percentage(100);
+          tb.ShowModelErrors = true;
+          tb.Properties.ValidationSettings.Display = Display.Dynamic;
+          tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+        });
+      });
+      g.Items.Add(m => m.Topic, s =>
+      {
+        s.ColumnSpan = 2;
+        s.NestedExtension().TextBox(tb =>
+        {
+          tb.Width = Unit.Percentage(100);
+          tb.ShowModelErrors = true;
+          tb.Properties.ValidationSettings.Display = Display.Dynamic;
+          tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+        });
+      });
+      g.Items.Add(m => m.Tags, s =>
+      {
+        s.ColumnSpan = 2;
+      });
+      g.Items.Add(m => m.Published);
+      g.Items.Add(m => m.VisibleSite, s =>
+      {
+        s.CaptionSettings.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        s.Caption = "Site";
+      });
+    });
+    settings.Items.AddGroupItem(group =>
+    {
+      group.GroupBoxDecoration = GroupBoxDecoration.None;
+      group.ColumnCount = 2;
+      group.Items.Add(i =>
+      {
+        i.ShowCaption = DefaultBoolean.False;
+        i.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+        var button = (ButtonSettings)i.NestedExtensionSettings;
+        button.Name = "cancel";
+        button.Text = "Cancel";
+        button.ClientSideEvents.Click = "function (s,e) {therapeuticProtocolView.CancelEdit();}";
+      });
+      group.Items.Add(i =>
+      {
+        i.ShowCaption = DefaultBoolean.False;
+        i.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+        var button = (ButtonSettings)i.NestedExtensionSettings;
+        button.Name = "update";
+        button.Text = "Save";
+        button.ClientSideEvents.Click = "function (s,e) {therapeuticProtocolView.UpdateEdit();}";
+      });
+    });
+  }).Bind(Model).GetHtml();
+}

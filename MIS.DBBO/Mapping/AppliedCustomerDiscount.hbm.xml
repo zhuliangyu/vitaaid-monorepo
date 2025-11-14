@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="AppliedCustomerDiscount" table="AppliedCustomerDiscount" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oCustomer">
+      <column name="oCustomer" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="oRefCustomerDiscount">
+      <column name="oRefCustomerDiscount" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CustomerCode" type ="TrimString">
+      <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oDiscountProgram">
+      <column name="oDiscountProgram" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="oOrder">
+      <column name="oOrder" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="IsActive">
+      <column name="IsActive" sql-type="int" not-null="false" />
+    </property>
+    <!-- Other -->
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="bApplied">
+      <column name="bApplied" sql-type="int" not-null="false" />
+    </property>
+    <property name="AppliedDate">
+      <column name="AppliedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

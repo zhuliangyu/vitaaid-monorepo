@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="FabProduction" table="FabProduction" lazy="true" >
+	<id name="ID" column="ID">
+	  <generator class="identity" />
+	</id>
+	<many-to-one name="FormulationObj" cascade="all">
+	  <column name="FormulationID" sql-type="int" not-null="false" />
+	</many-to-one>
+	<many-to-one name="RouteObj">
+	  <column name="RouteID" sql-type="int" not-null="false" />
+	</many-to-one>
+	<property name="Code" type ="TrimString">
+	  <column name="Code" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Version">
+	  <column name="Version" sql-type="int" not-null="false" />
+	</property>
+	<property name="Name" type ="TrimString">
+	  <column name="Name" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Subversion">
+	  <column name="Subversion" sql-type="int" not-null="false" />
+	</property>
+	  <property name="CreatedID" type ="TrimString">
+		  <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="CreatedDate">
+	  <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	  <property name="UpdatedID" type ="TrimString">
+		  <column name="ModifiedID" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="UpdatedDate">
+	  <column name="LastModifiedDate" sql-type="smalldatetime" not-null="false" />
+	</property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="NPN" type ="TrimString">
+	  <column name="NPN" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="Description" type ="TrimString">
+	  <column name="Description" sql-type="nvarchar" not-null="false" />
+	</property>
+	<property name="ShelfLife">
+	  <column name="ShelfLife" sql-type="float" not-null="false" />
+	</property>
+	<property name="StorageCondition">
+	  <column name="StorageCondition" sql-type="int" not-null="false" />
+	</property>
+	  <property name="DailyDose">
+		  <column name="DailyDose" sql-type="int" not-null="false" />
+	  </property>
+	  <property name="BulkDensity">
+		  <column name="BulkDensity" sql-type="float" not-null="false" />
+	  </property>
+	  <bag name="oEQRecipes" table="FabEQAssignment" order-by="EQID">
+		<key column="FabProductionID"/>
+		<one-to-many class="FabEQAssignment"/>
+	</bag>
+  </class>
+</hibernate-mapping>

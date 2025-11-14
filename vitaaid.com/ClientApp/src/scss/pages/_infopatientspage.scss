@@ -1,0 +1,253 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+
+.info-patients {
+  position: relative;
+
+  .banner {
+    width: 100%;
+    @include media('<tablet') {
+      @include clampattr(height, 340);
+      @include clampattr(padding-top, 38);
+    }
+    @include media('>=tablet') {
+      @include clampattr(height, 550);
+      @include clampattr(padding-top, 148);
+    }
+    position: relative;
+
+    .banner-block1 {
+      position: absolute;
+      @include media('<tablet') {
+        @include mdivimg('infoforpatients-block1-m', 153, 55);
+      }
+      @include media('>=tablet') {
+        @include gdivimg('infoforpatients-block1.png', 103, 313);
+      }
+      right: 0px;
+      top: 0px;
+    }
+
+    .banner-block2 {
+      position: absolute;
+      @include media('<tablet') {
+        @include mdivimg('infoforpatients-block2-m', 186, 207);
+        right: 0px;
+      }
+      @include media('>=tablet') {
+        @include gdivimg('infoforpatients-block2.png', 488, 484);
+        @include clampattr(right, 312);
+      }
+      bottom: 0px;
+    }
+
+    .banner-block3 {
+      position: absolute;
+      @include media('<tablet') {
+        @include mdivimg('infoforpatients-block3-m', 190, 176);
+        right: 0px;
+      }
+      @include media('>=tablet') {
+        @include gdivimg('infoforpatients-block3.png', 304, 117);
+        @include clampattr(right, 312);
+      }
+      left: 0;
+      bottom: 0;
+    }
+
+    .banner-text-block {
+      @include media('<tablet') {
+        width: 100%;
+        @include clampattr(margin-left, 17);
+        @include clampattr(margin-right, 17);
+      }
+      @include media('>=tablet') {
+        @include clampattr(width, 1280);
+      }
+      margin-left: auto;
+      margin-right: auto;
+
+      @media (max-width: 1300px) {
+        @include clampattr(padding-left, 10);
+        @include clampattr(padding-right, 10);
+      }
+
+      .text1 {
+        @include media('<tablet') {
+          @include clampattr(font-size, 30);
+          @include clampattr(line-height, 30);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 60);
+          font-weight: 600;
+          @include clampattr(line-height, 70);
+        }
+        color: var(--peacock-blue);
+      }
+
+      .text2 {
+        color: var(--marine-blue);
+      }
+
+      .banner-line1 {
+        @include clampattr(margin-top, 10);
+        @include media('<tablet') {
+          width: 100%;
+          @include image_content('infopatients-banner-line1.png');
+        }
+        @include media('>=tablet') {
+          @include divimg('infopatients-banner-line1.png', 904, 1);
+        }
+      }
+
+      .text3 {
+        @include media('<tablet') {
+          @include clampattr(margin-top, 8);
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 18);
+          @include clampattr(width, 200);
+        }
+        @include media('>=tablet') {
+          @include clampattr(margin-top, 16);
+          @include clampattr(font-size, 20);
+          @include clampattr(line-height, 24.5);
+          @include clampattr(width, 800);
+        }
+        color: var(--peacock-blue);
+      }
+    }
+  }
+
+  .body {
+    @include media('>=tablet') {
+      @include clampattr(width, 1280);
+      margin-left: auto;
+      margin-right: auto;
+      @include clampattr(height, 490);
+      @media (max-width: 1300px) {
+        @include clampattr(padding-left, 10);
+        @include clampattr(padding-right, 10);
+      }
+    }
+
+    .row {
+      /*      @include clampattr(margin-left, $page-lr-padding);
+      @include clampattr(margin-right, $page-lr-padding);
+*/
+    }
+
+    .title {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 10);
+        @include clampattr(padding-bottom, 16);
+        @include clampattr(margin-bottom, 24);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 34);
+        @include clampattr(height, 45);
+        font-weight: 600;
+        @include clampattr(margin-bottom, 13);
+      }
+      @include clampattr(font-size, 25);
+      color: var(--marine-blue);
+      border-bottom: 1px solid var(--grey-borderline);
+    }
+
+    .content {
+      border-bottom: 1px solid #c9c9c9;
+      @include media('>=tablet') {
+        @include clampattr(height, 230);
+      }
+      position: relative;
+
+      .col-6 {
+        @include clampattr(margin-top, 42);
+      }
+
+      .icon1 {
+        display: inline-block;
+        @include media('<tablet') {
+          @include mdivimg('infopatients-icon1', 41, 46);
+        }
+        @include media('>=tablet') {
+          @include bg('infopatients-icon1.png', 47, 54);
+          @include clampattr(width, 47);
+          @include clampattr(height, 54);
+          @include clampattr(margin-top, 15);
+        }
+        vertical-align: top;
+      }
+
+      .icon2 {
+        display: inline-block;
+        @include media('<tablet') {
+          @include mdivimg('infopatients-icon2', 38, 50);
+          @include clampattr(margin-top, 22);
+        }
+        @include media('>=tablet') {
+          @include bg('infopatients-icon2.png', 47, 54);
+          @include clampattr(width, 47);
+          @include clampattr(height, 54);
+          @include clampattr(margin-top, 15);
+        }
+        vertical-align: top;
+      }
+
+      .info-header-m {
+        display: flex;
+      }
+      .content-block {
+        display: inline-block;
+        @include clampattr(margin-left, 20);
+      }
+
+      .content-line1 {
+        @include clampattr(font-size, 18);
+        @include media('<tablet') {
+          @include clampattr(line-height, 20);
+          @include clampattr(margin-left, 20);
+          font-weight: 600;
+          margin-top: auto;
+          margin-bottom: 0px;
+        }
+        @include media('>=tablet') {
+          @include clampattr(line-height, 40);
+          font-weight: 300;
+        }
+        color: var(--marine-blue);
+      }
+
+      .content-detail-1 {
+        @include media('<tablet') {
+          @include clampattr(margin-top, 8);
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 420);
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+          font-weight: 300;
+        }
+        color: var(--greyish-brown);
+      }
+
+      .content-detail-2 {
+        @include media('<tablet') {
+          @include clampattr(margin-top, 8);
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(width, 520);
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+          font-weight: 300;
+        }
+        color: var(--greyish-brown);
+      }
+    }
+  }
+}

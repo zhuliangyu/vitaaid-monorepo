@@ -1,0 +1,27 @@
+VS2022 open "D:\Code\vitaaid.com\vitaaid.com\vitaaid.com.sln"
+
+VSCode如何解决方法无法跳转的问题:
+	在命令面板中，选择 .NET: Open Solution
+	浏览并选择 vitaaid.com.sln 文件
+
+
+sysconfig.xml
+va.mis.ecsopicfg.ini
+
+connection string: no space
+
+webdb.hibernate.cfg.xml
+VA.MIS.hibernate.cfg.xml
+cim.hibernate.cfg.xml
+
+DevExpress.Web.ASPxScheduler.Controls
+
+192.168.1.114
+root
+zhuliangyu27
+
+
+"APServerDEV":"http://192.168.1.114/NAPIECSServerTest/Services.svc",
+
+
+	<property name="connection.connection_string">Data Source=192.168.1.114;Database=VA.MIS;User ID=root;Password="zhuliangyu27"</property>

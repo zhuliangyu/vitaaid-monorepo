@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="POCO" namespace="POCO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RawMaterialDetail" table="ARawMaterialDetail" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="RawMaterialSpec">
+      <column name="RawMaterialSpecID" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="ReceivingNo" type ="TrimString">
+      <column name="ReceivingNo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="BoxNumber">
+      <column name="BoxNumber" sql-type="int" not-null="false" />
+    </property>
+    <property name="RetestDate">
+      <column name="RetestDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Barcode" type ="TrimString">
+      <column name="Barcode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="IsPrinted">
+      <column name="IsPrinted" sql-type="int" not-null="false" />
+    </property>
+    <property name="InWH">
+      <column name="InWH" sql-type="int" not-null="false" />
+    </property>
+    <property name="RawMaterialLotNumber" type ="TrimString">
+      <column name="RawMaterialLotNumber" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="SupplyWeightBox">
+      <column name="SupplyWeightBox" sql-type="float" not-null="false" />
+    </property>
+    <property name="GrossWeight">
+      <column name="GrossWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="BagWeight">
+      <column name="BagWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="StockWeight">
+      <column name="StockWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="ReserveWeight">
+      <column name="ReserveWeight" sql-type="float" not-null="false" />
+    </property>
+    <property name="StockLocation" type ="TrimString">
+      <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="SafeStock">
+      <column name="SafeStock" sql-type="float" not-null="false" />
+    </property>
+    <property name="Comment" type ="TrimString">
+      <column name="Comment" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="Calibration">
+      <column name="Calibration" sql-type="int" not-null="false" />
+    </property>
+    <property name="CalibrationID" type ="TrimString">
+      <column name="CalibrationID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CalibrationDate">
+      <column name="CalibrationDate" sql-type="smalldatetime" not-null="false" />
+    </property>
+    <property name="OldRawMaterialCode" type ="TrimString">
+      <column name="OldRawMaterialCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="RawMaterialName" type ="TrimString">
+      <column name="RawMaterialName" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Disposal">
+      <column name="Disposal" sql-type="int" not-null="false" />
+    </property>
+	  <property name="DataStatus" type ="TrimString">
+		  <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <bag name="oPrintLabelLogs" table="PrintRawMaterialLabelLog" lazy="true">
+      <key column="RawMaterialDetailID"/>
+      <one-to-many class="PrintRawMaterialLabelLog"/>
+    </bag>
+  </class>
+</hibernate-mapping>

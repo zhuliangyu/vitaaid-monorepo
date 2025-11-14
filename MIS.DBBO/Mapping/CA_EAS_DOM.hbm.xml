@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="CA_EAS_DOM" table="CA_EAS_DOM" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <property name="FromCode" type ="TrimString">
+      <column name="FromCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="ToCode" type ="TrimString">
+      <column name="ToCode" sql-type="nvarchar" not-null="false" />
+    </property>
+      <property name="Charge">
+          <column name="Charge" sql-type="decimal" not-null="false" />
+      </property>
+
+  </class>
+</hibernate-mapping>

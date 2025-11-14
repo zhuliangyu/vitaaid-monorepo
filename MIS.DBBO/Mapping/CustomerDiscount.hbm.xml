@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="CustomerDiscount" table="CustomerDiscount" lazy="true" >
+    <id name="ID" column="ID">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="oCustomer">
+      <column name="oCustomer" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="CustomerCode" type ="TrimString">
+      <column name="CustomerCode" sql-type="nvarchar" not-null="false" />
+    </property>
+    <many-to-one name="oDiscountProgram">
+      <column name="oDiscountProgram" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="UsedCount">
+      <column name="UsedCount" sql-type="int" not-null="false" />
+    </property>
+    <property name="LastUsedDate">
+      <column name="LastUsedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="LastUsedPONo" type ="TrimString">
+      <column name="LastUsedPONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PrevLastUsedDate">
+      <column name="PrevLastUsedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="PrevLastUsedPONo" type ="TrimString">
+      <column name="PrevLastUsedPONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="IsActive">
+      <column name="IsActive" sql-type="int" not-null="false" />
+    </property>
+    <!-- Other -->
+    <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

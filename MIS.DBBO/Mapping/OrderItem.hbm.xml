@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="MIS.DBBO" namespace="MIS.DBBO" xmlns="urn:nhibernate-mapping-2.2">
+  <typedef name="TrimString" class="MyHibernateUtil.TrimString, MyHibernateUtil"/>
+  <class name="OrderItem" lazy="false">
+    <id name="ID" column="ID">
+      <generator class="sequence">
+        <param name="sequence">order_item_id_seq</param>
+      </generator>
+    </id>
+    <many-to-one name="oVAOrder">
+      <column name="oVAOrder" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Name" type ="TrimString">
+      <column name="Name" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Code" type ="TrimString">
+      <column name="Code" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PONo" type ="TrimString">
+      <column name="PONo" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Amount">
+      <column name="Amount" sql-type="decimal" not-null="false" />
+    </property>
+    <property name="Remark" type ="TrimString">
+      <column name="Remark" sql-type="nvarchar" not-null="false" />
+    </property>
+	  <property name="FromBONo" type ="TrimString">
+		  <column name="FromBONo" sql-type="nvarchar" not-null="false" />
+	  </property>
+	  <property name="DataStatus" type ="TrimString">
+      <column name="DataStatus" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedID" type ="TrimString">
+      <column name="CreatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="CreatedDate">
+      <column name="CreatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+    <property name="UpdatedID" type ="TrimString">
+      <column name="UpdatedID" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="UpdatedDate">
+      <column name="UpdatedDate" sql-type="DATETIME2" not-null="false" />
+    </property>
+
+    <union-subclass name="VAOrderItem" table="VAOrderItem" lazy="false">
+      <!--<property name="MESProductCode" type ="TrimString">
+        <column name="MESProductCode" sql-type="nvarchar" not-null="false" />
+      </property>-->
+      <property name="CodeOnInvoice" type ="TrimString">
+        <column name="CodeOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="NameOnInvoice" type ="TrimString">
+        <column name="NameOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="UnitPrice">
+        <column name="UnitPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="Unit" type ="TrimString">
+        <column name="Unit" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="OrderQty">
+        <column name="OrderQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="ShipQty">
+        <column name="ShipQty" sql-type="float" not-null="false" />
+      </property>
+      <!--<property name="BackorderQty">
+        <column name="BackorderQty" sql-type="float" not-null="false" />
+      </property>-->
+      <property name="RawAmount">
+        <column name="RawAmount" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="StandardPrice">
+        <column name="StandardPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="MSRPrice">
+        <column name="MSRPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="EmployeePrice">
+        <column name="EmployeePrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="USDPrice">
+        <column name="USDPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="bDecorated">
+        <column name="bDecorated" sql-type="int" not-null="false" />
+      </property>
+      <property name="ExpiredDate">
+        <column name="ExpiredDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="StockLocation" type ="TrimString">
+        <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="RetailLotNo" type ="TrimString">
+        <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="Weight">
+        <column name="Weight" sql-type="float" not-null="false" />
+      </property>
+      <property name="StockCountSnapShot">
+        <column name="StockCountSnapShot" sql-type="int" not-null="false" />
+      </property>
+      <property name="TemperatureSensitive">
+          <column name="TemperatureSensitive" sql-type="int" not-null="false" />
+      </property>
+      <bag name="oItemsByLot" table="VAOrderItemByLot" inverse="false" cascade="none">
+        <key column="oItemOwner"  not-null="false" />
+        <one-to-many class="VAOrderItemByLot"/>
+      </bag>
+		<property name="LIN01" type ="TrimString">
+			<column name="LIN01" sql-type="nvarchar" not-null="false" />
+		</property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+
+    <union-subclass name="VAGiftItem" table="VAGiftItem" lazy="false">
+      <!--<property name="MESProductCode" type ="TrimString">
+        <column name="MESProductCode" sql-type="nvarchar" not-null="false" />
+      </property>-->
+      <property name="CodeOnInvoice" type ="TrimString">
+        <column name="CodeOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="NameOnInvoice" type ="TrimString">
+        <column name="NameOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <many-to-one name="oOwnerItem">
+        <column name="oOwnerItem" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="UnitPrice">
+        <column name="UnitPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="Unit" type ="TrimString">
+        <column name="Unit" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="OrderQty">
+        <column name="OrderQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="ShipQty">
+        <column name="ShipQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="RawAmount">
+        <column name="RawAmount" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="StandardPrice">
+        <column name="StandardPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="MSRPrice">
+        <column name="MSRPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="EmployeePrice">
+        <column name="EmployeePrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="USDPrice">
+        <column name="USDPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <many-to-one name="oDiscount">
+        <column name="oDiscount" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="bDecorated">
+        <column name="bDecorated" sql-type="int" not-null="false" />
+      </property>
+      <property name="ExpiredDate">
+        <column name="ExpiredDate" sql-type="DATETIME2" not-null="false" />
+      </property>
+      <property name="StockLocation" type ="TrimString">
+        <column name="StockLocation" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="RetailLotNo" type ="TrimString">
+        <column name="RetailLotNo" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="Weight">
+        <column name="Weight" sql-type="float" not-null="false" />
+      </property>
+      <property name="StockCountSnapShot">
+        <column name="StockCountSnapShot" sql-type="int" not-null="false" />
+      </property>
+      <property name="DiscountPercentage">
+        <column name="DiscountPercentage" sql-type="float" not-null="false" />
+      </property>
+        <property name="TemperatureSensitive">
+            <column name="TemperatureSensitive" sql-type="int" not-null="false" />
+        </property>
+        <bag name="oItemsByLot" table="VAOrderItemByLot" inverse="false" cascade="none">
+        <key column="oItemOwner"  not-null="false" />
+        <one-to-many class="VAOrderItemByLot"/>
+      </bag>
+		<property name="LIN01" type ="TrimString">
+			<column name="LIN01" sql-type="nvarchar" not-null="false" />
+		</property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+
+    <union-subclass name="DiscountDecorator" table="DiscountDecorator" lazy="false">
+      <many-to-one name="oDecoratedItem">
+        <column name="oDecoratedItem" sql-type="int" not-null="false"/>
+      </many-to-one>
+      <many-to-one name="oDiscount">
+        <column name="oDiscount" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="DiscountType">
+        <column name="DiscountType" sql-type="int" not-null="false" />
+      </property>
+      <property name="bDecorated">
+        <column name="bDecorated" sql-type="int" not-null="false" />
+      </property>
+      <bag name="oGifts" table="VAGiftItem" inverse="false" cascade="none">
+        <key column="oOwnerItem"  not-null="false" />
+        <one-to-many class="VAGiftItem"/>
+      </bag>
+      <property name="DiscountPercentage">
+        <column name="DiscountPercentage" sql-type="float" not-null="false" />
+      </property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+
+    <union-subclass name="OptionDiscountDecorator" table="OptionDiscountDecorator" lazy="false">
+      <many-to-one name="oDecoratedItem">
+        <column name="oDecoratedItem" sql-type="int" not-null="false" />
+      </many-to-one>
+      <many-to-one name="oDiscount">
+        <column name="oDiscount" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="DiscountType">
+        <column name="DiscountType" sql-type="int" not-null="false" />
+      </property>
+      <property name="bByMaxDiscount">
+        <column name="bByMaxDiscount" sql-type="int" not-null="false" />
+      </property>
+      <bag name="oOptions" table="AppliedCustomerDiscount" inverse="false" cascade="none">
+        <key column="oOptionDiscountDecorator"  not-null="false" />
+        <one-to-many class="AppliedCustomerDiscount"/>
+      </bag>
+      <property name="bDecorated">
+        <column name="bDecorated" sql-type="int" not-null="false" />
+      </property>
+      <bag name="oGifts" table="VAGiftItem" inverse="false" cascade="none">
+        <key column="oOwnerItem"  not-null="false" />
+        <one-to-many class="VAGiftItem"/>
+      </bag>
+      <property name="DiscountPercentage">
+        <column name="DiscountPercentage" sql-type="float" not-null="false" />
+      </property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+
+    <union-subclass name="CreditOrderItem" table="CreditOrderItem" lazy="false">
+      <property name="CodeOnInvoice" type ="TrimString">
+        <column name="CodeOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="NameOnInvoice" type ="TrimString">
+        <column name="NameOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <many-to-one name="oDiscount">
+        <column name="oDiscount" sql-type="int" not-null="false" />
+      </many-to-one>
+      <property name="Credit">
+        <column name="Credit" sql-type="decimal" not-null="false" />
+      </property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+
+    <union-subclass name="MCOrderItem" table="MCOrderItem" lazy="false">
+      <property name="CodeOnInvoice" type ="TrimString">
+        <column name="CodeOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="NameOnInvoice" type ="TrimString">
+        <column name="NameOnInvoice" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="UnitPrice">
+        <column name="UnitPrice" sql-type="decimal" not-null="false" />
+      </property>
+      <property name="Unit" type ="TrimString">
+        <column name="Unit" sql-type="nvarchar" not-null="false" />
+      </property>
+      <property name="OrderQty">
+        <column name="OrderQty" sql-type="float" not-null="false" />
+      </property>
+      <property name="Weight">
+        <column name="Weight" sql-type="float" not-null="false" />
+      </property>
+		<many-to-one name="oFromBackOrder">
+			<column name="oFromBackOrder" sql-type="int" not-null="false" />
+		</many-to-one>
+	</union-subclass>
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,360 @@
+﻿@use '../abstracts' as *;
+@use '../base' as *;
+
+.building-trust-page-header {
+  position: relative;
+  @include media('<tablet') {
+    @include clampattr(height, 337);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 65);
+  }
+
+  .qnt-block1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    @include media('<tablet') {
+      @include mdivimg('qnt-block1-m', 153, 55);
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qnt-block1.png', 317, 122);
+    }
+  }
+
+  .qnt-block2 {
+    position: absolute;
+    left: 0;
+    @include media('<tablet') {
+      @include mdivimg('qnt-block2-m', 56, 176);
+      @include gclampattr(bottom, 0);
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qnt-block2.png', 169, 437);
+      @include gclampattr(top, 111);
+    }
+  }
+
+  .qnt-block3 {
+    position: absolute;
+    @include media('<tablet') {
+      @include mdivimg('qnt-block3-m', 174, 212);
+      @include gclampattr(right, 0);
+      bottom: 0;
+    }
+    @include media('>=tablet') {
+      @include gdivimg('qnt-block3.png', 454, 550);
+      @include gclampattr(right, 378);
+      top: 0;
+    }
+  }
+
+  .qnt-block4 {
+    @include media('>=tablet') {
+      @include gdivimg('qnt-block4.png', 378, 146);
+      position: absolute;
+      right: 0;
+      @include gclampattr(top, 402);
+    }
+  }
+
+  .qnt-header {
+    position: relative;
+    @include media('<tablet') {
+      @include clampattr(padding-top, 55);
+      @include clampattr(padding-left, 35);
+    }
+    @include media('>=tablet') {
+      @include clampattr(height, 550);
+      @include clampattr(width, 1280);
+      @include clampattr(padding-top, 180);
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+
+    .text-1 {
+      @include media('<tablet') {
+        @include clampattr(font-size, 30);
+        @include clampattr(line-height, 30);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 60);
+      }
+
+      @include clampattr(padding-left, 2);
+      font-weight: 600;
+      color: var(--peacock-blue);
+    }
+
+    .qnt-line1 {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 6);
+        @include mdivimg('qnt-line1-m', 251, 2);
+      }
+      @include media('>=tablet') {
+        @include clampattr(margin-top, 12);
+        @include divimg('qnt-line1.png', 894, 1);
+      }
+    }
+
+    .text-2 {
+      @include media('<tablet') {
+        @include clampattr(font-size, 15);
+        @include clampattr(line-height, 18);
+        @include clampattr(margin-top, 6);
+        @include clampattr(width, 200);
+      }
+      @include media('>=tablet') {
+        @include clampattr(font-size, 20);
+        @include clampattr(margin-top, 6);
+        @include clampattr(width, 450);
+      }
+      @include clampattr(padding-left, 2);
+      color: var(--peacock-blue);
+    }
+  }
+}
+.qnt-main-body {
+  @include media('<tablet') {
+    @include clampattr(margin-top, 32);
+    @include clampattr(font-size, 18);
+    @include clampattr(line-height, 24);
+  }
+  @include media('>=tablet') {
+    @include clampattr(margin-top, 63);
+    @include clampattr(font-size, 15);
+    @include clampattr(line-height, 20);
+  }
+
+  font-weight: 300;
+  color: var(--greyish-brown);
+
+  .header-line {
+    @include clampattr(font-size, 25);
+    @include media('<tablet') {
+      @include clampattr(line-height, 25);
+    }
+    @include media('>=tablet') {
+      @include clampattr(line-height, 45);
+    }
+    font-weight: 600;
+    color: var(--marine-blue);
+  }
+
+  .rm-text-block {
+    @include media('>=tablet') {
+      @include clampattr(width, 620);
+    }
+
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .qnt-rawmaterial-img {
+    @include clampattr(border-radius, 10);
+    display: inline-block;
+    @include media('<tablet') {
+      @include mdivimg('qnt-rawmaterial-m', 375, 205);
+      @include clampattr(margin-top, 8);
+      width: 100%;
+    }
+    @include media('>=tablet') {
+      @include divimg('qnt-rawmaterial.png', 640, 290);
+      @include clampattr(margin-left, 20);
+      @include clampattr(margin-top, 14);
+    }
+  }
+
+  .formulation-section {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 2);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 6);
+    }
+
+    .figure-section {
+      @include media('>=tablet') {
+        @include clampattr(height, 332);
+        @include clampattr(margin-top, 18);
+      }
+
+      .figure-block {
+        position: relative;
+        @include media('<tablet') {
+          @include clampattr(margin-top, 18);
+        }
+      }
+      .coating-text {
+        position: absolute;
+        color: var(--marine-blue);
+        @include media('<tablet') {
+          @include clampattr(font-size, 14.5);
+          @include clampattr(line-height, 17);
+          @include clampattr(top, 79);
+          left: 0px;
+          @include clampattr(width, 190);
+        }
+        @include media('>=tablet') {
+          @include clampattr(top, 92);
+          @include clampattr(left, 19);
+          @include clampattr(width, 260);
+        }
+      }
+
+      .qnt-formulation-1 {
+        position: absolute;
+        top: 0;
+        @include media('<tablet') {
+          @include mdivimg('qnt-formulation-1-m', 140, 215);
+          @include clampattr(left, 188);
+        }
+        @include media('>=tablet') {
+          @include divimg('qnt-formulation-1.png', 163, 249);
+          @include clampattr(left, 241);
+        }
+      }
+
+      .ingredient-text {
+        position: absolute;
+        @include media('<tablet') {
+          @include clampattr(top, 185);
+          @include clampattr(left, 100);
+        }
+        @include media('>=tablet') {
+          @include clampattr(top, 220);
+          @include clampattr(left, 163);
+        }
+      }
+
+      .qnt-formulation-2 {
+        @include media('<tablet') {
+          @include mdivimg('qnt-formulation-2-m', 251, 239);
+          margin-left: auto;
+          margin-right: auto;
+        }
+        @include media('>=tablet') {
+          position: absolute;
+          @include divimg('qnt-formulation-2.png', 293, 277);
+          top: 0;
+          @include clampattr(left, 600);
+        }
+      }
+
+      .figure-text {
+        font-style: italic;
+        @include media('<tablet') {
+          @include clampattr(font-size, 14);
+          @include clampattr(line-height, 20);
+          font-weight: 300;
+        }
+      }
+
+      .text-img-group {
+        @include media('<tablet') {
+          position: relative;
+          @include clampattr(width, 330);
+          @include clampattr(height, 215);
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+      .figure1-text {
+        @include media('<tablet') {
+          text-align: center;
+        }
+        @include media('>=tablet') {
+          position: absolute;
+          @include clampattr(left, 19);
+          @include clampattr(top, 292);
+        }
+      }
+
+      .figure2-text {
+        @include media('<tablet') {
+          text-align: center;
+        }
+        @include media('>=tablet') {
+          position: absolute;
+          @include clampattr(left, 552);
+          @include clampattr(top, 292);
+        }
+      }
+    }
+
+    .by-not {
+      @include media('<tablet') {
+        @include clampattr(margin-top, 6);
+      }
+    }
+  }
+
+  .inspection-section {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 6);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 18);
+    }
+
+    .inspection-text-block {
+      @include media('>=tablet') {
+        @include clampattr(width, 620);
+      }
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .qnt-inspection-img {
+      display: inline-block;
+      @include media('<tablet') {
+        @include mdivimg('qnt-inspection-m', 375, 205);
+        width: 100%;
+      }
+      @include media('>=tablet') {
+        @include divimg('qnt-inspection.png', 640, 292);
+        @include clampattr(margin-left, 20);
+        @include clampattr(margin-top, 14);
+      }
+
+      @include clampattr(border-radius, 10);
+    }
+
+    .quality-text {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 30);
+      color: var(--peacock-blue);
+      font-weight: 700;
+    }
+
+    .trak-text {
+      @include clampattr(font-size, 20);
+      @include clampattr(line-height, 30);
+      color: var(--marine-blue);
+      font-weight: 700;
+    }
+
+    .tm-text {
+      vertical-align: super;
+      @include clampattr(font-size, 8);
+      color: var(--marine-blue);
+      font-weight: 700;
+    }
+  }
+
+  .building-section {
+    @include media('<tablet') {
+      @include clampattr(margin-top, 4);
+    }
+    @include media('>=tablet') {
+      @include clampattr(margin-top, 2);
+    }
+
+    .last-line {
+      @include clampattr(font-size, 18);
+      font-weight: 300;
+      color: var(--marine-blue);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+﻿@using WebDB.DBBO;
+@using WebDB.DBPO;
+@model Product
+
+@using (Html.BeginForm())
+{
+    <div class="uploadContainer">
+        @Html.DevExpress().UploadControl(settings =>
+   {
+       settings.ClientVisible = false;
+       settings.ShowProgressPanel = true;
+       settings.CallbackRouteValues = new { Controller = "Product", Action = "DragAndDropFileUpload" }; //, id = Model.ID, };
+       settings.Name = "ucDragAndDrop";
+       settings.UploadMode = UploadControlUploadMode.Auto;
+       settings.AutoStartUpload = false;
+       settings.Width = Unit.Percentage(100);
+       //settings.DialogTriggerID = "externalDropZone";
+       //settings.AdvancedModeSettings.EnableDragAndDrop = true;
+       settings.AdvancedModeSettings.EnableFileList = false;
+       settings.AdvancedModeSettings.EnableMultiSelect = false;
+       //settings.AdvancedModeSettings.ExternalDropZoneID = "externalDropZone";
+       //settings.AdvancedModeSettings.DropZoneText = "";
+       settings.ValidationSettings.MaxFileSize = EnvHelper.MAX_UPLOAD_SIZE;
+       settings.ValidationSettings.AllowedFileExtensions = new string[] { ".pdf"};
+       settings.ValidationSettings.ErrorStyle.CssClass = "validationMessage";
+       settings.BrowseButton.Text = "Upload product sheet...";
+       //settings.Styles.DropZone.CssClass = "uploadControlDropZone";
+       //settings.ClientSideEvents.DropZoneEnter = "function(s, e) { if(e.dropZone.id == 'externalDropZone') setElementVisible('dropZone', true); }";
+       //settings.ClientSideEvents.DropZoneLeave = "function(s, e) { if(e.dropZone.id == 'externalDropZone') setElementVisible('dropZone', false); }";
+       settings.ClientSideEvents.FileUploadComplete = "onUploadControlFileUploadComplete";
+       settings.ClientSideEvents.TextChanged = "onProductSheetChanged";
+
+   }).GetHtml()
+    </div>
+    @Html.Hidden("FileNameInServer_hiddenField")
+}

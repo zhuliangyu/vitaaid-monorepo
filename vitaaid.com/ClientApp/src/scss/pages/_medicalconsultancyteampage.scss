@@ -1,0 +1,97 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as *;
+
+.medical-consultancy-team {
+  .header-block {
+    @include clampattr(font-size, 25);
+    font-weight: 600;
+    @include clampattr(line-height, 45);
+    color: var(--marine-blue);
+    border-bottom: 1px solid var(--grey-borderline);
+    @include media('<tablet') {
+      @include clampattr(padding-bottom, 0);
+      @include clampattr(margin-bottom, 8);
+    }
+    @include media('>=tablet') {
+      @include clampattr(padding-bottom, 9);
+      @include clampattr(margin-bottom, 15);
+    }
+  }
+
+  .dr-block {
+    font-weight: 300;
+    display: flex;
+    border-bottom: 1px solid var(--grey-borderline);
+    @include clampattr(margin-top, 20);
+    @include clampattr(padding-bottom, 10);
+
+    .dr-img {
+      @include clampattr(width, 115);
+      @include clampattr(height, 115);
+      @include clampattr(margin-top, 2);
+
+      img {
+        border-radius: 10px;
+        /*        border: 1pt solid #ccc;
+*/
+      }
+    }
+    .photo-mobile {
+      border-radius: 10px;
+      float: left;
+      @include clampattr(margin-right, 10);
+    }
+    .dr-desc {
+      @include media('>=tablet') {
+        @include clampattr(margin-left, 36);
+      }
+
+      p {
+        @include media('<tablet') {
+          @include clampattr(font-size, 18);
+          @include clampattr(line-height, 24);
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 15);
+          @include clampattr(line-height, 20);
+        }
+        font-weight: 300;
+        color: var(--greyish-brown);
+      }
+      @include media('<tablet') {
+        .p-name {
+          padding-top: 5px;
+        }
+      }
+      @include media('<tablet') {
+        @include clampattr(font-size, 21);
+        font-weight: 700;
+      }
+      .name {
+        @include media('<tablet') {
+          @include clampattr(font-size, 21);
+          font-weight: 700;
+        }
+        @include media('>=tablet') {
+          @include clampattr(font-size, 18);
+        }
+        color: var(--marine-blue);
+      }
+      .title {
+        @include clampattr(font-size, 20);
+        color: var(--marine-blue);
+      }
+      .title-2 {
+        @include clampattr(font-size, 15);
+        color: var(--ocean-blue);
+      }
+      .dr-name-separate-line {
+        margin-left: 124px;
+        border-bottom: 1px dashed var(--marine-blue);
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
