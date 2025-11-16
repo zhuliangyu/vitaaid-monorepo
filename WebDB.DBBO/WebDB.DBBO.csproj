@@ -22,6 +22,9 @@
     <None Remove="Mapping\Therapeutic_Protocol.hbm.xml" />
     <None Remove="Mapping\UnitType.hbm.xml" />
     <None Remove="Mapping\Webinar.hbm.xml" />
+    <None Remove="Mapping\HubCoupon.hbm.xml" />
+    <None Remove="Mapping\HubCouponRule.hbm.xml" />
+    <None Remove="Mapping\HubCouponAction.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +46,9 @@
     <EmbeddedResource Include="Mapping\StabilityForm.hbm.xml" />
     <EmbeddedResource Include="Mapping\StabilityTestData.hbm.xml" />
     <EmbeddedResource Include="Mapping\UnitType.hbm.xml" />
+    <EmbeddedResource Include="Mapping\HubCoupon.hbm.xml" />
+    <EmbeddedResource Include="Mapping\HubCouponRule.hbm.xml" />
+    <EmbeddedResource Include="Mapping\HubCouponAction.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>

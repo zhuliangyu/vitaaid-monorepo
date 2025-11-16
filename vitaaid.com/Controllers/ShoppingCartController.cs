@@ -64,6 +64,10 @@ namespace vitaaid.com.Controllers
         CustomerAccount oCustomer = oVAMISSession.QueryDataElement<CustomerAccount>()
                                             .Where(c => c.CustomerCode == customerCode)
                                             .UniqueOrDefault();
+
+        // 98k- 999
+        // List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
+
         if (oCustomer == null)
           return null;
 
