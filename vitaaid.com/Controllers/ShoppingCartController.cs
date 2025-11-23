@@ -21,6 +21,7 @@ using Microsoft.Extensions.Logging;
 using static MySystem.Base.Helpers.MailHelper;
 using MyHibernateUtil;
 using MySystem.Base;
+using System.Text.Json;
 
 namespace vitaaid.com.Controllers
 {
@@ -46,6 +47,12 @@ namespace vitaaid.com.Controllers
     public virtual CreditCardData creditCardData { get; set; }
   }
 
+  // This temporary class is used to parse the JSON string from the database
+  public class FIXED_AMOUNT_PERCENTAGE_OFF_JSON
+  {
+    public String value { get; set; }
+  }
+
   [Route("api/ShoppingCart")]
   [ApiController]
   public class ShoppingCartController : ControllerBase
@@ -55,6 +62,28 @@ namespace vitaaid.com.Controllers
     {
       _logger = logger;
     }
+
+
+    public void applyCouponToOrder(String couponCode, SessionProxy oSession)
+    {
+      List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
+      HubCoupon oCoupon = HubCoupons.FirstOrDefault(x => x.Code == couponCode);
+      List<HubCouponRule> HubCouponRules = oSession.Query<HubCouponRule>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
+      List<HubCouponAction> HubCouponActions = oSession.Query<HubCouponAction>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
+
+      foreach (var HubCouponAction in HubCouponActions)
+      {
+        switch (HubCouponAction.ActionType)
+        {
+          case "FIXED_AMOUNT_OFF":
+            var jsonStringFromDB = HubCouponAction.ActionDetails;
+            FIXED_AMOUNT_PERCENTAGE_OFF_JSON obj = JsonSerializer.Deserialize<FIXED_AMOUNT_PERCENTAGE_OFF_JSON>(jsonStringFromDB);
+            var amountOff = decimal.Parse(obj.value);
+            break;
+        }
+      }
+    }
+
 
     private VAOrder PrepareOrder(string customerCode, int billingAddrID, int shippingAddrID, ShoppingCartItem[] items, string webSite, SessionProxy oVAMISSession, SessionProxy oSession)
     {
@@ -68,11 +97,8 @@ namespace vitaaid.com.Controllers
         // 98k- 999
         // This string should be passed from the client in the request
         var couponCode = "00code_qmh8j";
-        List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
-        HubCoupon oCoupon = HubCoupons.FirstOrDefault(x => x.Code == couponCode);
-        List<HubCouponRule> HubCouponRules = oSession.Query<HubCouponRule>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
-        List<HubCouponAction> HubCouponActions = oSession.Query<HubCouponAction>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
-
+        applyCouponToOrder(couponCode, oSession);
+        
         if (oCustomer == null)
           return null;
 
