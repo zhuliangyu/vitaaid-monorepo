@@ -66,7 +66,12 @@ namespace vitaaid.com.Controllers
                                             .UniqueOrDefault();
 
         // 98k- 999
-        // List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
+        // This string should be passed from the client in the request
+        var couponCode = "00code_qmh8j";
+        List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
+        HubCoupon oCoupon = HubCoupons.FirstOrDefault(x => x.Code == couponCode);
+        List<HubCouponRule> HubCouponRules = oSession.Query<HubCouponRule>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
+        List<HubCouponAction> HubCouponActions = oSession.Query<HubCouponAction>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
 
         if (oCustomer == null)
           return null;
