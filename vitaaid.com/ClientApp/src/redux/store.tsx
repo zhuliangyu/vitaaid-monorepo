@@ -12,6 +12,8 @@ import cartPageReducer from './features/shoppingcart/cartPageSlice';
 import orderReducer from './features/shoppingcart/orderSlice';
 import dropShipReducer from './features/shoppingcart/dropShipSlice';
 import orderCommentReducer from './features/shoppingcart/orderCommentSlice';
+import orderCouponReducer from './features/shoppingcart/orderCouponSlice';
+
 import addressBookReducer from './features/addressbook/addressBookSlice';
 import sameAsBillingAddrReducer from './features/shoppingcart/sameAsBillingAddrSlice';
 import iStateReducer from './features/OPStateSlice';
@@ -41,6 +43,7 @@ export default configureStore({
     cartPage: cartPageReducer,
     dropShip: dropShipReducer,
     orderComment: orderCommentReducer,
+    orderCoupon: orderCouponReducer,
     addressBook: addressBookReducer,
     sameAsBillingAddr: sameAsBillingAddrReducer,
     iStateData: iStateReducer,

@@ -42,6 +42,7 @@ import {
 } from 'redux/features/shoppingcart/shoppingCartSlice';
 import { useEffect } from 'react';
 import { OrderDetail } from 'components/OrderDetail';
+import { orderCoupon } from 'redux/features/shoppingcart/orderCouponSlice';
 interface Props {
   isMobile: boolean;
 }
@@ -50,6 +51,7 @@ export const ShoppingSummary = ({ isMobile }: Props) => {
   const account = useSelector(accountData);
   let cart = useSelector(shoppingCart);
   let orderData = useSelector(order);
+  let couponCode = useSelector(orderCoupon);
   const dispatch = useDispatch();
   const [agreeTerm, setAgreeTerm] = React.useState<Boolean>(false);
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ export const ShoppingSummary = ({ isMobile }: Props) => {
         cart,
         billingAddID,
         shippingAddID,
+        couponCode,
       );
       dispatch(orderChanged(data));
     }

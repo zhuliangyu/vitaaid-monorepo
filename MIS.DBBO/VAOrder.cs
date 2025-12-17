@@ -37,6 +37,8 @@ namespace MIS.DBBO
     public virtual string sNetSales { get { return (NetSales < 0) ? "(" + Decimal.Round(NetSales * -1, 2, MidpointRounding.AwayFromZero).ToString() + ")" : Decimal.Round(NetSales, 2, MidpointRounding.AwayFromZero).ToString(); } }
     public virtual double dAdjustmentDiscountPercentage { get; set; } = 0;
     public virtual string cartDiscountName { get; set; } = ""; // memory object for e-commerce shopping cart
+    
+    // 根据Discount program 计算的折扣金额
     public virtual decimal Adjustment { get; set; } = 0;
     public virtual string sAdjustment { get => (Adjustment * (decimal)-1.0).ToCurrencyString(); }
     public virtual decimal ShippingFee { get; set; } = 0;
@@ -139,9 +141,17 @@ namespace MIS.DBBO
     public virtual bool ConfirmShipping { get; set; } = false;
     public virtual bool ConfirmMemo { get; set; } = false;
     public virtual bool ShippingByRefriderator { get; set; }
+    
+    // 这是一个手动干预的折扣金额
     public virtual decimal dExtraAdjustment { get; set; } = 0;
     public virtual eADJUSTTYPE ExtraAdjustmentType { get; set; } = eADJUSTTYPE.AMOUNT;
+    
+    // 是否允许手动干预折扣
+    // 如果为 true, 则用户可以手动干预折扣, 否则系统会自动选择最大的折扣力度
     public virtual bool bOverrideProgramedDiscount { get; set; } = false;
+    
+    // 当 bByMaxDiscount 为 true (默认情况) 时: 系统会在所有可用的折扣中，自动选择那个优惠力度最大的折扣应用到订单或商品上。
+    // 例如，如果一个商品既可以享受8折优惠，又可以享受立减10元的优惠，系统会计算哪种方式更划算，然后采用最优惠的那一种。
     public virtual bool bByMaxDiscount { get; set; } = true;
     public virtual bool bDropShip { get; set; } = false;
     // Fixed Cart Discount

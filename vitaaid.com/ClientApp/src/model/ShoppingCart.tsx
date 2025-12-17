@@ -60,7 +60,14 @@ export const buildOrder = async (
   cart: ShoppingCartItem[],
   billingAddrID: number,
   shippingAddrID: number,
+  couponCode?: string, // optional
 ): Promise<OrderData> => {
+
+  let url = `${process.env.REACT_APP_SHOPPING_CART_URL}/api/ShoppingCart/buildOrder?customercode=${customerCode}&billingAddrID=${billingAddrID}&shippingAddrID=${shippingAddrID}&webSite=${webSite}`;
+  if (couponCode && couponCode.length > 0) {
+    url += `&couponCode=${couponCode}`;
+  }
+  
   const requestOptions = {
     method: 'PUT',
     headers: {
@@ -72,7 +79,7 @@ export const buildOrder = async (
   };
   let data: Promise<OrderData> = {} as Promise<OrderData>;
   await fetch(
-    `${process.env.REACT_APP_SHOPPING_CART_URL}/api/ShoppingCart/buildOrder?customercode=${customerCode}&billingAddrID=${billingAddrID}&shippingAddrID=${shippingAddrID}&webSite=${webSite}`,
+    url,
     requestOptions,
   )
     .then((response) => {
@@ -99,6 +106,7 @@ export const putOrder = async (
   paymentMethod: string,
   orderComment: string,
   creditCardData: CreditCardData,
+  couponCode?: string, // optional
 ): Promise<OrderData> => {
   const requestOptions = {
     method: 'PUT',
@@ -120,8 +128,12 @@ export const putOrder = async (
     }),
   };
   let data: Promise<OrderData> = {} as Promise<OrderData>;
+  let url = `${process.env.REACT_APP_SHOPPING_CART_URL}/api/ShoppingCart/putOrder?webSite=${webSite}`;
+  if (couponCode && couponCode.length > 0) {
+    url += `&couponCode=${couponCode}`;
+  }
   await fetch(
-    `${process.env.REACT_APP_SHOPPING_CART_URL}/api/ShoppingCart/putOrder?webSite=${webSite}`,
+    url,
     requestOptions,
   )
     .then((response) => {

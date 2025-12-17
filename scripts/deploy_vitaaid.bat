@@ -1,5 +1,6 @@
 @echo off
 
+:: Stop IIS
 iisreset /stop
 
 :: Ask for zip file path in command line
@@ -7,8 +8,7 @@ set /p zipPath=Please enter the full path to the ZIP file:
 set "deployFolder=C:\inetpub\vitaaid_customer_frontend"
 set "backupRoot=C:\TEMP\DeployBackups"
 
-
-:: Check zip file path existence
+:: Check the deploy zip file path existence
 if not exist "%zipPath%" (
     echo ZIP file not found!
     pause
@@ -45,9 +45,9 @@ if not exist "%deleteTarget%" (
     echo Directory does not exist: %deleteTarget%
 )
 
-echo Deleting directory and all contents: %deleteTarget%
+echo Deleting React directory and all contents: %deleteTarget%
 
-:: Remove the directory and everything inside it
+:: Remove the directory (/ClientApp) and everything inside it
 rmdir /s /q "%deleteTarget%"
 
 :: open the temp directory

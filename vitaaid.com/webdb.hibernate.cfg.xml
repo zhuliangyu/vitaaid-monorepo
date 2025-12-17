@@ -10,7 +10,7 @@
     <!-- <property name="connection.connection_string">Data Source=NATUROAID12;Database=WebDB;User ID=mesuser;Password="uFMPZoKwiVgF5YmxqC1BPQ=="</property> -->
      <property name="connection.connection_string">
       <!-- Data Source=DESKTOP-92AI2TH\SQLEXPRESS;Database=WebDB;Trusted_Connection=True; -->
-      Data Source=192.168.124.22;Database=WebDB;User ID=sa;Password="uFMPZoKwiVgF5YmxqC1BPQ==";Encrypt=false;
+      Data Source=192.168.124.12;Database=WebDB;User ID=sa;Password="uFMPZoKwiVgF5YmxqC1BPQ==";Encrypt=false;
 	 </property> 
 
     <!--<property name="connection.connection_string">Data Source=192.168.1.114;Database=VA.MIS;User ID=root;Password="zhuliangyu27"</property>-->

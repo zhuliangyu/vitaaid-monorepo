@@ -18,6 +18,7 @@ import {
 } from 'redux/features/shoppingcart/shoppingCartSlice';
 import { OrderData, OrderItemData, buildOrder } from 'model/ShoppingCart';
 import { order, orderSlice, orderChanged } from 'redux/features/shoppingcart/orderSlice';
+import { orderCoupon, orderCouponChanged } from 'redux/features/shoppingcart/orderCouponSlice';
 
 import {
   CartPageType,
@@ -54,12 +55,15 @@ export const ShoppingCartDetail = ({ isMobile }: Props) => {
   const account = useSelector(accountData);
   let cart = useSelector(shoppingCart);
   let orderData = useSelector(order);
+  let couponCodeInStore = useSelector(orderCoupon);
+  const [couponCodeInput, setCouponCodeInput] = React.useState<string>('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    setCouponCodeInput(couponCodeInStore);
     async function fetchData() {
-      const data = await buildOrder(account.customerCode, country, cart, 0, 0);
+      const data = await buildOrder(account.customerCode, country, cart, 0, 0, couponCodeInStore);
       dispatch(orderChanged(data));
     }
     if (account && cart && cart.length > 0) fetchData();
@@ -291,6 +295,7 @@ export const ShoppingCartDetail = ({ isMobile }: Props) => {
                       </div>
                     </Fragment>
                   )}
+                  <div> Discount: <span className='text-danger'> - ${orderData?.adjustment?.toFixed(2) ?? 0.0}</span></div>
                   <div> Subtotal: ${orderData?.subTotal?.toFixed(2) ?? 0.0}</div>
                 </div>
               </div>
@@ -298,6 +303,22 @@ export const ShoppingCartDetail = ({ isMobile }: Props) => {
                 <div className="col-12 cart-action">
                   {orderData && orderData.orderItems && (
                     <Fragment>
+                      <div>
+                        {/* if couponCode is not empty, input the coupon code into the input field */}
+                       
+                          <input type="text" placeholder="Enter coupon code" value={couponCodeInput} onChange={(e) => setCouponCodeInput(e.target.value)} />
+                        
+                        <button onClick={async () => {
+                          // store the coupon code in the redux store
+                          dispatch(orderCouponChanged(couponCodeInput));
+
+                          // call buildOrder with the coupon code
+                          const newOrderData = await buildOrder(account.customerCode, country, cart, 0, 0, couponCodeInput);
+
+                          // update the order data in the redux store
+                          dispatch(orderChanged(newOrderData));
+                        }}>APPLY</button>
+                      </div>
                       <button
                         onClick={() => {
                           dispatch(productCodeChanged(''));

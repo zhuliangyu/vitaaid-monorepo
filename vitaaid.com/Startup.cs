@@ -84,6 +84,7 @@ namespace vitaaid.com
       
       ServicesHelper.DBServer.DoDBConnect(ms_ContentRoot + "webdb.hibernate.cfg.xml", EnvironmentName);
       setup_WebDBPO_DBServer(ServicesHelper.DBServer);
+      setup_MISDBPO_WebDBServer(ServicesHelper.DBServer);
       
       ServicesHelper.VAMISDBServer.DoDBConnect(ms_ContentRoot + "VA.MIS.hibernate.cfg.xml", EnvironmentName);
       setup_MISDBPO_DBServer(ServicesHelper.VAMISDBServer);

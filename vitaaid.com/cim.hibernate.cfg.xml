@@ -11,7 +11,7 @@
     <property name="connection.connection_string">
        <!-- Data Source=DESKTOP-92AI2TH\SQLEXPRESS;Database=mesdb;trusted_Connection=True;  -->
       <!--<property name="connection.connection_string">Data Source=192.168.1.114;Database=mesdb;User ID=root;Password="zhuliangyu27"</property>-->
-            Data Source=192.168.124.22;Database=mesdb;User ID=sa;Password="uFMPZoKwiVgF5YmxqC1BPQ==";Encrypt=false;
+            Data Source=192.168.124.12;Database=mesdb;User ID=sa;Password="uFMPZoKwiVgF5YmxqC1BPQ==";Encrypt=false;
 
     </property>
     <property name="show_sql">true</property>

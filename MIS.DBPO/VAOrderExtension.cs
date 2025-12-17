@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using MyHibernateUtil;
 using static MIS.DBPO.DBPOServiceHelper;
-using MyHibernateUtil.Extensions;
 using MySystem.Base.Extensions;
-using NHibernate;
+using WebDB.DBBO;
+using System.Text.Json;
 
 namespace MIS.DBPO
 {
+  // This temporary class is used to parse the JSON string from the database
+  public class FIXED_AMOUNT_PERCENTAGE_OFF_JSON
+  {
+    public String value { get; set; }
+  }
+
   public static class VAOrderExtension
   {
     public static void buildCartDiscounts(this VAOrder self)
@@ -152,7 +158,7 @@ namespace MIS.DBPO
 
 
     public static void RebuildOrderItem(this VAOrder self, IList<ShippingPolicyMaster> oShoppingPolicies,
-      SessionProxy oSession, bool bRecreate = true, bool bAutoAddEAS = true)
+      SessionProxy oVAMISSession, bool bRecreate = true, bool bAutoAddEAS = true, string couponCode = "")
     {
       try
       {
@@ -287,8 +293,7 @@ namespace MIS.DBPO
             self.ShippingByRefriderator = true;
           self.oOrderItems.Add(x);
         });
-        // 98k-4
-        self.ProcessSummary(oShoppingPolicies, oSession, bAutoAddEAS);
+        self.ProcessSummary(oShoppingPolicies, oVAMISSession, bAutoAddEAS, couponCode);
       }
       catch (Exception)
       {
@@ -303,7 +308,7 @@ namespace MIS.DBPO
 
 
     public static void ProcessSummary(this VAOrder self, IList<ShippingPolicyMaster> oSPs, SessionProxy oSession,
-                                      bool bAutoAddEAS = false)
+                                      bool bAutoAddEAS = false, string couponCode = "")
     {
       try
       {
@@ -315,23 +320,23 @@ namespace MIS.DBPO
         self.OriginalNetSales = 0;
         self.OrderItemsCount = 0;
         double shippingItemCount = 0;
-        foreach (OrderItem oOI in self.oOrderItems)
+        foreach (OrderItem oOrderItem in self.oOrderItems)
         {
-          if (oOI is MCOrderItem)
-            NetSalesOFMCProduct += oOI.Amount;
-          else if (oOI is CreditOrderItem)
-            CreditsFromDiscountProgram += oOI.RawAmount;
-          else if (oOI.bByProductOrStaticDiscount)
+          if (oOrderItem is MCOrderItem)
+            NetSalesOFMCProduct += oOrderItem.Amount;
+          else if (oOrderItem is CreditOrderItem)
+            CreditsFromDiscountProgram += oOrderItem.RawAmount;
+          else if (oOrderItem.bByProductOrStaticDiscount)
           {
-            NetSalesOfSpecialDiscount += oOI.Amount;
-            self.OrderItemsCount += oOI.OrderQty;
-            shippingItemCount += oOI.ShipQty.ToDouble();
+            NetSalesOfSpecialDiscount += oOrderItem.Amount;
+            self.OrderItemsCount += oOrderItem.OrderQty;
+            shippingItemCount += oOrderItem.ShipQty.ToDouble();
           }
           else
           {
-            NetSalesOthers += oOI.RawAmount;
-            self.OrderItemsCount += oOI.OrderQty;
-            shippingItemCount += oOI.ShipQty.ToDouble();
+            NetSalesOthers += oOrderItem.RawAmount;
+            self.OrderItemsCount += oOrderItem.OrderQty;
+            shippingItemCount += oOrderItem.ShipQty.ToDouble();
           }
         }
 
@@ -355,38 +360,61 @@ namespace MIS.DBPO
             self.cartDiscountName = "";
           }
         }
+        // Discount program 减少总价
+        // 对于新的订单, 而且订单不允许手动干预的情况下
         else if (self.InvoiceDate <= NewVersionDate || !self.bOverrideProgramedDiscount)
-        { //98k-5
+        { 
+          // 使用最大的折扣力度
           if (self.bByMaxDiscount)
           {
-            var oProgram = self.oCartDiscounts.Where(x => x.oDiscountProgram.bMeetCARTCondition(self.DiffSKUForCARTDiscount, self.NetSales, self.OrderItemsCount) &&
+            var oAppliedCartDiscount = self.oCartDiscounts.Where(x => x.oDiscountProgram.bMeetCARTCondition(self.DiffSKUForCARTDiscount, self.NetSales, self.OrderItemsCount) &&
                                                           x.oRefCustomerDiscount.Valid(self.PONo, self.InvoiceDate) &&
                                                           x.oDiscountProgram.ValidCoupon(self.CouponCode))
                                               .OrderByDescending(x => x.oDiscountProgram.DiscountAmount)
                                               .ToList().FirstOrDefault();
 
-            self.dAdjustmentDiscountPercentage = oProgram?.oDiscountProgram?.DiscountAmount ?? 0.0; //oPrograms.Max(x => x.oDiscountProgram.DiscountAmount) ?? 0.0;
-            self.cartDiscountName = oProgram?.oDiscountProgram?.Name ?? "";
-            if (oProgram != null)
-              oProgram.bApplied = true;
+            self.dAdjustmentDiscountPercentage = oAppliedCartDiscount?.oDiscountProgram?.DiscountAmount ?? 0.0; //oPrograms.Max(x => x.oDiscountProgram.DiscountAmount) ?? 0.0;
+            self.cartDiscountName = oAppliedCartDiscount?.oDiscountProgram?.Name ?? "";
+            if (oAppliedCartDiscount != null)
+              oAppliedCartDiscount.bApplied = true;
             //oPrograms.Where(x => x.oDiscountProgram.DiscountAmount == self.dAdjustmentDiscountPercentage).FirstOrDefault()?.oDiscountProgram?.Name ?? "";
           }
           else
           {
-            var oProgram = self.oCartDiscounts.Where(x => x.bApplied).FirstOrDefault();
-            self.dAdjustmentDiscountPercentage = oProgram?.oDiscountProgram?.DiscountAmount ?? 0.0;
-            self.cartDiscountName = oProgram?.oDiscountProgram?.Name ?? "";
+            var oAppliedCartDiscount = self.oCartDiscounts.Where(x => x.bApplied).FirstOrDefault();
+            self.dAdjustmentDiscountPercentage = oAppliedCartDiscount?.oDiscountProgram?.DiscountAmount ?? 0.0;
+            self.cartDiscountName = oAppliedCartDiscount?.oDiscountProgram?.Name ?? "";
             //self.dAdjustmentDiscountPercentage =
             //    self.oCartDiscounts.Where(x => x.bApplied).FirstOrDefault()?.oDiscountProgram?.DiscountAmount ?? 0.0;
           }
         }
-        self.Adjustment = decimal.Round(((self.InvoiceDate <= NewVersionDate) ? NetSalesOthers : self.NetSales) * (decimal)(self.dAdjustmentDiscountPercentage * 0.01), 2, MidpointRounding.AwayFromZero);
 
+        // 根据 Discount program 计算折扣金额
+        decimal dAdjustmentByDiscountProgram = decimal.Round(((self.InvoiceDate <= NewVersionDate) ? NetSalesOthers : self.NetSales) * (decimal)(self.dAdjustmentDiscountPercentage * 0.01), 2, MidpointRounding.AwayFromZero);
+
+        // 根据Coupon 计算折扣金额
+        decimal dAdjustmentByCoupon = GetCouponAdjustmentAmount(couponCode, self);
+        // coupon vs discount program 拿折扣力度最大的那个金额作为最终的折扣金额
+        if(dAdjustmentByCoupon > dAdjustmentByDiscountProgram) {
+          self.Adjustment = dAdjustmentByCoupon;
+          self.cartDiscountName = "Coupon";
+        }
+        else {
+          self.Adjustment = dAdjustmentByDiscountProgram;
+          // self.cartDiscountName already assigned before
+        }
+
+        // discount amount calculation by % or a fixed amount
         if (self.ExtraAdjustmentType == eADJUSTTYPE.AMOUNT)
+          // 固定金额折扣
+          //self.Adjustment 是根据Discount program 计算的折扣金额
+          //self.dExtraAdjustment 是手动干预的折扣金额
           self.SalesActivity = decimal.Round(self.NetSales - self.Adjustment - self.dExtraAdjustment, 2, MidpointRounding.AwayFromZero);
         else
+          // 百分比折扣
           self.SalesActivity = decimal.Round((self.NetSales - self.Adjustment) * (1 - self.dExtraAdjustment * (decimal)0.01), 2, MidpointRounding.AwayFromZero);
 
+        // 处理运费计算
         if (self.Status == eORDERSTATUS.INIT && !string.IsNullOrWhiteSpace(self.CountryShip) && oSPs != null)
         {
           self.ExtendedAreaSubcharge = 0;
@@ -491,6 +519,42 @@ namespace MIS.DBPO
       {
         throw;
       }
+    }
+
+    private static decimal GetCouponAdjustmentAmount(string couponCode, VAOrder oOrder)
+    {
+      var oSession = WebDBServer[eST.SESSION0];
+      List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
+      HubCoupon oCoupon = HubCoupons.FirstOrDefault(x => x.Code == couponCode);
+      
+      // early return when coupon is invalid
+      if (oCoupon == null || !oCoupon.IsActive || oCoupon.StartDate > DateTime.Now || (oCoupon.EndDate != null && oCoupon.EndDate < DateTime.Now) )
+        return 0;
+
+      List<HubCouponRule> HubCouponRules = oSession.Query<HubCouponRule>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
+      List<HubCouponAction> HubCouponActions = oSession.Query<HubCouponAction>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
+      // push rules and actions to oCoupon
+      oCoupon.Rules = HubCouponRules;
+      oCoupon.Actions = HubCouponActions;
+
+      foreach (var HubCouponAction in HubCouponActions)
+      {
+        decimal amountOff = 0;
+        var jsonStringFromDB = HubCouponAction.ActionDetails;
+        switch (HubCouponAction.ActionType)
+        {
+          case "FIXED_AMOUNT_OFF":
+            var obj_amount_off = JsonSerializer.Deserialize<FIXED_AMOUNT_PERCENTAGE_OFF_JSON>(jsonStringFromDB);
+            amountOff = decimal.Parse(obj_amount_off.value);
+            break;
+          case "PERCENTAGE_OFF":
+            var obj_percent_off = JsonSerializer.Deserialize<FIXED_AMOUNT_PERCENTAGE_OFF_JSON>(jsonStringFromDB);
+            amountOff = oOrder.NetSales * decimal.Parse(obj_percent_off.value) * 0.01m;
+            break;
+        }
+        return amountOff;
+      }
+      return 0;
     }
 
     public static decimal CaculateShippingFeeByPolicy(this VAOrder self, IList<ShippingPolicyMaster> oSPs)

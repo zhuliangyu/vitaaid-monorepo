@@ -28,6 +28,9 @@ namespace WebDB.DBBO
         [Required]
         public virtual DateTime UpdatedAt { get; set; } = DateTime.Now;
         public virtual string Notes { get; set; }
+
+        public virtual IList<HubCouponRule> Rules { get; set; } = new List<HubCouponRule>();
+        public virtual IList<HubCouponAction> Actions { get; set; } = new List<HubCouponAction>();
     }
 }
 

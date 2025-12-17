@@ -305,6 +305,7 @@ export const OrderDetail = ({ account, orderData, isMobile }: Props) => {
                 {ToMoneyStr(orderData.adjustment * -1)}
               </div>
             )}
+            <div>Coupon Discount: {ToMoneyStr(orderData.adjustment * -1)}</div>
             <div>
               Shipping &amp; Handling :{' '}
               {orderData && orderData.shippingFee > 0

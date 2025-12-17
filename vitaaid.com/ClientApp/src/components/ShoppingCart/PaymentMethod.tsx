@@ -41,6 +41,7 @@ import {
 import { BreadCrumbsBlock } from 'components/Layouts/BreadCrumbs';
 import InputMask from 'react-input-mask';
 import { LoadPanel } from 'devextreme-react/load-panel';
+import { orderCoupon } from 'redux/features/shoppingcart/orderCouponSlice';
 interface Props {
   isMobile: boolean;
 }
@@ -57,7 +58,7 @@ export const PaymentMethod = ({ isMobile }: Props) => {
   let bDropShip = useSelector(dropShip);
   let paymentMethodData = useSelector(paymentMethod);
   let orderCommentData = useSelector(orderComment);
-
+  let couponCode = useSelector(orderCoupon);
   window.scrollTo(0, 0);
   const {
     register: creditCardForm,
@@ -141,6 +142,7 @@ export const PaymentMethod = ({ isMobile }: Props) => {
         paymentMethodData,
         orderCommentData,
         data,
+        couponCode,
       );
 
       setSubmittedState(0);

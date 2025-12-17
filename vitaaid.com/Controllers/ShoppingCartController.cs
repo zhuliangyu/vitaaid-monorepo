@@ -47,12 +47,6 @@ namespace vitaaid.com.Controllers
     public virtual CreditCardData creditCardData { get; set; }
   }
 
-  // This temporary class is used to parse the JSON string from the database
-  public class FIXED_AMOUNT_PERCENTAGE_OFF_JSON
-  {
-    public String value { get; set; }
-  }
-
   [Route("api/ShoppingCart")]
   [ApiController]
   public class ShoppingCartController : ControllerBase
@@ -64,40 +58,14 @@ namespace vitaaid.com.Controllers
     }
 
 
-    public void applyCouponToOrder(String couponCode, SessionProxy oSession)
+
+    private VAOrder PrepareOrder(string customerCode, int billingAddrID, int shippingAddrID, ShoppingCartItem[] items, string webSite, SessionProxy oVAMISSession, SessionProxy oSession, string couponCode="")
     {
-      List<HubCoupon> HubCoupons = oSession.Query<HubCoupon>().ToList();
-      HubCoupon oCoupon = HubCoupons.FirstOrDefault(x => x.Code == couponCode);
-      List<HubCouponRule> HubCouponRules = oSession.Query<HubCouponRule>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
-      List<HubCouponAction> HubCouponActions = oSession.Query<HubCouponAction>().Where(x => x.oCoupon.ID == oCoupon.ID).ToList();
-
-      foreach (var HubCouponAction in HubCouponActions)
-      {
-        switch (HubCouponAction.ActionType)
-        {
-          case "FIXED_AMOUNT_OFF":
-            var jsonStringFromDB = HubCouponAction.ActionDetails;
-            FIXED_AMOUNT_PERCENTAGE_OFF_JSON obj = JsonSerializer.Deserialize<FIXED_AMOUNT_PERCENTAGE_OFF_JSON>(jsonStringFromDB);
-            var amountOff = decimal.Parse(obj.value);
-            break;
-        }
-      }
-    }
-
-
-    private VAOrder PrepareOrder(string customerCode, int billingAddrID, int shippingAddrID, ShoppingCartItem[] items, string webSite, SessionProxy oVAMISSession, SessionProxy oSession)
-    {
-      // 98k-1
       try
       {
         CustomerAccount oCustomer = oVAMISSession.QueryDataElement<CustomerAccount>()
                                             .Where(c => c.CustomerCode == customerCode)
                                             .UniqueOrDefault();
-
-        // 98k- 999
-        // This string should be passed from the client in the request
-        var couponCode = "00code_qmh8j";
-        applyCouponToOrder(couponCode, oSession);
         
         if (oCustomer == null)
           return null;
@@ -167,9 +135,7 @@ namespace vitaaid.com.Controllers
         });
 
         IList<ShippingPolicyMaster> oShippingPolicies = ShippingPolicyExtension.FetchAllShippingPolicies(oVAMISSession);
-        
-        // 98k-3
-        oOrder.RebuildOrderItem(oShippingPolicies, oVAMISSession, true, true);
+        oOrder.RebuildOrderItem(oShippingPolicies, oVAMISSession, true, true, couponCode);
 
         return oOrder;
       }
@@ -182,7 +148,7 @@ namespace vitaaid.com.Controllers
     // GET: api/ShoppingCart/buildOrder?customerCode={customerCode}&billingAddrID={billingAddrID}shippingAddrID=${shippingAddrID}&webSite=${webSite}
     //[Authorize]
     [HttpPut("buildOrder")]
-    public IActionResult BuildOrder(string customerCode, int billingAddrID, int shippingAddrID, ShoppingCartItem[] items, string webSite)
+    public IActionResult BuildOrder(string customerCode, int billingAddrID, int shippingAddrID, ShoppingCartItem[] items, string webSite, string couponCode="")
     {
       _logger.LogInformation("Build order:{0}", customerCode);
       var oVAMISSession = VAMISDBServer[eST.SESSION0];
@@ -198,7 +164,7 @@ namespace vitaaid.com.Controllers
         oVAMISSession.Clear();
         oSession.Clear();
 
-        var oOrder = PrepareOrder(customerCode, billingAddrID, shippingAddrID, items, webSite, oVAMISSession, oSession);
+        var oOrder = PrepareOrder(customerCode, billingAddrID, shippingAddrID, items, webSite, oVAMISSession, oSession, couponCode);
 
         var ShoppingCartOrder = (new OrderData()).buildFromVAOrder(oOrder, false);
         return Ok(ShoppingCartOrder);
@@ -215,7 +181,7 @@ namespace vitaaid.com.Controllers
     }
 
     [HttpPut("putOrder")]
-    public IActionResult PutOrder(WebOrder webOrder, string webSite)
+    public IActionResult PutOrder(WebOrder webOrder, string webSite, string couponCode="")
     {
       if (webOrder.cart.IsNullOrEmpty() || string.IsNullOrWhiteSpace(webOrder.customerCode))
       {
@@ -234,7 +200,7 @@ namespace vitaaid.com.Controllers
         oSession.Clear();
         oVMSession.Clear();
 
-        var oOrder = PrepareOrder(webOrder.customerCode, webOrder.billingAddrID, webOrder.shippingAddrID, webOrder.cart, webSite, oVMSession, oSession);
+        var oOrder = PrepareOrder(webOrder.customerCode, webOrder.billingAddrID, webOrder.shippingAddrID, webOrder.cart, webSite, oVMSession, oSession, couponCode);
 
         if (oOrder == null)
           return BadRequest();//Ok(null);
@@ -300,6 +266,8 @@ namespace vitaaid.com.Controllers
         oOrder.oPayments?.Action(x => oVMSession.session.Evict(x));
         oOrder.oGiftCards?.Clear();//Action(x => oVMSession.session.Evict(x));
         oOrder.oPayments?.Clear();//Action(x => oVMSession.session.Evict(x));
+        if (!string.IsNullOrWhiteSpace(couponCode))
+          oOrder.CouponCode = couponCode;
 
         oOrder.SaveOrder(oVMSession);
         xact.Commit();

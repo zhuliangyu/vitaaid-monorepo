@@ -20,6 +20,7 @@ import {
 } from 'redux/features/shoppingcart/cartPageSlice';
 import { order, orderSlice, orderChanged } from 'redux/features/shoppingcart/orderSlice';
 import { OrderData, OrderItemData } from 'model/ShoppingCart';
+import { resetOrderCoupon } from 'redux/features/shoppingcart/orderCouponSlice';
 interface Props {
   isMobile: boolean;
 }
@@ -47,6 +48,9 @@ export const OrderCompletion = ({ isMobile }: Props) => {
                 className="finish-btn"
                 onClick={() => {
                   dispatch(orderChanged({} as OrderData));
+                  // 当订单完成时，重置Coupon Code
+                  // 这样用户可以再次输入新的Coupon Code
+                  dispatch(resetOrderCoupon());
                   navigate('/');
                 }}
               >

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Text.Json" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,11 +82,16 @@
       <Project>{8823D4A9-4EBE-4E7B-B29B-3F21E0EADA6B}</Project>
       <Name>MyToolkit.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebDB.DBBO\WebDB.DBBO.csproj">
+      <Project>{47d1f706-f62d-4f18-bec2-aaa69cc13dce}</Project>
+      <Name>WebDB.DBBO</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NHibernate">
       <Version>5.3.11</Version>
     </PackageReference>
+    <PackageReference Include="System.Text.Json" Version="10.0.0" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
