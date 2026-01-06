@@ -538,3 +538,4 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,aspnetcore,visualstudio
 
 /vitaaid.com/ClientApp/build/
+vitaaid.com/ClientApp/build/*
